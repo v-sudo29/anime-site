@@ -1,0 +1,42 @@
+:root {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Cards */
+.card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+}
+
+.card-img-container {
+  text-align: center;
+}
+
+.card-img {
+  height: 18rem;
+}
+
+.synopsis {
+  font-size: 0.9rem;
+}
