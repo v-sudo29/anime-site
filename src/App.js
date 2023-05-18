@@ -27,7 +27,7 @@ function App() {
     return newTitle
   }
 
-  // Call API once
+  // Call API once and set animData state
   useEffect(() => {
     if (shouldLog.current) {
       shouldLog.current = false;
@@ -35,6 +35,7 @@ function App() {
     }
   }, [])
 
+  // Set allCards once data is in animeData state
   useEffect(() => {
     if (typeof animeData !== 'object') {
       return
