@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Card from './components/Card'
-import './App.css'
+import Card from '../components/Card'
 
-function App() {
-  const [animeData, setAnimeData] = useState('')
+function TopAnime() {
+  const [animeData, setAnimeData] = useState(null)
   const [allCards, setAllCards] = useState('')
   const shouldLog = useRef(true)
 
@@ -13,6 +12,7 @@ function App() {
       const response = await fetch("https://api.jikan.moe/v4/top/anime?filter=rank")
       const data = await response.json()
       setAnimeData(data.data)
+      console.log('data received')
     }
     catch (error) {
       console.error(error)
@@ -27,7 +27,7 @@ function App() {
     return newTitle
   }
 
-  // Call API once and set animData state
+  // Call API once and set animeData state
   useEffect(() => {
     if (shouldLog.current) {
       shouldLog.current = false;
@@ -37,14 +37,15 @@ function App() {
 
   // Set allCards once data is in animeData state
   useEffect(() => {
-    if (typeof animeData !== 'object') {
+    if (!animeData) {
       return
     } else {
       setAllCards(animeData.map(anime => {
         const newTitle = filterTitle(anime['title_english'])
         return (
           <Card
-            key= {anime['mal_id']}
+            id={anime['mal_id']}
+            key={anime['mal_id']}
             image={anime['images']['jpg']['large_image_url']}
             title={newTitle}
             ranking={anime['rank']}
@@ -55,10 +56,10 @@ function App() {
   }, [animeData])
 
   return (
-    <div className='App'>
-      {allCards}
+    <div className='top-anime-container'>
+      {(animeData ? allCards : <h1>...Loading</h1>)}
     </div>
   )
 }
 
-export default App
+export default TopAnime
