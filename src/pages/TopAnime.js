@@ -2,20 +2,38 @@ import React, { useState, useEffect, useRef } from 'react'
 import Card from '../components/Card'
 
 function TopAnime() {
-  const [animeData, setAnimeData] = useState(null)
+  const [topAnimeData, setTopAnimeData] = useState(JSON.parse(localStorage.getItem('top anime data')) || null)
   const [allCards, setAllCards] = useState('')
   const shouldLog = useRef(true)
 
+  const seasonURL = 'https://api.jikan.moe/v4/seasons/now'
+  const trendingURL = 'https://api.jikan.moe/v4/top/anime?filter=upcoming'
+  const topAnimeURL = 'https://api.jikan.moe/v4/top/anime?filter=rank'
+  const anime = 'https://api.jikan.moe/v4/anime'
+  const genresID = 'https://api.jikan.moe/v4/genres/anime?filter=genres'
+
   // FUNCTION: Retrieves API data
   const getAnimeData = async () => {
-    try {
-      const response = await fetch("https://api.jikan.moe/v4/top/anime?filter=rank")
-      const data = await response.json()
-      setAnimeData(data.data)
-      console.log('data received')
-    }
-    catch (error) {
-      console.error(error)
+
+    if (!topAnimeData) {
+      try {
+        const response = await fetch('https://api.jikan.moe/v4/top/anime?filter=rank&type=tv')
+        const data = await response.json()
+
+        setTopAnimeData(data.data)
+
+        const res = await fetch(anime)
+        const dataTwo = await res.json()
+        console.log(dataTwo)
+
+        // Store locally
+        localStorage.setItem('top anime data', JSON.stringify(data.data))
+        console.log('data set and stored')
+      }
+  
+      catch (error) {
+        console.error(error)
+      }
     }
   }
 
@@ -27,20 +45,35 @@ function TopAnime() {
     return newTitle
   }
 
+  // User refreshes: Clear storage
+  useEffect(() => {
+    const clearStorage = (event) => {
+      event.preventDefault()
+      event.returnValue = ''
+      window.localStorage.removeItem('top anime data')
+
+      window.removeEventListener('beforeunload', clearStorage)
+    }
+
+    window.addEventListener('beforeunload', clearStorage)
+  }, [])
+
   // Call API once and set animeData state
   useEffect(() => {
-    if (shouldLog.current) {
+    if (shouldLog.current && !topAnimeData) {
       shouldLog.current = false;
       getAnimeData()
+      console.log('get data ran!')
     }
   }, [])
 
+
   // Set allCards once data is in animeData state
   useEffect(() => {
-    if (!animeData) {
+    if (!topAnimeData) {
       return
     } else {
-      setAllCards(animeData.map(anime => {
+      setAllCards(topAnimeData.map(anime => {
         const newTitle = filterTitle(anime['title_english'])
         return (
           <Card
@@ -53,11 +86,11 @@ function TopAnime() {
         )
       }))
     }
-  }, [animeData])
+  }, [topAnimeData])
 
   return (
     <div className='top-anime-container'>
-      {(animeData ? allCards : <h1>...Loading</h1>)}
+      {(topAnimeData ? allCards : <h1>...Loading</h1>)}
     </div>
   )
 }
