@@ -6,11 +6,7 @@ function TopAnime() {
   const [allCards, setAllCards] = useState('')
   const shouldLog = useRef(true)
 
-  const seasonURL = 'https://api.jikan.moe/v4/seasons/now'
-  const trendingURL = 'https://api.jikan.moe/v4/top/anime?filter=upcoming'
-  const topAnimeURL = 'https://api.jikan.moe/v4/top/anime?filter=rank'
   const anime = 'https://api.jikan.moe/v4/anime'
-  const genresID = 'https://api.jikan.moe/v4/genres/anime?filter=genres'
 
   // FUNCTION: Retrieves API data
   const getAnimeData = async () => {
