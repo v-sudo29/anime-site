@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import filterTitle from '../helpers/filterTitle'
+import limitCharacters from '../helpers/limitCharacters'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
@@ -76,7 +78,7 @@ function Home() {
       setTrendingCards(trendingData.map(anime => {
         return (
           <div key={anime['mal_id']} className='trending-card'>
-            <h3 className='trending-title'>{anime['title_english'] === null ? anime['title'] : anime['title_english']}</h3>
+            <h3 className='trending-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
             <div className='trending-image-container'>
               <img className='trending-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
             </div>
@@ -92,7 +94,7 @@ function Home() {
       setUpcomingCards(upcomingData.map(anime => {
         return (
           <div key={anime['mal_id']} className='upcoming-card'>
-            <h3 className='upcoming-title'>{anime['title_english'] === null ? anime['title'] : anime['title_english']}</h3>
+            <h3 className='upcoming-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
             <div className='upcoming-image-container'>
               <img className='upcoming-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
             </div>
@@ -114,7 +116,7 @@ function Home() {
             <h1>{news['title']}</h1>
             <div className='news-image-container'>
               <img src={`${news.image}`} alt="" />
-              <p className='news-text'>{news.text}</p>
+              <p className='news-text'>{limitCharacters(news.text)}</p>
             </div>
           </div>
         )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Card from '../components/Card'
+import filterTitle from '../helpers/filterTitle'
 
 function TopAnime() {
   const [topAnimeData, setTopAnimeData] = useState(JSON.parse(localStorage.getItem('top anime data')) || null)
@@ -31,14 +32,6 @@ function TopAnime() {
         console.error(error)
       }
     }
-  }
-
-  // FUNCTION: Take away certain characters from titles
-  function filterTitle(title) {
-    let thisTitle = title
-    const newTitle = thisTitle.replace(/\./g, '').replace(/;/g, ' ').replace(/\[/g, '').replace(/\]/g, '')
-    
-    return newTitle
   }
 
   // User refreshes: Clear storage

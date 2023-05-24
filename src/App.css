@@ -40,6 +40,7 @@ nav > a {
 .trending-cards-container,
 .upcoming-cards-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
