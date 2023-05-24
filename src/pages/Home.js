@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import filterTitle from '../helpers/filterTitle'
+import TrendingCard from '../components/TrendingCard'
+import UpcomingCard from '../components/UpcomingCard'
 import limitCharacters from '../helpers/limitCharacters'
 
 function Home() {
@@ -13,7 +14,8 @@ function Home() {
   const runOnce = useRef(false)
 
   async function fetchTrending() {
-    const trendingURL = 'https://api.jikan.moe/v4/top/anime?filter=airing&limit=5'
+    const LIMIT_NUMBER = 6
+    const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
     
     try {
       const res = await fetch(trendingURL)
@@ -26,7 +28,8 @@ function Home() {
   }
 
   async function fetchUpcoming() {
-    const upcomingURL = 'https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=5'
+    const LIMIT_NUMBER = 6
+    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
     
     try {
       const res = await fetch(upcomingURL)
@@ -77,12 +80,13 @@ function Home() {
     if (trendingData) {
       setTrendingCards(trendingData.map(anime => {
         return (
-          <div key={anime['mal_id']} className='trending-card'>
-            <h3 className='trending-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-            <div className='trending-image-container'>
-              <img className='trending-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
-            </div>
-          </div>
+          <TrendingCard 
+            key={anime['mal_id']}
+            id={anime['mal_id']}
+            englishTitle={anime['title_english']}
+            title={anime['title']}
+            imageUrl={anime['images']['jpg']['large_image_url']}
+          />
         )
       }))
     }
@@ -93,12 +97,19 @@ function Home() {
     if (upcomingData) {
       setUpcomingCards(upcomingData.map(anime => {
         return (
-          <div key={anime['mal_id']} className='upcoming-card'>
-            <h3 className='upcoming-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-            <div className='upcoming-image-container'>
-              <img className='upcoming-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
-            </div>
-          </div>
+          <UpcomingCard
+            key={anime['mal_id']}
+            id={anime['mal_id']}
+            englishTitle={anime['title_english']}
+            title={anime['title']}
+            imageUrl={anime['images']['jpg']['large_image_url']}
+          />
+          // <div key={anime['mal_id']} className='upcoming-card'>
+          //   <h3 className='upcoming-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
+          //   <div className='upcoming-image-container'>
+          //     <img className='upcoming-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
+          //   </div>
+          // </div>
         )
       }))
     }

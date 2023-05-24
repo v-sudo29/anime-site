@@ -179,12 +179,13 @@ nav > a {
 
 .search-result-card {
   border-radius: 0.6rem;
-  width: 20rem;
+  width: 15rem;
   padding: 2rem 2rem;
   box-shadow: var(--box-shadow)
 }
 
 .search-img {
-  height: 20rem;
-  width: 15rem;
+  height: 15rem;
+  width: 10rem;
+  cursor: pointer;
 }

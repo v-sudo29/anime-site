@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import SearchResultsCard from '../components/SearchResultsCard'
 
 function Search() {
   const [genres, setGenres] = useState([])
@@ -66,13 +67,14 @@ function Search() {
     if (searchData) {
       setSearchResults(searchData.map(anime => {
         return (
-          <div key={anime['mal_id']} className='search-result-card'>
-            <h3 className='search-result-title'>{anime['title_english'] === null ? anime['title'] : anime['title_english']}</h3>
-            <div className='search-image-container'>
-              <img className='search-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
-            </div>
-            <div>Genres: {anime.genres.map(g => g.name + ' ')}</div>
-          </div>
+          <SearchResultsCard
+            key={anime['mal_id']}
+            id={anime['mal_id']}
+            englishTitle={anime['title_english']}
+            title={anime['title']}
+            imageUrl={anime['images']['jpg']['large_image_url']}
+            genres={anime.genres.map(g => g.name + ' ')}
+          />
         )
       }))
     }
@@ -82,15 +84,16 @@ function Search() {
   useEffect(() => {
     if (userFirstClick.current) {
       getSearchData()
-      setSearchResults(searchData.map(genre => {
+      setSearchResults(searchData.map(anime => {
         return (
-          <div key={genre['mal_id']} className='search-result-card'>
-            <h3 className='search-result-title'>{genre['title_english'] === null ? genre['title'] : genre['title_english']}</h3>
-            <div className='search-image-container'>
-              <img className='search-img' src={`${genre['images']['jpg']['large_image_url']}`} alt="" />
-            </div>
-            <div>Genres: {genre.genres.map(g => g.name + ' ')}</div>
-          </div>
+          <SearchResultsCard
+            key={anime['mal_id']}
+            id={anime['mal_id']}
+            englishTitle={anime['title_english']}
+            title={anime['title']}
+            imageUrl={anime['images']['jpg']['large_image_url']}
+            genres={anime.genres.map(g => g.name + ' ')}
+          />
         )
       }))
     }
