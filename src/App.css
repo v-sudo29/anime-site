@@ -71,6 +71,28 @@ nav > a {
   border-radius: 1rem;
 }
 
+.news-card {
+  height: 20rem;
+  padding: 1rem 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.news-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.news-image-container {
+  display: flex;
+  gap: 1rem;
+  padding: 0rem 4rem;
+}
+
+.news-image {
+  height: 15rem;
+  border-radius: 0.5rem;
+}
+
 /* Top Anime */
 .top-anime-container {
   display: flex;

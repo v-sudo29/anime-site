@@ -112,10 +112,10 @@ function Home() {
           return null
         }
         return (
-          <div key={news.title}>
-            <h1>{news['title']}</h1>
+          <div key={news.title} className='news-card'>
+            <h1 className='news-title'>{news['title']}</h1>
             <div className='news-image-container'>
-              <img src={`${news.image}`} alt="" />
+              <img className='news-image' src={`${news.image}`} alt="" />
               <p className='news-text'>{limitCharacters(news.text)}</p>
             </div>
           </div>
@@ -128,6 +128,7 @@ function Home() {
     <div className='home-container'>
       <h1>Home page</h1>
 
+    {/* TRENDING CONTAINER */}
       <section className='trending-container'>
         <h2>Trending Now</h2>
         <div className='trending-cards-container'>
@@ -135,6 +136,7 @@ function Home() {
         </div>
       </section>
 
+    {/* UPCOMING CONTAINER */}
       <section className='upcoming-container'>
         <h2>Upcoming Anime</h2>
         <div className='upcoming-cards-container'>
@@ -142,6 +144,7 @@ function Home() {
         </div>
       </section>
 
+    {/* NEWS CONTAINER */}
       <section className='news-container'>
         <h2>News</h2>
         <div className='news-cards-container'>
