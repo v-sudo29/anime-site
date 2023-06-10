@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import TrendingCard from '../components/TrendingCard'
-import UpcomingCard from '../components/UpcomingCard'
+import Trending from '../components/Trending'
+import Upcoming from '../components/Upcoming'
 import limitCharacters from '../helpers/limitCharacters'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
-  const [trendingCards, setTrendingCards] = useState(null)
   const [upcomingData, setUpcomingData] = useState(null)
-  const [upcomingCards, setUpcomingCards] = useState(null)
   const [newsData, setNewsData] = useState(null)
   const [newsCards, setNewsCards] = useState(null)
 
@@ -76,40 +74,6 @@ function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Set trendingCards from trendingData
-  useEffect(() => {
-    if (trendingData) {
-      setTrendingCards(trendingData.map(anime => {
-        return (
-          <TrendingCard 
-            key={anime['mal_id']}
-            id={anime['mal_id']}
-            englishTitle={anime['title_english']}
-            title={anime['title']}
-            imageUrl={anime['images']['jpg']['large_image_url']}
-          />
-        )
-      }))
-    }
-  }, [trendingData])
-
-  // Set upcomingCards from upcomingData
-  useEffect(() => {
-    if (upcomingData) {
-      setUpcomingCards(upcomingData.map(anime => {
-        return (
-          <UpcomingCard
-            key={anime['mal_id']}
-            id={anime['mal_id']}
-            englishTitle={anime['title_english']}
-            title={anime['title']}
-            imageUrl={anime['images']['jpg']['large_image_url']}
-          />
-        )
-      }))
-    }
-  }, [upcomingData])
-
   // Set newsCards from newsData
   useEffect(() => {
     if (newsData) {
@@ -135,20 +99,10 @@ function Home() {
       <h1>Home page</h1>
 
     {/* TRENDING CONTAINER */}
-      <section className='trending-container'>
-        <h2>Trending Now</h2>
-        <div className='trending-cards-container'>
-          {trendingCards}
-        </div>
-      </section>
+      <Trending trendingData={trendingData}/>
 
     {/* UPCOMING CONTAINER */}
-      <section className='upcoming-container'>
-        <h2>Upcoming Anime</h2>
-        <div className='upcoming-cards-container'>
-          {upcomingCards}
-        </div>
-      </section>
+      <Upcoming upcomingData={upcomingData}/>
 
     {/* NEWS CONTAINER */}
       <section className='news-container'>
