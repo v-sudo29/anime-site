@@ -97,6 +97,7 @@ function Search() {
         )
       }))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genres])
 
   // Display genre tags once
@@ -121,7 +122,7 @@ function Search() {
       if (/^\s*$/.test(inputDOM.current.value)) {
   
       } else {
-        // ****** change to title english *******
+        // TODO: ****** change to title english *******
         getSearchData()
       }
     }
