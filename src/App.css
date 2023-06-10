@@ -15,20 +15,35 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  max-width: 100vw;
+  width: 100vw;
   font-family: 'Rubik', sans-serif;
+  color: white;
   margin-top: -1.2rem;
 }
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit
+}
+
 
 /* Header nav links */
 nav {
   position: relative;
-  top: 2rem;
+  top: 3rem;
   z-index: 10;
   display: flex;
   gap: 1rem;
   color: #FFFFFF;
-
 }
 
 nav > a {
@@ -51,15 +66,19 @@ nav > a:visited {
   display: flex;
   flex-direction: column;
   text-align: center;
-  border: 1px solid red;
+  background-color: #111111;
+  width: inherit;
 }
 
 .home-hero-image {
-  height: 20rem;
+  height: 30rem;
   background-color: #393939;
 }
 
 .home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 3rem;
 }
 
@@ -97,6 +116,61 @@ svg.search-icon path {
   font-weight: 500;
 }
 
+/* Latest News */
+.home-news-container {
+  text-align: left;
+}
+
+.home-news-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.more-news-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.home-news-cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.home-news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 20rem;
+  max-width: 50rem;
+  box-shadow: var(--box-shadow);
+}
+
+.home-news-image {
+  height: 10rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+}
+
+.home-news-date {
+  font-size: 0.7rem;
+}
+
+.home-news-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.home-news-image-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Trending and Upcoming */
 .trending-cards-container,
 .upcoming-cards-container {
   display: flex;
@@ -129,28 +203,6 @@ svg.search-icon path {
   height: 15rem;
   width: 10rem;
   border-radius: 1rem;
-}
-
-.news-card {
-  height: 20rem;
-  padding: 1rem 1rem;
-  box-shadow: var(--box-shadow);
-}
-
-.news-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.news-image-container {
-  display: flex;
-  gap: 1rem;
-  padding: 0rem 4rem;
-}
-
-.news-image {
-  height: 15rem;
-  border-radius: 0.5rem;
 }
 
 /* Top Anime */
