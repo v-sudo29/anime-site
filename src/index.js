@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home';
-import TopAnime from './pages/TopAnime';
+import AnimeList from './pages/AnimeList';
 import Search from './pages/Search';
 import AnimeDetail from './components/AnimeDetail';
 import Layout from './components/Layout';
@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>} />
           <Route path='search' element={<Search/>}/>
-          <Route path='top-anime' element={<TopAnime/>} />
+          <Route path='anime-list' element={<AnimeList/>} />
           <Route path='anime/:id' element={<AnimeDetail/>}/>
         </Route>
       </Routes>

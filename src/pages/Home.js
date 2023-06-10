@@ -73,6 +73,7 @@ function Home() {
       fetchAllData()
       runOnce.current = true
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Set trendingCards from trendingData
@@ -104,12 +105,6 @@ function Home() {
             title={anime['title']}
             imageUrl={anime['images']['jpg']['large_image_url']}
           />
-          // <div key={anime['mal_id']} className='upcoming-card'>
-          //   <h3 className='upcoming-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-          //   <div className='upcoming-image-container'>
-          //     <img className='upcoming-img' src={`${anime['images']['jpg']['large_image_url']}`} alt="" />
-          //   </div>
-          // </div>
         )
       }))
     }

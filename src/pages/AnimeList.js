@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Card from '../components/Card'
 import filterTitle from '../helpers/filterTitle'
 
-function TopAnime() {
+function AnimeList() {
   const [topAnimeData, setTopAnimeData] = useState(JSON.parse(localStorage.getItem('top anime data')) || null)
   const [allCards, setAllCards] = useState('')
   const shouldLog = useRef(true)
@@ -54,6 +54,7 @@ function TopAnime() {
       getAnimeData()
       console.log('get data ran!')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -84,4 +85,4 @@ function TopAnime() {
   )
 }
 
-export default TopAnime
+export default AnimeList
