@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Trending from '../components/Trending'
 import Upcoming from '../components/Upcoming'
-import limitCharacters from '../helpers/limitCharacters'
+import NewsCarousel from '../components/NewsCarousel'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
   const [upcomingData, setUpcomingData] = useState(null)
   const [newsData, setNewsData] = useState(null)
-  const [newsCards, setNewsCards] = useState(null)
 
   const runOnce = useRef(false)
 
@@ -74,44 +73,12 @@ function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Set newsCards from newsData
-  useEffect(() => {
-    if (newsData) {
-      setNewsCards(newsData.map(news => {
-        if (news.image === 'doesn\'t exist!') {
-          return null
-        }
-        return (
-          <div key={news.title} className='news-card'>
-            <h1 className='news-title'>{news['title']}</h1>
-            <div className='news-image-container'>
-              <img className='news-image' src={`${news.image}`} alt="" />
-              <p className='news-text'>{limitCharacters(news.text)}</p>
-            </div>
-          </div>
-        )
-      }))
-    }
-  }, [newsData])
-
   return (
     <div className='home-container'>
       <h1>Home page</h1>
-
-    {/* TRENDING CONTAINER */}
       <Trending trendingData={trendingData}/>
-
-    {/* UPCOMING CONTAINER */}
       <Upcoming upcomingData={upcomingData}/>
-
-    {/* NEWS CONTAINER */}
-      <section className='news-container'>
-        <h2>News</h2>
-        <div className='news-cards-container'>
-          {newsCards}
-        </div>
-      </section>
-
+      <NewsCarousel newsData={newsData}/>
     </div>
   )
 }
