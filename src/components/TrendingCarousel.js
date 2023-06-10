@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import TrendingCard from './TrendingCard'
 
-function Trending({trendingData}) {
+export default function TrendingCarousel({trendingData}) {
   const [trendingCards, setTrendingCards] = useState(null)
 
   // Set trendingCards from trendingData
@@ -30,5 +30,3 @@ function Trending({trendingData}) {
       </section>
   )
 }
-
-export default Trending

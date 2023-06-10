@@ -46,7 +46,7 @@ nav > a:visited {
   color: black;
 }
 
-/* Home Page */
+/* HOME PAGE */
 .home-container {
   display: flex;
   flex-direction: column;
@@ -57,6 +57,44 @@ nav > a:visited {
 .home-hero-image {
   height: 20rem;
   background-color: #393939;
+}
+
+.home-content {
+  padding: 3rem;
+}
+
+/* Search bar */
+.home-search-bar-container {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #4D4D4D;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.search-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg.search-icon path {
+  width: 1.2rem;
+  stroke: #7B7B7B;
+}
+
+.home-search-bar {
+  all: unset;
+  padding: 0.4rem 1rem;
+  width: 80vw;
+  text-align: left;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.home-search-bar::placeholder {
+  color: #7B7B7B;
+  font-weight: 500;
 }
 
 .trending-cards-container,

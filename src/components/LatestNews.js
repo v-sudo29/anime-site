@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import limitCharacters from '../helpers/limitCharacters'
 
-function NewsCarousel({newsData}) {
+export default function LatestNews({newsData}) {
   const [newsCards, setNewsCards] = useState(null)
 
   // Set newsCards from newsData
@@ -32,5 +32,3 @@ function NewsCarousel({newsData}) {
     </section>
   )
 }
-
-export default NewsCarousel
