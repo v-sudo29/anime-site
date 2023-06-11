@@ -78,6 +78,7 @@ nav > a:visited {
 }
 
 .home-hero-image {
+  display: absolute;
   height: 30rem;
   background-color: #393939;
 }
@@ -86,7 +87,7 @@ nav > a:visited {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 3rem;
+  padding: 3rem 10rem;
 }
 
 /* Search bar */
@@ -252,6 +253,7 @@ svg.search-icon path {
 
 .upcoming-cards-container {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -338,6 +340,18 @@ svg.search-icon path {
   width: 3rem;
   border-radius: 0.5rem;
   background-color: #616161;
+}
+
+.see-more-btn {
+  all: unset;
+  display: block;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+  background-color: #616161;
+  padding: 1rem 5rem;
+  border-radius: 0.5rem;
 }
 
 /* Top Anime */

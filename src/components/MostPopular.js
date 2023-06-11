@@ -37,6 +37,7 @@ export default function MostPopular({popularData}) {
       <div className='popular-cards-container'>
         {popularCards}
       </div>
+      <button className='see-more-btn' type="button">See More</button>
     </div>
   )
 }
