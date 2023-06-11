@@ -202,20 +202,6 @@ svg.search-icon path {
   border-radius: 1rem;
 }
 
-<<<<<<< HEAD
-/* Trending Anime */
-.trending-container {
-  text-align: left;
-}
-
-.trending-cards-container {
-  border: 1px solid red;
-}
-
-.trending-card {
-  padding: 0;
-}
-=======
 /* Trending */
 .trending-container {
   text-align: left;
@@ -288,7 +274,6 @@ svg.search-icon path {
   cursor: default;
 }
 
->>>>>>> carousel
 /* Top Anime */
 .top-anime-container {
   display: flex;
