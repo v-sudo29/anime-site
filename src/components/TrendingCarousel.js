@@ -23,7 +23,7 @@ export default function TrendingCarousel({trendingData}) {
 
   return (
     <section className='trending-container'>
-        <h2>Trending Now</h2>
+        <h2>Top Trending Anime</h2>
         <div className='trending-cards-container'>
           {trendingCards}
         </div>

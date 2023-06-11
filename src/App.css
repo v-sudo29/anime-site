@@ -138,6 +138,7 @@ svg.search-icon path {
   justify-content: space-between;
   margin-top: 1rem;
   gap: 1rem;
+  width: 30rem;
 }
 
 .home-news-card {
@@ -145,13 +146,19 @@ svg.search-icon path {
   flex-direction: column;
   gap: 1rem;
   height: 20rem;
-  max-width: 50rem;
+  width: 30rem;
   box-shadow: var(--box-shadow);
+}
+
+.home-news-image-container {
+  display: flex;
+  gap: 1rem;
+  width: 30rem;
 }
 
 .home-news-image {
   height: 10rem;
-  width: 20rem;
+  width: 100%;
   border-radius: 0.5rem;
 }
 
@@ -162,11 +169,6 @@ svg.search-icon path {
 .home-news-title {
   font-size: 0.9rem;
   font-weight: 400;
-}
-
-.home-news-image-container {
-  display: flex;
-  gap: 1rem;
 }
 
 /* Trending and Upcoming */
@@ -204,6 +206,18 @@ svg.search-icon path {
   border-radius: 1rem;
 }
 
+/* Trending Anime */
+.trending-container {
+  text-align: left;
+}
+
+.trending-cards-container {
+  border: 1px solid red;
+}
+
+.trending-card {
+  padding: 0;
+}
 /* Top Anime */
 .top-anime-container {
   display: flex;
