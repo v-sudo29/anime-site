@@ -56,7 +56,6 @@ nav > a:visited {
 }
 
 .active-link {
-  text-decoration: underline;
   font-weight: bold;
   color: black;
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
+import SearchBar from '../components/SearchBar'
 import LatestNews from '../components/LatestNews'
 import TrendingCarousel from '../components/TrendingCarousel'
 import Upcoming from '../components/Upcoming'
-import SearchIcon from '../icons/SearchIcon'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
@@ -78,12 +78,7 @@ function Home() {
     <div className='home-container'>
       <div className='home-hero-image'></div>
       <div className='home-content'>
-        <div className='home-search-bar-container'>
-          <div className='search-icon-container'>
-            <SearchIcon />
-          </div>
-          <input className='home-search-bar' type="text" placeholder='Search for anime, characters, news...'/> 
-        </div>
+        <SearchBar/>
         <LatestNews newsData={newsData}/>
         <TrendingCarousel trendingData={trendingData}/>
         <Upcoming upcomingData={upcomingData}/>
