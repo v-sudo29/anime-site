@@ -138,7 +138,7 @@ svg.search-icon path {
   justify-content: space-between;
   margin-top: 1rem;
   gap: 1rem;
-  width: 30rem;
+  width: 100%;
 }
 
 .home-news-card {
@@ -146,14 +146,13 @@ svg.search-icon path {
   flex-direction: column;
   gap: 1rem;
   height: 20rem;
-  width: 30rem;
+  width: 25rem;
   box-shadow: var(--box-shadow);
 }
 
 .home-news-image-container {
   display: flex;
   gap: 1rem;
-  width: 30rem;
 }
 
 .home-news-image {
