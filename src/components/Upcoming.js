@@ -23,10 +23,10 @@ export default function Upcoming({upcomingData}) {
 
   return (
     <section className='upcoming-container'>
-        <h2>Upcoming Anime</h2>
-        <div className='upcoming-cards-container'>
-          {upcomingCards}
-        </div>
-      </section>
+      <h2>Upcoming Anime</h2>
+      <div className='upcoming-cards-container'>
+        {upcomingCards}
+      </div>
+    </section>
   )
 }

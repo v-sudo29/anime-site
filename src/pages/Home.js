@@ -26,12 +26,15 @@ function Home() {
   }
 
   async function fetchUpcoming() {
-    const LIMIT_NUMBER = 6
-    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
-    
+    const LIMIT_NUMBER = 8
+    // API endpoint not working
+    // const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
+    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=${LIMIT_NUMBER}`
+
     try {
       const res = await fetch(upcomingURL)
       const data = await res.json()
+      console.log(data.data)
       setUpcomingData(data.data)
     }
     catch (error) {
@@ -64,6 +67,12 @@ function Home() {
     await fetchUpcoming()
     fetchNews()
   }
+
+  useEffect(() => {
+    if (upcomingData) {
+      console.log('UPCOMING', upcomingData)
+    }
+  }, [upcomingData])
 
   // Fetch API data
   useEffect(() => {
