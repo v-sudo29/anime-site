@@ -3,11 +3,13 @@ import SearchBar from '../components/SearchBar'
 import LatestNews from '../components/LatestNews'
 import TrendingCarousel from '../components/TrendingCarousel'
 import Upcoming from '../components/Upcoming'
+import MostPopular from '../components/MostPopular'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
   const [upcomingData, setUpcomingData] = useState(null)
   const [newsData, setNewsData] = useState(null)
+  const [popularData, setPopularData] = useState(null)
 
   const runOnce = useRef(false)
 
@@ -34,7 +36,6 @@ function Home() {
     try {
       const res = await fetch(upcomingURL)
       const data = await res.json()
-      console.log(data.data)
       setUpcomingData(data.data)
     }
     catch (error) {
@@ -57,22 +58,26 @@ function Home() {
       
       setNewsData(newData)
     }
-    catch (error) {
-      console.error(error)
-    }
+    catch (error) {console.error(error)}
+  }
+
+  async function fetchPopular() {
+    const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
+    try {
+      const res = await fetch(popularURL)
+      const data = await res.json()
+
+      setPopularData(data.data)
+      console.log(data.data)
+    } catch (error) {console.error(error)}
   }
 
   async function fetchAllData() {
     fetchTrending()
     await fetchUpcoming()
     fetchNews()
+    await fetchPopular()
   }
-
-  useEffect(() => {
-    if (upcomingData) {
-      console.log('UPCOMING', upcomingData)
-    }
-  }, [upcomingData])
 
   // Fetch API data
   useEffect(() => {
@@ -91,6 +96,7 @@ function Home() {
         <LatestNews newsData={newsData}/>
         <TrendingCarousel trendingData={trendingData}/>
         <Upcoming upcomingData={upcomingData}/>
+        <MostPopular popularData={popularData}/>
       </div>
     </div>
   )
