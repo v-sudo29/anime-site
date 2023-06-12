@@ -22,6 +22,7 @@ export default function CarouselButtons({currentIndex, setCurrentIndex}) {
       else if (currentButton.classList.contains('two')) setCurrentIndex(2)
       else if (currentButton.classList.contains('three')) setCurrentIndex(3)
       else if (currentButton.classList.contains('four')) setCurrentIndex(4)  
+      else if (currentButton.classList.contains('five')) setCurrentIndex(5)
     }
   }
 
