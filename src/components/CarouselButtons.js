@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-export default function CarouselButtons({setCurrentIndex}) {
+export default function CarouselButtons({currentIndex, setCurrentIndex}) {
+  const parentContainer = useRef(null)
+  
   async function switchAnime(e) {
     const currentButton = e.target
-    const parentContainer = e.target.parentElement
-    const activeButton = parentContainer.querySelector('.active-carousel-btn')
+    const parentElement = e.target.parentElement
+    const activeButton = parentElement.querySelector('.active-carousel-btn')
 
     if (!e.target.classList.contains('active-carousel-btn')) {
 
@@ -22,13 +24,35 @@ export default function CarouselButtons({setCurrentIndex}) {
       else if (currentButton.classList.contains('four')) setCurrentIndex(4)  
     }
   }
+
+  useEffect(() => {
+    let classSelector = null
+    if (currentIndex === 0) classSelector = 'zero'
+    else if (currentIndex === 1) classSelector = 'one'
+    else if (currentIndex === 2) classSelector = 'two'
+    else if (currentIndex === 3) classSelector = 'three'
+    else if (currentIndex === 4) classSelector = 'four'
+    else if (currentIndex === 5) classSelector = 'five'
+
+    const prevButton = parentContainer.current.querySelector('.active-carousel-btn')
+    const matchedButton = parentContainer.current.querySelector(`.${classSelector}`)
+
+    // Remove previous active class
+    prevButton.classList.remove('active-carousel-btn')
+
+    // Add active class to matched button
+    matchedButton.classList.add('active-carousel-btn')
+
+  }, [currentIndex])
+  
   return (
-    <div className='carousel-buttons-container'>
+    <div ref={parentContainer} className='carousel-buttons-container'>
       <button onClick={(e) => switchAnime(e)} className="carousel-btn zero active-carousel-btn" type="button"></button>
       <button onClick={(e) => switchAnime(e)} className="carousel-btn one"type="button"></button>
       <button onClick={(e) => switchAnime(e)} className="carousel-btn two" type="button"></button>
       <button onClick={(e) => switchAnime(e)} className="carousel-btn three" type="button"></button>
       <button onClick={(e) => switchAnime(e)} className="carousel-btn four" type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className="carousel-btn five" type="button"></button>
     </div>
   )
 }
