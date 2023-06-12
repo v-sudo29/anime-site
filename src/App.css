@@ -221,22 +221,23 @@ svg.search-icon path {
   height: 1rem;
 }
 
-.trending-buttons-container {
-  margin-top: auto;
+.carousel-buttons-container {
   display: flex;
+  margin-top: auto;
   gap: 0.7rem;
 }
 
-.trending-button {
+.carousel-btn {
   all: unset;
   background-color: #757575;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
+  transition: all 0.5s;
 }
 
-.active-trending {
+.active-carousel-btn {
   background-color: white;
   width: 2rem;
   border-radius: 10rem;
