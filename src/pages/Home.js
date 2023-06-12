@@ -68,7 +68,6 @@ function Home() {
       const data = await res.json()
 
       setPopularData(data.data)
-      console.log(data.data)
     } catch (error) {console.error(error)}
   }
 

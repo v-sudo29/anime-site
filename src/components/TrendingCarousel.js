@@ -18,11 +18,9 @@ export default function TrendingCarousel({trendingData}) {
     if (trendingData && runOnce.current) {
       timeOutRef.current = setTimeout(() => {
         setCurrentIndex(prevIndex => {
-          console.log(prevIndex)
           return Number(prevIndex) === Number(trendingData.length - 1) ? 0 : prevIndex + 1
       })
       }, delay)
-      console.log('useEffect ran!')
     } runOnce.current = true
 
     return () => {resetTimeout()}
