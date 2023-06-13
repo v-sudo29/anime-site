@@ -95,7 +95,7 @@ function Home() {
         <LatestNews newsData={newsData}/>
         <TrendingCarousel trendingData={trendingData}/>
         <Upcoming upcomingData={upcomingData}/>
-        <MostPopular popularData={popularData}/>
+        <MostPopular popularData={popularData} setPopularData={setPopularData}/>
       </div>
     </div>
   )
