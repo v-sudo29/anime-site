@@ -8,6 +8,8 @@
 
 :root {
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
+  --main-background-color: #111111;
+  --text-color: white;
 }
 
 #root {
@@ -17,7 +19,6 @@
   min-height: 100vh;
   width: 100vw;
   font-family: 'Rubik', sans-serif;
-  color: white;
   margin-top: -1.2rem;
 }
 
@@ -34,6 +35,11 @@ a {
 a:visited {
   text-decoration: none;
   color: inherit
+}
+
+body {
+  background-color: var(--main-background-color);
+  color: var(--text-color)
 }
 
 /* Header nav links */
@@ -73,7 +79,7 @@ nav > a:visited {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #111111;
+  background-color: var(--main-background-color);
   width: inherit;
 }
 
@@ -404,6 +410,72 @@ svg.search-icon path {
   height: 18rem;
 }
 
+/* ANIME LIST */
+.animeList-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 5rem 10rem;
+  width: 100%;
+  min-height: 100vh;
+  border: 1px solid red;
+}
+
+.animeList-hero-image-container {
+  width: 100%;
+  height: 12rem;
+  background-color: #777777;
+  border-radius: 0.6rem;
+}
+
+/* Search and Genres */
+.animeList-search-and-genres-container {
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 0.3rem;;
+}
+
+.search-bar-container {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  background-color: #232323;
+  padding: 0.8rem;
+  border-radius: inherit;
+}
+
+.animeList-search-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animeList-search-icon-container > svg {
+  width: 1rem;
+}
+
+.search-bar {
+  all: unset;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.genres-btn {
+  all: unset;
+  background-color: #686868;
+  padding: 0rem 1.3rem;
+  border-radius: inherit;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.carrot-down-icon {
+  width: 0.8rem;
+}
+
 /* Anime Detail Page */
 .detail-title {
   text-align: center;
@@ -425,7 +497,7 @@ svg.search-icon path {
   line-height: 1.6rem;
 }
 
-/* Search */
+/* SEARCH */
 .search-page-container {
   display: flex;
   flex-direction: column;

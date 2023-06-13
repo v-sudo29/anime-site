@@ -13,12 +13,7 @@ export default function MostPopular({popularData, setPopularData}) {
   }
 
   useEffect(() => {
-    console.log(pageCount)
-  }, [pageCount])
-
-  useEffect(() => {
     if (popularData && !runOnce.current) {
-      console.log(popularData)
       setPopularCards(popularData.map((anime, index) => {
         return (
           <div key={`${anime['mal_id']}-popular`} className='popular-card'>
@@ -42,7 +37,7 @@ export default function MostPopular({popularData, setPopularData}) {
       runOnce.current = true
       pageCount.current = 2
     } else if (popularData && runOnce.current) {
-      console.log(popularData)
+      
       // Set new popular cards
         setPopularCards(popularData.map((anime, index) => {
           return (

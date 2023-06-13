@@ -1,86 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react'
+import SearchIcon from '../icons/SearchIcon'
+import CarrotDown from '../icons/CarrotDown'
 import Card from '../components/Card'
 import filterTitle from '../helpers/filterTitle'
 
 function AnimeList() {
-  const [topAnimeData, setTopAnimeData] = useState(JSON.parse(localStorage.getItem('top anime data')) || null)
-  const [allCards, setAllCards] = useState('')
-  const shouldLog = useRef(true)
-
-  const anime = 'https://api.jikan.moe/v4/anime'
-
-  // FUNCTION: Retrieves API data
-  const getAnimeData = async () => {
-
-    if (!topAnimeData) {
-      try {
-        const response = await fetch('https://api.jikan.moe/v4/top/anime?filter=rank&type=tv')
-        const data = await response.json()
-
-        setTopAnimeData(data.data)
-
-        const res = await fetch(anime)
-        const dataTwo = await res.json()
-        console.log(dataTwo)
-
-        // Store locally
-        localStorage.setItem('top anime data', JSON.stringify(data.data))
-        console.log('data set and stored')
-      }
-  
-      catch (error) {
-        console.error(error)
-      }
-    }
-  }
-
-  // User refreshes: Clear storage
-  useEffect(() => {
-    const clearStorage = (event) => {
-      event.preventDefault()
-      event.returnValue = ''
-      window.localStorage.removeItem('top anime data')
-
-      window.removeEventListener('beforeunload', clearStorage)
-    }
-
-    window.addEventListener('beforeunload', clearStorage)
-  }, [])
-
-  // Call API once and set animeData state
-  useEffect(() => {
-    if (shouldLog.current && !topAnimeData) {
-      shouldLog.current = false;
-      getAnimeData()
-      console.log('get data ran!')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-
-  // Set allCards once data is in animeData state
-  useEffect(() => {
-    if (!topAnimeData) {
-      return
-    } else {
-      setAllCards(topAnimeData.map(anime => {
-        const newTitle = filterTitle(anime['title_english'])
-        return (
-          <Card
-            id={anime['mal_id']}
-            key={anime['mal_id']}
-            image={anime['images']['jpg']['large_image_url']}
-            title={newTitle}
-            ranking={anime['rank']}
-          />
-        )
-      }))
-    }
-  }, [topAnimeData])
 
   return (
-    <div className='top-anime-container'>
-      {(topAnimeData ? allCards : <h1>...Loading</h1>)}
+    <div className='animeList-page-container'>
+      <div className='animeList-hero-image-container'></div>
+      <div className='animeList-search-and-genres-container'>
+        <div className='search-bar-container'>
+          <div className='animeList-search-icon-container'>
+            <SearchIcon className='animeList-search-icon' />
+          </div>
+          <input className='search-bar' type="text" placeholder='Search for anime'/>
+        </div>
+        <button className='genres-btn' type="button">
+          Genres
+          <CarrotDown />
+        </button>
+      </div>
+
+      <div className='animeList-container'>
+        
+      </div>
     </div>
   )
 }
