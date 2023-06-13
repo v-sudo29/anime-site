@@ -1,37 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react'
-import filterTitle from '../helpers/filterTitle'
+import AnimeListCard from './AnimeListCard'
 
 export default function MostPopular({popularData, setPopularData}) {
   const [popularCards, setPopularCards] = useState(null)
   const runOnce = useRef(false)
   const pageCount = useRef(1)
 
+  // Fetch additional data
   function loadMoreAnime() {
     fetch(`https://api.jikan.moe/v4/top/anime?filter=bypopularity&page=${pageCount.current}`)
         .then(res => res.json())
         .then(data => setPopularData(prevData => [...prevData, ...data.data]))
   }
 
+  // Set popularCards, add new popularCards
   useEffect(() => {
     if (popularData && !runOnce.current) {
       setPopularCards(popularData.map((anime, index) => {
         return (
-          <div key={`${anime['mal_id']}-popular`} className='popular-card'>
-            <div className='popular-rank-number'>{index + 1}</div>
-            <div className='popular-img-container'>
-              <img className='popular-img' src={anime['images']['jpg']['large_image_url']} alt='' />
-            </div>
-            <div className='popular-info'>
-              <div className='popular-title-and-type'>
-                <h3 className='popular-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-                <span className='popular-type'>TV Show</span>
-              </div>
-              <span className='popular-finished-date'>Finished &#x2022; 2009-2010</span>
-            </div>
-            <div className='popular-score'>
-              {anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score']}
-            </div>
-          </div>
+          <AnimeListCard 
+            key={`${anime['mal_id']}-popular`}
+            anime={anime}
+            index={index}
+            cardType='popular'
+          />
         )
       }))
       runOnce.current = true
@@ -41,22 +33,12 @@ export default function MostPopular({popularData, setPopularData}) {
       // Set new popular cards
         setPopularCards(popularData.map((anime, index) => {
           return (
-            <div key={`${anime['mal_id']}-popular`} className='popular-card'>
-              <div className='popular-rank-number'>{index + 1}</div>
-              <div className='popular-img-container'>
-                <img className='popular-img' src={anime['images']['jpg']['large_image_url']} alt='' />
-              </div>
-              <div className='popular-info'>
-                <div className='popular-title-and-type'>
-                  <h3 className='popular-title'>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-                  <span className='popular-type'>TV Show</span>
-                </div>
-                <span className='popular-finished-date'>Finished &#x2022; 2009-2010</span>
-              </div>
-              <div className='popular-score'>
-                {anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score']}
-              </div>
-            </div>
+            <AnimeListCard 
+            key={`${anime['mal_id']}-popular`}
+            anime={anime}
+            index={index}
+            cardType='popular'
+            />
           )
         }))
 
