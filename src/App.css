@@ -10,6 +10,7 @@
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
   --main-background-color: #111111;
   --text-color: white;
+  --hover-color: rgb(13, 116, 220);
 }
 
 #root {
@@ -366,7 +367,7 @@ svg.search-icon path {
   align-items: center;
   margin-left: auto;
   height: 3rem;
-  width: 3rem;
+  min-width: 3rem;
   border-radius: 0.5rem;
   background-color: #616161;
 }
@@ -418,7 +419,6 @@ svg.search-icon path {
   padding: 5rem 10rem;
   width: 100%;
   min-height: 100vh;
-  border: 1px solid red;
 }
 
 .animeList-hero-image-container {
@@ -474,6 +474,92 @@ svg.search-icon path {
 
 .carrot-down-icon {
   width: 0.8rem;
+}
+
+.animeList-title-and-filter {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.select-carrot-down-container {
+  display: flex;
+}
+
+/* Custom Select */
+.custom-select {
+  position: relative;
+}
+
+.custom-select > select {
+  display: none;
+}
+
+.options-container {
+  text-align: center;
+  position: absolute;
+  right: -0.9rem;
+  bottom: -12rem;
+  width: calc(100% + 4rem);
+  border-radius: 1rem;
+}
+
+.option-item {
+  color: white;
+  background-color: rgb(42, 42, 42);
+  cursor: pointer;
+  padding: 0.5rem 0rem;
+}
+
+.option-item:hover {
+  background-color: var(--hover-color);
+}
+
+.option-item:focus {
+  outline: 2px solid white;
+}
+
+.selected-option {
+  color: white;
+  background-color: #111111;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.3rem;
+  width: 9.8rem;
+}
+
+.selected-option:focus {
+  outline: 2px solid white;
+}
+
+.option-selected {
+  background-color: var(--hover-color);
+  cursor: default;
+}
+
+.option-hidden {
+  display: none;
+}
+
+.carrot-down-icon {
+  width: 0.9rem;
+  transition: 200ms ease;
+}
+
+.carrot-active {
+  transform: rotate(180deg)
 }
 
 /* Anime Detail Page */
@@ -545,3 +631,4 @@ svg.search-icon path {
   width: 10rem;
   cursor: pointer;
 }
+
