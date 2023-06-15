@@ -46,7 +46,6 @@ function AnimeList() {
 
   function toggleGenres(e) {
     e.stopPropagation()
-
     setGenresShown(!genresShown)
     animateCarrot()
   }

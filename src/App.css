@@ -390,6 +390,10 @@ svg.search-icon path {
   border-radius: 0.5rem;
 }
 
+.see-more-btn:focus {
+  outline: 2px solid white;
+}
+
 /* ANIME LIST */
 .animeList-page-container {
   display: flex;
@@ -481,6 +485,11 @@ svg.search-icon path {
   border-radius: 10rem;
   background-color: #686868;
   color: inherit;
+}
+
+.genre-tag:focus {
+  outline: none;
+  border: 2px solid white;
 }
 
 .animeList-title-and-filter {
