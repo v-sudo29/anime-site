@@ -7,7 +7,6 @@ function Header() {
       <nav className='nav-links'>
         <NavLink className={({isActive}) => isActive ? 'active-link' : null} to='/'>Home</NavLink>
         <NavLink className={({isActive}) => isActive ? 'active-link' : null} to='/anime-list'>Anime List</NavLink>
-        <NavLink className={({isActive}) => isActive ? 'active-link' : null} to='/search'>Search</NavLink>
         <NavLink className={({isActive}) => isActive ? 'active-link' : null} to='/news'>News</NavLink>
       </nav>
     </header>

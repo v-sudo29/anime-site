@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import AnimeListCard from './AnimeListCard'
+import AnimeListCard from '../../components/AnimeListCard'
 
 export default function MostPopular({popularData, setPopularData}) {
   const [popularCards, setPopularCards] = useState(null)

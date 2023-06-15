@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import filterTitle from "../helpers/filterTitle"
-import limitCharacters from '../helpers/limitCharacters'
-import arrowIcon from '../assets/arrow-icon.png'
+import filterTitle from "../../helpers/filterTitle"
+import limitCharacters from '../../helpers/limitCharacters'
+import arrowIcon from '../../assets/arrow-icon.png'
 
 export default function TrendingCard({anime}) {
   return (

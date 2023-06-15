@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import filterTitle from '../helpers/filterTitle'
+import filterTitle from '../../helpers/filterTitle'
 
 export default function UpcomingCard(props) {
 

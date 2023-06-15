@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import SearchBar from '../components/SearchBar'
-import LatestNews from '../components/LatestNews'
-import TrendingCarousel from '../components/TrendingCarousel'
-import Upcoming from '../components/Upcoming'
-import MostPopular from '../components/MostPopular'
+import SearchBar from './SearchBar'
+import LatestNews from './LatestNews'
+import TrendingCarousel from './TrendingCarousel'
+import Upcoming from './Upcoming'
+import MostPopular from './MostPopular'
 
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
@@ -45,7 +45,7 @@ function Home() {
 
   async function fetchNews() {
     try {
-      const res = await import('../anime-news.json')
+      const res = await import('../../anime-news.json')
       
       // Convert object to objects in array
       const newData = Object.keys(res).map(key => {
