@@ -18,27 +18,7 @@ function AnimeList() {
 
   // Fetch and set additional data
   async function loadMoreAnime() {
-    // let filterName = null
-    // let parameter = null
-
-    // if (topFilter === 'Most Popular') filterName = 'bypopularity'
-    // else if (topFilter === 'Top Trending') filterName = 'airing'
-    // // API endpoint broken
-    // else if (topFilter === 'Top Upcoming') filterName = 'bypopularity'
-    // else if (topFilter === 'Top TV Series') filterName = 'tv'
-    // else if (topFilter === 'Top Movies') filterName = 'movie'
-
-    // if (topFilter === ('Most Popular' || 'Top Trending' || 'Top Upcoming')) parameter = 'filter'
-    // else if (topFilter === ('Top TV Series' || 'Top Movies')) parameter = 'type'
-
-    // try {
-    //   const res = await fetch(`https://api.jikan.moe/v4/top/anime?${parameter}=${filterName}&page=${pageCount.current}`)
-    //   const data = await res.json()
-
-    //   setAnimeData(prevData => [...prevData, ...data.data])
-    //   pageCount.current += 1
-    // }
-    // catch (error) {console.error(error)}
+    // TODO: wait for UX design feedback
   }
 
   // Fetch and set data
@@ -106,7 +86,7 @@ function AnimeList() {
         <div className='animeList-cards-container'> 
           {animeCards ? animeCards : '...Loading'}
         </div>
-        
+
         {pageCount.current !== 5 ? 
         <button 
           onClick={loadMoreAnime} 

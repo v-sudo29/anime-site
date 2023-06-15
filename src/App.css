@@ -11,6 +11,7 @@
   --main-background-color: #111111;
   --text-color: white;
   --hover-color: rgb(13, 116, 220);
+  --page-padding: 5rem 20rem;
 }
 
 #root {
@@ -94,7 +95,7 @@ nav > a:visited {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 3rem 10rem;
+  padding: var(--page-padding);
 }
 
 /* Search bar */
@@ -384,39 +385,12 @@ svg.search-icon path {
   border-radius: 0.5rem;
 }
 
-/* Top Anime */
-.top-anime-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem;
-}
-
-.card {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  box-shadow: var(--box-shadow);
-  border-radius: 0.5rem;
-}
-
-.card-img-container {
-  text-align: center;
-}
-
-.card-img {
-  height: 18rem;
-}
-
 /* ANIME LIST */
 .animeList-page-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 5rem 10rem;
+  padding: var(--page-padding);
   width: 100%;
   min-height: 100vh;
 }
