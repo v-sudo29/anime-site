@@ -8,13 +8,48 @@ function AnimeList() {
   const [animeData, setAnimeData] = useState(null)
   const [animeCards, setAnimeCards] = useState(null)
   const [topFilter, setTopFilter] = useState(null)
+  const [genresShown, setGenresShown]= useState(false)
   const pageCount = useRef(2)
+  const genresMasterList = useRef([
+    {name: 'Action', mal_id: 1},
+    {name: 'Adventure', mal_id: 2},
+    {name: 'Boys Love', mal_id: 28},
+    {name: 'Comedy', mal_id: 4},
+    {name: 'Drama', mal_id: 8},
+    {name: 'Fantasy', mal_id: 10},
+    {name: 'Girls Love', mal_id: 26},
+    {name: 'Horror', mal_id: 14},
+    {name: 'Mystery', mal_id: 7},
+    {name: 'Romance', mal_id: 22},
+    {name: 'Sci-Fi', mal_id: 24},
+    {name: 'Slice of Life', mal_id: 36},
+    {name: 'Sports', mal_id: 30},
+    {name: 'Supernatural', mal_id: 37},
+    {name: 'Suspense', mal_id: 41},
+  ])
+
   const popularUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity'
   const trendingUrl = 'https://api.jikan.moe/v4/top/anime?filter=airing'
   // API endpoint broken //
   const upcomingUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity'
   const tvUrl = 'https://api.jikan.moe/v4/top/anime?order_by=score&type=tv'
   const movieUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity&type=movie'
+
+  function animateCarrot() {
+    const svgElement = document.querySelector('.genres-carrot-container svg')
+    if (!svgElement.classList.contains('carrot-active')) {
+      svgElement.classList.add('carrot-active')
+    } else {
+      svgElement.classList.remove('carrot-active')
+    }
+  }
+
+  function toggleGenres(e) {
+    e.stopPropagation()
+
+    setGenresShown(!genresShown)
+    animateCarrot()
+  }
 
   // Fetch and set additional data
   async function loadMoreAnime() {
@@ -67,16 +102,29 @@ function AnimeList() {
     <div className='animeList-page-container'>
       <div className='animeList-hero-image-container'></div>
       <div className='animeList-search-and-genres-container'>
-        <div className='search-bar-container'>
-          <div className='animeList-search-icon-container'>
-            <SearchIcon className='animeList-search-icon' />
+        <div className='search-bar-and-button-container'>
+          <div className='search-bar-container'>
+            <div className='animeList-search-icon-container'>
+              <SearchIcon className='animeList-search-icon' />
+            </div>
+            <input className='search-bar' type="text" placeholder='Search for anime'/>
           </div>
-          <input className='search-bar' type="text" placeholder='Search for anime'/>
+          <button onClick={(e) => toggleGenres(e)} className='genres-btn' type="button">
+            Genres
+            <div className='genres-carrot-container'>
+              <CarrotDown />
+            </div>
+          </button>
         </div>
-        <button className='genres-btn' type="button">
-          Genres
-          <CarrotDown />
-        </button>
+        {genresShown ?
+        <div className='genre-tags-container'>
+          {genresMasterList.current.map(genre => {
+            return (
+              <button key={genre['mal_id']} className='genre-tag' type="button">{genre.name}</button>
+            )
+          })}
+        </div>
+        : null}
       </div>
       <div className='animeList-container'>
         <div className='animeList-title-and-filter'>
@@ -86,7 +134,7 @@ function AnimeList() {
         <div className='animeList-cards-container'> 
           {animeCards ? animeCards : '...Loading'}
         </div>
-
+    
         {pageCount.current !== 5 ? 
         <button 
           onClick={loadMoreAnime} 

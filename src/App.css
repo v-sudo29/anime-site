@@ -6,12 +6,17 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  border-radius: 0.3rem;
+  outline: 2px solid white;
+}
+
 :root {
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
   --main-background-color: #111111;
   --text-color: white;
   --hover-color: rgb(13, 116, 220);
-  --page-padding: 5rem 20rem;
+  --page-padding: 5rem 25rem;
 }
 
 #root {
@@ -405,8 +410,15 @@ svg.search-icon path {
 /* Search and Genres */
 .animeList-search-and-genres-container {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 0.3rem;
+}
+
+.search-bar-and-button-container {
+  display: flex;
   gap: 0.5rem;
-  border-radius: 0.3rem;;
+  border-radius: 0.3rem;
 }
 
 .search-bar-container {
@@ -416,6 +428,10 @@ svg.search-icon path {
   background-color: #232323;
   padding: 0.8rem;
   border-radius: inherit;
+}
+
+.search-bar-container:focus-within {
+  outline: 2px solid white;
 }
 
 .animeList-search-icon-container {
@@ -446,8 +462,25 @@ svg.search-icon path {
   cursor: pointer;
 }
 
+.genres-btn:focus {
+  outline: 2px solid white;
+}
+
 .carrot-down-icon {
   width: 0.8rem;
+}
+
+.genre-tags-container {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(6.5rem, 1fr));
+  grid-template-rows: repeat(3, 2.5rem);
+  gap: 0.6rem;
+}
+
+.genre-tag {
+  border-radius: 10rem;
+  background-color: #686868;
+  color: inherit;
 }
 
 .animeList-title-and-filter {
@@ -462,7 +495,7 @@ svg.search-icon path {
   display: flex;
 }
 
-/* Custom Select */
+/* CUSTOM SELECT */
 .custom-select {
   position: relative;
 }
@@ -536,6 +569,13 @@ svg.search-icon path {
   transform: rotate(180deg)
 }
 
+/* Anime List Cards Container */
+.animeList-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 /* Anime Detail Page */
 .detail-title {
   text-align: center;
@@ -573,7 +613,6 @@ svg.search-icon path {
 
 .genre-tag {
   border: 1px solid black;
-  border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
@@ -605,4 +644,3 @@ svg.search-icon path {
   width: 10rem;
   cursor: pointer;
 }
-
