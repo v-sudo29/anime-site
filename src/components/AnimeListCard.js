@@ -16,7 +16,10 @@ export default function AnimeListCard({anime, index, cardType}) {
         <span className={`${cardType}-finished-date`}>Finished &#x2022; 2009-2010</span>
       </div>
       <div className={`${cardType}-score`}>
-        {anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score']}
+        {anime['score'] ? 
+          anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score'] :
+          '-'
+        }
       </div>
     </div>
   )

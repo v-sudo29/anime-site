@@ -9,7 +9,9 @@ function AnimeList() {
   const [animeCards, setAnimeCards] = useState(null)
   const [topFilter, setTopFilter] = useState(null)
   const [genresShown, setGenresShown]= useState(false)
+  const [genresSelected, setGenresSelected] = useState([])
   const pageCount = useRef(2)
+  const inputValue = useRef(null)
   const genresMasterList = useRef([
     {name: 'Action', mal_id: 1},
     {name: 'Adventure', mal_id: 2},
@@ -50,6 +52,65 @@ function AnimeList() {
     animateCarrot()
   }
 
+  function handleEnter(e) {
+    const searchParameter = inputValue.current.value
+
+    if (e.key === 'Enter') {
+      // Convert genres to mal_id's
+      const idsArr = genresSelected.map(genre => {
+        let malId = null
+        genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
+        return malId
+      })
+
+      const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+      const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}`
+      
+      fetchData(searchUrl)
+    }
+  }
+
+  function handleSearch() {
+    const searchParameter = inputValue.current.value
+
+    // Convert genres to mal_id's
+    const idsArr = genresSelected.map(genre => {
+      let malId = null
+      genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
+      return malId
+    })
+
+    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}`
+    
+    fetchData(searchUrl)
+
+  }
+
+  function handleGenreTagClick(e) {
+    const genreName = e.target.innerHTML
+
+    // Style
+    if (!e.target.classList.contains('genre-active')) {
+      e.target.classList.add('genre-active')
+    } else {
+      e.target.classList.remove('genre-active')
+    }
+
+    // Add/remove genre from state
+    setGenresSelected(prevGenres => {
+      const genreExists = prevGenres.find(genre => genre === genreName)
+      const newArr = [...prevGenres]
+      if (genreExists) {
+        newArr.pop(genreName)
+        return newArr
+      } else {
+        newArr.push(genreName)
+        return newArr
+      }
+    })
+  }
+
   // Fetch and set additional data
   async function loadMoreAnime() {
     // TODO: wait for UX design feedback
@@ -81,7 +142,6 @@ function AnimeList() {
     }
   }, [animeData])
 
-
   // Fetch and set new data when topFilter changes
   useEffect(() => {
     if (topFilter === 'Most Popular') {
@@ -106,8 +166,22 @@ function AnimeList() {
             <div className='animeList-search-icon-container'>
               <SearchIcon className='animeList-search-icon' />
             </div>
-            <input className='search-bar' type="text" placeholder='Search for anime'/>
+            <input 
+              className='search-bar' 
+              type="text" 
+              placeholder='Search for anime'
+              ref={inputValue} 
+              onKeyDown={(e) => handleEnter(e)}
+            />
           </div>
+          <div className='animeList-search-button-container'>
+              <button 
+                className='animeList-search-button'
+                type="button"
+                onClick={handleSearch}
+                >Search
+              </button>
+            </div>
           <button onClick={(e) => toggleGenres(e)} className='genres-btn' type="button">
             Genres
             <div className='genres-carrot-container'>
@@ -119,7 +193,13 @@ function AnimeList() {
         <div className='genre-tags-container'>
           {genresMasterList.current.map(genre => {
             return (
-              <button key={genre['mal_id']} className='genre-tag' type="button">{genre.name}</button>
+              <button 
+                key={genre['mal_id']} 
+                className='genre-tag' 
+                type="button"
+                onClick={(e) => handleGenreTagClick(e)}
+              >{genre.name}
+              </button>
             )
           })}
         </div>

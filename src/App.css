@@ -449,9 +449,29 @@ svg.search-icon path {
 }
 
 .search-bar {
+  position: relative;
   all: unset;
   width: 100%;
   font-size: 0.8rem;
+}
+
+.animeList-search-button-container {
+  position: absolute;
+  margin-top: 0.75rem;
+  right: 33.2rem;
+}
+
+.animeList-search-button {
+  all: unset;
+  background-color: #686868;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.animeList-search-button:focus {
+  outline: 2px solid white;
 }
 
 .genres-btn {
@@ -485,11 +505,17 @@ svg.search-icon path {
   border-radius: 10rem;
   background-color: #686868;
   color: inherit;
+  border: none;
+  cursor: pointer;
 }
 
 .genre-tag:focus {
-  outline: none;
-  border: 2px solid white;
+  outline-offset: -1px;
+  outline: 2px solid white;
+}
+
+.genre-active {
+  background-color: #262626;
 }
 
 .animeList-title-and-filter {
@@ -604,52 +630,4 @@ svg.search-icon path {
 .synopsis {
   font-size: 1rem;
   line-height: 1.6rem;
-}
-
-/* SEARCH */
-.search-page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.genre-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.genre-tag {
-  border: 1px solid black;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.genre-active {
-  background-color: green;
-}
-
-.search-results-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.search-result-card > * {
-  text-align: center;
-}
-
-.search-result-card {
-  border-radius: 0.6rem;
-  width: 15rem;
-  padding: 2rem 2rem;
-  box-shadow: var(--box-shadow)
-}
-
-.search-img {
-  height: 15rem;
-  width: 10rem;
-  cursor: pointer;
 }
