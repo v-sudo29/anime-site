@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import arrowIcon from '../../assets/arrow-icon.png'
-import LoaderAnimation from '../../components/LoaderAnimation'
-
 import { Link } from 'react-router-dom'
+import NewsCard from './NewsCard'
+import arrowIcon from '../../assets/arrow-icon.png'
 
 export default function LatestNews() {
   const [newsData, setNewsData] = useState(null)
@@ -38,13 +37,10 @@ export default function LatestNews() {
           return null
         }
         return (
-          <div key={news.title} className='home-news-card'>
-            <div className='home-news-image-container'>
-              <img className='home-news-image' src={`${news.image}`} alt="" />
-            </div>
-            <span className='home-news-date'>{news.date}</span>
-            <h3 className='home-news-title'>{news['title']}</h3>
-          </div>
+          <NewsCard
+            key={news.title}
+            news={news}
+          />
         )
       }))
     }

@@ -34,6 +34,7 @@ function AnimeList() {
       fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
       runOnce.current = true
     } 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
