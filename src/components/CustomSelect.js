@@ -17,7 +17,7 @@ export default function CustomSelect({setTopFilter}) {
   }
 
   // Function set optionCards to hidden
-  function hideOptions(e) {
+  function hideOptions() {
     setOptionsCards(allOptions.current.map(option => {
       return (
         <div 
@@ -37,7 +37,7 @@ export default function CustomSelect({setTopFilter}) {
   }
 
   // Function set optionCards to shown
-  function showOptions(e) {
+  function showOptions() {
     setOptionsCards(allOptions.current.map(option => {
       return (
         <div 
@@ -161,7 +161,6 @@ useEffect(() => {
       )
     })
     selected.current = firstOption
-    setTopFilter(selected.current)
 
     // Set default options list
     setOptionsCards(optionsArr.map(option => {

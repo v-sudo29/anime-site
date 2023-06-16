@@ -49,11 +49,21 @@ body {
   color: var(--text-color)
 }
 
+.news-default-div {
+  height: 20rem;
+  width: 100%;
+}
+
+.test {
+  border: 1px solid red;
+}
+
 /* Header nav links */
 nav {
   position: relative;
   top: 3rem;
   display: flex;
+  z-index: 10;
   gap: 1rem;
   color: #FFFFFF;
 }
@@ -402,12 +412,15 @@ svg.search-icon path {
 
 /* ANIME LIST */
 .animeList-page-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.animeList-page-content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: var(--page-padding);
-  width: 100%;
-  min-height: 100vh;
+  padding: var(--page-padding)
 }
 
 .animeList-hero-image-container {

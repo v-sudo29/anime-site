@@ -5,7 +5,8 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
+  z-index: 5;
+  border: 1px solid red;
 }
 .lds-ring div {
   box-sizing: border-box;

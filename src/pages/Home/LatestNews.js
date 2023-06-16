@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import arrowIcon from '../../assets/arrow-icon.png'
+import LoaderAnimation from '../../components/LoaderAnimation'
 
 import { Link } from 'react-router-dom'
 
@@ -59,7 +60,7 @@ export default function LatestNews() {
         </Link>
       </div>
       <div className='home-news-cards-container'>
-        {newsCards}
+        {newsCards ? newsCards : <div className='news-default-div'></div> }
       </div>
     </section>
   )
