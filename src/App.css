@@ -49,13 +49,14 @@ body {
   color: var(--text-color)
 }
 
-.news-default-div {
+.-home-news-default-div {
   height: 20rem;
   width: 100%;
 }
 
-.test {
-  border: 1px solid red;
+.news-trending-default-div {
+  height: 18rem;
+  width: 100%;
 }
 
 /* Header nav links */
@@ -672,7 +673,6 @@ svg.search-icon path {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  /* CHANGE PADDING AFTER NEWS PAGE IS COMPLETE */
   padding: var(--page-padding);
   gap: 3rem;
 }
@@ -683,7 +683,7 @@ svg.search-icon path {
 }
 
 .news-hero-image {
-  height: 15rem;
+  height: 18rem;
   width: 30rem;
   background-color: #777777;
   border-radius: 0.2rem;
@@ -706,6 +706,16 @@ svg.search-icon path {
 .news-trending-cards-container {
   display: flex;
   gap: 1rem;
+}
+
+.news-page-trending-card {
+  display: flex;
+  flex-direction: column;
+  height: 18rem;
+}
+
+.news-page-trending-card > img {
+  height: 10rem;
 }
 
 .news-page-trending-info > div {

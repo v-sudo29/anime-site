@@ -25,7 +25,7 @@ export default function TrendingContent({trendingNews}) {
     <div className='news-trending-container'>
       <h2>Trending Anime News</h2>
       <div className='news-trending-cards-container'>
-        {trendingNewsCards ? trendingNewsCards : <>...Loading</>}
+        {trendingNewsCards ? trendingNewsCards : <div className='news-trending-default-div'>...Loading</div>}
       </div>
     </div>
   )

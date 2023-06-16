@@ -56,7 +56,7 @@ export default function LatestNews() {
         </Link>
       </div>
       <div className='home-news-cards-container'>
-        {newsCards ? newsCards : <div className='news-default-div'></div> }
+        {newsCards ? newsCards : <div className='home-news-default-div'></div> }
       </div>
     </section>
   )
