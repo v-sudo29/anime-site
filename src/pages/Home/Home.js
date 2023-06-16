@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import SearchBar from './SearchBar'
+import SearchBar from '../../components/SearchBar'
 import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
 import Upcoming from './Upcoming'
@@ -10,7 +10,7 @@ function Home() {
   const [upcomingData, setUpcomingData] = useState(null)
   const [newsData, setNewsData] = useState(null)
   const [popularData, setPopularData] = useState(null)
-
+  const inputValue = useRef(null)
   const runOnce = useRef(false)
 
   async function fetchTrending() {
@@ -91,7 +91,12 @@ function Home() {
     <div className='home-container'>
       <div className='home-hero-image'></div>
       <div className='home-content'>
-        <SearchBar/>
+
+        <SearchBar 
+          placeholder={'Search for anime, characters, news...'}
+          inputValue={inputValue}
+          // TODO: create handleEnter function
+        />
         <LatestNews newsData={newsData}/>
         <TrendingCarousel trendingData={trendingData}/>
         <Upcoming upcomingData={upcomingData}/>

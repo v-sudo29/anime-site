@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import SearchIcon from '../../icons/SearchIcon'
+import SearchBar from '../../components/SearchBar'
 import CarrotDown from '../../icons/CarrotDown'
 
 export default function SearchAndGenres({animateCarrot, fetchData}) {
@@ -74,18 +74,11 @@ export default function SearchAndGenres({animateCarrot, fetchData}) {
   return (
   <div className='animeList-search-and-genres-container'>
       <div className='search-bar-and-button-container'>
-        <div className='search-bar-container'>
-          <div className='animeList-search-icon-container'>
-            <SearchIcon className='animeList-search-icon' />
-          </div>
-          <input 
-            className='search-bar' 
-            type="text" 
-            placeholder='Search for anime'
-            ref={inputValue} 
-            onKeyDown={(e) => handleEnter(e)}
-          />
-        </div>
+        <SearchBar
+          placeholder={'Search for anime'}
+          inputValue={inputValue}
+          handleEnter={handleEnter}
+        />
         <div className='animeList-search-button-container'>
           <button 
             className='animeList-search-button'

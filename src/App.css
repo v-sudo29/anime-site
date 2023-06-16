@@ -434,24 +434,25 @@ svg.search-icon path {
 
 .search-bar-container {
   display: flex;
+  text-align: left;
   gap: 1rem;
   flex: 1;
   background-color: #232323;
   padding: 0.8rem;
-  border-radius: inherit;
+  border-radius: 0.3rem;
 }
 
 .search-bar-container:focus-within {
   outline: 2px solid white;
 }
 
-.animeList-search-icon-container {
+.search-icon-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.animeList-search-icon-container > svg {
+.search-icon-container > svg {
   width: 1rem;
 }
 
@@ -493,7 +494,7 @@ svg.search-icon path {
   cursor: pointer;
 }
 
-.genres-btn:focus {
+.genres-btn:focus-visible {
   outline: 2px solid white;
 }
 
@@ -516,7 +517,7 @@ svg.search-icon path {
   cursor: pointer;
 }
 
-.genre-tag:focus {
+.genre-tag:focus-visible {
   outline-offset: -1px;
   outline: 2px solid white;
 }
