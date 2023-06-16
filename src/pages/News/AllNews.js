@@ -28,26 +28,26 @@ export default function AllNews() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-    // Set news cards when data available
-    useEffect(() => {
-      if (newsData) {
-        setNewsCards(newsData.map((news, index) => {
-          if (news.image === 'doesn\'t exist!') {
-            return null
-          }
-          return (
-            <div key={index} className='news-page-card'>
-              <img src={news.image} alt="" />
-              <div className='news-page-card-info'>
-                <div>{news.date}</div>
-                <h3>{news.title}</h3>
-                <p>{limitCharacters(news.text)}</p>
-              </div>
+  // Set news cards when data available
+  useEffect(() => {
+    if (newsData) {
+      setNewsCards(newsData.map((news, index) => {
+        if (news.image === 'doesn\'t exist!') {
+          return null
+        }
+        return (
+          <div key={index} className='news-page-card'>
+            <img src={news.image} alt="" />
+            <div className='news-page-card-info'>
+              <div>{news.date}</div>
+              <h3>{news.title}</h3>
+              <p>{limitCharacters(news.text)}</p>
             </div>
-          )
-        }))
-      }
-    }, [newsData])
+          </div>
+        )
+      }))
+    }
+  }, [newsData])
 
   return (
     <div className='all-news-container'>
