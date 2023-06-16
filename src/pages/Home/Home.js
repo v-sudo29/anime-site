@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import LoaderAnimation from '../../components/LoaderAnimation'
 import SearchBar from '../../components/SearchBar'
 import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
@@ -73,23 +74,27 @@ function Home() {
 
   return (
     <div className='home-container'>
-      <div className='home-hero-image'></div>
-      <div className='home-content'>
+      {(trendingData && upcomingData && popularData) ? 
+       <>
+        <div className='home-hero-image'></div>
+        <div className='home-content'>
 
-        <SearchBar 
-          placeholder={'Search for anime, characters, news...'}
-          inputValue={inputValue}
-          // TODO: create handleEnter function
-        />
-        <LatestNews/>
-        <TrendingCarousel
-          trendingData={trendingData}
-        />
-        <Upcoming 
-          upcomingData={upcomingData}
-        />
-        <MostPopular popularData={popularData} setPopularData={setPopularData}/>
-      </div>
+          <SearchBar 
+            placeholder={'Search for anime, characters, news...'}
+            inputValue={inputValue}
+            // TODO: create handleEnter function
+          />
+          <LatestNews/>
+          <TrendingCarousel
+            trendingData={trendingData}
+          />
+          <Upcoming 
+            upcomingData={upcomingData}
+          />
+          <MostPopular popularData={popularData} setPopularData={setPopularData}/>
+        </div>     
+       </>     
+      : <LoaderAnimation/>}
     </div>
   )
 }
