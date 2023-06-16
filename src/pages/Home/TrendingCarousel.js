@@ -8,12 +8,14 @@ export default function TrendingCarousel({trendingData}) {
   const runOnce = useRef(false)
   const delay = 10000;
 
+  // Reset carousel timeout
   function resetTimeout() {
     if (timeOutRef.current) {
       clearTimeout(timeOutRef.current)
     }
   }
 
+  // Every 10 seconds, change slide
   useEffect(() => {
     if (trendingData && runOnce.current) {
       timeOutRef.current = setTimeout(() => {

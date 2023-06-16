@@ -3,8 +3,31 @@ import arrowIcon from '../../assets/arrow-icon.png'
 
 import { Link } from 'react-router-dom'
 
-export default function LatestNews({newsData}) {
+export default function LatestNews() {
+  const [newsData, setNewsData] = useState(null)
   const [newsCards, setNewsCards] = useState(null)
+
+  async function fetchNews() {
+    try {
+      const res = await import('../../anime-news.json')
+      // Convert object to objects in array
+      const newData = Object.keys(res).map(key => {
+        return res[key]
+      })
+      // Remove last two indexes (length and default)
+      const secondToLastIndex = newData.length - 2
+      newData.splice(secondToLastIndex, 2)
+      
+      setNewsData(newData)
+    }
+    catch (error) {console.error(error)}
+  }
+
+  // Fetch news data
+  useEffect(() => {
+    if (!newsData) fetchNews()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Set newsCards from newsData
   useEffect(() => {
@@ -17,7 +40,6 @@ export default function LatestNews({newsData}) {
           <div key={news.title} className='home-news-card'>
             <div className='home-news-image-container'>
               <img className='home-news-image' src={`${news.image}`} alt="" />
-              {/* <p className='home-news-text'>{limitCharacters(news.text)}</p> */}
             </div>
             <span className='home-news-date'>{news.date}</span>
             <h3 className='home-news-title'>{news['title']}</h3>

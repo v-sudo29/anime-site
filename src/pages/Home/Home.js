@@ -8,11 +8,11 @@ import MostPopular from './MostPopular'
 function Home() {
   const [trendingData, setTrendingData] = useState(null)
   const [upcomingData, setUpcomingData] = useState(null)
-  const [newsData, setNewsData] = useState(null)
   const [popularData, setPopularData] = useState(null)
   const inputValue = useRef(null)
   const runOnce = useRef(false)
 
+  // Fetch and set trending data
   async function fetchTrending() {
     const LIMIT_NUMBER = 6
     const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
@@ -27,6 +27,7 @@ function Home() {
     }
   }
 
+  // Fetch and set upcoming data
   async function fetchUpcoming() {
     const LIMIT_NUMBER = 8
     // API endpoint not working
@@ -43,24 +44,7 @@ function Home() {
     }
   }
 
-  async function fetchNews() {
-    try {
-      const res = await import('../../anime-news.json')
-      
-      // Convert object to objects in array
-      const newData = Object.keys(res).map(key => {
-        return res[key]
-      })
-
-      // Remove last two indexes (length and default)
-      const secondToLastIndex = newData.length - 2
-      newData.splice(secondToLastIndex, 2)
-      
-      setNewsData(newData)
-    }
-    catch (error) {console.error(error)}
-  }
-
+  // Fetch and set popular data
   async function fetchPopular() {
     const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
     try {
@@ -71,14 +55,14 @@ function Home() {
     } catch (error) {console.error(error)}
   }
 
+  // Fetch all data
   async function fetchAllData() {
-    fetchTrending()
+    await fetchTrending()
     await fetchUpcoming()
-    fetchNews()
     await fetchPopular()
   }
 
-  // Fetch API data
+  // Fetch API data once when page renders
   useEffect(() => {
     if (!runOnce.current) {
       fetchAllData()
@@ -97,9 +81,13 @@ function Home() {
           inputValue={inputValue}
           // TODO: create handleEnter function
         />
-        <LatestNews newsData={newsData}/>
-        <TrendingCarousel trendingData={trendingData}/>
-        <Upcoming upcomingData={upcomingData}/>
+        <LatestNews/>
+        <TrendingCarousel
+          trendingData={trendingData}
+        />
+        <Upcoming 
+          upcomingData={upcomingData}
+        />
         <MostPopular popularData={popularData} setPopularData={setPopularData}/>
       </div>
     </div>
