@@ -11,9 +11,14 @@ export default function AnimeListCard({anime, index, cardType}) {
       <div className={`${cardType}-info`}>
         <div className={`${cardType}-title-and-type`}>
           <h3 className={`${cardType}-title'`}>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-          <span className={`${cardType}-type`}>TV Show</span>
+          <span className={`${cardType}-type`}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>
         </div>
-        <span className={`${cardType}-finished-date`}>Finished &#x2022; 2009-2010</span>
+        <span className={`${cardType}-finished-date`}>
+          {anime['airing'] ? 'Airing' : 
+            anime['aired']['prop']['to']['year'] ? <>Finished &#x2022; {anime['aired']['prop']['to']['year']}</> :
+              <>Finished &#x2022; {anime['aired']['prop']['from']['year']}</>
+            }
+        </span>
       </div>
       <div className={`${cardType}-score`}>
         {anime['score'] ? 

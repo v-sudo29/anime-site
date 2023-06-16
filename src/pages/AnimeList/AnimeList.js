@@ -23,6 +23,7 @@ function AnimeList() {
       const data = await res.json()
 
       setAnimeData(data.data)
+      console.log(data.data)
     } catch (error) {console.error(error)}
   }
 
