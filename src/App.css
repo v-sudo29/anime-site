@@ -169,10 +169,9 @@ svg.search-icon path {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 20rem;
+  height: 15rem;
   width: 25rem;
-  box-shadow: var(--box-shadow);
-}
+} 
 
 .home-news-image-container {
   display: flex;

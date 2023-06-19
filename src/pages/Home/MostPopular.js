@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import AnimeListCard from '../../components/AnimeListCard'
 
-export default function MostPopular({popularData, setPopularData}) {
+export default function MostPopular({popularData}) {
   const [popularCards, setPopularCards] = useState(null)
   const runOnce = useRef(false)
   const pageCount = useRef(1)
-
-  // Fetch additional data
-  function loadMoreAnime() {
-    fetch(`https://api.jikan.moe/v4/top/anime?filter=bypopularity&page=${pageCount.current}`)
-        .then(res => res.json())
-        .then(data => setPopularData(prevData => [...prevData, ...data.data]))
-  }
 
   // Set popularCards, add new popularCards
   useEffect(() => {
@@ -56,7 +49,7 @@ export default function MostPopular({popularData, setPopularData}) {
       </div>
       {pageCount.current !== 5 ? 
       <button 
-        onClick={loadMoreAnime} 
+        // TODO: create onClick handler to link to MAL
         className='see-more-btn' 
         type="button"> 
       See More
