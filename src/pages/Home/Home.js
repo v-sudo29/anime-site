@@ -5,13 +5,26 @@ import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
 import Upcoming from './Upcoming'
 import MostPopular from './MostPopular'
+import NewsCard from './NewsCard'
+import useFetchNews from '../../hooks/useFetchNews'
 
 function Home() {
+  const [newsCards, setNewsCards] = useState(null)
   const [trendingData, setTrendingData] = useState(null)
   const [upcomingData, setUpcomingData] = useState(null)
   const [popularData, setPopularData] = useState(null)
   const inputValue = useRef(null)
   const runOnce = useRef(false)
+  const { newsData } = useFetchNews()
+  const DELAY_TIME = 800
+
+  // Delay function
+  function delay(time) {
+    console.log('delay function running for 0.5s!')
+    return new Promise(resolve => {
+      setTimeout(resolve, time)
+    })
+  }
 
   // Fetch and set trending data
   async function fetchTrending() {
@@ -56,12 +69,31 @@ function Home() {
     } catch (error) {console.error(error)}
   }
 
-  // Fetch all data
+  // Fetch and set all data
   async function fetchAllData() {
-    await fetchTrending()
-    await fetchUpcoming()
-    await fetchPopular()
+    fetchTrending()
+    await delay(DELAY_TIME)
+    fetchUpcoming()
+    await delay(DELAY_TIME)
+    fetchPopular()
   }
+
+  // Set newsCards from newsData
+  useEffect(() => {
+    if (newsData) {
+      setNewsCards(newsData.map(news => {
+        if (news.image === 'doesn\'t exist!') {
+          return null
+        }
+        return (
+          <NewsCard
+            key={news.title}
+            news={news}
+          />
+        )
+      }))
+    }
+  }, [newsData])
 
   // Fetch API data once when page renders
   useEffect(() => {
@@ -74,7 +106,7 @@ function Home() {
 
   return (
     <div className='home-container'>
-      {(trendingData && upcomingData && popularData) ? 
+      {(newsCards && trendingData) ? 
        <>
         <div className='home-hero-image'></div>
         <div className='home-content'>
@@ -84,7 +116,10 @@ function Home() {
             inputValue={inputValue}
             // TODO: create handleEnter function
           />
-          <LatestNews/>
+          <LatestNews
+            newsData={newsData}
+            newsCards={newsCards}
+          />
           <TrendingCarousel
             trendingData={trendingData}
           />
