@@ -16,7 +16,8 @@
   --main-background-color: #111111;
   --text-color: white;
   --hover-color: rgb(13, 116, 220);
-  --page-padding: 5rem 25rem;
+  --page-top-bottom-padding: 5rem;
+  --page-max-width: 63rem;
 }
 
 #root {
@@ -95,6 +96,7 @@ nav > a:visited {
 .home-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: center;
   background-color: var(--main-background-color);
   width: inherit;
@@ -109,8 +111,11 @@ nav > a:visited {
 .home-content {
   display: flex;
   flex-direction: column;
+  align-self: center;
   gap: 2rem;
-  padding: var(--page-padding);
+  padding-top: var(--page-top-bottom-padding);
+  padding-bottom: var(--page-top-bottom-padding);
+  max-width: var(--page-max-width);
 }
 
 /* Search bar */
@@ -254,8 +259,7 @@ svg.search-icon path {
   position: absolute;
   display: flex;
   gap: 0.7rem;
-
-  top: 83.5rem;
+  top: 77.4rem;
   left: 52rem;
 }
 
