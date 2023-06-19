@@ -419,6 +419,8 @@ svg.search-icon path {
   width: 100%;
   min-height: 100vh;
   max-width: var(--page-max-width);
+  padding-top: var(--page-top-bottom-padding);
+  padding-bottom: var(--page-top-bottom-padding);
 }
 
 .animeList-page-content {
@@ -481,8 +483,7 @@ svg.search-icon path {
 
 .animeList-search-button-container {
   position: absolute;
-  /* margin-top: 0.75rem; */
-  top: 15.25rem;
+  top: 20.25rem;
   margin-left: 51rem;
 }
 
