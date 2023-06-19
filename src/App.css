@@ -260,7 +260,8 @@ svg.search-icon path {
   display: flex;
   gap: 0.7rem;
   top: 77.4rem;
-  left: 52rem;
+  margin-left: 27.2rem;
+
 }
 
 .carousel-btn {
