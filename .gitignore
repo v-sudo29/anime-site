@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # data files
-/src/anime-news.json
-/src/anime-trending-news.json
+# /src/anime-news.json
+# /src/anime-trending-news.json
