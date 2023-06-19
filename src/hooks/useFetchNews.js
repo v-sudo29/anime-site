@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 
 function useFetchNews() {
   const [newsData, setNewsData] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [newsLoading, setNewsLoading] = useState(false)
+  const [newsError, setNewsError] = useState(null)
 
   async function fetchNews() {
     try {
@@ -18,18 +18,21 @@ function useFetchNews() {
       
       setNewsData(newData)
     }
-    catch (error) {setError(error)}
+    catch (error) {
+      setNewsError(error)
+      console.error(error)
+    }
     finally {
-      setLoading(false)
+      setNewsLoading(false)
     }
   }
 
   useEffect(() => {
-    setLoading(true)
+    setNewsLoading(true)
     fetchNews()
   }, [])
 
-  return { newsData, loading, error }
+  return { newsData, newsLoading, newsError }
 }
 
 export default useFetchNews
