@@ -7,6 +7,10 @@ export default function MostPopular({popularData}) {
   const runOnce = useRef(false)
   const pageCount = useRef(1)
 
+  function handleClick() {
+    window.location.href='/anime-list'
+  }
+
   // Set popularCards, add new popularCards
   useEffect(() => {
     if (popularData && !runOnce.current) {
@@ -49,10 +53,10 @@ export default function MostPopular({popularData}) {
       </div>
       {pageCount.current !== 5 ? 
       <button 
-        // TODO: create onClick handler to link to MAL
+        onClick={handleClick}
         className='see-more-btn' 
-        type="button"> 
-      See More
+      > 
+      See Anime List
       </button>
       : null
       }

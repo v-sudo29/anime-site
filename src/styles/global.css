@@ -79,8 +79,12 @@ nav > a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   font-size: 1.2rem;
+}
+
+.more-news-link > img {
+  height: 1rem;
 }
 
 /* See More Btn */
