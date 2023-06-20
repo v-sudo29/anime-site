@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import CustomSelect from '../../components/CustomSelect'
 import AnimeListCard from '../../components/AnimeListCard'
 
-export default function SearchResultsAL({
+export default function SearchResults({
     fetchData, 
     animeCards, 
     animeData, 
@@ -38,7 +38,6 @@ export default function SearchResultsAL({
         )
       }))
     }
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animeData])
 

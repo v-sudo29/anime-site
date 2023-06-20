@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import SearchAndGenres from './SearchAndGenres'
-import SearchResultsAL from './SearchResultsAL'
+import SearchResults from './SearchResults'
 import LoaderAnimation from '../../components/LoaderAnimation'
 
 function AnimeList() {
@@ -46,7 +46,7 @@ function AnimeList() {
           animateCarrot={animateCarrot}
           fetchData={fetchData}
         />
-        <SearchResultsAL
+        <SearchResults
           animeData={animeData}
           animeCards={animeCards}
           setAnimeCards={setAnimeCards}

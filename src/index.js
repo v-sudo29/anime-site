@@ -7,7 +7,6 @@ import AnimeDetail from './components/AnimeDetail';
 import News from './pages/News/News';
 import Layout from './components/Layout';
 import './App.css'
-import './global.css'
 
 function App() {
   return (
