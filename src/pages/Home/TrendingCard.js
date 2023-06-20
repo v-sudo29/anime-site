@@ -6,7 +6,7 @@ import styles from '../../styles/home/trending/TrendingCard.module.css'
 
 export default function TrendingCard({anime}) {
   return (
-    <div className='slide'>
+    <div className={styles.slide}>
       <div className={styles.card}>
         <div className={styles.imageContainer}>
           <Link to={`/anime/${anime['mal_id']}`}>

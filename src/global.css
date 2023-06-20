@@ -49,6 +49,11 @@ body {
   color: var(--text-color)
 }
 
+.news-trending-default-div {
+  height: 18rem;
+  width: 100%;
+}
+
 /* Header nav links */
 nav {
   position: relative;
@@ -73,6 +78,7 @@ nav > a:visited {
   text-decoration: underline;
 }
 
+/* More news, read more */
 .more-news-link, .read-more-link {
   display: flex;
   justify-content: center;
@@ -81,6 +87,8 @@ nav > a:visited {
   font-size: 1.2rem;
 }
 
+
+/* See More Btn */
 .see-more-btn {
   all: unset;
   display: block;

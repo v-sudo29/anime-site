@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../styles/home/news/LatestNews.module.css'
-
 import arrowIcon from '../../assets/arrow-icon.png'
 
 export default function LatestNews({newsCards}) {
@@ -16,7 +15,7 @@ export default function LatestNews({newsCards}) {
         </Link>
       </div>
       <div className={styles.cardsContainer}>
-        {newsCards ? newsCards : <div className='home-news-default-div'></div> }
+        {newsCards ? newsCards : <div className={styles.defaultDiv}></div> }
       </div>
     </section>
   )
