@@ -6,7 +6,7 @@ import AnimeList from './pages/AnimeList/AnimeList';
 import AnimeDetail from './components/AnimeDetail';
 import News from './pages/News/News';
 import Layout from './components/Layout';
-import './App.css'
+import './styles/global.css'
 
 function App() {
   return (
