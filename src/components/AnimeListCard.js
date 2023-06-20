@@ -5,7 +5,7 @@ import styles from '../styles/components/AnimeListCard.module.css'
 export default function AnimeListCard({anime, index}) {
   return (
     <div className={styles.card}>
-      <div>{index + 1}</div>
+      <div className={styles.ranking}>{index + 1}</div>
       <div>
         <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt='' />
       </div>

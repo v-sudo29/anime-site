@@ -3,6 +3,10 @@
   gap: 1rem;
 }
 
+.ranking {
+  width: 0.5rem;
+}
+
 .image {
   width: 4rem;
   height: 6rem;
