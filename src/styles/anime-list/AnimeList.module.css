@@ -1,15 +1,17 @@
 .container {
-  width: 100%;
-  min-height: 100vh;
-  max-width: var(--page-max-width);
-  padding-top: var(--page-top-bottom-padding);
-  padding-bottom: var(--page-top-bottom-padding);
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 
 .content {
   display: flex;
   flex-direction: column;
+  align-self: center;
   gap: 2rem;
+  padding-top: var(--page-top-bottom-padding);
+  padding-bottom: var(--page-top-bottom-padding);
+  width: var(--page-max-width);
 }
 
 .heroImageContainer {

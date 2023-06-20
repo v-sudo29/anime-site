@@ -16,7 +16,8 @@
   --main-background-color: #111111;
   --text-color: white;
   --hover-color: rgb(13, 116, 220);
-  --page-padding: 5rem 25rem;
+  --page-top-bottom-padding: 5rem;
+  --page-max-width: 63rem;
 }
 
 #root {
@@ -49,11 +50,6 @@ body {
   color: var(--text-color)
 }
 
-.news-trending-default-div {
-  height: 18rem;
-  width: 100%;
-}
-
 /* Header nav links */
 nav {
   position: relative;
@@ -78,7 +74,7 @@ nav > a:visited {
   text-decoration: underline;
 }
 
-/* More news, read more */
+/* More News, Read More Links */
 .more-news-link, .read-more-link {
   display: flex;
   justify-content: center;
@@ -86,7 +82,6 @@ nav > a:visited {
   gap: 1.5rem;
   font-size: 1.2rem;
 }
-
 
 /* See More Btn */
 .see-more-btn {
@@ -103,9 +98,4 @@ nav > a:visited {
 
 .see-more-btn:focus {
   outline: 2px solid white;
-}
-
-/* CARROT ICON: Active carrot */
-.carrot-active {
-  transform: rotate(180deg)
 }
