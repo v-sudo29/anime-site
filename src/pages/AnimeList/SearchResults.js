@@ -1,28 +1,84 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import CustomSelect from '../../components/CustomSelect'
 import AnimeListCard from '../../components/AnimeListCard'
+import NoResults from '../../components/NoResults';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from '../../styles/anime-list/SearchResults.module.css'
 
 export default function SearchResults({
     fetchData, 
     animeCards, 
     animeData, 
-    setAnimeCards
+    setAnimeData,
+    setAnimeCards,
+    topFilter,
+    setTopFilter,
+    thereIsMore,
+    setThereIsMore
   }) {
-  const [topFilter, setTopFilter] = useState('Most Popular')
+
   const pageCount = useRef(2)
   const runOnce = useRef(false)
-  const popularUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity'
-  const trendingUrl = 'https://api.jikan.moe/v4/top/anime?filter=airing'
+
+  const popularUrl = 'https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity'
+  const trendingUrl = 'https://api.jikan.moe/v4/top/anime?type=tv&filter=airing'
   // API endpoint broken //
-  const upcomingUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity'
-  const tvUrl = 'https://api.jikan.moe/v4/top/anime?order_by=score&type=tv'
-  const movieUrl = 'https://api.jikan.moe/v4/top/anime?filter=bypopularity&type=movie'
-  
+  const upcomingUrl = 'https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity'
+  const tvUrl = 'https://api.jikan.moe/v4/top/anime?type=tv&order_by=score'
+  const movieUrl = 'https://api.jikan.moe/v4/top/anime?type=movie&filter=bypopularity'
+
+  // Reset pageCount ref
+  function resetPageCount() {
+    pageCount.current = 2
+  }
 
   // TODO: Fetch and set additional data
   async function loadMoreAnime() {
-    // code here
+    if (topFilter === 'Most Popular') {
+      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
+      const data = await res.json()
+      setAnimeData(prevData => [...prevData, ...data.data])
+      
+      if (!data.pagination['has_next_page']) setThereIsMore(false)
+      else setThereIsMore(true)
+      pageCount.current += 1
+    }
+    if (topFilter === 'Top Trending') {
+      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&page=${pageCount.current}`)
+      const data = await res.json()
+      setAnimeData(prevData => [...prevData, ...data.data])
+
+      if (!data.pagination['has_next_page']) setThereIsMore(false)
+      else setThereIsMore(true)
+      pageCount.current += 1
+    }
+    if (topFilter === 'Top Upcoming') {
+      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
+      const data = await res.json()
+      setAnimeData(prevData => [...prevData, ...data.data])
+
+      if (!data.pagination['has_next_page']) setThereIsMore(false)
+      else setThereIsMore(true)
+      pageCount.current += 1
+    }
+    if (topFilter === 'Top TV Series') {
+      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&order_by=score&page=${pageCount.current}`)
+      const data = await res.json()
+      setAnimeData(prevData => [...prevData, ...data.data])
+
+      if (!data.pagination['has_next_page']) setThereIsMore(false)
+      else setThereIsMore(true)
+      pageCount.current += 1
+    }
+    if (topFilter === 'Top Movies') {
+      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=movie&filter=bypopularity&page=${pageCount.current}`)
+      const data = await res.json()
+      setAnimeData(prevData => [...prevData, ...data.data])
+
+      if (!data.pagination['has_next_page']) setThereIsMore(false)
+      else setThereIsMore(true)
+      pageCount.current += 1
+    }
   }
 
   // Update cards when fetch data changes
@@ -57,23 +113,23 @@ export default function SearchResults({
   }, [topFilter])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleAndFilter}>
-        <h2 className='animeList-title'>Anime List</h2>
-        <CustomSelect setTopFilter={setTopFilter}/>
+      <div className={styles.container}>
+        <div className={styles.titleAndFilter}>
+          <h2 className='animeList-title'>Anime List</h2>
+          <CustomSelect 
+            setTopFilter={setTopFilter}
+            resetPageCount={resetPageCount}
+          />
+        </div>
+        <div className={styles.cardsContainer}> 
+          <InfiniteScroll 
+            dataLength={animeCards ? animeCards.length : null}
+            next={loadMoreAnime}
+            hasMore={thereIsMore}
+          >
+            {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
+          </InfiniteScroll>
+        </div>
       </div>
-      <div className={styles.cardsContainer}> 
-        {animeCards ? animeCards : '...Loading'}
-      </div>
-      {pageCount.current !== 5 ? 
-      <button 
-        onClick={loadMoreAnime} 
-        className='see-more-btn' 
-        type="button"> 
-      See More
-      </button>
-      : null
-      }
-    </div>
   )
 }

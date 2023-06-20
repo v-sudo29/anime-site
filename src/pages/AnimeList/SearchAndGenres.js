@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import SearchBar from '../../components/SearchBar'
 import CarrotDown from '../../icons/CarrotDown'
 import styles from '../../styles/anime-list/SearchAndGenres.module.css'
@@ -6,27 +6,14 @@ import carrotStyles from '../../styles/icons/CarrotDown.module.css'
 
 const { carrotActive } = carrotStyles
 
-export default function SearchAndGenres({fetchData}) {
-  const [genresShown, setGenresShown]= useState(false)
-  const [genresSelected, setGenresSelected] = useState([])
-  const inputValue = useRef(null)
-  const genresMasterList = useRef([
-    {name: 'Action', mal_id: 1},
-    {name: 'Adventure', mal_id: 2},
-    {name: 'Boys Love', mal_id: 28},
-    {name: 'Comedy', mal_id: 4},
-    {name: 'Drama', mal_id: 8},
-    {name: 'Fantasy', mal_id: 10},
-    {name: 'Girls Love', mal_id: 26},
-    {name: 'Horror', mal_id: 14},
-    {name: 'Mystery', mal_id: 7},
-    {name: 'Romance', mal_id: 22},
-    {name: 'Sci-Fi', mal_id: 24},
-    {name: 'Slice of Life', mal_id: 36},
-    {name: 'Sports', mal_id: 30},
-    {name: 'Supernatural', mal_id: 37},
-    {name: 'Suspense', mal_id: 41},
-  ])
+export default function SearchAndGenres({
+  genresMasterList,
+  genresShown,
+  setGenresShown,
+  setGenresSelected,
+  inputValue,
+  handleGenresSearch,
+}) {
   function animateCarrot() {
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
 
@@ -44,23 +31,7 @@ export default function SearchAndGenres({fetchData}) {
   }
 
   function handleEnter(e) {
-    e.key === 'Enter' && handleSearch()
-  }
-
-  function handleSearch() {
-    const searchParameter = inputValue.current.value
-
-    // Convert genres to mal_id's
-    const idsArr = genresSelected.map(genre => {
-      let malId = null
-      genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
-      return malId
-    })
-
-    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
-    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}`
-
-    fetchData(searchUrl)
+    e.key === 'Enter' && handleGenresSearch()
   }
 
   function handleGenreTagClick(e) {
@@ -96,7 +67,7 @@ export default function SearchAndGenres({fetchData}) {
           <button 
             className={styles.searchBtn}
             type="button"
-            onClick={handleSearch}
+            onClick={handleGenresSearch}
             >Search
           </button>
         </div>

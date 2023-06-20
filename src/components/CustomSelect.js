@@ -5,7 +5,7 @@ import carrotStyles from '../styles/icons/CarrotDown.module.css'
 
 const { carrotActive } = carrotStyles
 
-export default function CustomSelect({setTopFilter}) {
+export default function CustomSelect({ setTopFilter, resetPageCount }) {
   const allOptions = useRef(null)
   const selected = useRef(null)
   const selectMenuHidden = useRef(true)
@@ -86,6 +86,7 @@ function updateSelectedItem(e) {
   })
   selected.current = selectItem
   setTopFilter(selected.current)
+  resetPageCount()
   selectMenuHidden.current = true
 
   // Update selected-option (marked by hover color) in OptionCards
