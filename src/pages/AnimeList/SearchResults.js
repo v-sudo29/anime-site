@@ -32,52 +32,33 @@ export default function SearchResults({
     pageCount.current = 2
   }
 
-  // TODO: Fetch and set additional data
-  async function loadMoreAnime() {
-    if (topFilter === 'Most Popular') {
-      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
+  // Fetch and add new data to current data
+  async function fetchAndAdd(url) {
+      const res = await fetch(url)
       const data = await res.json()
       setAnimeData(prevData => [...prevData, ...data.data])
       
       if (!data.pagination['has_next_page']) setThereIsMore(false)
       else setThereIsMore(true)
       pageCount.current += 1
+  }
+
+  // Fetch and set additional data 
+  async function loadMoreAnime() {
+    if (topFilter === 'Most Popular') {
+      fetchAndAdd(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
     }
     if (topFilter === 'Top Trending') {
-      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&page=${pageCount.current}`)
-      const data = await res.json()
-      setAnimeData(prevData => [...prevData, ...data.data])
-
-      if (!data.pagination['has_next_page']) setThereIsMore(false)
-      else setThereIsMore(true)
-      pageCount.current += 1
+      fetchAndAdd(`https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&page=${pageCount.current}`)
     }
     if (topFilter === 'Top Upcoming') {
-      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
-      const data = await res.json()
-      setAnimeData(prevData => [...prevData, ...data.data])
-
-      if (!data.pagination['has_next_page']) setThereIsMore(false)
-      else setThereIsMore(true)
-      pageCount.current += 1
+      fetchAndAdd(`https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&page=${pageCount.current}`)
     }
     if (topFilter === 'Top TV Series') {
-      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=tv&order_by=score&page=${pageCount.current}`)
-      const data = await res.json()
-      setAnimeData(prevData => [...prevData, ...data.data])
-
-      if (!data.pagination['has_next_page']) setThereIsMore(false)
-      else setThereIsMore(true)
-      pageCount.current += 1
+      fetchAndAdd(`https://api.jikan.moe/v4/top/anime?type=tv&order_by=score&page=${pageCount.current}`)
     }
     if (topFilter === 'Top Movies') {
-      const res = await fetch(`https://api.jikan.moe/v4/top/anime?type=movie&filter=bypopularity&page=${pageCount.current}`)
-      const data = await res.json()
-      setAnimeData(prevData => [...prevData, ...data.data])
-
-      if (!data.pagination['has_next_page']) setThereIsMore(false)
-      else setThereIsMore(true)
-      pageCount.current += 1
+      fetchAndAdd(`https://api.jikan.moe/v4/top/anime?type=movie&filter=bypopularity&page=${pageCount.current}`)
     }
   }
 
