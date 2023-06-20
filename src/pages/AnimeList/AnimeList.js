@@ -2,21 +2,12 @@ import React, { useEffect, useState, useRef } from 'react'
 import SearchAndGenres from './SearchAndGenres'
 import SearchResults from './SearchResults'
 import LoaderAnimation from '../../components/LoaderAnimation'
+import styles from '../../styles/anime-list/AnimeList.module.css'
 
 function AnimeList() {
   const [animeData, setAnimeData] = useState(null)
   const [animeCards, setAnimeCards] = useState(null)
   const runOnce = useRef(false)
-
-  function animateCarrot() {
-    const svgElement = document.querySelector('.genres-carrot-container svg')
-
-    if (!svgElement.classList.contains('carrot-active')) {
-      svgElement.classList.add('carrot-active')
-    } else {
-      svgElement.classList.remove('carrot-active')
-    }
-  }
 
   // Fetch and set data
   async function fetchData(url) {
@@ -38,12 +29,11 @@ function AnimeList() {
   }, [])
 
   return (
-    <div className='animeList-page-container'>
+    <div className={styles.container}>
       {animeData ?
-      <div className='animeList-page-content'>
-        <div className='animeList-hero-image-container'></div>
+      <div className={styles.content}>
+        <div className={styles.heroImageContainer}></div>
         <SearchAndGenres
-          animateCarrot={animateCarrot}
           fetchData={fetchData}
         />
         <SearchResults

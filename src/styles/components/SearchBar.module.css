@@ -28,3 +28,7 @@
   width: 100%;
   font-size: 0.8rem;
 }
+
+.searchBar:focus {
+  outline: none;
+}

@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+
+}
+
+.container > select {
+  display: none;
+}
+
+.optionsContainer {
+  text-align: center;
+  position: absolute;
+  right: -0.9rem;
+  bottom: -12rem;
+  width: calc(100% + 4rem);
+  border-radius: 1rem;
+}
+
+.optionItem {
+  color: white;
+  background-color: rgb(42, 42, 42);
+  cursor: pointer;
+  padding: 0.5rem 0rem;
+}
+
+.optionItem:hover {
+  background-color: var(--hover-color);
+}
+
+.optionItem:focus {
+  outline: 2px solid white;
+}
+
+.selectedOption {
+  color: white;
+  background-color: #111111;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.3rem;
+  width: 9.8rem;
+}
+
+.selectedOption:focus {
+  outline: 2px solid white;
+}
+
+.optionSelected {
+  background-color: var(--hover-color);
+  cursor: default;
+}
+
+.optionHidden {
+  display: none;
+}

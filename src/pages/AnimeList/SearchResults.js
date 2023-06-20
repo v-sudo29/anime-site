@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import CustomSelect from '../../components/CustomSelect'
 import AnimeListCard from '../../components/AnimeListCard'
+import styles from '../../styles/anime-list/SearchResults.module.css'
 
 export default function SearchResults({
     fetchData, 
@@ -30,10 +31,9 @@ export default function SearchResults({
       setAnimeCards(animeData.map((anime, index) => {
         return (
           <AnimeListCard 
-            key={`${anime['mal_id']}-most-popular`}
+            key={`${anime['mal_id']}-animeList`}
             anime={anime}
             index={index}
-            cardType='popular'
           />
         )
       }))
@@ -56,15 +56,14 @@ export default function SearchResults({
   }, [topFilter])
 
   return (
-    <div className='animeList-container'>
-      <div className='animeList-title-and-filter'>
+    <div className={styles.container}>
+      <div className={styles.titleAndFilter}>
         <h2 className='animeList-title'>Anime List</h2>
         <CustomSelect setTopFilter={setTopFilter}/>
       </div>
-      <div className='animeList-cards-container'> 
+      <div className={styles.cardsContainer}> 
         {animeCards ? animeCards : '...Loading'}
       </div>
-  
       {pageCount.current !== 5 ? 
       <button 
         onClick={loadMoreAnime} 

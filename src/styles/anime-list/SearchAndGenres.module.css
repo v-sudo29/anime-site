@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 0.3rem;
+}
+
+.searchAndBtnContainer {
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.searchBtnContainer {
+  position: absolute;
+  top: 20.25rem;
+  margin-left: 51rem;
+}
+
+.searchBtn {
+  all: unset;
+  background-color: #686868;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.searchBtn:focus {
+  outline: 2px solid white;
+}
+
+.genresBtn {
+  all: unset;
+  background-color: #686868;
+  padding: 0rem 1.3rem;
+  border-radius: inherit;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.genresBtn:focus-visible {
+  outline: 2px solid white;
+}
+
+.carrotContainer {
+  display: flex;
+}
+
+.genreTagsContainer {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(6.5rem, 1fr));
+  grid-template-rows: repeat(3, 2.5rem);
+  gap: 0.6rem;
+}
+
+.genreTag {
+  border-radius: 10rem;
+  background-color: #686868;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.genreTag:focus-visible {
+  outline-offset: -1px;
+  outline: 2px solid white;
+}
+
+.active {
+  background-color: #262626;
+}

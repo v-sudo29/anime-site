@@ -1,8 +1,12 @@
 import React, { useState, useRef } from 'react'
 import SearchBar from '../../components/SearchBar'
 import CarrotDown from '../../icons/CarrotDown'
+import styles from '../../styles/anime-list/SearchAndGenres.module.css'
+import carrotStyles from '../../styles/icons/CarrotDown.module.css'
 
-export default function SearchAndGenres({animateCarrot, fetchData}) {
+const { carrotActive } = carrotStyles
+
+export default function SearchAndGenres({fetchData}) {
   const [genresShown, setGenresShown]= useState(false)
   const [genresSelected, setGenresSelected] = useState([])
   const inputValue = useRef(null)
@@ -23,6 +27,15 @@ export default function SearchAndGenres({animateCarrot, fetchData}) {
     {name: 'Supernatural', mal_id: 37},
     {name: 'Suspense', mal_id: 41},
   ])
+  function animateCarrot() {
+    const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
+
+    if (!svgElement.classList.contains(carrotActive)) {
+      svgElement.classList.add(carrotActive)
+    } else {
+      svgElement.classList.remove(carrotActive)
+    }
+  }
 
   function toggleGenres(e) {
     e.stopPropagation()
@@ -54,8 +67,8 @@ export default function SearchAndGenres({animateCarrot, fetchData}) {
     const genreName = e.target.innerHTML
 
     // Style genre tag
-    !e.target.classList.contains('genre-active') ? e.target.classList.add('genre-active') : 
-      e.target.classList.remove('genre-active')
+    !e.target.classList.contains(`${styles.active}`) ? e.target.classList.add(`${styles.active}`) : 
+      e.target.classList.remove(`${styles.active}`)
 
     // Add or remove genre from state array
     setGenresSelected(prevGenres => {
@@ -72,35 +85,35 @@ export default function SearchAndGenres({animateCarrot, fetchData}) {
   }
 
   return (
-  <div className='animeList-search-and-genres-container'>
-      <div className='search-bar-and-button-container'>
+  <div className={styles.container}>
+      <div className={styles.searchAndBtnContainer}>
         <SearchBar
           placeholder={'Search for anime'}
           inputValue={inputValue}
           handleEnter={handleEnter}
         />
-        <div className='animeList-search-button-container'>
+        <div className={styles.searchBtnContainer}>
           <button 
-            className='animeList-search-button'
+            className={styles.searchBtn}
             type="button"
             onClick={handleSearch}
             >Search
           </button>
         </div>
-        <button onClick={(e) => toggleGenres(e)} className='genres-btn' type="button">
+        <button onClick={(e) => toggleGenres(e)} className={styles.genresBtn} type="button">
           Genres
-          <div className='genres-carrot-container'>
+          <div className={styles.carrotContainer}>
             <CarrotDown />
           </div>
         </button>
       </div>
       {genresShown ?
-      <div className='genre-tags-container'>
+      <div className={styles.genreTagsContainer}>
         {genresMasterList.current.map(genre => {
           return (
             <button 
               key={genre['mal_id']} 
-              className='genre-tag' 
+              className={styles.genreTag}
               type="button"
               onClick={(e) => handleGenreTagClick(e)}
             >{genre.name}

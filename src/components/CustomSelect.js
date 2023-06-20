@@ -1,5 +1,9 @@
 import React, { useRef, useState, useEffect} from 'react'
 import CarrotDown from '../icons/CarrotDown'
+import styles from '../styles/components/CustomSelect.module.css'
+import carrotStyles from '../styles/icons/CarrotDown.module.css'
+
+const { carrotActive } = carrotStyles
 
 export default function CustomSelect({setTopFilter}) {
   const allOptions = useRef(null)
@@ -12,8 +16,8 @@ export default function CustomSelect({setTopFilter}) {
   function animateCarrotIcon() {
     const carrotIcon = document.querySelector('.filter-carrot-container svg')
 
-    selectMenuHidden.current ? carrotIcon.classList.remove('carrot-active') : 
-      carrotIcon.classList.add('carrot-active')
+    selectMenuHidden.current ? carrotIcon.classList.remove(`${carrotActive}`) : 
+      carrotIcon.classList.add(`${carrotActive}`)
   }
 
   // Function set optionCards to hidden
@@ -23,7 +27,7 @@ export default function CustomSelect({setTopFilter}) {
         <div 
           key={`${option}-hidden`}
           tabIndex='0'  
-          className={option === selected.current ? 'option-item option-hidden option-selected' : 'option-item option-hidden'}
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
           onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
         >
           {option}
@@ -43,7 +47,7 @@ export default function CustomSelect({setTopFilter}) {
         <div 
           key={`${option}-not-hidden`} 
           tabIndex='0' 
-          className={option === selected.current ? 'option-item option-selected' : 'option-item'}
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionSelected']}` : `${styles['optionItem']}`}
           onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
@@ -65,7 +69,7 @@ function updateSelectedItem(e) {
   setSelectedCard(() => {  
     return (
       <div 
-        className='selected-option'
+        className={`${styles['selectedOption']}`}
         onClick={openSelectMenu}
         tabIndex='0'
         onKeyDown={(e) => handleKeyPressed(e)}
@@ -90,7 +94,7 @@ function updateSelectedItem(e) {
       <div
         tabIndex='0' 
         key={`${option}-hidden`} 
-        className={option === selected.current ? 'option-item option-hidden option-selected' : 'option-item option-hidden'}
+        className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
         onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
       >
         {option}
@@ -110,7 +114,7 @@ function openSelectMenu(e) {
 
 // Function closes select menu if user clicks outside of select container
 function closeSelectMenu(e) {
-  if (!e.target.classList.contains('selected-option') && !selectMenuHidden.current) {
+  if (!e.target.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
     hideOptions()
   }
 }
@@ -119,7 +123,7 @@ function closeSelectMenu(e) {
 function handleKeyPressed(e) {
   const key = e.key
   const optionSelected = e.target.innerText
-  const correctElement = e.target.classList.contains('selected-option')
+  const correctElement = e.target.classList.contains(`${styles['selectedOption']}`)
 
   if (key === 'Enter' && correctElement) {
     showOptions()
@@ -133,7 +137,7 @@ useEffect(() => {
   if (!selectedCard) {
 
     // Find custom-select container, first option, other options
-    const selectElement = document.querySelector('.custom-select select')
+    const selectElement = document.querySelector(`.${styles['container']} select`)
     const firstOption = selectElement[0].innerHTML
     const optionsArr = []
 
@@ -145,7 +149,7 @@ useEffect(() => {
     setSelectedCard(() => {
       return (
         <div 
-          className='selected-option'
+          className={`${styles['selectedOption']}`}
           onClick={openSelectMenu}
           tabIndex='0'
           onKeyDown={(e) => handleKeyPressed(e)}
@@ -153,7 +157,6 @@ useEffect(() => {
           {firstOption}
           <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
             <CarrotDown 
-              // onClick={(e) => openSelectMenu(e)} 
               hidden={selectMenuHidden.current}
             />
           </div>
@@ -168,7 +171,7 @@ useEffect(() => {
         <div 
           key={`${option}-hidden`} 
           tabIndex='0' 
-          className={option === selected.current ? 'option-item option-hidden option-selected' : 'option-item option-hidden'}
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
           onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
@@ -186,7 +189,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className="custom-select">
+    <div className={styles['container']}>
       <select>
         <option value="Most Popular">Most Popular</option>
         <option value="Top Trending">Top Trending</option>
@@ -195,7 +198,7 @@ useEffect(() => {
         <option value="Top Movies">Top Movies</option>
       </select>
       {selectedCard}
-      <div className='options-container'>{optionsCards}</div>
+      <div className={styles['optionsContainer']}>{optionsCards}</div>
     </div>
   )
 }

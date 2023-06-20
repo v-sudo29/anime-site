@@ -104,3 +104,8 @@ nav > a:visited {
 .see-more-btn:focus {
   outline: 2px solid white;
 }
+
+/* CARROT ICON: Active carrot */
+.carrot-active {
+  transform: rotate(180deg)
+}
