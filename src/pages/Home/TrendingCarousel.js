@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import CarouselButtons from './CarouselButtons'
 import TrendingCard from './TrendingCard'
+import styles from '../../styles/home/trending/TrendingCarousel.module.css'
 
 export default function TrendingCarousel({trendingData}) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -29,13 +30,13 @@ export default function TrendingCarousel({trendingData}) {
   }, [currentIndex, trendingData])
 
   return (
-    <section className='trending-container'>
+    <section className={styles.container}>
         <h2>Top Trending Anime</h2>
-        <div className='slideshow'>
+        <div className={styles.slideshow}>
           {trendingData ?
           <>
             <div 
-              className='slideshowSlider'
+              className={styles.slideshowSlider}
               style={{ transform: `translate3d(${-currentIndex * 100}%, 0, 0)` }}
             >
               {trendingData.map(anime => (

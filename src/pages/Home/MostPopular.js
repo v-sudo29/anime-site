@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import AnimeListCard from '../../components/AnimeListCard'
+import styles from '../../styles/home/popular/MostPopular.module.css'
 
 export default function MostPopular({popularData}) {
   const [popularCards, setPopularCards] = useState(null)
@@ -30,7 +31,6 @@ export default function MostPopular({popularData}) {
             key={`${anime['mal_id']}-popular`}
             anime={anime}
             index={index}
-            cardType='popular'
             />
           )
         }))
@@ -42,9 +42,9 @@ export default function MostPopular({popularData}) {
   }, [popularData])
 
   return (
-    <div className='popular-container'>
+    <div className={styles.container}>
       <h2>Top 100 Most Popular Anime</h2>
-      <div className='popular-cards-container'>
+      <div className={styles.cardsContainer}>
         {popularCards}
       </div>
       {pageCount.current !== 5 ? 

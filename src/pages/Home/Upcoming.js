@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UpcomingCard from './UpcomingCard'
+import styles from '../../styles/home/upcoming/Upcoming.module.css'
 
 export default function Upcoming({upcomingData}) {
   const [upcomingCards, setUpcomingCards] = useState(null)
@@ -22,9 +23,9 @@ export default function Upcoming({upcomingData}) {
   }, [upcomingData])
 
   return (
-    <section className='upcoming-container'>
+    <section className={styles.container}>
       <h2>Upcoming Anime</h2>
-      <div className='upcoming-cards-container'>
+      <div className={styles.cardsContainer}>
         {upcomingCards}
       </div>
     </section>

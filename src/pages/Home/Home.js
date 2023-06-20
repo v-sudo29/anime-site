@@ -10,6 +10,7 @@ import useFetchNews from '../../hooks/useFetchNews'
 import useFetchTrending from '../../hooks/useFetchTrending'
 import useFetchUpcoming from '../../hooks/useFetchUpcoming'
 import useFetchPopular from '../../hooks/useFetchPopular'
+import styles from '../../styles/home/Home.module.css'
 
 function Home() {
   const [newsCards, setNewsCards] = useState(null)
@@ -41,12 +42,12 @@ function Home() {
   if (trendingError || upcomingError || popularError || newsError) return <h1>Error: Please refresh and try again</h1>
 
   if (newsCards && trendingData && upcomingData) return (
-    <div className='home-container'>
+    <div className={styles.container}>
       {(trendingError || upcomingError || popularError || newsError) && <h1>Error: Please refresh and try again</h1>}
       {(newsCards && trendingData) && 
         <>
-          <div className='home-hero-image'></div>
-          <div className='home-content'>
+          <div className={styles.heroImage}></div>
+          <div className={styles.content}>
 
             <SearchBar 
               placeholder={'Search for anime, characters, news...'}

@@ -1,8 +1,8 @@
 import React from 'react'
-import '../styles/LoaderAnimation.css'
+import styles from '../styles/components/LoaderAnimation.module.css'
 
 export default function LoaderAnimation() {
   return (
-    <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div className={styles.ring}><div></div><div></div><div></div><div></div></div>
   )
 }

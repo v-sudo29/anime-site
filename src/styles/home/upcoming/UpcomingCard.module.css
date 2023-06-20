@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.imageContainer {
+  /*  */
+}
+
+.image {
+  flex: 1;
+  height: 18rem;
+  width: 14.2rem;
+  border-radius: 0.2rem;
+}
+
+.textAndTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.remainingDays {
+  font-size: 0.7rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}

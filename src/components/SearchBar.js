@@ -1,14 +1,15 @@
 import React from 'react'
 import SearchIcon from '../icons/SearchIcon'
+import styles from '../styles/components/SearchBar.module.css'
 
 export default function SearchBar({placeholder, inputValue, handleEnter}) {
   return (
-    <div className='search-bar-container'>
-      <div className='search-icon-container'>
+    <div className={styles.container}>
+      <div className={styles.iconContainer}>
         <SearchIcon/>
       </div>
       <input 
-        className='search-bar' 
+        className={styles.searchBar} 
         type="text" 
         placeholder={placeholder ? placeholder : 'Search for anime'}
         ref={inputValue ? inputValue : null} 

@@ -1,0 +1,39 @@
+.card {
+  display: flex;
+  gap: 1rem;
+}
+
+.image {
+  width: 4rem;
+  height: 6rem;
+  border-radius: 0.3rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.finishedDate {
+  font-size: 0.8rem;
+}
+
+.type {
+  font-size: 0.8rem;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  height: 3rem;
+  min-width: 3rem;
+  border-radius: 0.5rem;
+  background-color: #616161;
+}

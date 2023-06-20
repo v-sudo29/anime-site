@@ -1,0 +1,17 @@
+.container {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.slideshow {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 800ms;
+}

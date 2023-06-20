@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--main-background-color);
+  width: inherit;
+}
+
+.heroImage {
+  display: absolute;
+  height: 30rem;
+  background-color: #393939;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 2rem;
+  padding-top: var(--page-top-bottom-padding);
+  padding-bottom: var(--page-top-bottom-padding);
+  max-width: var(--page-max-width);
+}

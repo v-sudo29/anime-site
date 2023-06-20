@@ -1,0 +1,24 @@
+.container {
+  position: absolute;
+  display: flex;
+  gap: 0.7rem;
+  top: 77.4rem;
+  margin-left: 27.2rem;
+}
+
+.button {
+  all: unset;
+  background-color: #757575;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.active {
+  background-color: white;
+  width: 2rem;
+  border-radius: 10rem;
+  cursor: default;
+}

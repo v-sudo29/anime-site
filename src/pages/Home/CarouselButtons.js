@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import styles from '../../styles/home/trending/CarouselButtons.module.css'
 
 export default function CarouselButtons({currentIndex, setCurrentIndex}) {
   const parentContainer = useRef(null)
@@ -6,15 +7,15 @@ export default function CarouselButtons({currentIndex, setCurrentIndex}) {
   async function switchAnime(e) {
     const currentButton = e.target
     const parentElement = e.target.parentElement
-    const activeButton = parentElement.querySelector('.active-carousel-btn')
+    const activeButton = parentElement.querySelector(`.${styles.active}`)
 
-    if (!e.target.classList.contains('active-carousel-btn')) {
+    if (!e.target.classList.contains(`${styles.active}`)) {
 
       // Remove active class from activeButton
-      activeButton.classList.remove('active-carousel-btn')
+      activeButton.classList.remove(`${styles.active}`)
 
       // Add active class to currentButton
-      currentButton.classList.add('active-carousel-btn')
+      currentButton.classList.add(`${styles.active}`)
 
       // Change index to current button's numerical (e.g. one, two...) class
       if (currentButton.classList.contains('zero')) setCurrentIndex(0) 
@@ -35,25 +36,25 @@ export default function CarouselButtons({currentIndex, setCurrentIndex}) {
     else if (currentIndex === 4) classSelector = 'four'
     else if (currentIndex === 5) classSelector = 'five'
 
-    const prevButton = parentContainer.current.querySelector('.active-carousel-btn')
+    const prevButton = parentContainer.current.querySelector(`.${styles.active}`)
     const matchedButton = parentContainer.current.querySelector(`.${classSelector}`)
 
     // Remove previous active class
-    prevButton.classList.remove('active-carousel-btn')
+    prevButton.classList.remove(`${styles.active}`)
 
     // Add active class to matched button
-    matchedButton.classList.add('active-carousel-btn')
+    matchedButton.classList.add(`${styles.active}`)
 
   }, [currentIndex])
   
   return (
-    <div ref={parentContainer} className='carousel-buttons-container'>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn zero active-carousel-btn" type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn one"type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn two" type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn three" type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn four" type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className="carousel-btn five" type="button"></button>
+    <div ref={parentContainer} className={styles.container}>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} zero ${styles.active}`} type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} one`} type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} two`} type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} three`} type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} four`} type="button"></button>
+      <button onClick={(e) => switchAnime(e)} className={`${styles.button} five`} type="button"></button>
     </div>
   )
 }

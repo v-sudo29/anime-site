@@ -1,0 +1,17 @@
+/* Latest News */
+.container {
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+  width: 100%;
+}

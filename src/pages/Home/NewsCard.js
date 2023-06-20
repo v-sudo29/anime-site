@@ -1,13 +1,14 @@
 import React from 'react'
+import styles from '../../styles/home/news/NewsCard.module.css'
 
 export default function NewsCard({news}) {
   return (
-    <div className='home-news-card'>
-      <div className='home-news-image-container'>
-        <img className='home-news-image' src={`${news.image}`} alt="" />
+    <div className={styles.newsCard}>
+      <div className={styles.imageContainer}>
+        <img className={styles.image} src={`${news.image}`} alt="" />
       </div>
-      <span className='home-news-date'>{news.date}</span>
-      <h3 className='home-news-title'>{news['title']}</h3>
+      <span className={styles.date}>{news.date}</span>
+      <h3 className={styles.title}>{news['title']}</h3>
     </div>
   )
 }
