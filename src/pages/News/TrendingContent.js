@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styles from '../../styles/news/TrendingContent.module.css'
 
 export default function TrendingContent({trendingNews}) {
   const [trendingNewsCards, setTrendingNewsCards] = useState(null)
@@ -8,9 +9,9 @@ export default function TrendingContent({trendingNews}) {
     if (trendingNews) {
       setTrendingNewsCards(trendingNews.map((news, index) => {
         return (
-          <div key={news.title + index} className='news-page-trending-card'>
+          <div key={news.title + index} className={styles.card}>
             <img src={news.image} alt="" />
-            <div className='news-page-trending-info'>
+            <div className={styles.info}>
               <div>{news.date}</div>
               <h3>{news.title}</h3>
             </div>
@@ -22,10 +23,10 @@ export default function TrendingContent({trendingNews}) {
 
 
   return (
-    <div className='news-trending-container'>
+    <div className={styles.container}>
       <h2>Trending Anime News</h2>
-      <div className='news-trending-cards-container'>
-        {trendingNewsCards ? trendingNewsCards : <div className='news-trending-default-div'>...Loading</div>}
+      <div className={styles.cardsContainer}>
+        {trendingNewsCards ? trendingNewsCards : <div className={styles.defaultDiv}>...Loading</div>}
       </div>
     </div>
   )

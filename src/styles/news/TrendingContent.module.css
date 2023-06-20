@@ -1,0 +1,34 @@
+.container > h2 {
+  margin-bottom: 1rem;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 18rem;
+}
+
+.card > img {
+  height: 10rem;
+}
+
+.info > div {
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.info > h3,
+.info > div {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.defaultDiv {
+  height: 18rem;
+  width: 100%;
+}

@@ -3,7 +3,7 @@ import HeroContent from './HeroContent'
 import TrendingContent from './TrendingContent'
 import AllNews from './AllNews'
 import LoaderAnimation from '../../components/LoaderAnimation'
-
+import styles from '../../styles/news/News.module.css'
 
 function News() {
   const [trendingNews, setTrendingNews] = useState(null)
@@ -30,11 +30,11 @@ function News() {
   }, [])
 
   return (
-    <div className='news-container'>
+    <div className={styles.container}>
       {trendingNews ? 
       <>
-        <div className='news-background-image'></div>
-        <div className='news-content'>
+        <div className={styles.backgroundImg}></div>
+        <div className={styles.content}>
           <HeroContent/>
           <TrendingContent
             trendingNews={trendingNews}

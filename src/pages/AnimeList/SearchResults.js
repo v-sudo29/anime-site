@@ -45,7 +45,8 @@ export default function SearchResults({
   useEffect(() => {
     if (!runOnce.current) {
       runOnce.current = true
-    } else {
+    } 
+    else {
       if (topFilter === 'Most Popular') fetchData(popularUrl)
       else if (topFilter === 'Top Trending') fetchData(trendingUrl)
       else if (topFilter === 'Top Upcoming') fetchData(upcomingUrl)

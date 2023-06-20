@@ -1,0 +1,22 @@
+.container > h2 {
+  margin-bottom: 2rem;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  gap: 2rem;
+  height: 20rem;
+  width: 100%;
+}
+
+.info > h3 {
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

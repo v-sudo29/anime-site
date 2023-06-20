@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import limitCharacters from '../../helpers/limitCharacters'
+import styles from '../../styles/news/AllNews.module.css'
 
 export default function AllNews() {
   const [newsData, setNewsData] = useState(null)
@@ -36,9 +37,9 @@ export default function AllNews() {
           return null
         }
         return (
-          <div key={index} className='news-page-card'>
+          <div key={index} className={styles.card}>
             <img src={news.image} alt="" />
-            <div className='news-page-card-info'>
+            <div className={styles.info}>
               <div>{news.date}</div>
               <h3>{news.title}</h3>
               <p>{limitCharacters(news.text)}</p>
@@ -50,9 +51,9 @@ export default function AllNews() {
   }, [newsData])
 
   return (
-    <div className='all-news-container'>
+    <div className={styles.container}>
       <h2>What's New?</h2>
-      <div className='all-news-cards-container'>
+      <div className={styles.cardsContainer}>
         {newsCards ? newsCards : <>...Loading</>}
       </div>
     </div>

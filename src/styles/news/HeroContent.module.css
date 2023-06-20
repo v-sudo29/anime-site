@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  gap: 2rem;
+}
+
+.heroImage {
+  height: 18rem;
+  width: 30rem;
+  background-color: #777777;
+  border-radius: 0.2rem;
+}
+
+.heroInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heroText > div {
+  margin-bottom: 0.5rem;
+}
