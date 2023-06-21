@@ -3,17 +3,20 @@ import SearchBar from '../../components/SearchBar'
 import CarrotDown from '../../icons/CarrotDown'
 import styles from '../../styles/anime-list/SearchAndGenres.module.css'
 import carrotStyles from '../../styles/icons/CarrotDown.module.css'
+import { genresMasterList } from './genresMasterList'
+import genresToIds from '../../helpers/genresToIds'
 
 const { carrotActive } = carrotStyles
 
 export default function SearchAndGenres({
-  genresMasterList,
   genresShown,
   setGenresShown,
   setGenresSelected,
   inputValue,
   resetPageCount,
-  handleGenresSearch
+  setResultsType,
+  genresSelected,
+  fetchData
 }) {
   function animateCarrot() {
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
@@ -30,6 +33,18 @@ export default function SearchAndGenres({
 
   function handleEnter(e) {
     e.key === 'Enter' && handleGenresSearch()
+  }
+
+  function handleGenresSearch() {
+    setResultsType('search bar')
+    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+
+    // Convert genres to mal_id's
+    const idsArr = genresToIds(genresSelected)
+    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
+    
+    fetchData(searchUrl)
   }
 
   function handleGenreTagClick(e) {
@@ -82,7 +97,7 @@ export default function SearchAndGenres({
       </div>
       {genresShown ?
       <div className={styles.genreTagsContainer}>
-        {genresMasterList.current.map(genre => {
+        {genresMasterList.map(genre => {
           return (
             <button 
               key={genre['mal_id']} 

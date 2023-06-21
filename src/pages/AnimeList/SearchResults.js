@@ -5,26 +5,53 @@ import NoResults from '../../components/NoResults';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from '../../styles/anime-list/SearchResults.module.css'
 import { url } from './urls'
+import genresToIds from '../../helpers/genresToIds';
 
 export default function SearchResults({
-    fetchData, 
-    animeCards, 
-    animeData, 
-    setAnimeCards,
-    topFilter,
-    setTopFilter,
-    thereIsMore,
-    resetPageCount,
-    pageCount,
-    resultsType,
-    setResultsType,
-    fetchAndAdd,
-    loadMoreGenresAnime
+  animeData, 
+  animeCards, 
+  setAnimeCards,
+  setAnimeData,
+  fetchData,
+  topFilter,
+  setTopFilter,
+  thereIsMore,
+  setThereIsMore,
+  pageCount,
+  setPageCount,
+  resetPageCount,
+  resultsType,
+  setResultsType,
+  inputValue,
+  genresSelected,
   }) {
-
   const runOnce = useRef(false)
 
-  // Fetch and set additional data 
+  // Fetch and add new data to current data
+  async function fetchAndAdd(url) {
+    try {
+      const res = await fetch(url)
+      const data = await res.json()
+
+      setAnimeData(prevData => [...prevData, ...data.data])
+      !data.pagination['has_next_page'] ? setThereIsMore(false) : setThereIsMore(true)
+      setPageCount(prevCount => prevCount + 1)
+    } catch (error) {console.error(error)}
+  }
+
+  // Handles genres search infinite scroll
+  function loadMoreGenresAnime() {
+    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+
+    // Convert genres to mal_id's
+    const idsArr = genresToIds(genresSelected)
+    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=${pageCount}`
+    
+    fetchAndAdd(searchUrl)
+  }
+
+  // Fetch and set additional data for infinite scroll
   async function loadMoreAnime() {
     if (topFilter === 'Most Popular') fetchAndAdd(url.popularInfinite + pageCount)
     if (topFilter === 'Top Trending') fetchAndAdd(url.trendingInfinite + pageCount)

@@ -15,23 +15,6 @@ function AnimeList() {
   const [pageCount, setPageCount] = useState(2)
   const inputValue = useRef(null)
   const runOnce = useRef(false)
-  const genresMasterList = useRef([
-    {name: 'Action', mal_id: 1},
-    {name: 'Adventure', mal_id: 2},
-    {name: 'Boys Love', mal_id: 28},
-    {name: 'Comedy', mal_id: 4},
-    {name: 'Drama', mal_id: 8},
-    {name: 'Fantasy', mal_id: 10},
-    {name: 'Girls Love', mal_id: 26},
-    {name: 'Horror', mal_id: 14},
-    {name: 'Mystery', mal_id: 7},
-    {name: 'Romance', mal_id: 22},
-    {name: 'Sci-Fi', mal_id: 24},
-    {name: 'Slice of Life', mal_id: 36},
-    {name: 'Sports', mal_id: 30},
-    {name: 'Supernatural', mal_id: 37},
-    {name: 'Suspense', mal_id: 41},
-  ])
 
   // Reset pageCount
   function resetPageCount() {
@@ -45,56 +28,8 @@ function AnimeList() {
       const data = await res.json()
 
       setAnimeData(data.data)
-      if (!data.pagination['has_next_page']) setThereIsMore(false)
-      else setThereIsMore(true)
+      !data.pagination['has_next_page'] ? setThereIsMore(false) : setThereIsMore(true)
     } catch (error) {console.error(error)}
-  }
-
-  // Fetch and add new data to current data
-  async function fetchAndAdd(url) {
-    const res = await fetch(url)
-    const data = await res.json()
-    setAnimeData(prevData => [...prevData, ...data.data])
-    
-    if (!data.pagination['has_next_page']) setThereIsMore(false)
-    else setThereIsMore(true)
-    setPageCount(prevCount => prevCount + 1)
-}
-
-  // Handle genres search
-  function handleGenresSearch() {
-    setResultsType('search bar')
-    console.log(genresSelected)
-    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
-    let searchUrl = null
-
-    // Convert genres to mal_id's
-    const idsArr = genresSelected.map(genre => {
-      let malId = null
-      genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
-      return malId
-    })
-    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
-
-    searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
-    fetchData(searchUrl)
-  }
-
-  // Handles genres search infinite scroll
-  function loadMoreGenresAnime() {
-    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
-    let searchUrl = null
-
-    // Convert genres to mal_id's
-    const idsArr = genresSelected.map(genre => {
-      let malId = null
-      genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
-      return malId
-    })
-
-    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
-    searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=${pageCount}`
-      fetchAndAdd(searchUrl)
   }
 
   // Set default data
@@ -112,13 +47,15 @@ function AnimeList() {
       <div className={styles.content}>
         <div className={styles.heroImageContainer}></div>
         <SearchAndGenres
-          genresMasterList={genresMasterList}
           genresShown={genresShown}
           setGenresShown={setGenresShown}
           setGenresSelected={setGenresSelected}
           inputValue={inputValue}
           resetPageCount={resetPageCount}
-          handleGenresSearch={handleGenresSearch}
+          setResultsType={setResultsType}
+          genresSelected={genresSelected}
+          fetchData={fetchData}
+          topFilter={topFilter}
         />
         <SearchResults
           animeData={animeData}
@@ -131,11 +68,12 @@ function AnimeList() {
           thereIsMore={thereIsMore}
           setThereIsMore={setThereIsMore}
           pageCount={pageCount}
+          setPageCount={setPageCount}
           resetPageCount={resetPageCount}
           resultsType={resultsType}
           setResultsType={setResultsType}
-          fetchAndAdd={fetchAndAdd}
-          loadMoreGenresAnime={loadMoreGenresAnime}
+          inputValue={inputValue}
+          genresSelected={genresSelected}
         />
       </div> : <LoaderAnimation/>}
     </div>
