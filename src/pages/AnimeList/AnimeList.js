@@ -11,9 +11,10 @@ function AnimeList() {
   const [genresSelected, setGenresSelected] = useState([])
   const [topFilter, setTopFilter] = useState('Most Popular')
   const [thereIsMore, setThereIsMore] = useState(true)
+  const [resultsType, setResultsType] = useState('filter')
+  const [pageCount, setPageCount] = useState(2)
   const inputValue = useRef(null)
   const runOnce = useRef(false)
-  const scrollRef = useRef(null)
   const genresMasterList = useRef([
     {name: 'Action', mal_id: 1},
     {name: 'Adventure', mal_id: 2},
@@ -32,6 +33,11 @@ function AnimeList() {
     {name: 'Suspense', mal_id: 41},
   ])
 
+  // Reset pageCount
+  function resetPageCount() {
+    setPageCount(2)
+  }
+
   // Fetch and set data
   async function fetchData(url) {
     try {
@@ -44,9 +50,40 @@ function AnimeList() {
     } catch (error) {console.error(error)}
   }
 
+  // Fetch and add new data to current data
+  async function fetchAndAdd(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+    setAnimeData(prevData => [...prevData, ...data.data])
+    
+    if (!data.pagination['has_next_page']) setThereIsMore(false)
+    else setThereIsMore(true)
+    setPageCount(prevCount => prevCount + 1)
+}
+
   // Handle genres search
   function handleGenresSearch() {
-    const searchParameter = inputValue.current.value
+    setResultsType('search bar')
+    console.log(genresSelected)
+    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+    let searchUrl = null
+
+    // Convert genres to mal_id's
+    const idsArr = genresSelected.map(genre => {
+      let malId = null
+      genresMasterList.current.forEach(obj => obj.name === genre ? malId = obj['mal_id'] : null)
+      return malId
+    })
+    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+
+    searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
+    fetchData(searchUrl)
+  }
+
+  // Handles genres search infinite scroll
+  function loadMoreGenresAnime() {
+    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+    let searchUrl = null
 
     // Convert genres to mal_id's
     const idsArr = genresSelected.map(genre => {
@@ -56,9 +93,8 @@ function AnimeList() {
     })
 
     const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
-    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}`
-
-    fetchData(searchUrl)
+    searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=${pageCount}`
+      fetchAndAdd(searchUrl)
   }
 
   // Set default data
@@ -71,7 +107,7 @@ function AnimeList() {
   }, [])
 
   return (
-    <div ref={scrollRef} className={styles.container}>
+    <div className={styles.container}>
       {animeData ?
       <div className={styles.content}>
         <div className={styles.heroImageContainer}></div>
@@ -81,6 +117,7 @@ function AnimeList() {
           setGenresShown={setGenresShown}
           setGenresSelected={setGenresSelected}
           inputValue={inputValue}
+          resetPageCount={resetPageCount}
           handleGenresSearch={handleGenresSearch}
         />
         <SearchResults
@@ -89,11 +126,16 @@ function AnimeList() {
           setAnimeData={setAnimeData}
           setAnimeCards={setAnimeCards}
           fetchData={fetchData}
-          handleGenresSearch={handleGenresSearch}
           topFilter={topFilter}
           setTopFilter={setTopFilter}
           thereIsMore={thereIsMore}
           setThereIsMore={setThereIsMore}
+          pageCount={pageCount}
+          resetPageCount={resetPageCount}
+          resultsType={resultsType}
+          setResultsType={setResultsType}
+          fetchAndAdd={fetchAndAdd}
+          loadMoreGenresAnime={loadMoreGenresAnime}
         />
       </div> : <LoaderAnimation/>}
     </div>

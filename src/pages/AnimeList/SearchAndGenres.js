@@ -12,16 +12,14 @@ export default function SearchAndGenres({
   setGenresShown,
   setGenresSelected,
   inputValue,
-  handleGenresSearch,
+  resetPageCount,
+  handleGenresSearch
 }) {
   function animateCarrot() {
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
 
-    if (!svgElement.classList.contains(carrotActive)) {
-      svgElement.classList.add(carrotActive)
-    } else {
+    !svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive) :
       svgElement.classList.remove(carrotActive)
-    }
   }
 
   function toggleGenres(e) {
@@ -37,7 +35,7 @@ export default function SearchAndGenres({
   function handleGenreTagClick(e) {
     const genreName = e.target.innerHTML
 
-    // Style genre tag
+    // Style genre tag if active/inactive
     !e.target.classList.contains(`${styles.active}`) ? e.target.classList.add(`${styles.active}`) : 
       e.target.classList.remove(`${styles.active}`)
 
@@ -67,7 +65,11 @@ export default function SearchAndGenres({
           <button 
             className={styles.searchBtn}
             type="button"
-            onClick={handleGenresSearch}
+            onClick={() => {
+                resetPageCount()
+                handleGenresSearch()
+              }
+            }
             >Search
           </button>
         </div>
