@@ -8,6 +8,8 @@ import styles from '../../styles/news/News.module.css'
 function News() {
   const [trendingNews, setTrendingNews] = useState(null)
 
+  document.title = 'Anime Site: News'
+
   // Fetching trending news data
   async function fetchTrendingNews() {
     try {

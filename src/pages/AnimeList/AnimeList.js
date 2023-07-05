@@ -16,6 +16,8 @@ function AnimeList() {
   const inputValue = useRef(null)
   const runOnce = useRef(false)
 
+  document.title = 'Anime Site: Anime List'
+
   // Reset pageCount
   function resetPageCount() {
     setPageCount(2)

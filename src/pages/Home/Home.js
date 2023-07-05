@@ -36,6 +36,7 @@ function Home() {
       }))
     }
   }, [newsData])
+  document.title = 'Anime Site: Home'
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
 
