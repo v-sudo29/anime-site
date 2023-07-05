@@ -26,12 +26,14 @@ export default function StudioProducers({styles, anime}) {
           setTimeout(() => {
             fetch(`https://api.jikan.moe/v4/producers/${producer['id']}`)
               .then(res => res.json())
-              .then(data => setProducersInfo(prev => [...prev, {
-                type: producer['type'],
-                name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
-                image: data.data['images']['jpg']['image_url'],
-                url: data.data['url']
-              }]))
+              .then(data => setProducersInfo(prev => [...prev, 
+                {
+                  type: producer['type'],
+                  name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : '-',
+                  image: data.data['images']['jpg']['image_url'],
+                  url: data.data['url']
+                }]
+              ))
           }, (index + producerIdsType.length) * 1000)
           return null
         })
