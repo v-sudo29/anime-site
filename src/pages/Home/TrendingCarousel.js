@@ -7,7 +7,7 @@ export default function TrendingCarousel({trendingData}) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const timeOutRef = useRef(null)
   const runOnce = useRef(false)
-  const delay = 1000000;
+  const delay = 10000;
 
   // Reset carousel timeout
   function resetTimeout() {
