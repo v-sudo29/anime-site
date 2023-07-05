@@ -27,7 +27,7 @@ function AnimeDetail() {
   }, [])
 
   return (
-    <div className={styles.detailPage}>
+    <div className={`${styles.detailPage} overview`}>
       <div className={styles.backgroundImg}></div>
       {(anime 
         ? <div className={styles.content}>

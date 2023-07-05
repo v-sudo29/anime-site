@@ -105,7 +105,7 @@ export default function RelatedAnime({styles, anime}) {
     <>
       {mainCards.length > 0 || spinoffCards.length > 0 ?
 
-        <div className={styles.relatedAnimeContainer}>
+        <div className={`${styles.relatedAnimeContainer} relatedAnime`}>
           <h2 className={styles.sectionTitle}>Related Anime</h2>
           <div className={styles.relatedContent}>
     

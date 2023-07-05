@@ -49,7 +49,7 @@ export default function Characters({styles, anime, id}) {
   }, [charactersData, allCharacters])
   
   return (
-    <div className={styles.charactersSection}>
+    <div className={`${styles.charactersSection} characters`}>
       <h2 className={styles.sectionTitle}>Characters</h2>
       <div className={styles.charactersContainer}>
         {charactersData ? characterCards : null}

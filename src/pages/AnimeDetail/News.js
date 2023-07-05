@@ -74,7 +74,7 @@ export default function News({styles, id}) {
   }, [newsInfo])
 
   return (
-    <div className={styles.newsContainer}>
+    <div className={`${styles.newsContainer} news`}>
       <h2 className={styles.sectionTitle}>News</h2>
       <h3>Main Series</h3>
       <div className={styles.newsCardsContainer}>

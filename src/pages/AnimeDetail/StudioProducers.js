@@ -57,7 +57,7 @@ export default function StudioProducers({styles, anime}) {
   }, [producersInfo])
 
   return (
-    <div className={styles.studioProducersContainer}>
+    <div className={`${styles.studioProducersContainer} studioProducers`}>
       <h2 className={styles.sectionTitle}>Studios & Producers</h2>
       <div className={styles.producerCardsContainer}>
         {cards}
