@@ -69,6 +69,7 @@ export default function SearchResults({
             key={`${anime['mal_id']}-animeList`}
             anime={anime}
             index={index}
+            id={anime['mal_id']}
           />
         )
       }))
