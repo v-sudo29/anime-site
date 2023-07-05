@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home/Home';
 import AnimeList from './pages/AnimeList/AnimeList';
-import AnimeDetail from './components/AnimeDetail';
+import AnimeDetail from './pages/AnimeDetail/AnimeDetail';
 import News from './pages/News/News';
 import Layout from './components/Layout';
 import './styles/global.css'

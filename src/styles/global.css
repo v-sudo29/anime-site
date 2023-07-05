@@ -18,6 +18,10 @@
   --hover-color: rgb(13, 116, 220);
   --page-top-bottom-padding: 5rem;
   --page-max-width: 63rem;
+  --vertical-card-height: 25rem;
+  --vertical-card-width: 15rem;
+  --vertical-img-height: 20rem;
+  --vertical-img-width: 15rem;
 }
 
 #root {
@@ -27,11 +31,16 @@
   min-height: 100vh;
   width: 100vw;
   font-family: 'Rubik', sans-serif;
-  margin-top: -1.2rem;
+  margin-top: -1.6rem;
 }
 
 h2 {
   font-size: 1.3rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.2rem;
   font-weight: 400;
 }
 
@@ -48,6 +57,11 @@ a:visited {
 body {
   background-color: var(--main-background-color);
   color: var(--text-color)
+}
+
+.errorImage {
+  height: var(--vertical-img-height);
+  width: var(--vertical-img-width);
 }
 
 /* Header nav links */

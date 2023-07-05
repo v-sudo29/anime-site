@@ -55,7 +55,6 @@ function AnimeList() {
           setResultsType={setResultsType}
           genresSelected={genresSelected}
           fetchData={fetchData}
-          topFilter={topFilter}
         />
         <SearchResults
           animeData={animeData}
