@@ -16,7 +16,7 @@ export default function Stats({styles, anime}) {
       <div>Episodes <div>{anime.episodes ? anime.episodes : '-'}</div> </div>
       <div>Episode Duration <div>{anime.duration}</div> </div>
       <div>Start Date <div>{splitDates(anime['aired']['string'])['startDate']}</div> </div>
-      <div>End <div>{splitDates(anime['aired']['string'])['endDate'] === '?' ? '-' : splitDates(anime['aired']['string'])['endDate']}</div> </div>
+      <div>End <div>{splitDates(anime['aired']['string'])['endDate'] === '?' || !splitDates(anime['aired']['string'])['endDate'] ? '-' : splitDates(anime['aired']['string'])['endDate']}</div> </div>
       <div>Format <div>{anime.type}</div> </div>
     </div>
   )

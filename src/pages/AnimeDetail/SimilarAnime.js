@@ -12,7 +12,6 @@ export default function SimilarAnime({styles, id}) {
     }, 3000)
   }, [id])
 
-  console.log(similarData)
   useEffect(() => {
     if (similarData) {
       setSimilarCards(similarData.map((anime, index) => {

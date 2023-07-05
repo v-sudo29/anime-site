@@ -26,7 +26,6 @@ function AnimeDetail() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(anime)
   return (
     <div className={styles.detailPage}>
       <div className={styles.backgroundImg}></div>

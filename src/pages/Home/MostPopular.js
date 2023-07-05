@@ -21,6 +21,7 @@ export default function MostPopular({popularData}) {
             anime={anime}
             index={index}
             cardType='popular'
+            id={anime['mal_id']}
           />
         )
       }))
