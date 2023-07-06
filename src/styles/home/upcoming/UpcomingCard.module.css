@@ -2,18 +2,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  border-radius: 0.2rem;
 }
 
 .imageContainer {
-  /*  */
+  height: 18rem;
+  width: 14.2rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .image {
   flex: 1;
   height: 18rem;
   width: 14.2rem;
-  border-radius: 0.2rem;
+  transform: scale(1.05);
 }
 
 .textAndTitle {

@@ -49,11 +49,13 @@
 
 .imgContainer {
   position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
 }
 
 .animeImg {
   height: 17rem;
-  border-radius: 0.5rem;
+  transform: scale(1.05);
 }
 
 .animeScore {
@@ -165,9 +167,17 @@
   margin-top: 1rem;
 }
 
+.characterImgContainer {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  height: 14rem;
+  width: 10rem;
+}
+
 .characterImg {
   height: 14rem;
   width: 10rem;
+  transform: scale(1.05);
 }
 
 .charactersBtnContainer {
@@ -274,9 +284,15 @@
   height: var(--vertical-card-height);
 }
 
+.newsImgContainer {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
 .newsImg {
   width: var(--vertical-img-width);
   height: var(--vertical-img-height);
+  transform: scale(1.05);
   border-radius: 0.5rem;
 }
 

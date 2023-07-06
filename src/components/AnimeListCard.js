@@ -6,7 +6,7 @@ export default function AnimeListCard({anime, index, id}) {
   return (
     <div className={styles.card}>
       <div className={styles.ranking}>{index + 1}</div>
-      <div>
+      <div className={styles.imgContainer}>
         <a href={`/anime/${id}`}>
           <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt=''/>
         </a>

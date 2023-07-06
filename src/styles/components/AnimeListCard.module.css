@@ -7,10 +7,17 @@
   width: 0.5rem;
 }
 
+.imgContainer {
+  width: 4rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
 .image {
   width: 4rem;
   height: 6rem;
-  border-radius: 0.3rem;
+  transform: scale(1.05);
 }
 
 .info {

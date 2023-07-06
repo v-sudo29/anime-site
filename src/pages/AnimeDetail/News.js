@@ -43,6 +43,7 @@ export default function News({styles, id}) {
 
   const imageOnError = (event) => {
     event.currentTarget.src = brokenImage;
+    // Note: this is a global class!
     event.currentTarget.className = "errorImage";
   };
 
@@ -60,9 +61,15 @@ export default function News({styles, id}) {
           const filteredDate = convertDate(article.date)
           return (
             <div key={article['title'] + index} className={styles.newsCard}>
-              <a href={article['url']} target="_blank" rel="noreferrer">
-                <img onError={imageOnError} className={styles.newsImg} src={article['images']['jpg']['image_url'] ? article['images']['jpg']['image_url'] : null} alt="" />
-              </a>
+              <div className={styles.newsImgContainer}>
+                <a href={article['url']} target="_blank" rel="noreferrer">
+                  <img 
+                    onError={imageOnError}
+                    className={styles.newsImg} 
+                    src={article['images']['jpg']['image_url']} 
+                    alt="" />
+                </a>
+              </div>    
               <div className={styles.newsDate}>{filteredDate}</div>
               <div className={styles.newsName}>{article['title']}</div>
             </div>
