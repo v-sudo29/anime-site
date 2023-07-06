@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import LoaderAnimation from '../../components/LoaderAnimation'
 
 export default function Stats({styles, character}) {
   const [stats, setStats] = useState(null)
@@ -102,7 +101,7 @@ export default function Stats({styles, character}) {
 
   return (
     <>
-    {stats ? 
+    {stats &&
       <div className={styles.statsContainer}>
         <div className={styles.age}>Age <div>{stats.age ? stats.age : '-'}</div> </div>
         <div className={styles.birthday}>Birthday <div>{stats.birthday ? stats.birthday : '-'}</div> </div>
@@ -121,9 +120,7 @@ export default function Stats({styles, character}) {
           <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<div>{stats.factTwo[Object.keys(stats.factTwo)]}</div></div>
         </>
         : null}
-      </div>
-      
-    : <LoaderAnimation/>}
+      </div>}
     </>
   )
 }
