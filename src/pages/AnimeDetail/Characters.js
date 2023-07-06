@@ -22,7 +22,7 @@ export default function Characters({styles, anime, id}) {
           return (
             <div key={character['character']['name']} className={styles.characterCard}>
               <div className={styles.characterImgContainer}>
-                <a href={`/character/${character['character']['mal_id']}`}>
+                <a href={`/character/${character['character']['mal_id']}`} target="_blank" rel="noopener noreferrer">
                   <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
                 </a>
               </div>

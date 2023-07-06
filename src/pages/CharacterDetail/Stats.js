@@ -10,14 +10,28 @@ export default function Stats({styles, character}) {
     let weight = null
     let factOne = null
     let factTwo = null
-    
+
+    console.log(aboutInfo)
+
+    // Handle null
+    if (!aboutInfo) {
+      return {
+        birthday: birthday, 
+        age: age, 
+        height: height, 
+        weight: weight, 
+        factOne: factOne, 
+        factTwo: factTwo
+      }
+    }
+
     // Extract birthday
     if (aboutInfo.includes('Birthday')) {
       birthday = aboutInfo.split('Birthday: ')[1].split('\n')[0].split(',')[0]
     } else if (aboutInfo.includes('Birthdate')) {
       birthday = aboutInfo.split('Birthdate: ')[1].split('\n')[0].split(',')[0]
     }
-
+    
     // Extract age
     if (aboutInfo.includes('Age')) {
       age = aboutInfo.split('Age')[1].split('\n')[0].split(': ')[1]
@@ -47,10 +61,13 @@ export default function Stats({styles, character}) {
       }
     }
 
+
     // Extract facts
     if (aboutInfo.includes(':')) {
+      
       let facts = aboutInfo.split('\n').filter(string => string !== '')
         .filter(string => string.includes(':'))
+      console.log(facts)
 
       // Check if facts include already extracted info
       if (facts.some(string => string.includes('Age'))) {
@@ -69,27 +86,47 @@ export default function Stats({styles, character}) {
         facts = facts.filter(string => !string.includes('Weight'))
       }
 
+      // Remove sentences
+      if (facts.some(string => string.includes('.'))) {
+        facts = facts.filter(string => !string.includes('.'))
+      }
+
+      // Remove source
+      if (facts.some(string => string.includes('Source'))) {
+        facts = facts.filter(string => !string.includes('Source'))
+      }
+
       // Extract two facts into objects
       if (facts.length > 0) {
 
         if (facts.length === 1) {
           factOne = {}
-          const splitOne = facts[0].split(': ')
+          let splitOne = facts[0].split(': ')
+
           factOne[splitOne[0]] = splitOne[1]
-          return
+
         } else if (facts.length > 1) {
           factOne = {}
           factTwo = {}
           const splitOne = facts[0].split(': ')
           const splitTwo = facts[1].split(': ')
+    
+          const upperCaseOne = splitOne[1].charAt(0).toUpperCase() + splitOne[1].slice(1)
+          const upperCaseTwo = splitTwo[1].charAt(0).toUpperCase() + splitTwo[1].slice(1);
 
-          factOne[splitOne[0]] = splitOne[1]
-          factTwo[splitTwo[0]] = splitTwo[1]
+          factOne[splitOne[0]] = upperCaseOne
+          factTwo[splitTwo[0]] = upperCaseTwo
         }
       }
     }
+
     return {
-      birthday, age, height, weight, factOne, factTwo
+      birthday: birthday, 
+      age: age, 
+      height: height, 
+      weight: weight, 
+      factOne: factOne, 
+      factTwo: factTwo
     }
   }
 
@@ -97,6 +134,7 @@ export default function Stats({styles, character}) {
     if (character) {
       setStats(splitAbout(character['about']))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [character])
 
   return (
@@ -110,7 +148,7 @@ export default function Stats({styles, character}) {
 
         {/* Display one fact if only one fact exists */}
         {stats.factOne && !stats.factTwo ?
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<div>{stats.factOne(Object.keys(stats.factOne))}</div></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<div>{stats.factOne[Object.keys(stats.factOne)]}</div></div>
         : null}
         
         {/* Display two facts if two facts exist */}

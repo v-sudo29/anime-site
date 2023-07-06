@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 export default function Biography({styles, character}) {
   const [biography, setBiography] = useState(null)
+
   function extractBiography(biography) {
+    if (!biography) return null
     const filteredBio = biography.split('\n').filter(string => (string.includes('.'))).join('\n\n')
     return filteredBio
   }
@@ -13,12 +15,10 @@ export default function Biography({styles, character}) {
 
   return (
     <div className={styles.biographyContainer}>
-      {biography && 
-      <>
         <h2 className={styles.sectionTitle}>Biography</h2>
-        <p className={styles.biography}>{biography}</p>
-      </>
-      }
+        <p className={styles.biography}>
+          {biography ? biography : 'No biography available.'}
+        </p>  
     </div>
   )
 }
