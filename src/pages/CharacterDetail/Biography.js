@@ -5,7 +5,15 @@ export default function Biography({styles, character}) {
 
   function extractBiography(biography) {
     if (!biography) return null
-    const filteredBio = biography.split('\n').filter(string => (string.includes('.'))).join('\n\n')
+    const filteredBio = biography.split('\n')
+
+      .filter(string => (string.includes('.')))
+      .filter(string => string.length > 30)
+      .filter(string => !string.includes('Dislikes:'))
+      .filter(string => !string.includes('Famous Quote:'))
+      .filter(string => !string.includes('Age:'))
+      .join('\n\n')
+
     return filteredBio
   }
 

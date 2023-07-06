@@ -43,7 +43,13 @@ export default function Stats({styles, character}) {
 
     // Extract height
     if (aboutInfo.includes('Height')) {
-      height = aboutInfo.split('Height: ')[1].split('\n')[0]
+
+      if (aboutInfo.includes('Height: ')) {
+        height = aboutInfo.split('Height: ')[1].split('\n')[0]
+      } else {
+        height = aboutInfo.split('Height ')[1].split('\n')[0]
+
+      }
 
       if (height.includes('-&gt;')) {
         const index = height.indexOf('-')
