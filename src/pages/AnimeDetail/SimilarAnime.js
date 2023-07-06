@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 export default function SimilarAnime({styles, id}) {
   const [similarData, setSimilarData] = useState(null)
   const [similarCards, setSimilarCards] = useState(null)
+
   // Fetch recommendations data
   useEffect(() => {
     setTimeout(() => {
@@ -13,7 +14,7 @@ export default function SimilarAnime({styles, id}) {
   }, [id])
 
   useEffect(() => {
-    if (similarData) {
+    if (similarData && similarData.length > 0) {
       setSimilarCards(similarData.map((anime, index) => {
         if (index < 4) {
           return (
@@ -34,7 +35,7 @@ export default function SimilarAnime({styles, id}) {
     <div className={styles.similarContainer}>
       <h2>Similar Anime</h2>
       <div className={styles.similarCardsContainer}>
-        {similarCards.length > 0 ? similarCards : 'No similar anime at this time.'}
+        {similarCards ? similarCards : 'No similar anime at this time.'}
       </div>
     </div>
   )

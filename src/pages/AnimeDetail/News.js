@@ -53,7 +53,7 @@ export default function News({styles, id}) {
   }, [id])
 
   useEffect(() => {
-    if (newsInfo) {
+    if (newsInfo && newsInfo.length > 0) {
       // eslint-disable-next-line array-callback-return
       setNewsCards(newsInfo.map((article, index) => {
         if (index < 4) {
@@ -73,12 +73,10 @@ export default function News({styles, id}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newsInfo])
 
-  console.log(newsCards)
-
   return (
     <div className={`${styles.newsContainer} news`}>
       <h2 className={styles.sectionTitle}>News</h2>
-      {newsCards.length > 0 ? 
+      {newsCards ? 
       <>
         <h3>Main Series</h3>
         <div className={styles.newsCardsContainer}>
