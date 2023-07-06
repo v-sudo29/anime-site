@@ -34,7 +34,7 @@ export default function SimilarAnime({styles, id}) {
     <div className={styles.similarContainer}>
       <h2>Similar Anime</h2>
       <div className={styles.similarCardsContainer}>
-        {similarCards}
+        {similarCards.length > 0 ? similarCards : 'No similar anime at this time.'}
       </div>
     </div>
   )
