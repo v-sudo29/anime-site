@@ -73,13 +73,19 @@ export default function News({styles, id}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newsInfo])
 
+  console.log(newsCards)
+
   return (
     <div className={`${styles.newsContainer} news`}>
       <h2 className={styles.sectionTitle}>News</h2>
-      <h3>Main Series</h3>
-      <div className={styles.newsCardsContainer}>
-        {newsCards ? newsCards : null}
-      </div>
+      {newsCards.length > 0 ? 
+      <>
+        <h3>Main Series</h3>
+        <div className={styles.newsCardsContainer}>
+          {newsCards}
+        </div>
+      </>
+      : 'No news at this time.'}
     </div>
   )
 }
