@@ -14,14 +14,16 @@ export default function Characters({styles, anime, id}) {
       }, 500)
     }
   }, [id, anime])
-
+  console.log(charactersData)
   useEffect(() => {
     if (charactersData && !allCharacters) {
       setCharacterCards(charactersData.map((character, index) => {
         if (index < 12) {
           return (
             <div key={character['character']['name']} className={styles.characterCard}>
-              <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
+              <a href={`/character/${character['character']['mal_id']}`}>
+                <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
+              </a>
               <div className={styles.characterInfo}>
                 <h3>{character['character']['name']}</h3>
                 <div className={styles.voiceActor}>{character['voice_actors'].map(voiceActor => voiceActor['language'] === 'Japanese' ? voiceActor['person']['name'] : null)}</div>
@@ -35,7 +37,9 @@ export default function Characters({styles, anime, id}) {
       setCharacterCards(charactersData.map(character => {
           return (
             <div key={character['character']['name']} className={styles.characterCard}>
-              <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
+              <a href={`/character/${character['character']['mal_id']}`}>
+                <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
+              </a>
               <div className={styles.characterInfo}>
                 <h3>{character['character']['name']}</h3>
                 <div className={styles.voiceActor}>{character['voice_actors'].map(voiceActor => voiceActor['language'] === 'Japanese' ? voiceActor['person']['name'] : null)}</div>
