@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-export default function StudioProducers({styles, anime}) {
+export default function StudioProducers({styles, anime, count, countUpdated}) {
   const [producerIdsType, setProducerIdsType] = useState(null)
   const [producersInfo, setProducersInfo] = useState([])
   const [cards, setCards] = useState(null)
+  const intervalCounter = useRef(0)
 
+  // Set studio and producer ids
   useEffect(() => {
     if (anime) {
-      // Set studio ids
       setProducerIdsType(anime.studios.map(studio => ({id: studio['mal_id'], type: 'Studio'})))
-
-      // // Add producer ids
       setProducerIdsType(prev => {
         const prodIds = anime.producers.map(producer => ({id: producer['mal_id'], type: 'Producer'}))
         return [...prev, ...prodIds]
@@ -18,29 +17,32 @@ export default function StudioProducers({styles, anime}) {
     }
   }, [anime])
 
+  // Set delayed timer and interval to fetch producers info
   useEffect(() => {
-    if (producerIdsType) {
-      try {
-        producerIdsType.map((producer, index) => {
+    const interval = setTimeout(() => setInterval(() => {
+      if (producerIdsType && intervalCounter.current < producerIdsType.length && countUpdated) {
+        const index = intervalCounter.current
 
-          setTimeout(() => {
-            fetch(`https://api.jikan.moe/v4/producers/${producer['id']}`)
-              .then(res => res.json())
-              .then(data => setProducersInfo(prev => [...prev, 
-                {
-                  type: producer['type'],
-                  name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : '-',
-                  image: data.data['images']['jpg']['image_url'],
-                  url: data.data['url']
-                }]
-              ))
-          }, (index + producerIdsType.length) * 1000)
-          return null
-        })
-      } catch (err) {console.error(err)}
-    }
-  }, [producerIdsType])
+        fetch(`https://api.jikan.moe/v4/producers/${producerIdsType[index]['id']}`)
+          .then(res => res.json())
+          .then(data => setProducersInfo(prev => [...prev, 
+            {
+              type: producerIdsType[index]['type'],
+              name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : '-',
+              image: data.data['images']['jpg']['image_url'],
+              url: data.data['url']
+            }]
+          ))
+        intervalCounter.current += 1
+      } window.clearInterval(interval)
+    }, (count > 2 ? 1500 : 1000)), ((count * 1000) + 3000))
 
+    return () => clearInterval(interval)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [producerIdsType, countUpdated])
+
+  console.log(count)
+  // Set producer cards
   useEffect(() => {
     if (producersInfo.length > 0) {
       setCards(producersInfo.map(producer => {

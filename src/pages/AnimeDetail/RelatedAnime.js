@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-export default function RelatedAnime({styles, anime}) {
-  const [mainIdsType, setMainIds] = useState([])
+export default function RelatedAnime({
+  styles, 
+  anime, 
+  mainIdsType, 
+  spinoffIds, 
+  setMainIdsType,
+  setSpinOffIds
+  }) {
   const [mainInfo, setMainInfo] = useState([])
-  const [spinoffIds, setSpinOffIds] = useState([])
   const [spinoffInfo, setSpinOffInfo] = useState([])
   const [mainCards, setMainCards] = useState([])
   const [spinoffCards, setSpinoffCards] = useState([])
+  const intervalCounter = useRef(0)
+  const intervalTwoCounter = useRef(0)
 
   // Set mainIds and spinOffIds based on relation
   useEffect(() => {
@@ -14,11 +21,11 @@ export default function RelatedAnime({styles, anime}) {
       anime.relations.forEach(relation => {
         if (relation['relation'] === 'Sequel') {
           const sequelsArr = relation['entry'].map(entry => ({id: entry['mal_id'], type: 'Sequel'}))
-          setMainIds(prev => [...prev, ...sequelsArr])
+          setMainIdsType(prev => [...prev, ...sequelsArr])
         }
         else if (relation['relation'] === 'Prequel') {
           const prequelsArr = relation['entry'].map(entry => ({id: entry['mal_id'], type: 'Prequel'}))
-          setMainIds(prev => [...prev, ...prequelsArr])
+          setMainIdsType(prev => [...prev, ...prequelsArr])
         }
         else if (relation['relation'] === 'Spin-off') {
           setSpinOffIds(relation['entry'].map(entry => entry['mal_id']))
@@ -30,39 +37,48 @@ export default function RelatedAnime({styles, anime}) {
 
   // Fetch main info
   useEffect(() => {
-    if (mainIdsType.length > 0) {
-      mainIdsType.map((info, index) => {
-        setTimeout(() => {
-          fetch(`https://api.jikan.moe/v4/anime/${info.id}`)
+    const interval = setTimeout(() => setInterval(() => {
+      if (mainIdsType.length > 0 && intervalCounter.current < mainIdsType.length) {
+        const index = intervalCounter.current
+
+        fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`)
             .then(res => res.json())
             .then(data => setMainInfo(prev => [...prev, {
-              id: info.id,
-              type: info.type,
+              id: mainIdsType[index]['id'],
+              type: mainIdsType[index]['type'],
               name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
               image: data.data['images']['jpg']['large_image_url']
-            }])) 
-        }, (index + 1) * 2000)
-        return null
-      })
-    }
+            }]))
+
+        intervalCounter.current += 1
+        } else {
+          window.clearInterval(interval)
+        }
+      }, 1200), 2500)
+      return () => clearInterval(interval)
+
   }, [mainIdsType])
 
   // Fetch spinOff info
   useEffect(() => {
-    if (spinoffIds.length > 0) {
-      spinoffIds.map((id, index) => {
-        setTimeout(() => {
-          fetch(`https://api.jikan.moe/v4/anime/${id}`)
-            .then(res => res.json())
-            .then(data => setSpinOffInfo(prev => [...prev, {
-              id: id,
-              name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
-              image: data.data['images']['jpg']['large_image_url']
-            }]))
-        }, (index + 1) * 3000)
-        return null
-      })
-    }
+    const interval = setTimeout(() => setInterval(() => {
+      if (spinoffIds.length > 0 && intervalTwoCounter.current < spinoffIds.length) {
+        const index = intervalTwoCounter.current
+
+        fetch(`https://api.jikan.moe/v4/anime/${spinoffIds[index]}`)
+          .then(res => res.json())
+          .then(data => setSpinOffInfo(prev => [...prev, {
+            id: spinoffIds[index],
+            name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
+            image: data.data['images']['jpg']['large_image_url']
+          }]))
+
+        intervalTwoCounter.current += 1
+      } else {
+        window.clearInterval(interval)
+      }
+    }, 3500), 2500)
+    return () => clearInterval(interval)
   }, [spinoffIds])
 
   // Set mainCards

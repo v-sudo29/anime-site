@@ -15,16 +15,33 @@ import SimilarAnime from './SimilarAnime'
 function AnimeDetail() {
   const params = useParams()
   const [anime, setAnime] = useState(null)
+  const [mainIdsType, setMainIdsType] = useState([])
+  const [spinoffIds, setSpinOffIds] = useState([])
+  const [count, setCount] = useState(null)
+  const [countUpdated, setCountUpdated] = useState(false)
 
+  // Fetch anime data from Jikan API
   useEffect(() => {
-    fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`)
-      .then(response => response.json())
-      .then(data => {
-        setAnime(data.data)
-        document.title = data.data.title
-      })
+    const timer = setTimeout(() => {
+      fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`)
+        .then(response => response.json())
+        .then(data => {
+          setAnime(data.data)
+          document.title = data.data.title
+        })
+    }, 100)
+    return () => clearTimeout(timer)
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Update count states
+  useEffect(() => {
+    if (mainIdsType && spinoffIds) {
+      setCount(mainIdsType.length + spinoffIds.length)
+      setCountUpdated(true)
+    }
+  }, [mainIdsType, spinoffIds])
 
   return (
     <div className={`${styles.detailPage} overview`}>
@@ -36,8 +53,20 @@ function AnimeDetail() {
             <Stats styles={styles} anime={anime}/>
             <Summary styles={styles} anime={anime}/>
             <Characters styles={styles} anime={anime} id={params.id}/>
-            <RelatedAnime styles={styles} anime={anime}/>
-            <StudioProducers styles={styles} anime={anime}/>
+            <RelatedAnime 
+              styles={styles} 
+              anime={anime}
+              mainIdsType={mainIdsType}
+              spinoffIds={spinoffIds}
+              setMainIdsType={setMainIdsType}
+              setSpinOffIds={setSpinOffIds}
+            />
+            <StudioProducers 
+              styles={styles} 
+              anime={anime}
+              count={count}
+              countUpdated={countUpdated}
+            />
             <News styles={styles} id={params.id}/>
             <SimilarAnime styles={styles} id={params.id}/>
           </div>

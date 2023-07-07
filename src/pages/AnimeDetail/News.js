@@ -48,9 +48,12 @@ export default function News({styles, id}) {
   };
 
   useEffect(() => {
-    fetch(`https://api.jikan.moe/v4/anime/${id}/news`)
+    const timer = setTimeout(() => {
+      fetch(`https://api.jikan.moe/v4/anime/${id}/news`)
       .then(res => res.json())
       .then(data => (setNewsInfo(sortByDate(data.data))))
+    }, 1600)
+    return () => clearTimeout(timer)
   }, [id])
 
   useEffect(() => {

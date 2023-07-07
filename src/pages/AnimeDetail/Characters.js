@@ -7,11 +7,12 @@ export default function Characters({styles, anime, id}) {
 
   useEffect(() => {
     if (anime) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
         .then(res => res.json())
         .then(data => setCharactersData(data.data))
       }, 600)
+      return () => clearTimeout(timer)
     }
   }, [id, anime])
 
