@@ -49,12 +49,20 @@ export default function News({styles, id}) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime/${id}/news`)
-      .then(res => res.json())
-      .then(data => (setNewsInfo(sortByDate(data.data))))
+      try {
+        fetch(`https://api.jikan.moe/v4/anime/${id}/news`)
+          .then(res => res.json())
+          .then(data => (setNewsInfo((data.data))))
+      } catch (error) {
+        console.error(error)
+      }
     }, 1600)
     return () => clearTimeout(timer)
   }, [id])
+
+  useEffect(() => {
+    if (newsInfo) setNewsInfo(prev => sortByDate(prev))
+  }, [newsInfo])
 
   useEffect(() => {
     if (newsInfo && newsInfo.length > 0) {
