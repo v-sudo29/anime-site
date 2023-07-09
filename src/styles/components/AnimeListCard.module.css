@@ -24,6 +24,7 @@
   overflow: hidden;
   border-radius: 0.5rem;
   outline: 2px solid white;
+  outline-offset: 0px;
 }
 
 .info {

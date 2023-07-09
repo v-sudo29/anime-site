@@ -24,10 +24,18 @@
   font-size: 0.7rem;
   border-radius: 10rem;
   cursor: pointer;
+  transition: var(--default-transition-time);
+}
+
+.searchBtn:hover, .genresBtn:hover,
+.genreTag:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-color);
 }
 
 .searchBtn:focus {
   outline: 2px solid white;
+  border-radius: 10rem;
 }
 
 .genresBtn {
@@ -40,6 +48,7 @@
   gap: 0.4rem;
   align-items: center;
   cursor: pointer;
+  transition: var(--default-transition-time);
 }
 
 .genresBtn:focus-visible {
@@ -55,6 +64,7 @@
   grid-template-columns: repeat(5, minmax(6.5rem, 1fr));
   grid-template-rows: repeat(3, 2.5rem);
   gap: 0.6rem;
+  transition: var(--default-transition-time);
 }
 
 .genreTag {
@@ -63,13 +73,15 @@
   color: inherit;
   border: none;
   cursor: pointer;
+  transition: var(--default-transition-time);
 }
 
 .genreTag:focus-visible {
   outline-offset: -1px;
   outline: 2px solid white;
+  border-radius: 10rem;
 }
 
-.active {
+.active, .active:hover {
   background-color: #262626;
 }

@@ -12,3 +12,25 @@
   gap: 1rem;
   margin-top: 1rem;
 }
+
+/* See More Btn */
+.seeMoreBtn {
+  all: unset;
+  display: block;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+  background-color: #616161;
+  padding: 1rem 5rem;
+  border-radius: 0.5rem;
+  transition: var(--default-transition-time)
+}
+
+.seeMoreBtn:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+.seeMoreBtn:focus-visible {
+  outline: 2px solid white;
+}

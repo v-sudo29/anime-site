@@ -26,6 +26,10 @@ html {
   --vertical-card-width: 15rem;
   --vertical-img-height: 20rem;
   --vertical-img-width: 15rem;
+  --button-bg-color: #616161;
+  --button-hover-bg-color: #363636;
+  --button-hover-color: #6f6f6f;
+  --default-transition-time: ease 0.1s;
 }
 
 #root {

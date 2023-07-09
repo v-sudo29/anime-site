@@ -55,7 +55,7 @@ export default function MostPopular({popularData}) {
       {pageCount.current !== 5 ? 
       <button 
         onClick={handleClick}
-        className='see-more-btn' 
+        className={styles.seeMoreBtn} 
       > 
       See Anime List
       </button>
