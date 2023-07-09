@@ -62,9 +62,11 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
   return (
     <div className={`${styles.studioProducersContainer} studioProducers`}>
       <h2 className={styles.sectionTitle}>Studios & Producers</h2>
-      <div className={styles.producerCardsContainer}>
-        {cards}
-      </div>
+      {cards ?
+        <div className={styles.producerCardsContainer}>
+          {cards}
+        </div>
+      : 'No producers known at this time.'}
     </div>
   )
 }
