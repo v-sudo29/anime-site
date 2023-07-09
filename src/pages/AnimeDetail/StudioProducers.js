@@ -41,7 +41,6 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [producerIdsType, countUpdated])
 
-  console.log(count)
   // Set producer cards
   useEffect(() => {
     if (producersInfo.length > 0) {

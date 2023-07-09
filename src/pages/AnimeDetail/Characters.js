@@ -8,9 +8,11 @@ export default function Characters({styles, anime, id}) {
   useEffect(() => {
     if (anime) {
       const timer = setTimeout(() => {
-        fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
-        .then(res => res.json())
-        .then(data => setCharactersData(data.data))
+        try {
+          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
+            .then(res => res.json())
+            .then(data => setCharactersData(data.data))
+        } catch (error) {console.error(error)}
       }, 600)
       return () => clearTimeout(timer)
     }
@@ -60,12 +62,20 @@ export default function Characters({styles, anime, id}) {
   return (
     <div className={`${styles.charactersSection} characters`}>
       <h2 className={styles.sectionTitle}>Characters</h2>
-      <div className={styles.charactersContainer}>
-        {charactersData ? characterCards : null}
-      </div>
-      <div className={styles.charactersBtnContainer}>
-        <button onClick={() => setAllCharacters(prev => !prev)} className={styles.charactersBtn}>{allCharacters ? 'See Less Characters' : 'See Full Character List'}</button>
-      </div>
+      {charactersData ? 
+        <div className={styles.charactersContainer}>
+          {characterCards}
+        </div>
+      : 'No characters available.'}
+      {charactersData && 
+      <div className={styles.charactersBtnContainer}>       
+          <button 
+            onClick={() => setAllCharacters(prev => !prev)} 
+            className={styles.charactersBtn}
+          >
+            {allCharacters ? 'See Less Characters' : 'See Full Character List'}
+          </button>
+      </div>}
     </div>
   )
 }
