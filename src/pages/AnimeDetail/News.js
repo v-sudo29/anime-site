@@ -48,16 +48,24 @@ export default function News({styles, id}) {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    
     const timer = setTimeout(() => {
       try {
-        fetch(`https://api.jikan.moe/v4/anime/${id}/news`)
+        fetch(`https://api.jikan.moe/v4/anime/${id}/news`, {
+          signal: signal
+        })
           .then(res => res.json())
           .then(data => (setNewsInfo((data.data))))
       } catch (error) {
         console.error(error)
       }
     }, 1600)
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
   }, [id])
 
   useEffect(() => {

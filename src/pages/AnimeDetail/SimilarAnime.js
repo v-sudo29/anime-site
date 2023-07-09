@@ -6,12 +6,20 @@ export default function SimilarAnime({styles, id}) {
 
   // Fetch recommendations data
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     const timer = setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
+      fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`, {
+        signal: signal
+      })
       .then(res => res.json())
       .then(data => setSimilarData(data.data))
     }, 2500)
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
   }, [id])
 
   useEffect(() => {

@@ -19,11 +19,16 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
 
   // Set delayed timer and interval to fetch producers info
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const interval = setTimeout(() => setInterval(() => {
       if (producerIdsType && intervalCounter.current < producerIdsType.length && countUpdated) {
         const index = intervalCounter.current
 
-        fetch(`https://api.jikan.moe/v4/producers/${producerIdsType[index]['id']}`)
+        fetch(`https://api.jikan.moe/v4/producers/${producerIdsType[index]['id']}`,{
+          signal: signal
+        })
           .then(res => res.json())
           .then(data => setProducersInfo(prev => [...prev, 
             {
@@ -35,9 +40,12 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
           ))
         intervalCounter.current += 1
       } window.clearInterval(interval)
-    }, (count > 2 ? 1500 : 1000)), ((count * 1000) + 3000))
+    }, (count > 0 ? 1800 : 1400)), (((count + 1) * 3000) + 1000))
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      controller.abort()
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [producerIdsType, countUpdated])
 

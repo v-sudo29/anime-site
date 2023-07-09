@@ -37,11 +37,17 @@ export default function RelatedAnime({
 
   // Fetch main info
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     const interval = setTimeout(() => setInterval(() => {
       if (mainIdsType.length > 0 && intervalCounter.current < mainIdsType.length) {
         const index = intervalCounter.current
 
-        fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`)
+        try {
+          fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`,{
+            signal: signal
+          })
             .then(res => res.json())
             .then(data => setMainInfo(prev => [...prev, {
               id: mainIdsType[index]['id'],
@@ -49,36 +55,53 @@ export default function RelatedAnime({
               name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
               image: data.data['images']['jpg']['large_image_url']
             }]))
-
-        intervalCounter.current += 1
-        } else {
+        } catch (error) {
+          console.error(error)
+        } finally {
+          intervalCounter.current += 1 
+        }  
+      } else {
           window.clearInterval(interval)
         }
-      }, 1200), 2500)
-      return () => clearInterval(interval)
+      }, 2500), 2500)
+      return () => {
+        clearInterval(interval)
+        controller.abort()
+      }
 
   }, [mainIdsType])
 
   // Fetch spinOff info
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     const interval = setTimeout(() => setInterval(() => {
       if (spinoffIds.length > 0 && intervalTwoCounter.current < spinoffIds.length) {
         const index = intervalTwoCounter.current
-
-        fetch(`https://api.jikan.moe/v4/anime/${spinoffIds[index]}`)
-          .then(res => res.json())
-          .then(data => setSpinOffInfo(prev => [...prev, {
-            id: spinoffIds[index],
-            name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
-            image: data.data['images']['jpg']['large_image_url']
-          }]))
-
-        intervalTwoCounter.current += 1
+        try {
+          fetch(`https://api.jikan.moe/v4/anime/${spinoffIds[index]}`, {
+            signal: signal
+          })
+            .then(res => res.json())
+            .then(data => setSpinOffInfo(prev => [...prev, {
+              id: spinoffIds[index],
+              name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
+              image: data.data['images']['jpg']['large_image_url']
+            }]))
+        } catch (error) {
+          console.error(error)
+        } finally {
+          intervalTwoCounter.current += 1
+        }
       } else {
         window.clearInterval(interval)
       }
-    }, 3500), 2500)
-    return () => clearInterval(interval)
+    }, 2500), 5000)
+    return () => {
+      clearInterval(interval)
+      controller.abort()
+    }
   }, [spinoffIds])
 
   // Set mainCards
@@ -122,7 +145,8 @@ export default function RelatedAnime({
         <div className={`${styles.relatedAnimeContainer} relatedAnime`}>
           <h2 className={styles.sectionTitle}>Related Anime</h2>
           <div className={styles.relatedContent}>
-    
+
+          {/* Main series */}
           {mainCards.length > 0 ? 
             <div className={styles.mainSeries}>
               <h3>Main Series</h3>
@@ -131,7 +155,8 @@ export default function RelatedAnime({
               </div>
             </div> 
           : null}
-    
+
+          {/* Spin-Offs */}
           {spinoffCards.length > 0 ? 
             <div className={styles.spinOffs}>
             <h3>Spin-Offs</h3>

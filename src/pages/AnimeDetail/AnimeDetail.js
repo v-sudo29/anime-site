@@ -22,15 +22,23 @@ function AnimeDetail() {
 
   // Fetch anime data from Jikan API
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const timer = setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`)
+      fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`, {
+        signal: signal
+      })
         .then(response => response.json())
         .then(data => {
           setAnime(data.data)
           document.title = data.data.title
         })
     }, 100)
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
