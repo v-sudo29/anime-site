@@ -29,7 +29,10 @@ function AnimeDetail() {
       fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`, {
         signal: signal
       })
-        .then(response => response.json())
+        .then(response => {
+          if (response.ok) return response.json()
+          throw response
+        })
         .then(data => {
           setAnime(data.data)
           document.title = data.data.title

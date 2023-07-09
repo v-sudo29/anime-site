@@ -13,8 +13,11 @@ export default function SimilarAnime({styles, id}) {
       fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`, {
         signal: signal
       })
-      .then(res => res.json())
-      .then(data => setSimilarData(data.data))
+        .then(response => {
+          if (response.ok) return response.json()
+          throw response
+        })
+        .then(data => setSimilarData(data.data))
     }, 2500)
     return () => {
       clearTimeout(timer)
@@ -28,7 +31,7 @@ export default function SimilarAnime({styles, id}) {
         if (index < 4) {
           return (
             <div key={anime['entry']['title']} className={styles.similarCard}>
-              <a href={`/anime/${anime['entry']['mal_id']}`} target="_blank" rel="noopener noreferrer">
+              <a href={`/anime/${anime['entry']['mal_id']}`}>
                 <img className={styles.similarImg} src={anime['entry']['images']['jpg']['large_image_url']} alt=""/>
               </a>
               <div className={styles.similarName}>{anime['entry']['title']}</div>

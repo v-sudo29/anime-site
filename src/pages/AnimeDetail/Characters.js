@@ -7,14 +7,25 @@ export default function Characters({styles, anime, id}) {
 
   useEffect(() => {
     if (anime) {
+      const controller = new AbortController();
+      const signal = controller.signal;
+
       const timer = setTimeout(() => {
         try {
-          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
-            .then(res => res.json())
+          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`, {
+            signal: signal
+          })
+            .then(response => {
+              if (response.ok) return response.json()
+              throw response
+            })
             .then(data => setCharactersData(data.data))
         } catch (error) {console.error(error)}
       }, 600)
-      return () => clearTimeout(timer)
+      return () => {
+        clearTimeout(timer)
+        controller.abort()
+      }
     }
   }, [id, anime])
 

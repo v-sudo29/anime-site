@@ -45,10 +45,13 @@ export default function RelatedAnime({
         const index = intervalCounter.current
 
         try {
-          fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`,{
+          fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`, {
             signal: signal
           })
-            .then(res => res.json())
+            .then(response => {
+              if (response.ok) return response.json()
+              throw response
+            })
             .then(data => setMainInfo(prev => [...prev, {
               id: mainIdsType[index]['id'],
               type: mainIdsType[index]['type'],
@@ -83,7 +86,10 @@ export default function RelatedAnime({
           fetch(`https://api.jikan.moe/v4/anime/${spinoffIds[index]}`, {
             signal: signal
           })
-            .then(res => res.json())
+            .then(response => {
+              if (response.ok) return response.json()
+              throw response
+            })
             .then(data => setSpinOffInfo(prev => [...prev, {
               id: spinoffIds[index],
               name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,

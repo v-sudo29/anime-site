@@ -56,7 +56,10 @@ export default function News({styles, id}) {
         fetch(`https://api.jikan.moe/v4/anime/${id}/news`, {
           signal: signal
         })
-          .then(res => res.json())
+          .then(response => {
+            if (response.ok) return response.json()
+            throw response
+          })
           .then(data => (setNewsInfo((data.data))))
       } catch (error) {
         console.error(error)

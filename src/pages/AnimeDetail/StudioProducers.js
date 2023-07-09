@@ -29,7 +29,10 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
         fetch(`https://api.jikan.moe/v4/producers/${producerIdsType[index]['id']}`,{
           signal: signal
         })
-          .then(res => res.json())
+          .then(response => {
+            if (response.ok) return response.json()
+            throw response
+          })
           .then(data => setProducersInfo(prev => [...prev, 
             {
               type: producerIdsType[index]['type'],
