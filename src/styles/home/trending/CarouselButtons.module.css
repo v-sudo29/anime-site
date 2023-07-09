@@ -2,8 +2,8 @@
   position: absolute;
   display: flex;
   gap: 0.7rem;
-  top: 77.4rem;
-  margin-left: 27.2rem;
+  top: 78.4rem;
+  margin-left: 22.2rem;
 }
 
 .button {
@@ -14,6 +14,10 @@
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.5s;
+}
+
+.button:focus-visible {
+  transition: none;
 }
 
 .active {

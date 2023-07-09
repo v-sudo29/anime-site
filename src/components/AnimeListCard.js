@@ -7,13 +7,13 @@ export default function AnimeListCard({anime, index, id}) {
     <div className={styles.card}>
       <div className={styles.ranking}>{index + 1}</div>
       <div className={styles.imgContainer}>
-        <a href={`/anime/${id}`}>
-          <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt=''/>
+        <a className={styles.imageLink} href={`/anime/${id}`}>
+          <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
         </a>
       </div>
       <div className={styles.info}>
         <div>
-          <a href={`/anime/${id}`}>
+          <a tabIndex={-1} href={`/anime/${id}`}>
             <h3 className={styles.title}>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
           </a>
           <span className={styles.type}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>

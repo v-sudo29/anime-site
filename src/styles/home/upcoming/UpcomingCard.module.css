@@ -7,8 +7,8 @@
 .imageContainer {
   height: 18rem;
   width: 14.2rem;
-  border-radius: 0.5rem;
   overflow: hidden;
+  outline: none;
 }
 
 .image {
@@ -16,6 +16,17 @@
   height: 18rem;
   width: 14.2rem;
   transform: scale(1.05);
+}
+
+.imageLink {
+  position: absolute;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.imageLink:focus-visible {
+  outline-style: solid;
+  outline: 2px solid white;
 }
 
 .textAndTitle {

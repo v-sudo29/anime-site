@@ -7,7 +7,7 @@ export default function UpcomingCard(props) {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
-        <Link to={`/anime/${props.id}`}>
+        <Link className={styles.imageLink} to={`/anime/${props.id}`}>
           <img className={styles.image} src={`${props.imageUrl}`} alt="" />
         </Link>
       </div>

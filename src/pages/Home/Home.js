@@ -51,8 +51,9 @@ function Home() {
           <div className={styles.content}>
 
             <SearchBar 
-              placeholder={'Search for anime, characters, news...'}
+              placeholder={'Search for anime'}
               inputValue={inputValue}
+              onKeyPressed={() => console.log('key pressed!')}
               // TODO: create handleEnter function
             />
             <LatestNews

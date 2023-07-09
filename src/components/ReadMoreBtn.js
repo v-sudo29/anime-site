@@ -6,7 +6,7 @@ import styles from '../styles/components/ReadMoreBtn.module.css'
 export default function ReadMoreBtn() {
   return (
     <div className={styles.container}>
-      <Link className={styles.link}>
+      <Link tabIndex={-1} className={styles.link}>
         Read More
         <img src={arrowIcon} alt="" />
       </Link>
