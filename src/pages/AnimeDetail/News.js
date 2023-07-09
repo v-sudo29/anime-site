@@ -101,7 +101,7 @@ export default function News({styles, id}) {
           {newsCards}
         </div>
       </>
-      : 'No news at this time.'}
+      : <p className={styles.defaultText}>No news at this time.</p>}
     </div>
   )
 }

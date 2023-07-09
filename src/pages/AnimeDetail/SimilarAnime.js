@@ -34,10 +34,12 @@ export default function SimilarAnime({styles, id}) {
 
   return (
     <div className={styles.similarContainer}>
-      <h2>Similar Anime</h2>
-      <div className={styles.similarCardsContainer}>
-        {similarCards ? similarCards : 'No similar anime at this time.'}
-      </div>
+      <h2 className={styles.sectionTitle}>Similar Anime</h2>
+      {similarCards ? 
+        <div className={styles.similarCardsContainer}>
+          {similarCards}
+        </div>
+      : <p className={styles.defaultText}>No similar anime at this time</p> }
     </div>
   )
 }

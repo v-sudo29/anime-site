@@ -16,6 +16,15 @@
   background-color: #393939;
 }
 
+.defaultText {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.textTest {
+  font-size: 2rem;
+}
+
 /* h2 heading style */
 .sectionTitle {
   font-size: 1.5rem;

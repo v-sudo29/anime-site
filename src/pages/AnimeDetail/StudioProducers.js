@@ -66,7 +66,7 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
         <div className={styles.producerCardsContainer}>
           {cards}
         </div>
-      : 'No producers known at this time.'}
+      : <p className={styles.defaultText}>No producers known at this time.</p>}
     </div>
   )
 }

@@ -66,7 +66,7 @@ export default function Characters({styles, anime, id}) {
         <div className={styles.charactersContainer}>
           {characterCards}
         </div>
-      : 'No characters available.'}
+      : <p className={styles.defaultText}>No characters available.</p>}
       {charactersData && 
       <div className={styles.charactersBtnContainer}>       
           <button 

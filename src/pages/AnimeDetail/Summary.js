@@ -10,7 +10,9 @@ export default function Summary({styles, anime}) {
   return (
     <div className={styles.summaryContainer}>
       <h2 className={styles.sectionTitle}>Summary</h2>
-      <p className={styles.synopsis}>{anime.synopsis}</p>
+      {anime.synopsis ? 
+        <p className={styles.synopsis}>{anime.synopsis}</p>
+      : <p className={styles.defaultText}>No summary at this time.</p> }
       <div className={styles.genreTagsContainer}>
         {genreTags}
       </div>
