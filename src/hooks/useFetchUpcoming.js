@@ -9,9 +9,7 @@ function useFetchUpcoming() {
   // Fetch and set upcoming data
   async function fetchUpcoming() {
     const LIMIT_NUMBER = 8
-    // API endpoint not working
-    // const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
-    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=${LIMIT_NUMBER}`
+    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
 
     try {
       await delay(700)
