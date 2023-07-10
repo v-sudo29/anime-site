@@ -18,6 +18,13 @@ export default function SimilarAnime({styles, id}) {
           throw response
         })
         .then(data => setSimilarData(data.data))
+        .catch(() => {
+          if (signal.aborted) {
+            console.log('The user aborted the request')
+          } else {
+            console.error('The request failed')
+          }
+        })
     }, 2500)
     return () => {
       clearTimeout(timer)

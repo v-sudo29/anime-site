@@ -7,7 +7,7 @@ function useFetchUpcoming() {
   const [upcomingError, setUpcomingError] = useState(false)
 
   // Fetch and set upcoming data
-  async function fetchUpcoming() {
+  async function fetchUpcoming(signal) {
     const LIMIT_NUMBER = 8
     const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
 
@@ -27,8 +27,13 @@ function useFetchUpcoming() {
   }
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     setUpcomingLoading(true)
-    fetchUpcoming()
+    fetchUpcoming(signal)
+
+    return () => controller.abort()
   }, [])
 
   return { upcomingData, upcomingLoading, upcomingError }

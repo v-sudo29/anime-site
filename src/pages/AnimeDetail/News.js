@@ -52,7 +52,7 @@ export default function News({styles, id}) {
     const signal = controller.signal;
     
     const timer = setTimeout(() => {
-      try {
+
         fetch(`https://api.jikan.moe/v4/anime/${id}/news`, {
           signal: signal
         })
@@ -61,9 +61,13 @@ export default function News({styles, id}) {
             throw response
           })
           .then(data => (setNewsInfo((data.data))))
-      } catch (error) {
-        console.error(error)
-      }
+          .catch(() => {
+            if (signal.aborted) {
+              console.log('The user aborted the request')
+            } else {
+              console.error('The request failed')
+            }
+          })
     }, 1600)
     return () => {
       clearTimeout(timer)

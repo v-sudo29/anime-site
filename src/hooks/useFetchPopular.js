@@ -7,10 +7,10 @@ function useFetchPopular() {
   const [popularError, setPopularError] = useState(false)
 
   // Fetch and set popular data
-  async function fetchPopular() {
+  async function fetchPopular(signal) {
     const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
     try {
-      await delay(1400)
+      await delay(1500)
       const res = await fetch(popularURL)
       const data = await res.json()
 
@@ -26,8 +26,13 @@ function useFetchPopular() {
   }
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     setPopularLoading(true)
-    fetchPopular()
+    fetchPopular(signal)
+
+    return () => controller.abort()
   }, [])
 
   

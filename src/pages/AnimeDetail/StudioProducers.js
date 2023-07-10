@@ -41,7 +41,14 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
               url: data.data['url']
             }]
           ))
-        intervalCounter.current += 1
+          .catch(() => {
+            if (signal.aborted) {
+              console.log('The user aborted the request')
+            } else {
+              console.error('The request failed')
+            }
+          })
+          .finally(() => intervalCounter.current += 1)
       } window.clearInterval(interval)
     }, (count > 0 ? 1800 : 1400)), (((count + 1) * 3000) + 1000))
 
