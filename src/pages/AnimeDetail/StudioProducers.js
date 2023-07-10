@@ -69,7 +69,9 @@ export default function StudioProducers({styles, anime, count, countUpdated}) {
               <img className={styles.producerImg} src={producer.image} alt="" />
             </a>
             <div className={styles.producerType}>{producer.type}</div>
-            <div className={styles.producerName}>{producer.name}</div>
+            <a href={producer.url} target="_blank" rel="noopener noreferrer">
+              <div className={styles.producerName}>{producer.name}</div>
+            </a>
           </div>
         )
       }))

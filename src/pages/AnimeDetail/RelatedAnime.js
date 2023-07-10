@@ -120,7 +120,9 @@ export default function RelatedAnime({
               <img className={styles.mainImg} src={anime.image} alt="" />
             </a>
             <div className={styles.mainType}>{anime.type}</div>
-            <div className={styles.mainName}>{anime.name}</div>
+            <a href={`/anime/${anime.id}`}>
+              <div className={styles.mainName}>{anime.name}</div>
+            </a>
           </div>
         )
       }))
@@ -138,7 +140,9 @@ export default function RelatedAnime({
               <img className={styles.mainImg} src={anime.image} alt="" />
             </a>
             <div className={styles.mainType}>{anime.type}</div>
-            <div className={styles.mainName}>{anime.name}</div>
+            <a href={`/anime/${anime.id}`}>
+              <div className={styles.mainName}>{anime.name}</div>
+            </a>
           </div>
         )
       }))

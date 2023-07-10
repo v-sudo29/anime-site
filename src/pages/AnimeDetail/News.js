@@ -91,7 +91,9 @@ export default function News({styles, id}) {
                 </a>
               </div>    
               <div className={styles.newsDate}>{filteredDate}</div>
-              <div className={styles.newsName}>{article['title']}</div>
+              <a href={article['url']} target="_blank" rel="noopener noreferrer">
+                <div className={styles.newsName}>{article['title']}</div>
+              </a>
             </div>
           )
         } return null

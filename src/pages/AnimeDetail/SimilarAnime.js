@@ -41,7 +41,9 @@ export default function SimilarAnime({styles, id}) {
               <a href={`/anime/${anime['entry']['mal_id']}`}>
                 <img className={styles.similarImg} src={anime['entry']['images']['jpg']['large_image_url']} alt=""/>
               </a>
-              <div className={styles.similarName}>{anime['entry']['title']}</div>
+              <a href={`/anime/${anime['entry']['mal_id']}`}>
+                <div className={styles.similarName}>{anime['entry']['title']}</div>
+              </a>
             </div>
           )
         } return null

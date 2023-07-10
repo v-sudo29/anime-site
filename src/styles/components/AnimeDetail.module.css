@@ -91,6 +91,11 @@
   color: inherit;
   border: none;
   cursor: pointer;
+  transition: var(--default-transition-time)
+}
+
+.navBtn:hover {
+  background-color: var(--button-hover-bg-color);
 }
 
 /* Stats */
@@ -195,7 +200,7 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   height: 1.5rem;
   border-radius: 0.4rem;
   padding: 1.6rem 2.4rem;
@@ -203,6 +208,11 @@
   color: inherit;
   border: none;
   cursor: pointer;
+  transition: var(--default-transition-time);
+}
+
+.charactersBtn:hover {
+  background-color: var(--button-hover-bg-color);
 }
 
 /* Related Anime */
@@ -244,6 +254,12 @@
   margin-top: 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
+  transition: var(--default-transition-time);
+  cursor: pointer;
+}
+
+.mainName:hover {
+  color: var(--link-hover-color);
 }
 
 /* Studios & Producers */
@@ -274,6 +290,11 @@
   margin-top: 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.producerName:hover {
+  color: var(--link-hover-color);
 }
 
 /* News */
@@ -310,6 +331,11 @@
   margin-top: 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.newsName:hover {
+  color: var(--link-hover-color);
 }
 
 /* Similar Anime */
@@ -335,4 +361,9 @@
   margin-top: 1rem;
   font-weight: 500;
   font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.similarName:hover {
+  color: var(--link-hover-color);
 }
