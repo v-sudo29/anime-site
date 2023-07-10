@@ -19,7 +19,9 @@ export default function AllNews({newsData}) {
             </a>
             <div className={styles.info}>
               <div className={styles.date}>{news.date}</div>
-              <h3 className={styles.title}>{news.title}</h3>
+              <a href={news.url} target="_blank" rel="noopener noreferrer">
+                <h3 className={styles.title}>{news.title}</h3>
+              </a>
               <p className={styles.text}>{limitCharacters(news.text)}</p>
             </div>
           </div>

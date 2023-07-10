@@ -40,6 +40,14 @@
   font-weight: 400;
 }
 
+.title {
+  transition: var(--default-transition-time);
+}
+
+.title:hover {
+  color: var(--link-hover-color);
+}
+
 .defaultDiv {
   height: 18rem;
   width: 100%;
