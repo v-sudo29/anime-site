@@ -1,38 +1,39 @@
 import {useState, useEffect} from 'react'
-import delay from '../helpers/delay'
 
 function useFetchPopular() {
   const [popularData, setPopularData] = useState(null)
   const [popularLoading, setPopularLoading] = useState(false)
   const [popularError, setPopularError] = useState(false)
 
-  // Fetch and set popular data
-  async function fetchPopular(signal) {
-    const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
-    try {
-      await delay(1500)
-      const res = await fetch(popularURL)
-      const data = await res.json()
-
-      setPopularData(data.data)
-    } 
-    catch (error) {
-      setPopularError(true)
-      console.error(error)
-    }
-    finally {
-      setPopularLoading(false)
-    }
-  }
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
     setPopularLoading(true)
-    fetchPopular(signal)
 
-    return () => controller.abort()
+    const timer = setTimeout(() => {
+      const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
+
+        fetch(popularURL, {signal: signal})
+          .then(response => {
+            if (response.ok) return response.json()
+            if (response.status === 429) console.log('429 error, too many requests!')
+            throw response
+          })
+          .then(data => {
+            setPopularData(data.data)
+          })
+          .catch(() => {
+            setPopularError(true)
+            if (signal.aborted) console.log('The user aborted the request')
+            else console.error('The request failed')
+          })
+          .finally(() => setPopularLoading(false))
+    }, 1400)
+
+    return () => {
+      controller.abort()
+      clearTimeout(timer)
+    }
   }, [])
 
   

@@ -1,39 +1,39 @@
 import {useState, useEffect } from 'react'
-import delay from '../helpers/delay'
 
 function useFetchUpcoming() {
   const [upcomingData, setUpcomingData] = useState(null)
   const [upcomingLoading, setUpcomingLoading] = useState(false)
   const [upcomingError, setUpcomingError] = useState(false)
 
-  // Fetch and set upcoming data
-  async function fetchUpcoming(signal) {
-    const LIMIT_NUMBER = 8
-    const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=${LIMIT_NUMBER}`
-
-    try {
-      await delay(700)
-      const res = await fetch(upcomingURL)
-      const data = await res.json()
-      setUpcomingData(data.data)
-    }
-    catch (error) {
-      setUpcomingError(true)
-      console.error(error)
-    }
-    finally {
-      setUpcomingLoading(false)
-    }
-  }
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
     setUpcomingLoading(true)
-    fetchUpcoming(signal)
 
-    return () => controller.abort()
+    const timer = setTimeout(() => {
+      const upcomingURL = `https://api.jikan.moe/v4/top/anime?filter=upcoming`
+
+        fetch(upcomingURL, {signal: signal})
+          .then(response => {
+            if (response.ok) return response.json()
+            if (response.status === 429) console.log('429 error, too many requests!')
+            throw response
+          })
+          .then(data => {
+            setUpcomingData(data.data)
+          })
+          .catch(() => {
+            setUpcomingError(true)
+            if (signal.aborted) console.log('The user aborted the request')
+            else console.error('The request failed')
+          })
+          .finally(() => setUpcomingLoading(false))
+    }, 700)
+
+    return () => {
+      controller.abort()
+      clearTimeout(timer)
+    }
   }, [])
 
   return { upcomingData, upcomingLoading, upcomingError }

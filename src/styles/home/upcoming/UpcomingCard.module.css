@@ -6,7 +6,7 @@
 
 .imageContainer {
   height: 18rem;
-  width: 14.2rem;
+  width: 14.9rem;
   overflow: hidden;
   outline: none;
 }
@@ -14,7 +14,7 @@
 .image {
   flex: 1;
   height: 18rem;
-  width: 14.2rem;
+  width: 14.9rem;
   transform: scale(1.05);
 }
 

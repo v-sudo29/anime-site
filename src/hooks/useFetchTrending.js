@@ -1,39 +1,40 @@
 import { useEffect, useState } from 'react'
-import delay from '../helpers/delay.js'
 
 function useFetchTrending(LIMIT_NUMBER = 6) {
   const [trendingData, setTrendingData] = useState(null)
   const [trendingLoading, setTrendingLoading] = useState(false)
   const [trendingError, setTrendingError] = useState(false)
 
-  async function fetchTrending(signal) {
-    const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
-    
-    try {
-      await delay(700)
-      const res = await fetch(trendingURL)
-      const data = await res.json()
-      setTrendingData(data.data)
-
-    }
-    catch (error) {
-      setTrendingError(true)
-      console.error(error)
-    }
-    finally {
-      setTrendingLoading(false)
-    }
-  }
-
   useEffect(() => {
     if (!trendingData) {
       const controller = new AbortController();
       const signal = controller.signal;
-
       setTrendingLoading(true)
-      fetchTrending(signal)
 
-      return () => controller.abort()
+      const timer = setTimeout(() => {
+        const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
+  
+          fetch(trendingURL, {signal: signal})
+            .then(response => {
+              if (response.ok) return response.json()
+              if (response.status === 429) console.log('429 error, too many requests!')
+              throw response
+            })
+            .then(data => {
+              setTrendingData(data.data)
+            })
+            .catch(() => {
+              setTrendingError(true)
+              if (signal.aborted) console.log('The user aborted the request')
+              else console.error('The request failed')
+            })
+            .finally(() => setTrendingLoading(false))
+      }, 700)
+
+      return () => {
+        controller.abort()
+        clearTimeout(timer)
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [LIMIT_NUMBER])

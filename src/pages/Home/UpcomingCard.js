@@ -12,7 +12,6 @@ export default function UpcomingCard(props) {
         </Link>
       </div>
       <div className={styles.textAndTitle}>
-        <div className={styles.remainingDays}>5 Days Left</div>
         <h3 className={styles.title}>{props.englishTitle === null ? filterTitle(props.title) : filterTitle(props.englishTitle)}</h3>
       </div>
     </div>

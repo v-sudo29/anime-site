@@ -40,11 +40,10 @@ function Home() {
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
 
-  if (trendingError || upcomingError || popularError || newsError) return <h1>Error: Please refresh and try again</h1>
+  if (trendingError || upcomingError || popularError || newsError) return <h1 className='errorText'>Error: Please refresh and try again later.</h1>
 
-  if (newsCards && trendingData && upcomingData) return (
+  if (newsCards && trendingData && upcomingData && popularData) return (
     <div className={styles.container}>
-      {(trendingError || upcomingError || popularError || newsError) && <h1>Error: Please refresh and try again</h1>}
       {(newsCards && trendingData) && 
         <>
           <div className={styles.heroImage}></div>
