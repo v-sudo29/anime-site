@@ -6,42 +6,33 @@ import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/news/News.module.css'
 
 function News() {
-  const [trendingNews, setTrendingNews] = useState(null)
+  const [newsData, setNewsData] = useState(null)
 
   document.title = 'Anime Site: News'
 
-  // Fetching trending news data
-  async function fetchTrendingNews() {
+  // Fetch news data
+  async function fetchNews() {
     try {
-      const res = await import('../../anime-trending-news.json')
-      // Convert object to objects in array
-      const newData = Object.keys(res).map(key => {
-        return res[key]
-      })
-      // Remove last two indexes (length and default)
-      const secondToLastIndex = newData.length - 2
-      newData.splice(secondToLastIndex, 2)
-      
-      setTrendingNews(newData)
+      const data = await import('../../anime-news.json')
+      setNewsData(data)
     } catch (error) {console.error(error)}
   }
 
+  // Fetch data when page first loads
   useEffect(() => {
-    if (!trendingNews) fetchTrendingNews()
+    if (!newsData) fetchNews()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div className={styles.container}>
-      {trendingNews ? 
+      {newsData ? 
       <>
         <div className={styles.backgroundImg}></div>
         <div className={styles.content}>
-          <HeroContent/>
-          <TrendingContent
-            trendingNews={trendingNews}
-          />
-          <AllNews/>
+          <HeroContent featuredData={newsData.featured}/>
+          <TrendingContent newsData={newsData.news}/>
+          <AllNews newsData={newsData.news}/>
         </div>
       </>
       : <LoaderAnimation/>}

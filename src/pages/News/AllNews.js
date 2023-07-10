@@ -2,32 +2,8 @@ import React, { useState, useEffect} from 'react'
 import limitCharacters from '../../helpers/limitCharacters'
 import styles from '../../styles/news/AllNews.module.css'
 
-export default function AllNews() {
-  const [newsData, setNewsData] = useState(null)
+export default function AllNews({newsData}) {
   const [newsCards, setNewsCards] = useState(null)
-
-  // Fetch news data
-  async function fetchNews() {
-    try {
-      const res = await import('../../anime-news.json')
-
-      // Convert object to objects in array
-      const newData = Object.keys(res).map(key => {
-        return res[key]
-      })
-      // Remove last two indexes (length and default)
-      const secondToLastIndex = newData.length - 2
-      newData.splice(secondToLastIndex, 2)
-      
-      setNewsData(newData)
-    } catch (error) {console.error(error)}
-  }
-
-  // Fetch data when page first loads
-  useEffect(() => {
-    if (!newsData) fetchNews()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   // Set news cards when data available
   useEffect(() => {
@@ -38,15 +14,13 @@ export default function AllNews() {
         }
         return (
           <div key={index} className={styles.card}>
-            <div className={styles.imageContainer}>
-              <a href={news.url} target="_blank" rel="noopener noreferrer">
-                <img className={styles.image} src={news.image} alt="" />
-              </a>
-            </div>
+            <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
+              <img className={styles.image} src={news.image} alt={news.title} />
+            </a>
             <div className={styles.info}>
-              <div>{news.date}</div>
-              <h3>{news.title}</h3>
-              <p>{limitCharacters(news.text)}</p>
+              <div className={styles.date}>{news.date}</div>
+              <h3 className={styles.title}>{news.title}</h3>
+              <p className={styles.text}>{limitCharacters(news.text)}</p>
             </div>
           </div>
         )

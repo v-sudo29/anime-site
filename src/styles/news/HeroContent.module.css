@@ -3,6 +3,15 @@
   gap: 2rem;
 }
 
+.anchorContainer {
+  height: 18rem;
+  width: 30rem;
+}
+
+.anchorContainer:focus-visible {
+  outline-offset: 0px;
+}
+
 .heroImage {
   height: 18rem;
   width: 30rem;
@@ -16,6 +25,20 @@
   gap: 1rem;
 }
 
-.heroText > div {
+.date {
   margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.moreBtnContainer > div > a {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.moreBtnContainer > div > a > img {
+  height: 1.2rem;
 }

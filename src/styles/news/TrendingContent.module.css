@@ -10,20 +10,32 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: 18rem;
+  height: 25rem;
+  width: 100%;
 }
 
-.card > img {
-  height: 10rem;
+.anchorContainer {
+  height: 20rem;
+  width: 100%;
 }
 
-.info > div {
+.anchorContainer:focus-visible {
+  outline-offset: 0px;
+}
+
+.image {
+  height: 20rem;
+  width: 100%;
+  border-radius: 0.2rem;
+}
+
+.date {
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
 }
 
-.info > h3,
-.info > div {
+.title,
+.date {
   font-size: 0.9rem;
   font-weight: 400;
 }
