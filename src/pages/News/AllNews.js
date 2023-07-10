@@ -38,7 +38,11 @@ export default function AllNews() {
         }
         return (
           <div key={index} className={styles.card}>
-            <img src={news.image} alt="" />
+            <div className={styles.imageContainer}>
+              <a href={news.url} target="_blank" rel="noopener noreferrer">
+                <img className={styles.image} src={news.image} alt="" />
+              </a>
+            </div>
             <div className={styles.info}>
               <div>{news.date}</div>
               <h3>{news.title}</h3>
