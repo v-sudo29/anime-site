@@ -11,7 +11,9 @@ export default function UpcomingCard(props) {
           <img className={styles.image} src={`${props.imageUrl}`} alt="" />
         </Link>
       </div>
-      <h3 className={styles.title}>{props.englishTitle === null ? filterTitle(props.title) : filterTitle(props.englishTitle)}</h3>
+      <a href={`/anime/${props.id}`}>
+        <h3 className={styles.title}>{props.englishTitle === null ? filterTitle(props.title) : filterTitle(props.englishTitle)}</h3>
+      </a>
     </div>
   )
 }

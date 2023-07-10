@@ -36,10 +36,10 @@
 }
 
 .title {
-  width:fit-content;
+  width: fit-content;
   font-size: 1rem;
   font-weight: 400;
-  cursor: pointer;
+  transition: var(--default-transition-time);
 }
 
 .title:hover {

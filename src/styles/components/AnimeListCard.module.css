@@ -35,6 +35,7 @@
 
 .title {
   font-weight: 400;
+  transition: var(--default-transition-time);
 }
 
 .title:hover {
