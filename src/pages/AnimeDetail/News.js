@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import imageOnError from '../../helpers/imageOnError.js'
 
 export default function News({styles, id}) {
   const [newsInfo, setNewsInfo] = useState(null)
   const [newsCards, setNewsCards] = useState(null)
-  const brokenImage = 'https://cdn.myanimelist.net/images/company/placeholder.png'
 
   function sortByDate(data) {
     return data.sort((a, b) => {
@@ -40,12 +40,6 @@ export default function News({styles, id}) {
     const finalDate = `${month} ${day}, ${year}`
     return finalDate
   }
-
-  const imageOnError = (event) => {
-    event.currentTarget.src = brokenImage;
-    // Note: this is a global class!
-    event.currentTarget.className = "errorImage";
-  };
 
   useEffect(() => {
     const controller = new AbortController();

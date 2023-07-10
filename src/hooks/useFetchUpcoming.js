@@ -21,6 +21,7 @@ function useFetchUpcoming() {
           })
           .then(data => {
             setUpcomingData(data.data)
+            console.log(data.data)
           })
           .catch(() => {
             setUpcomingError(true)

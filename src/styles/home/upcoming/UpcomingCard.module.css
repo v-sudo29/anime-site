@@ -1,7 +1,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .imageContainer {
@@ -30,19 +31,17 @@
   outline-offset: 0px;
 }
 
-.textAndTitle {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .remainingDays {
   font-size: 0.7rem;
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-  font-weight: 500;
+  width:fit-content;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.title:hover {
+  color: var(--link-hover-color);
 }

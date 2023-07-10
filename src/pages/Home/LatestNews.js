@@ -9,7 +9,7 @@ export default function LatestNews({newsCards}) {
     <section className={styles.container}>
       <div className={styles.header}>
         <h2>Latest Anime News</h2>
-        <Link className='more-news-link' to='/news'>
+        <Link className={'more-news-link'} to='/news'>
           More News
           <img src={arrowIcon} alt="" />
         </Link>
