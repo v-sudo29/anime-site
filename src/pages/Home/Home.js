@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import LoaderAnimation from '../../components/LoaderAnimation'
-import SearchBar from '../../components/SearchBar'
 import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
 import Upcoming from './Upcoming'
@@ -14,7 +13,6 @@ import styles from '../../styles/home/Home.module.css'
 
 function Home() {
   const [newsCards, setNewsCards] = useState(null)
-  const inputValue = useRef(null)
   const { newsData, newsError, newsLoading } = useFetchNews()
   const { trendingData, trendingError, trendingLoading } = useFetchTrending()
   const { upcomingData, upcomingError, upcomingLoading } = useFetchUpcoming()
@@ -48,13 +46,6 @@ function Home() {
         <>
           <div className={styles.heroImage}></div>
           <div className={styles.content}>
-
-            <SearchBar 
-              placeholder={'Search for anime'}
-              inputValue={inputValue}
-              onKeyPressed={() => console.log('key pressed!')}
-              // TODO: create handleEnter function
-            />
             <LatestNews
               newsData={newsData}
               newsCards={newsCards}
