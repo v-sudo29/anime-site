@@ -7,16 +7,9 @@ function useFetchNews() {
 
   async function fetchNews() {
     try {
-      const res = await import('../anime-news.json')
-      // Convert object to objects in array
-      const newData = Object.keys(res).map(key => {
-        return res[key]
-      })
-      // Remove last two indexes (length and default)
-      const secondToLastIndex = newData.length - 2
-      newData.splice(secondToLastIndex, 2)
+      const data = await import('../anime-news.json')
       
-      setNewsData(newData)
+      setNewsData(data.news)
     }
     catch (error) {
       setNewsError(error)

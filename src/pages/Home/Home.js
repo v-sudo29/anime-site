@@ -32,7 +32,7 @@ function Home() {
               news={news}
             />
           )
-        }
+        } return null
       }))
     }
   }, [newsData])
