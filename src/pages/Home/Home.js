@@ -21,16 +21,18 @@ function Home() {
   // Set newsCards from newsData
   useEffect(() => {
     if (newsData) {
-      setNewsCards(newsData.map(news => {
+      setNewsCards(newsData.map((news, index) => {
         if (news.image === 'doesn\'t exist!') {
           return null
         }
-        return (
-          <NewsCard
-            key={news.title}
-            news={news}
-          />
-        )
+        if (index < 4) {
+          return (
+            <NewsCard
+              key={news.title}
+              news={news}
+            />
+          )
+        }
       }))
     }
   }, [newsData])
