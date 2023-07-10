@@ -8,7 +8,6 @@ function useFetchNews() {
   async function fetchNews() {
     try {
       const data = await import('../anime-news.json')
-      
       setNewsData(data.news)
     }
     catch (error) {
