@@ -127,6 +127,9 @@
 }
 
 .vaImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 10rem;
   height: 10rem;
   overflow: hidden;
@@ -135,8 +138,7 @@
 
 .vaImg {
   width: 10rem;
-  height: 12rem;
-  transform: scale(1.05);
+  transform: scale(1.02);
 } 
 
 .vaLanguage {
