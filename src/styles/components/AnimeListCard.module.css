@@ -5,12 +5,14 @@
 
 .ranking {
   width: 0.5rem;
+  font-size: 1.3rem;
 }
 
 .imgContainer {
   width: 4rem;
   height: 6rem;
   overflow: hidden;
+  border-radius: 0.5rem;
 }
 
 .image {
@@ -22,7 +24,6 @@
 .imageLink:focus-visible {
   position: absolute;
   overflow: hidden;
-  border-radius: 0.5rem;
   outline: 2px solid white;
   outline-offset: 0px;
 }
@@ -34,7 +35,7 @@
 }
 
 .title {
-  font-weight: 400;
+  font-weight: 500;
   transition: var(--default-transition-time);
 }
 
