@@ -9,6 +9,7 @@ import useFetchNews from '../../hooks/useFetchNews'
 import useFetchTrending from '../../hooks/useFetchTrending'
 import useFetchUpcoming from '../../hooks/useFetchUpcoming'
 import useFetchPopular from '../../hooks/useFetchPopular'
+import FetchError from '../../components/FetchError'
 import styles from '../../styles/home/Home.module.css'
 
 function Home() {
@@ -40,7 +41,7 @@ function Home() {
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
 
-  if (trendingError || upcomingError || popularError || newsError) return <h1 className='errorText'>Error: Please refresh and try again later.</h1>
+  if (trendingError || upcomingError || popularError || newsError) return <FetchError/>
 
   if (newsCards && trendingData && upcomingData && popularData) return (
     <div className={styles.container}>

@@ -11,48 +11,16 @@ import RelatedAnime from './RelatedAnime'
 import StudioProducers from './StudioProducers'
 import News from './News'
 import SimilarAnime from './SimilarAnime'
+import useFetchAnime from '../../hooks/useFetchAnime'
+import FetchError from '../../components/FetchError'
 
 function AnimeDetail() {
   const params = useParams()
-  const [anime, setAnime] = useState(null)
+  const {anime, animeLoading, animeError} = useFetchAnime()
   const [mainIdsType, setMainIdsType] = useState([])
   const [spinoffIds, setSpinOffIds] = useState([])
   const [count, setCount] = useState(null)
   const [countUpdated, setCountUpdated] = useState(false)
-
-  // Fetch anime data from Jikan API
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    const timer = setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime/${params.id}/full`, {
-        signal: signal
-      })
-        .then(response => {
-          if (response.ok) return response.json()
-          if (response.status === 429) console.log('429 error, too many requests!')
-          throw response
-        })
-        .then(data => {
-          setAnime(data.data)
-          document.title = data.data.title
-        })
-        .catch(() => {
-          if (signal.aborted) {
-            console.log('The user aborted the request')
-          } else {
-            console.error('The request failed')
-          }
-        })
-    }, 100)
-    return () => {
-      controller.abort()
-      clearTimeout(timer)
-    }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   // Update count states
   useEffect(() => {
@@ -62,33 +30,32 @@ function AnimeDetail() {
     }
   }, [mainIdsType, spinoffIds])
 
-  return (
+  if (animeLoading) return <LoaderAnimation/>
+  if (animeError) return <FetchError/>
+  if (anime) return (
     <div className={`${styles.detailPage} overview`}>
       <div className={styles.backgroundImg}></div>
-      {(anime 
-        ? <div className={styles.content}>
-            <HeroContent anime={anime}/>
-            <NavButtons />
-            <Stats anime={anime}/>
-            <Summary anime={anime}/>
-            <Characters anime={anime} id={params.id}/>
-            <RelatedAnime 
-              anime={anime}
-              mainIdsType={mainIdsType}
-              spinoffIds={spinoffIds}
-              setMainIdsType={setMainIdsType}
-              setSpinOffIds={setSpinOffIds}
-            />
-            <StudioProducers 
-              anime={anime}
-              count={count}
-              countUpdated={countUpdated}
-            />
-            <News id={params.id}/>
-            <SimilarAnime id={params.id}/>
-          </div>
-        : <LoaderAnimation/>
-      )}
+        <div className={styles.content}>
+          <HeroContent anime={anime}/>
+          <NavButtons />
+          <Stats anime={anime}/>
+          <Summary anime={anime}/>
+          <Characters anime={anime} id={params.id}/>
+          <RelatedAnime 
+            anime={anime}
+            mainIdsType={mainIdsType}
+            spinoffIds={spinoffIds}
+            setMainIdsType={setMainIdsType}
+            setSpinOffIds={setSpinOffIds}
+          />
+          <StudioProducers 
+            anime={anime}
+            count={count}
+            countUpdated={countUpdated}
+          />
+          <News id={params.id}/>
+          <SimilarAnime id={params.id}/>
+        </div>
     </div>
   )
 }
