@@ -11,8 +11,8 @@ export default function SearchBar({placeholder, inputValue, handleEnter}) {
       <input 
         className={styles.searchBar} 
         type="text" 
-        placeholder={placeholder ? placeholder : 'Search for anime'}
-        ref={inputValue ? inputValue : null} 
+        placeholder={ placeholder ?? 'Search for anime'}
+        ref={inputValue} 
         onKeyDown={handleEnter ? (e) => handleEnter(e) : null}
       />
     </div>

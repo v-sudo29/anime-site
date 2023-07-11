@@ -10,7 +10,7 @@ function Card(props) {
         </Link>
       </div>
       <h2 className={`card-title ${props.title}`}>{props.title}</h2>
-      <div>Ranking: {props.ranking}</div>
+      <span>Ranking: {props.ranking}</span>
     </div>
   )
 }

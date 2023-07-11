@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom'
 export default function AnimeListCard({anime, index, id}) {
   return (
     <div className={styles.card}>
-      <div className={styles.ranking}>{index + 1}</div>
+      <span className={styles.ranking}>{index + 1}</span>
       <div className={styles.imgContainer}>
         <Link className={styles.imageLink} to={`/anime/${id}`}>
-          <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
+          <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={!anime['title_english'] ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
         </Link>
       </div>
       <div className={styles.info}>
         <div>
           <Link tabIndex={-1} to={`/anime/${id}`}>
-            <h3 className={styles.title}>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
+            <h3 className={styles.title}>{!anime['title_english'] ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
           </Link>
           <span className={styles.type}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>
         </div>

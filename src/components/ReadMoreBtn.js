@@ -8,7 +8,7 @@ export default function ReadMoreBtn({url}) {
     <div className={styles.container}>
       <Link to={url} tabIndex={-1} className={styles.link} target="_blank" rel="noopener noreferrer">
         Read More
-        <img src={arrowIcon} alt="" />
+        <img src={arrowIcon} alt="arrow icon" />
       </Link>
     </div>
   )
