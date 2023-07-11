@@ -11,8 +11,6 @@ export default function Stats({styles, character}) {
     let factOne = null
     let factTwo = null
 
-    console.log(aboutInfo)
-
     // Handle null
     if (!aboutInfo) {
       return {
@@ -48,7 +46,6 @@ export default function Stats({styles, character}) {
         height = aboutInfo.split('Height: ')[1].split('\n')[0]
       } else {
         height = aboutInfo.split('Height ')[1].split('\n')[0]
-
       }
 
       if (height.includes('-&gt;')) {
@@ -67,13 +64,11 @@ export default function Stats({styles, character}) {
       }
     }
 
-
     // Extract facts
     if (aboutInfo.includes(':')) {
       
       let facts = aboutInfo.split('\n').filter(string => string !== '')
         .filter(string => string.includes(':'))
-      console.log(facts)
 
       // Check if facts include already extracted info
       if (facts.some(string => string.includes('Age'))) {
@@ -147,21 +142,21 @@ export default function Stats({styles, character}) {
     <>
     {stats &&
       <div className={styles.statsContainer}>
-        <div className={styles.age}>Age <div>{stats.age ? stats.age : '-'}</div> </div>
-        <div className={styles.birthday}>Birthday <div>{stats.birthday ? stats.birthday : '-'}</div> </div>
-        <div className={styles.height}>Height <div>{stats.height ? stats.height : '-'}</div> </div>
-        <div className={styles.weight}>Weight <div>{stats.weight ? stats.weight : '-'}</div> </div>
+        <div className={styles.age}>Age <span>{stats.age ? stats.age : '-'}</span> </div>
+        <div className={styles.birthday}>Birthday <span>{stats.birthday ? stats.birthday : '-'}</span> </div>
+        <div className={styles.height}>Height <span>{stats.height ? stats.height : '-'}</span> </div>
+        <div className={styles.weight}>Weight <span>{stats.weight ? stats.weight : '-'}</span> </div>
 
         {/* Display one fact if only one fact exists */}
         {stats.factOne && !stats.factTwo ?
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<div>{stats.factOne[Object.keys(stats.factOne)]}</div></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<span>{stats.factOne[Object.keys(stats.factOne)]}</span></div>
         : null}
         
         {/* Display two facts if two facts exist */}
         {stats.factOne && stats.factTwo ? 
         <>
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<div>{stats.factOne[Object.keys(stats.factOne)]}</div></div>
-          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<div>{stats.factTwo[Object.keys(stats.factTwo)]}</div></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<span>{stats.factOne[Object.keys(stats.factOne)]}</span></div>
+          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<span>{stats.factTwo[Object.keys(stats.factTwo)]}</span></div>
         </>
         : null}
       </div>}

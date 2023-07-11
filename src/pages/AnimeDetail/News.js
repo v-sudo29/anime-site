@@ -8,38 +8,17 @@ export default function News({id}) {
 
   function sortByDate(data) {
     return data.sort((a, b) => {
-      const dateA = a.date
-      const dateB = b.date
-      const splitA = dateA.split('T')[0].split('-').join('')
-      const splitB = dateB.split('T')[0].split('-').join('')
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
 
-      if (splitA > splitB) return -1
-      else if (splitB > splitA) return 1
-      else return 0
+      if (dateA > dateB) return -1;
+      if (dateB > dateA) return 1;
+      return 0;
     })
   }
 
   function convertDate(date) {
-    const dateA = date.split('T')[0].split('-')
-    let month = null
-    let day = dateA[2]
-    let year = dateA[0]
-
-    if (dateA[1] === '01') month = 'January'
-    if (dateA[1] === '02') month = 'February'
-    if (dateA[1] === '03') month = 'March'
-    if (dateA[1] === '04') month = 'April'
-    if (dateA[1] === '05') month = 'May'
-    if (dateA[1] === '06') month = 'June'
-    if (dateA[1] === '07') month = 'July'
-    if (dateA[1] === '08') month = 'August'
-    if (dateA[1] === '09') month = 'September'
-    if (dateA[1] === '10') month = 'October'
-    if (dateA[1] === '11') month = 'November'
-    if (dateA[1] === '12') month = 'December'
-    
-    const finalDate = `${month} ${day}, ${year}`
-    return finalDate
+    return new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
   useEffect(() => {

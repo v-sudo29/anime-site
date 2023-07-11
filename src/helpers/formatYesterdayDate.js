@@ -1,11 +1,8 @@
 export default function formatYesterdayDate() {
-  const currentDate = new Date()
-  const stringDate = currentDate.toDateString()
+  let today = new Date()
+  let yest = new Date(today.setDate(today.getDate() - 1))
 
-  const month = stringDate.split(' ').splice(1)[0]
-  const day = (parseInt(stringDate.split(' ').splice(1)[1]) - 1).toString() + ',' 
-  const year = stringDate.split(' ').splice(1)[2]
-  const formattedDate = month + ' ' + day + ' ' + year
+  let formattedDate = yest.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric'})
 
   return formattedDate
 }
