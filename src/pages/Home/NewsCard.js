@@ -17,13 +17,12 @@ export default function NewsCard({news}) {
           />
         </div>
       </a>
-      <span className={styles.date}>{
-        news.date.includes('Yesterday') ? formatYesterdayDate() : news.date
-      
-      }</span>
       <a href={news.url} target="_blank" rel="noopener noreferrer">
         <h3 className={styles.title}>{limitCharacters(news['title'], 40)}</h3>
       </a>
+      <span className={styles.date}>{
+        news.date.includes('Yesterday') ? formatYesterdayDate() : news.date
+      }</span>
     </div>
   )
 }
