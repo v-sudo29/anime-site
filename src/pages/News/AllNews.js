@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import limitCharacters from '../../helpers/limitCharacters'
 import styles from '../../styles/news/AllNews.module.css'
+import formatYesterdayDate from '../../helpers/formatYesterdayDate.js'
 
 export default function AllNews({newsData}) {
   const [newsCards, setNewsCards] = useState(null)
@@ -18,7 +19,7 @@ export default function AllNews({newsData}) {
               <img className={styles.image} src={news.image} alt={news.title} />
             </a>
             <div className={styles.info}>
-              <div className={styles.date}>{news.date}</div>
+              <div className={styles.date}>{news.date.includes('Yesterday') ? formatYesterdayDate() : news.date}</div>
               <a href={news.url} target="_blank" rel="noopener noreferrer">
                 <h3 className={styles.title}>{news.title}</h3>
               </a>
