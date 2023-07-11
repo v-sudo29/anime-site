@@ -56,9 +56,9 @@ export default function Characters({styles, anime, id}) {
         } else return null
       }))
     } else if (charactersData && allCharacters) {
-      setCharacterCards(charactersData.map(character => {
+      setCharacterCards(charactersData.map((character, index) => {
           return (
-            <div key={character['character']['name']} className={styles.characterCard}>
+            <div key={character['character']['name'] + [index]} className={styles.characterCard}>
               <div className={styles.characterImgContainer}>
                 <Link to={`/character/${character['character']['mal_id']}`}>
                   <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
