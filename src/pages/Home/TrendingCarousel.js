@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import CarouselButtons from './CarouselButtons'
 import TrendingCard from './TrendingCard'
 import styles from '../../styles/home/trending/TrendingCarousel.module.css'
+import Arrows from './Arrows'
 
 export default function TrendingCarousel({trendingData}) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -47,6 +48,10 @@ export default function TrendingCarousel({trendingData}) {
               ))}
             </div>
             <CarouselButtons 
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+            />
+            <Arrows 
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
             />
