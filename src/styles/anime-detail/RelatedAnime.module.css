@@ -1,0 +1,45 @@
+.relatedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mainSeries, .spinOffs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mainCardsContainer, .spinoffCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mainCard {
+  width: var(--vertical-card-width);
+  height: var(--vertical-card-height);
+}
+
+.mainImg {
+  width: var(--vertical-img-width);
+  height: var(--vertical-img-height);
+  border-radius: 0.5rem;
+}
+
+.mainType {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.mainName {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--default-transition-time);
+  cursor: pointer;
+}
+
+.mainName:hover {
+  color: var(--link-hover-color);
+}

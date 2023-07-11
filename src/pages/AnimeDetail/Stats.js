@@ -1,6 +1,7 @@
 import React from 'react'
+import styles from '../../styles/anime-detail/Stats.module.css'
 
-export default function Stats({styles, anime}) {
+export default function Stats({anime}) {
 
   function splitDates(stringDates) {
     let dates = stringDates

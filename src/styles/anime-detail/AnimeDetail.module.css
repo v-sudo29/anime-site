@@ -1,0 +1,59 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: var(--page-max-width);
+  min-height: 100vh;
+  padding-top: var(--page-top-bottom-padding);
+  padding-bottom: var(--page-top-bottom-padding);
+}
+
+.backgroundImg {
+  position: absolute;
+  right: 0rem;
+  width: 100%;
+  height: 20vh;
+  background-color: #393939;
+}
+
+.defaultText {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+/* h2 heading style */
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+/* Similar Anime */
+.similarCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.similarCard {
+  width: var(--vertical-card-width);
+  height: var(--vertical-card-height);
+}
+
+.similarImg {
+  width: var(--vertical-img-width);
+  height: var(--vertical-img-height);
+  border-radius: 0.5rem;
+}
+
+.similarName {
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.similarName:hover {
+  color: var(--link-hover-color);
+}

@@ -1,0 +1,23 @@
+.synopsis {
+  white-space: pre-wrap;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+
+.genreTagsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.genreTag {
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+  border-radius: 10rem;
+  padding: 1rem;
+  background-color: #686868;
+  color: inherit;
+  border: none;
+}

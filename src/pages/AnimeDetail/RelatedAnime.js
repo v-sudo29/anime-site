@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import styles from '../../styles/anime-detail/RelatedAnime.module.css'
 
 export default function RelatedAnime({
-  styles, 
   anime, 
   mainIdsType, 
   spinoffIds, 

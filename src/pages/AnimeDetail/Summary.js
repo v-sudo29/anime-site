@@ -1,6 +1,7 @@
 import React from 'react'
+import styles from '../../styles/anime-detail/Summary.module.css'
 
-export default function Summary({styles, anime}) {
+export default function Summary({anime}) {
   const genreTags = anime.genres.map(genre => {
     return (
       <span key={genre.name} className={styles.genreTag}>{genre.name}</span>

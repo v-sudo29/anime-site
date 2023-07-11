@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import styles from '../../styles/anime-detail/StudioProducers.module.css'
 
-export default function StudioProducers({styles, anime, count, countUpdated}) {
+export default function StudioProducers({anime, count, countUpdated}) {
   const [producerIdsType, setProducerIdsType] = useState(null)
   const [producersInfo, setProducersInfo] = useState([])
   const [cards, setCards] = useState(null)

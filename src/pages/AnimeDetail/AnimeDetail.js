@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LoaderAnimation from '../../components/LoaderAnimation'
-import styles from '../../styles/components/AnimeDetail.module.css'
+import styles from '../../styles/anime-detail/AnimeDetail.module.css'
 import HeroContent from './HeroContent'
 import NavButtons from './NavButtons'
 import Stats from './Stats'
@@ -67,13 +67,12 @@ function AnimeDetail() {
       <div className={styles.backgroundImg}></div>
       {(anime 
         ? <div className={styles.content}>
-            <HeroContent styles={styles} anime={anime}/>
-            <NavButtons styles={styles}/>
-            <Stats styles={styles} anime={anime}/>
-            <Summary styles={styles} anime={anime}/>
-            <Characters styles={styles} anime={anime} id={params.id}/>
+            <HeroContent anime={anime}/>
+            <NavButtons />
+            <Stats anime={anime}/>
+            <Summary anime={anime}/>
+            <Characters anime={anime} id={params.id}/>
             <RelatedAnime 
-              styles={styles} 
               anime={anime}
               mainIdsType={mainIdsType}
               spinoffIds={spinoffIds}
@@ -81,13 +80,12 @@ function AnimeDetail() {
               setSpinOffIds={setSpinOffIds}
             />
             <StudioProducers 
-              styles={styles} 
               anime={anime}
               count={count}
               countUpdated={countUpdated}
             />
-            <News styles={styles} id={params.id}/>
-            <SimilarAnime styles={styles} id={params.id}/>
+            <News id={params.id}/>
+            <SimilarAnime id={params.id}/>
           </div>
         : <LoaderAnimation/>
       )}

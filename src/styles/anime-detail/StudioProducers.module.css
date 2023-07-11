@@ -1,0 +1,33 @@
+.producerCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.producerCard {
+  display: flex;
+  flex-direction: column;
+  width: 13rem;
+}
+
+.producerImg {
+  height: 13rem;
+  width: 13rem;
+  border-radius: 0.5rem;
+}
+
+.producerType {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.producerName {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.producerName:hover {
+  color: var(--link-hover-color);
+}

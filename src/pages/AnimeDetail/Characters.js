@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import styles from '../../styles/anime-detail/Characters.module.css'
 
-export default function Characters({styles, anime, id}) {
+export default function Characters({anime, id}) {
   const [charactersData, setCharactersData] = useState(null)
   const [characterCards, setCharacterCards] = useState(null)
   const [allCharacters, setAllCharacters] = useState(false)

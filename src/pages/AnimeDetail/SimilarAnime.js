@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import styles from '../../styles/anime-detail/SimilarAnime.module.css'
 
-export default function SimilarAnime({styles, id}) {
+export default function SimilarAnime({id}) {
   const [similarData, setSimilarData] = useState(null)
   const [similarCards, setSimilarCards] = useState(null)
 

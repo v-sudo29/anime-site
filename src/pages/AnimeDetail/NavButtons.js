@@ -1,6 +1,7 @@
 import React from 'react'
+import styles from '../../styles/anime-detail/NavButtons.module.css'
 
-export default function NavButtons({styles}) {
+export default function NavButtons() {
   return (
     <div className={styles.navBtnsContainer}>
       <button 

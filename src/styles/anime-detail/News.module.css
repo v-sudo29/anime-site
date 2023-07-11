@@ -1,0 +1,39 @@
+.newsCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.newsCard {
+  width: var(--vertical-card-width);
+  height: var(--vertical-card-height);
+}
+
+.newsImgContainer {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.newsImg {
+  width: var(--vertical-img-width);
+  height: var(--vertical-img-height);
+  transform: scale(1.05);
+  border-radius: 0.5rem;
+}
+
+.newsDate {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.newsName {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--default-transition-time);
+}
+
+.newsName:hover {
+  color: var(--link-hover-color);
+}

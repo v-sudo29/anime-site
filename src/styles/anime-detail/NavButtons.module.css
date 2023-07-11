@@ -1,0 +1,19 @@
+.navBtnsContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.navBtn {
+  flex: 1;
+  height: 2.5rem;
+  border-radius: 10rem;
+  background-color: #686868;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: var(--default-transition-time)
+}
+
+.navBtn:hover {
+  background-color: var(--button-hover-bg-color);
+}

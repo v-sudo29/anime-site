@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import imageOnError from '../../helpers/imageOnError.js'
+import styles from '../../styles/anime-detail/News.module.css'
 
-export default function News({styles, id}) {
+export default function News({id}) {
   const [newsInfo, setNewsInfo] = useState(null)
   const [newsCards, setNewsCards] = useState(null)
 
