@@ -1,11 +1,13 @@
 .card {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ranking {
-  width: 0.5rem;
+  width: 1rem;
   font-size: 1.3rem;
+  text-align: center;
 }
 
 .imgContainer {
