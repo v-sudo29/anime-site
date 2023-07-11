@@ -7,7 +7,7 @@
   grid-template-columns: repeat(2, 30.5rem);
   justify-content: stretch;
   column-gap: 2rem;
-  row-gap: 3rem;
+  row-gap: 4rem;
 }
 
 .card {
