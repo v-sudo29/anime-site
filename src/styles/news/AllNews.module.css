@@ -11,17 +11,25 @@
 .card {
   display: flex;
   gap: 2rem;
-  height: 20rem;
+  height: 9rem;
   width: 100%;
+}
+
+.anchorContainer {
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+  width: 40rem;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.image {
+  min-width: 17rem;
 }
 
 .anchorContainer:focus-visible {
   outline-offset: 0px;
-}
-.image {
-  height: 20rem;
-  width: 15rem;
-  border-radius: 0.2rem;
 }
 
 .date {

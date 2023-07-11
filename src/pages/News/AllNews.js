@@ -16,7 +16,9 @@ export default function AllNews({newsData}) {
         return (
           <div key={index} className={styles.card}>
             <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-              <img className={styles.image} src={news.image} alt={news.title} />
+              <div className={styles.imageDiv}>
+                <img className={styles.image} src={news.image} alt={news.title} />
+              </div>
             </a>
             <div className={styles.info}>
               <div className={styles.date}>{news.date.includes('Yesterday') ? formatYesterdayDate() : news.date}</div>
