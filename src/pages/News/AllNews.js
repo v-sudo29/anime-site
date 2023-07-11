@@ -15,17 +15,19 @@ export default function AllNews({newsData}) {
         }
         return (
           <div key={index} className={styles.card}>
-            <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-              <div className={styles.imageDiv}>
-                <img className={styles.image} src={news.image} alt={news.title} />
-              </div>
-            </a>
+            <div className={styles.testContainer}>
+              <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
+                <div className={styles.imageDiv}>
+                  <img className={styles.image} src={news.image} alt={news.title} />
+                </div>
+              </a>
+            </div>
             <div className={styles.info}>
               <div className={styles.date}>{news.date.includes('Yesterday') ? formatYesterdayDate() : news.date}</div>
               <a href={news.url} target="_blank" rel="noopener noreferrer">
-                <h3 className={styles.title}>{news.title}</h3>
+                <h3 className={styles.title}>{limitCharacters(news.title, 20)}</h3>
               </a>
-              <p className={styles.text}>{limitCharacters(news.text)}</p>
+              <p className={styles.text}>{limitCharacters(news.text, 76)}</p>
             </div>
           </div>
         )

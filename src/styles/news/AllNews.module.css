@@ -3,9 +3,11 @@
 }
 
 .cardsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 30.5rem);
+  justify-content: stretch;
+  column-gap: 2rem;
+  row-gap: 3rem;
 }
 
 .card {
@@ -19,13 +21,9 @@
   display: flex;
   justify-content: center;
   height: 10rem;
-  width: 40rem;
+  width: 200px;
   border-radius: 0.2rem;
   overflow: hidden;
-}
-
-.image {
-  min-width: 17rem;
 }
 
 .anchorContainer:focus-visible {
