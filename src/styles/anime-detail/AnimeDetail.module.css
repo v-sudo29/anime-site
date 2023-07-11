@@ -27,33 +27,3 @@
   font-weight: 400;
   margin-bottom: 1.5rem;
 }
-
-/* Similar Anime */
-.similarCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.similarCard {
-  width: var(--vertical-card-width);
-  height: var(--vertical-card-height);
-}
-
-.similarImg {
-  width: var(--vertical-img-width);
-  height: var(--vertical-img-height);
-  border-radius: 0.5rem;
-}
-
-.similarName {
-  margin-top: 1rem;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: var(--default-transition-time);
-}
-
-.similarName:hover {
-  color: var(--link-hover-color);
-}
