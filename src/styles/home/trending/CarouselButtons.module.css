@@ -1,8 +1,8 @@
 .container {
-  position: absolute;
+  position: relative;
   display: flex;
   gap: 0.7rem;
-  top: 74.2rem;
+  bottom: 1rem;
   margin-left: 22.2rem;
 }
 
