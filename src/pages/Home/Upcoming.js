@@ -9,7 +9,7 @@ export default function Upcoming({upcomingData}) {
   useEffect(() => {
     if (upcomingData) {
       setUpcomingCards(upcomingData.map((anime, index) => {
-        if (index < 8) {
+        if (index < 10) {
           return (
             <UpcomingCard
               key={anime['mal_id']}
