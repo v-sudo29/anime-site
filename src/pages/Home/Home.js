@@ -25,7 +25,7 @@ function Home() {
         if (news.image === 'doesn\'t exist!') {
           return null
         }
-        if (index < 4) {
+        if (index < 5) {
           return (
             <NewsCard
               key={news.title}

@@ -5,14 +5,12 @@
 .header {
   display: flex;
   justify-content: space-between;
+  margin-top: -3rem;
 }
 
 .cardsContainer {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
-  gap: 1rem;
-  width: 100%;
 }
 
 .defaultDiv {
