@@ -1,40 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../styles/anime-detail/Characters.module.css'
+import useFetchCharacters from '../../hooks/useFetchCharacters'
 
 export default function Characters({anime, id}) {
-  const [charactersData, setCharactersData] = useState(null)
+  const { charactersData } = useFetchCharacters(anime, id)
   const [characterCards, setCharacterCards] = useState(null)
   const [allCharacters, setAllCharacters] = useState(false)
-
-  useEffect(() => {
-    if (anime) {
-      const controller = new AbortController();
-      const signal = controller.signal;
-
-      const timer = setTimeout(() => {
-          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`, {
-            signal: signal
-          })
-            .then(response => {
-              if (response.ok) return response.json()
-              throw response
-            })
-            .then(data => setCharactersData(data.data))
-            .catch(() => {
-              if (signal.aborted) {
-                console.log('The user aborted the request')
-              } else {
-                console.error('The request failed')
-              }
-            })
-      }, 600)
-      return () => {
-        controller.abort()
-        clearTimeout(timer)
-      }
-    }
-  }, [id, anime])
 
   useEffect(() => {
     if (charactersData && !allCharacters) {
