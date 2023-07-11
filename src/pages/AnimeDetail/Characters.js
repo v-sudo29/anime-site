@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Characters({styles, anime, id}) {
   const [charactersData, setCharactersData] = useState(null)
@@ -41,9 +42,9 @@ export default function Characters({styles, anime, id}) {
           return (
             <div key={character['character']['name']} className={styles.characterCard}>
               <div className={styles.characterImgContainer}>
-                <a href={`/character/${character['character']['mal_id']}`} target="_blank" rel="noopener noreferrer">
+                <Link to={`/character/${character['character']['mal_id']}`} target="_blank" rel="noopener noreferrer">
                   <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
-                </a>
+                </Link>
               </div>
               <div className={styles.characterInfo}>
                 <h3>{character['character']['name']}</h3>
@@ -59,9 +60,9 @@ export default function Characters({styles, anime, id}) {
           return (
             <div key={character['character']['name']} className={styles.characterCard}>
               <div className={styles.characterImgContainer}>
-                <a href={`/character/${character['character']['mal_id']}`}>
+                <Link to={`/character/${character['character']['mal_id']}`}>
                   <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
-                </a>
+                </Link>
               </div>
               <div className={styles.characterInfo}>
                 <h3>{character['character']['name']}</h3>
@@ -74,11 +75,11 @@ export default function Characters({styles, anime, id}) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [charactersData, allCharacters])
-  
+
   return (
     <div className={`${styles.charactersSection} characters`}>
       <h2 className={styles.sectionTitle}>Characters</h2>
-      {charactersData ? 
+      {charactersData && charactersData.length > 0 ? 
         <div className={styles.charactersContainer}>
           {characterCards}
         </div>

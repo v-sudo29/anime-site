@@ -1,21 +1,22 @@
 import React from 'react'
 import filterTitle from '../helpers/filterTitle'
 import styles from '../styles/components/AnimeListCard.module.css'
+import { Link } from 'react-router-dom'
 
 export default function AnimeListCard({anime, index, id}) {
   return (
     <div className={styles.card}>
       <div className={styles.ranking}>{index + 1}</div>
       <div className={styles.imgContainer}>
-        <a className={styles.imageLink} href={`/anime/${id}`}>
+        <Link className={styles.imageLink} to={`/anime/${id}`}>
           <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
-        </a>
+        </Link>
       </div>
       <div className={styles.info}>
         <div>
-          <a tabIndex={-1} href={`/anime/${id}`}>
+          <Link tabIndex={-1} to={`/anime/${id}`}>
             <h3 className={styles.title}>{anime['title_english'] === null ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-          </a>
+          </Link>
           <span className={styles.type}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>
         </div>
         <span className={styles.finishedDate}>

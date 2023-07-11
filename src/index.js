@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home/Home';
 import AnimeList from './pages/AnimeList/AnimeList';
 import AnimeDetail from './pages/AnimeDetail/AnimeDetail';
@@ -11,7 +11,7 @@ import './styles/global.css'
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>} />
@@ -21,7 +21,7 @@ function App() {
           <Route path='character/:id' element={<CharacterDetail/>} />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
