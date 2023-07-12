@@ -21,7 +21,7 @@ export default function TrendingCard({anime}) {
         <div className={styles.info}>
           <h3 className={styles.title}>{englishTitle ?? defaultTitle}</h3>
           <p className={styles.synopsis}>{limitCharacters(anime['synopsis'])}</p>
-          <ReadMoreBtn />
+          <ReadMoreBtn url={`/anime/${id}`}/>
         </div>
       </div> 
     </div>
