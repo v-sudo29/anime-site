@@ -20,6 +20,7 @@
 .image {
   width: 4rem;
   height: 6rem;
+  object-fit: cover;
   transform: scale(1.05);
 }
 
