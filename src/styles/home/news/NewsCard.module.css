@@ -18,6 +18,12 @@
   outline-offset: 0px;
 } 
 
+.image {
+  width: 12rem;
+  height: 18rem;
+  object-fit: cover;
+}
+
 .date {
   font-size: 0.9rem;
   margin-top: 0.5rem;
