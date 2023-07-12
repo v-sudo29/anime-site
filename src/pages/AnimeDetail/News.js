@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import imageOnError from '../../helpers/imageOnError.js'
+import NewsCard from './NewsCard.js'
 import styles from '../../styles/anime-detail/News.module.css'
 
 export default function News({id}) {
   const [newsInfo, setNewsInfo] = useState(null)
-  const [newsCards, setNewsCards] = useState(null)
 
+  // Sort articles by most recent date
   function sortByDate(data) {
     return data.sort((a, b) => {
       const dateA = new Date(a.date);
@@ -17,10 +17,7 @@ export default function News({id}) {
     })
   }
 
-  function convertDate(date) {
-    return new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
-
+  // Fetch news anime data
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -34,7 +31,7 @@ export default function News({id}) {
             if (response.ok) return response.json()
             throw response
           })
-          .then(data => (setNewsInfo((data.data))))
+          .then(data => (setNewsInfo(sortByDate(data.data))))
           .catch(() => {
             if (signal.aborted) {
               console.log('The user aborted the request')
@@ -49,38 +46,19 @@ export default function News({id}) {
     }
   }, [id])
 
-  useEffect(() => {
-    if (newsInfo) setNewsInfo(prev => sortByDate(prev))
-  }, [newsInfo])
-
-  useEffect(() => {
-    if (newsInfo && newsInfo.length > 0) {
-      // eslint-disable-next-line array-callback-return
-      setNewsCards(newsInfo.map((article, index) => {
-        if (index < 4) {
-          const filteredDate = convertDate(article.date)
-          return (
-            <div key={article['title'] + index} className={styles.newsCard}>
-              <div className={styles.newsImgContainer}>
-                <a className={styles.anchorContainer} href={article['url']} target="_blank" rel="noopener noreferrer">
-                  <img 
-                    onError={imageOnError}
-                    className={styles.newsImg} 
-                    src={article['images']['jpg']['image_url']} 
-                    alt="" />
-                </a>
-              </div>    
-              <div className={styles.newsDate}>{filteredDate}</div>
-              <a href={article['url']} target="_blank" rel="noopener noreferrer">
-                <div className={styles.newsName}>{article['title']}</div>
-              </a>
-            </div>
-          )
-        } return null
-      }))
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newsInfo])
+  const newsCards = (newsInfo && newsInfo.length > 0) ? 
+    newsInfo.map((article, index) => {
+      if (index < 4) {
+        return (
+          <NewsCard 
+            key={article['title'] + index}
+            styles={styles}
+            article={article}
+            index={index}
+          />
+        )
+      } return null
+    }) : null
 
   return (
     <div className={`${styles.newsContainer} news`}>

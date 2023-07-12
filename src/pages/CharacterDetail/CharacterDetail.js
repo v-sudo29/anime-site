@@ -10,7 +10,7 @@ import LoaderAnimation from '../../components/LoaderAnimation'
 export default function CharacterDetail() {
   const params = useParams()
   const [character, setCharacter] = useState(null)
-console.log(character)
+
   useEffect(() => {
     if (!character) {
       fetch(`https://api.jikan.moe/v4/characters/${params.id}/full`)

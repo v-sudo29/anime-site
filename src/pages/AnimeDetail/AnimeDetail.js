@@ -18,17 +18,17 @@ function AnimeDetail() {
   const params = useParams()
   const {anime, animeLoading, animeError} = useFetchAnime()
   const [mainIdsType, setMainIdsType] = useState([])
-  const [spinoffIds, setSpinOffIds] = useState([])
+  const [spinOffIds, setSpinOffIds] = useState([])
   const [count, setCount] = useState(null)
   const [countUpdated, setCountUpdated] = useState(false)
 
   // Update count states
   useEffect(() => {
-    if (mainIdsType && spinoffIds) {
-      setCount(mainIdsType.length + spinoffIds.length)
+    if (mainIdsType && spinOffIds) {
+      setCount(mainIdsType.length + spinOffIds.length)
       setCountUpdated(true)
     }
-  }, [mainIdsType, spinoffIds])
+  }, [mainIdsType, spinOffIds])
 
   if (animeLoading) return <LoaderAnimation/>
   if (animeError) return <FetchError/>
@@ -44,7 +44,7 @@ function AnimeDetail() {
           <RelatedAnime 
             anime={anime}
             mainIdsType={mainIdsType}
-            spinoffIds={spinoffIds}
+            spinOffIds={spinOffIds}
             setMainIdsType={setMainIdsType}
             setSpinOffIds={setSpinOffIds}
           />

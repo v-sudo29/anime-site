@@ -2,16 +2,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function CharacterCard({styles, character}) {
+  const id = character['character']['mal_id']
+  const imgSrc = character['character']['images']['jpg']['image_url']
+  const charName = character['character']['name']
+  const voiceActors = character['voice_actors']
+
   return (
     <div className={styles.characterCard}>
       <div className={styles.characterImgContainer}>
-        <Link to={`/character/${character['character']['mal_id']}`} target="_blank" rel="noopener noreferrer">
-          <img className={styles.characterImg} src={character['character']['images']['jpg']['image_url']} alt="" />
+        <Link to={`/character/${id}`} target="_blank" rel="noopener noreferrer">
+          <img className={styles.characterImg} src={imgSrc} alt={charName} />
         </Link>
       </div>
       <div className={styles.characterInfo}>
-        <h3>{character['character']['name']}</h3>
-        <div className={styles.voiceActor}>{character['voice_actors'].map(voiceActor => voiceActor['language'] === 'Japanese' ? voiceActor['person']['name'] : null)}</div>
+        <h3>{charName}</h3>
+        <div className={styles.voiceActor}>{
+          voiceActors.map(voiceActor => voiceActor['language'] === 'Japanese' && voiceActor['person']['name'])}
+        </div>
         <div className={styles.characterType}>{character['role']}</div>
       </div>
     </div>

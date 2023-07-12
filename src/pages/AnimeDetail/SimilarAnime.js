@@ -1,62 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import useFetchSimilar from '../../hooks/useFetchSimilar'
+import SimilarCard from './SimilarCard.js'
 import styles from '../../styles/anime-detail/SimilarAnime.module.css'
 
 export default function SimilarAnime({id}) {
-  const [similarData, setSimilarData] = useState(null)
-  const [similarCards, setSimilarCards] = useState(null)
+  const { similarData } = useFetchSimilar(id)
+  let similarCards = []
 
-  // Fetch recommendations data
-  useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
-
-    const timer = setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations`, {
-        signal: signal
-      })
-        .then(response => {
-          if (response.ok) return response.json()
-          throw response
-        })
-        .then(data => setSimilarData(data.data))
-        .catch(() => {
-          if (signal.aborted) {
-            console.log('The user aborted the request')
-          } else {
-            console.error('The request failed')
-          }
-        })
-    }, 2500)
-    return () => {
-      clearTimeout(timer)
-      controller.abort()
-    }
-  }, [id])
-
-  useEffect(() => {
-    if (similarData && similarData.length > 0) {
-      setSimilarCards(similarData.map((anime, index) => {
-        if (index < 4) {
-          return (
-            <div key={anime['entry']['title']} className={styles.similarCard}>
-              <a className={styles.anchorContainer} href={`/anime/${anime['entry']['mal_id']}`}>
-                <img className={styles.similarImg} src={anime['entry']['images']['jpg']['large_image_url']} alt=""/>
-              </a>
-              <a href={`/anime/${anime['entry']['mal_id']}`}>
-                <div className={styles.similarName}>{anime['entry']['title']}</div>
-              </a>
-            </div>
-          )
-        } return null
-      }))
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [similarData])
+  if (similarData && similarData.length > 0) similarCards = similarData.map((anime, index) => 
+    (index < 4) &&
+      <SimilarCard
+        key={anime['entry']['title']}
+        styles={styles}
+        anime={anime}
+      />
+  )
 
   return (
     <div className={styles.similarContainer}>
       <h2 className={styles.sectionTitle}>Similar Anime</h2>
-      {similarCards ? 
+      {similarCards.length > 0 ? 
         <div className={styles.similarCardsContainer}>
           {similarCards}
         </div>
