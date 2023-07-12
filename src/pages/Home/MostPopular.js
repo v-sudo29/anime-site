@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useNavigate } from 'react'
 import AnimeListCard from '../../components/AnimeListCard'
 import styles from '../../styles/home/popular/MostPopular.module.css'
 
 export default function MostPopular({popularData}) {
+  const navigate = useNavigate()
   const [popularCards, setPopularCards] = useState(null)
-  
-  const handleClick = () => window.location.href='/anime-list'
+  const handleClick = () => navigate('/anime-list')
 
   useEffect(() => {
     if (popularData) setPopularCards(popularData.map((anime, index) => {
