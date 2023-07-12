@@ -26,7 +26,8 @@ export default function Stats({styles, character}) {
     // Extract birthday
     if (aboutInfo.includes('Birthday')) {
       birthday = aboutInfo.split('Birthday: ')[1].split('\n')[0].split(',')[0]
-    } else if (aboutInfo.includes('Birthdate')) {
+    } 
+    if (aboutInfo.includes('Birthdate')) {
       birthday = aboutInfo.split('Birthdate: ')[1].split('\n')[0].split(',')[0]
     }
     
