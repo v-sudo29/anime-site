@@ -19,7 +19,6 @@ export default function CharacterDetail() {
           setCharacter(data.data)
           document.title = `${data.data['name']}`
         })
-      
     }
   }, [character, params.id])
 

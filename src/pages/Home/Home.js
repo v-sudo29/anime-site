@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
@@ -13,30 +13,20 @@ import FetchError from '../../components/FetchError'
 import styles from '../../styles/home/Home.module.css'
 
 function Home() {
-  const [newsCards, setNewsCards] = useState(null)
   const { newsData, newsError, newsLoading } = useFetchNews()
   const { trendingData, trendingError, trendingLoading } = useFetchTrending()
   const { upcomingData, upcomingError, upcomingLoading } = useFetchUpcoming()
   const { popularData, popularError, popularLoading } = useFetchPopular()
+  let newsCards = null
 
-  // Set newsCards from newsData
-  useEffect(() => {
-    if (newsData) {
-      setNewsCards(newsData.map((news, index) => {
-        if (news.image === 'doesn\'t exist!') {
-          return null
-        }
-        if (index < 5) {
-          return (
-            <NewsCard
-              key={news.title}
-              news={news}
-            />
-          )
-        } return null
-      }))
-    }
-  }, [newsData])
+  if (newsData) newsCards = newsData.map((news, index) => 
+    (index < 5) &&
+      <NewsCard
+        key={news.title}
+        news={news}
+      />
+  )
+
   document.title = 'Anime Site: Home'
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
@@ -49,23 +39,13 @@ function Home() {
         <>
           <div className={styles.heroImage}></div>
           <div className={styles.content}>
-            <LatestNews
-              newsData={newsData}
-              newsCards={newsCards}
-            />
-            <TrendingCarousel
-              trendingData={trendingData}
-            />
-            <Upcoming 
-              upcomingData={upcomingData}
-            />
-            <MostPopular 
-              popularData={popularData}
-            />
+            <LatestNews newsData={newsData} newsCards={newsCards}/>
+            <TrendingCarousel trendingData={trendingData}/>
+            <Upcoming upcomingData={upcomingData}/>
+            <MostPopular popularData={popularData}/>
           </div>     
         </>
         }    
-
     </div>
   )
 }

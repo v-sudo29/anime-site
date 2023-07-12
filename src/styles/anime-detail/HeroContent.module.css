@@ -22,15 +22,19 @@
 }
 
 .imgContainer {
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
   border-radius: 0.5rem;
+  height: 17rem;
+  width: 13rem;
+  overflow: hidden;
 }
 
 .animeImg {
   height: 17rem;
   width: 13rem;
   transform: scale(1.05);
+  object-fit: cover;
 }
 
 .animeScore {

@@ -34,14 +34,19 @@
 }
 
 .imgContainer {
-  position: relative;
+  display: flex;
+  justify-content: center;
   border-radius: 0.5rem;
+  height: 17rem;
+  width: 13rem;
   overflow: hidden;
 }
 
 .characterImg {
   height: 17rem;
+  width: 13rem;
   transform: scale(1.05);
+  object-fit: cover;
 }
 
 .nameAndRole {
@@ -138,7 +143,9 @@
 
 .vaImg {
   width: 10rem;
+  height: 10rem;
   transform: scale(1.02);
+  object-fit: cover;
 } 
 
 .vaLanguage {

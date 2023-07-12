@@ -6,9 +6,9 @@ import CharacterCard from './CharacterCard'
 export default function Characters({anime, id}) {
   const { charactersData } = useFetchCharacters(anime, id)
   const [allCharacters, setAllCharacters] = useState(false)
-  let testCards = null
+  let characterCards = null
 
-  if (charactersData && !allCharacters) testCards = charactersData.map((character, index) => 
+  if (charactersData && !allCharacters) characterCards = charactersData.map((character, index) => 
     (index < 12 && 
       <CharacterCard 
         key={character['character']['name']}
@@ -17,7 +17,7 @@ export default function Characters({anime, id}) {
       /> 
     ))
 
-  if (charactersData && allCharacters) testCards = charactersData.map(character => (
+  if (charactersData && allCharacters) characterCards = charactersData.map(character => (
     <CharacterCard
       key={character['character']['name']}
       styles={styles} 
@@ -30,7 +30,7 @@ export default function Characters({anime, id}) {
       <h2 className={styles.sectionTitle}>Characters</h2>
       {charactersData && charactersData.length > 0 ? 
         <div className={styles.charactersContainer}>
-          {testCards}
+          {characterCards}
         </div>
       : <p className={styles.defaultText}>No characters available.</p>
       }

@@ -5,7 +5,6 @@ import formatYesterdayDate from '../../helpers/formatYesterdayDate.js'
 import limitCharacters from '../../helpers/limitCharacters'
 
 export default function NewsCard({news}) {
-
   return (
     <div className={styles.newsCard}>
       <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">

@@ -15,7 +15,7 @@ export default function LatestNews({newsCards}) {
         </Link>
       </div>
       <div className={styles.cardsContainer}>
-        {newsCards ? newsCards : <div className={styles.defaultDiv}></div> }
+        { newsCards ?? <div className={styles.defaultDiv}></div> }
       </div>
     </section>
   )

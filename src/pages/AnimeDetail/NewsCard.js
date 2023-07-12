@@ -1,9 +1,8 @@
 import React from 'react'
 import imageOnError from '../../helpers/imageOnError'
 
-
-export default function NewsCard({styles, article, index}) {
-
+export default function NewsCard({styles, article}) {
+  
   function convertDate(date) {
     return new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
   }

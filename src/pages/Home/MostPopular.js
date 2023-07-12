@@ -1,27 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import AnimeListCard from '../../components/AnimeListCard'
 import styles from '../../styles/home/popular/MostPopular.module.css'
 
 export default function MostPopular({popularData}) {
   const navigate = useNavigate()
-  const [popularCards, setPopularCards] = useState(null)
+  let popularCards = null
+
   const handleClick = () => navigate('/anime-list')
 
-  useEffect(() => {
-    if (popularData) setPopularCards(popularData.map((anime, index) => {
-      return (
-        <AnimeListCard 
-          key={`${anime['mal_id']}-popular`}
-          anime={anime}
-          index={index}
-          cardType='popular'
-          id={anime['mal_id']}
-        />
-      )
-    }))
-  }, [popularData])
-
+  if (popularData) popularCards = popularData.map((anime, index) =>
+    <AnimeListCard 
+      key={`${anime['mal_id']}-popular`}
+      anime={anime}
+      index={index}
+      cardType='popular'
+      id={anime['mal_id']}
+    />
+  )
+  
   return (
     <div className={styles.container}>
       <h2>Top 100 Most Popular Anime</h2>
