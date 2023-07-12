@@ -142,21 +142,21 @@ export default function Stats({styles, character}) {
     <>
     {stats &&
       <div className={styles.statsContainer}>
-        <div className={styles.age}>Age <span>{stats.age ? stats.age : '-'}</span> </div>
-        <div className={styles.birthday}>Birthday <span>{stats.birthday ? stats.birthday : '-'}</span> </div>
-        <div className={styles.height}>Height <span>{stats.height ? stats.height : '-'}</span> </div>
-        <div className={styles.weight}>Weight <span>{stats.weight ? stats.weight : '-'}</span> </div>
+        <div className={styles.age}>Age <p>{stats.age ? stats.age : '-'}</p> </div>
+        <div className={styles.birthday}>Birthday <p>{stats.birthday ? stats.birthday : '-'}</p> </div>
+        <div className={styles.height}>Height <p>{stats.height ? stats.height : '-'}</p> </div>
+        <div className={styles.weight}>Weight <p>{stats.weight ? stats.weight : '-'}</p> </div>
 
         {/* Display one fact if only one fact exists */}
         {stats.factOne && !stats.factTwo ?
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<span>{stats.factOne[Object.keys(stats.factOne)]}</span></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[Object.keys(stats.factOne)]}</p></div>
         : null}
         
         {/* Display two facts if two facts exist */}
         {stats.factOne && stats.factTwo ? 
         <>
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<span>{stats.factOne[Object.keys(stats.factOne)]}</span></div>
-          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<span>{stats.factTwo[Object.keys(stats.factTwo)]}</span></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[Object.keys(stats.factOne)]}</p></div>
+          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<p>{stats.factTwo[Object.keys(stats.factTwo)]}</p></div>
         </>
         : null}
       </div>}
