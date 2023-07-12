@@ -10,10 +10,19 @@
   width: 13rem;
 }
 
-.producerImg {
+.anchorContainer {
+  display: flex;
+  justify-content: center;
   height: 13rem;
   width: 13rem;
   border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.producerImg {
+  height: 13rem;
+  width: 13rem;
+  object-fit: cover;
 }
 
 .producerType {

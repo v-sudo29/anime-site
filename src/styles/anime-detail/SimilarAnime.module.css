@@ -10,10 +10,19 @@
   height: var(--vertical-card-height);
 }
 
-.similarImg {
+.anchorContainer {
+  display: flex;
+  justify-content: center;
   width: var(--vertical-img-width);
   height: var(--vertical-img-height);
   border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.similarImg {
+  width: var(--vertical-img-width);
+  height: var(--vertical-img-height);
+  object-fit: cover;
 }
 
 .similarName {

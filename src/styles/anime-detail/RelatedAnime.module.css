@@ -21,10 +21,19 @@
   height: var(--vertical-card-height);
 }
 
+.anchorContainer {
+  display: flex;
+  justify-content: center;
+  height: var(--vertical-img-height);
+  width: var(--vertical-card-width);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
 .mainImg {
   width: var(--vertical-img-width);
   height: var(--vertical-img-height);
-  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 .mainType {

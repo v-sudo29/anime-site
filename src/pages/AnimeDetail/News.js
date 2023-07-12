@@ -62,7 +62,7 @@ export default function News({id}) {
           return (
             <div key={article['title'] + index} className={styles.newsCard}>
               <div className={styles.newsImgContainer}>
-                <a href={article['url']} target="_blank" rel="noopener noreferrer">
+                <a className={styles.anchorContainer} href={article['url']} target="_blank" rel="noopener noreferrer">
                   <img 
                     onError={imageOnError}
                     className={styles.newsImg} 

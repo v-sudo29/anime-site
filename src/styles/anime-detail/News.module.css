@@ -11,15 +11,19 @@
 }
 
 .newsImgContainer {
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: var(--vertical-img-width);
+  height: var(--vertical-img-height);
   border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .newsImg {
   width: var(--vertical-img-width);
   height: var(--vertical-img-height);
   transform: scale(1.05);
-  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 .newsDate {

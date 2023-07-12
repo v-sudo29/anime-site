@@ -116,7 +116,7 @@ export default function RelatedAnime({
       setMainCards(mainInfo.map(anime => {
         return (
           <div key={anime.name} className={styles.mainCard}>
-            <a href={`/anime/${anime.id}`}>
+            <a className={styles.anchorContainer} href={`/anime/${anime.id}`}>
               <img className={styles.mainImg} src={anime.image} alt="" />
             </a>
             <div className={styles.mainType}>{anime.type}</div>

@@ -66,7 +66,7 @@ export default function StudioProducers({anime, count, countUpdated}) {
       setCards(producersInfo.map(producer => {
         return (
           <div key={producer.name} className={styles.producerCard}>
-            <a href={producer.url} target="_blank" rel="noopener noreferrer">
+            <a className={styles.anchorContainer} href={producer.url} target="_blank" rel="noopener noreferrer">
               <img className={styles.producerImg} src={producer.image} alt="" />
             </a>
             <div className={styles.producerType}>{producer.type}</div>

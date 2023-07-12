@@ -39,7 +39,7 @@ export default function SimilarAnime({id}) {
         if (index < 4) {
           return (
             <div key={anime['entry']['title']} className={styles.similarCard}>
-              <a href={`/anime/${anime['entry']['mal_id']}`}>
+              <a className={styles.anchorContainer} href={`/anime/${anime['entry']['mal_id']}`}>
                 <img className={styles.similarImg} src={anime['entry']['images']['jpg']['large_image_url']} alt=""/>
               </a>
               <a href={`/anime/${anime['entry']['mal_id']}`}>
