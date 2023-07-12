@@ -9,7 +9,7 @@
   font-weight: 500;
 }
 
-.statsContainer > div > div {
+.statsContainer > div > p {
   margin-top: 0.5rem;
   font-weight: 300;
 }

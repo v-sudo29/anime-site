@@ -11,14 +11,24 @@ export default function Stats({anime}) {
     return {startDate, endDate}
   }
 
+  function uppercaseFirstLetters(string) {
+    const arr = string.split(' ')
+
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i][0].toUpperCase() + arr[i].substr(1)
+    }
+    const newString = arr.join(' ')
+    return newString
+  }
+
   return (
     <div className={styles.statsContainer}>
-      <div>Status <div>{anime.airing ? 'Airing' : 'Finished Airing'}</div> </div>
-      <div>Episodes <div>{anime.episodes ? anime.episodes : '-'}</div> </div>
-      <div>Episode Duration <div>{anime.duration}</div> </div>
-      <div>Start Date <div>{splitDates(anime['aired']['string'])['startDate']}</div> </div>
-      <div>End <div>{splitDates(anime['aired']['string'])['endDate'] === '?' || !splitDates(anime['aired']['string'])['endDate'] ? '-' : splitDates(anime['aired']['string'])['endDate']}</div> </div>
-      <div>Format <div>{anime.type}</div> </div>
+      <div>Status <p>{uppercaseFirstLetters(anime.status)}</p> </div>
+      <div>Episodes <p>{anime.episodes ?? '-'}</p> </div>
+      <div>Episode Duration <p>{anime.duration}</p> </div>
+      <div>Start Date <p>{splitDates(anime['aired']['string'])['startDate']}</p> </div>
+      <div>End <p>{splitDates(anime['aired']['string'])['endDate'] === '?' || !splitDates(anime['aired']['string'])['endDate'] ? '-' : splitDates(anime['aired']['string'])['endDate']}</p> </div>
+      <div>Format <p>{anime.type}</p> </div>
     </div>
   )
 }
