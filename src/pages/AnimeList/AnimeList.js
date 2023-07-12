@@ -6,7 +6,6 @@ import styles from '../../styles/anime-list/AnimeList.module.css'
 
 function AnimeList() {
   const [animeData, setAnimeData] = useState(null)
-  const [animeCards, setAnimeCards] = useState(null)
   const [genresShown, setGenresShown]= useState(false)
   const [genresSelected, setGenresSelected] = useState([])
   const [topFilter, setTopFilter] = useState('Most Popular')
@@ -14,7 +13,6 @@ function AnimeList() {
   const [resultsType, setResultsType] = useState('filter')
   const [pageCount, setPageCount] = useState(2)
   const inputValue = useRef(null)
-  const runOnce = useRef(false)
 
   document.title = 'Anime Site: Anime List'
 
@@ -36,10 +34,7 @@ function AnimeList() {
 
   // Set default data
   useEffect(() => {
-    if (!animeData && !runOnce.current) {
-      fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
-      runOnce.current = true
-    } 
+    if (!animeData) fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -60,9 +55,7 @@ function AnimeList() {
         />
         <SearchResults
           animeData={animeData}
-          animeCards={animeCards}
           setAnimeData={setAnimeData}
-          setAnimeCards={setAnimeCards}
           fetchData={fetchData}
           topFilter={topFilter}
           setTopFilter={setTopFilter}

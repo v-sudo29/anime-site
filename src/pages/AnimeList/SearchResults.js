@@ -9,8 +9,6 @@ import genresToIds from '../../helpers/genresToIds';
 
 export default function SearchResults({
   animeData, 
-  animeCards, 
-  setAnimeCards,
   setAnimeData,
   fetchData,
   topFilter,
@@ -26,6 +24,7 @@ export default function SearchResults({
   genresSelected,
   }) {
   const runOnce = useRef(false)
+  let animeCards = null
 
   // Fetch and add new data to current data
   async function fetchAndAdd(url) {
@@ -60,23 +59,6 @@ export default function SearchResults({
     if (topFilter === 'Top Movies') fetchAndAdd(url.movieInfinite + pageCount)
   }
 
-  // Update cards when fetch data changes
-  useEffect(() => {
-    if (animeData) {
-      setAnimeCards(animeData.map((anime, index) => {
-        return (
-          <AnimeListCard 
-            key={`${anime['mal_id']}-animeList`}
-            anime={anime}
-            index={index}
-            id={anime['mal_id']}
-          />
-        )
-      }))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animeData])
-
   // Fetch and set new data when topFilter changes
   useEffect(() => {
     if (!runOnce.current) {
@@ -92,6 +74,15 @@ export default function SearchResults({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topFilter])
+
+  if (animeData) animeCards = animeData.map((anime, index) => 
+    <AnimeListCard 
+      key={`${anime['mal_id']}-animeList`}
+      anime={anime}
+      index={index}
+      id={anime['mal_id']}
+    />
+  )
 
   return (
       <div className={styles.container}>

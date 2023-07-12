@@ -42,9 +42,11 @@ export default function SearchAndGenres({
     // Convert genres to mal_id's
     const idsArr = genresToIds(genresSelected)
     const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
-    const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
-    
-    fetchData(searchUrl)
+    if (searchParameter === '' && stringifiedGenres === '') fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
+    else {
+      const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
+      fetchData(searchUrl)
+    }
   }
 
   function handleGenreTagClick(e) {
