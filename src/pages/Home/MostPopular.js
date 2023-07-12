@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useNavigate } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import AnimeListCard from '../../components/AnimeListCard'
 import styles from '../../styles/home/popular/MostPopular.module.css'
 
