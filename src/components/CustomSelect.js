@@ -3,16 +3,15 @@ import CarrotDown from '../icons/CarrotDown'
 import styles from '../styles/components/CustomSelect.module.css'
 import carrotStyles from '../styles/icons/CarrotDown.module.css'
 
-const { carrotActive } = carrotStyles
-
 export default function CustomSelect({ setTopFilter, resetPageCount }) {
   const allOptions = useRef(null)
   const selected = useRef(null)
   const selectMenuHidden = useRef(true)
   const [selectedCard, setSelectedCard] = useState(null)
   const [optionsCards, setOptionsCards] = useState(null)
+  const { carrotActive } = carrotStyles
 
-  // Function animate carrot icon
+  // Animate carrot icon
   function animateCarrotIcon() {
     const carrotIcon = document.querySelector('.filter-carrot-container svg')
 
@@ -20,7 +19,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
       carrotIcon.classList.add(`${carrotActive}`)
   }
 
-  // Function set optionCards to hidden
+  // Set optionCards to hidden
   function hideOptions() {
     setOptionsCards(allOptions.current.map(option => {
       return (
@@ -40,7 +39,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
     animateCarrotIcon()
   }
 
-  // Function set optionCards to shown
+  // Set optionCards to shown
   function showOptions() {
     setOptionsCards(allOptions.current.map(option => {
       return (
@@ -61,81 +60,80 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
     animateCarrotIcon()
   }
 
-// Function that updates the selected item if option clicked
-function updateSelectedItem(e) {
-  const selectItem = e.target.innerHTML
+  // Update the selected item if option clicked
+  function updateSelectedItem(e) {
+    const selectItem = e.target.innerHTML
 
-  // Set selectedCard and selected ref
-  setSelectedCard(() => {  
-    return (
-      <div 
-        className={`${styles['selectedOption']}`}
-        onClick={openSelectMenu}
-        tabIndex='0'
-        onKeyDown={(e) => handleKeyPressed(e)}
-      >
-        {selectItem}
-        <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
-          <CarrotDown   
-            // onClick={(e) => openSelectMenu(e)}
-            hidden={selectMenuHidden.current}
-          />
+    // Set selectedCard and selected ref
+    setSelectedCard(() => {  
+      return (
+        <div 
+          className={`${styles['selectedOption']}`}
+          onClick={openSelectMenu}
+          tabIndex='0'
+          onKeyDown={(e) => handleKeyPressed(e)}
+        >
+          {selectItem}
+          <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
+            <CarrotDown   
+              hidden={selectMenuHidden.current}
+            />
+          </div>
         </div>
-      </div>
-    )
-  })
-  selected.current = selectItem
-  setTopFilter(selected.current)
-  resetPageCount()
-  selectMenuHidden.current = true
+      )
+    })
+    selected.current = selectItem
+    setTopFilter(selected.current)
+    resetPageCount()
+    selectMenuHidden.current = true
 
-  // Update selected-option (marked by hover color) in OptionCards
-  setOptionsCards(allOptions.current.map(option => {
-    return (
-      <div
-        tabIndex='0' 
-        key={`${option}-hidden`} 
-        className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
-        onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
-      >
-        {option}
-      </div>
-    )
-  }))
-  
-  // Animate carrot icon
-  animateCarrotIcon()
-}
-
-// Function that opens select menu when selected item is clicked
-function openSelectMenu(e) {
-  e.stopPropagation()
-  selectMenuHidden.current && allOptions.current ? showOptions() : hideOptions()
-}
-
-// Function closes select menu if user clicks outside of select container
-function closeSelectMenu(e) {
-  if (!e.target.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
-    hideOptions()
+    // Update selected-option (marked by hover color) in OptionCards
+    setOptionsCards(allOptions.current.map(option => {
+      return (
+        <div
+          tabIndex='0' 
+          key={`${option}-hidden`} 
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
+          onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
+        >
+          {option}
+        </div>
+      )
+    }))
+    
+    // Animate carrot icon
+    animateCarrotIcon()
   }
-}
 
-// Function lets user go through options with up and down key
-function handleKeyPressed(e) {
-  const key = e.key
-  const optionSelected = e.target.innerText
-  const correctElement = e.target.classList.contains(`${styles['selectedOption']}`)
-
-  if (key === 'Enter' && correctElement) {
-    showOptions()
-  } else if (key === 'Enter' && !correctElement && selected.current !== optionSelected){
-    updateSelectedItem(e)
-    hideOptions()
+  // Open select menu when select container is clicked
+  function openSelectMenu(e) {
+    e.stopPropagation()
+    selectMenuHidden.current && allOptions.current ? showOptions() : hideOptions()
   }
-}
 
-useEffect(() => {
-  if (!selectedCard) {
+  // Closes select menu if user clicks outside of select container
+  function closeSelectMenu(e) {
+    if (!e.target.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
+      hideOptions()
+    }
+  }
+
+  // Allow user to go through options with up and down key
+  function handleKeyPressed(e) {
+    const key = e.key
+    const optionSelected = e.target.innerText
+    const correctElement = e.target.classList.contains(`${styles['selectedOption']}`)
+
+    if (key === 'Enter' && correctElement) {
+      showOptions()
+    } else if (key === 'Enter' && !correctElement && selected.current !== optionSelected){
+      updateSelectedItem(e)
+      hideOptions()
+    }
+  }
+
+  // Set default options
+  function setDefaultOptions() {
 
     // Find custom-select container, first option, other options
     const selectElement = document.querySelector(`.${styles['container']} select`)
@@ -183,11 +181,14 @@ useEffect(() => {
     allOptions.current = optionsArr
   }
 
-  document.addEventListener('click', closeSelectMenu)
-  return () => document.removeEventListener('click', closeSelectMenu)
+  // Set default select option to first option at first render
+  useEffect(() => {
+    if (!selectedCard) setDefaultOptions()
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+    document.addEventListener('click', closeSelectMenu)
+    return () => document.removeEventListener('click', closeSelectMenu)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles['container']}>
