@@ -5,8 +5,7 @@ import styles from '../../styles/anime-list/SearchAndGenres.module.css'
 import carrotStyles from '../../styles/icons/CarrotDown.module.css'
 import { genresMasterList } from './genresMasterList'
 import genresToIds from '../../helpers/genresToIds'
-
-const { carrotActive } = carrotStyles
+import SearchBtn from '../../components/SearchBtn'
 
 export default function SearchAndGenres({
   genresShown,
@@ -18,6 +17,8 @@ export default function SearchAndGenres({
   genresSelected,
   fetchData
 }) {
+  const { carrotActive } = carrotStyles
+
   function animateCarrot() {
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
 
@@ -78,18 +79,11 @@ export default function SearchAndGenres({
           inputValue={inputValue}
           handleEnter={handleEnter}
         />
-        <div className={styles.searchBtnContainer}>
-          <button 
-            className={styles.searchBtn}
-            type="button"
-            onClick={() => {
-                resetPageCount()
-                handleGenresSearch()
-              }
-            }
-            >Search
-          </button>
-        </div>
+        <SearchBtn 
+          styles={styles}
+          resetPageCount={resetPageCount}
+          handleGenresSearch={handleGenresSearch}
+        />
         <button onClick={(e) => toggleGenres(e)} className={styles.genresBtn} type="button">
           Genres
           <div className={styles.carrotContainer}>
@@ -98,20 +92,21 @@ export default function SearchAndGenres({
         </button>
       </div>
       {genresShown ?
-      <div className={styles.genreTagsContainer}>
-        {genresMasterList.map(genre => {
-          return (
-            <button 
-              key={genre['mal_id']} 
-              className={styles.genreTag}
-              type="button"
-              onClick={(e) => handleGenreTagClick(e)}
-            >{genre.name}
-            </button>
-          )
-        })}
-      </div>
+        <div className={styles.genreTagsContainer}>
+          {genresMasterList.map(genre => {
+            return (
+              <button 
+                key={genre['mal_id']} 
+                className={styles.genreTag}
+                type="button"
+                onClick={(e) => handleGenreTagClick(e)}
+              >{genre.name}
+              </button>
+            )
+          })}
+        </div>
       : null}
+      
     </div>
   )
 }

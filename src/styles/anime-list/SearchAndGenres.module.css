@@ -12,9 +12,10 @@
 }
 
 .searchBtnContainer {
-  position: absolute;
-  top: 19.9rem;
-  margin-left: 50.8rem;
+  position: relative;
+  margin-left: -4.4rem;
+  right: 1rem;
+  top: 0.9rem;
 }
 
 .searchBtn {
