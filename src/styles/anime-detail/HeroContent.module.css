@@ -38,9 +38,10 @@
 }
 
 .animeScore {
-  position: absolute;
-  right: 0.6rem;
-  top: 14rem;
+  position: relative;
+  margin-right: -2.5rem;
+  right: 3.2rem;
+  top: 13.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
