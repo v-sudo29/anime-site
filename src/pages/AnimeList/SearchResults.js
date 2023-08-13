@@ -21,7 +21,7 @@ export default function SearchResults({
   resultsType,
   setResultsType,
   inputValue,
-  genresSelected,
+  genreContainerRef
   }) {
   const runOnce = useRef(false)
   let animeCards = null
@@ -42,16 +42,27 @@ export default function SearchResults({
   function loadMoreGenresAnime() {
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
+    // Get selected genres into an array
+    const genreContainerExists = genreContainerRef.current ? true : false
+    const buttonElementsArr = genreContainerExists ? [...genreContainerRef.current.children]
+      : []
+    const selectedGenres = []
+
+    if (genreContainerExists) buttonElementsArr.forEach(button => {
+      const list = button.classList
+      if (list.value.includes('active')) selectedGenres.push(button.innerText)
+    })
+
     // Convert genres to mal_id's
-    const idsArr = genresToIds(genresSelected)
-    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+    const idsArr = genresToIds(selectedGenres)
+    const stringifiedGenres = selectedGenres.length > 0 ? idsArr.join(',') : ''
     const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=${pageCount}`
     
     fetchAndAdd(searchUrl)
   }
 
   // Fetch and set additional data for infinite scroll
-  async function loadMoreAnime() {
+  async function loadMoreFilterAnime() {
     if (topFilter === 'Most Popular') fetchAndAdd(url.popularInfinite + pageCount)
     if (topFilter === 'Top Trending') fetchAndAdd(url.trendingInfinite + pageCount)
     if (topFilter === 'Top Upcoming') fetchAndAdd(url.upcomingInfinite + pageCount)
@@ -94,7 +105,7 @@ export default function SearchResults({
         <div className={styles.cardsContainer}> 
           <InfiniteScroll 
             dataLength={animeCards ? animeCards.length : null}
-            next={resultsType === 'filter' ? loadMoreAnime : loadMoreGenresAnime}
+            next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
             hasMore={thereIsMore}
           >
             {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}

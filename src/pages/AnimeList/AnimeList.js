@@ -7,7 +7,6 @@ import styles from '../../styles/anime-list/AnimeList.module.css'
 function AnimeList() {
   const [animeData, setAnimeData] = useState(null)
   const [genresShown, setGenresShown]= useState(false)
-  const [genresSelected, setGenresSelected] = useState([])
   const [topFilter, setTopFilter] = useState('Most Popular')
   const [thereIsMore, setThereIsMore] = useState(true)
   const [resultsType, setResultsType] = useState('filter')
@@ -65,7 +64,7 @@ function AnimeList() {
           resultsType={resultsType}
           setResultsType={setResultsType}
           inputValue={inputValue}
-          genresSelected={genresSelected}
+          genreContainerRef={genreContainerRef}
         />
       </div> : <LoaderAnimation/>}
     </div>
