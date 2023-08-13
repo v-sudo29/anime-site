@@ -21,7 +21,7 @@ export default function SearchResults({
   resultsType,
   setResultsType,
   inputValue,
-  genreContainerRef
+  genresContainerRef
   }) {
   const runOnce = useRef(false)
   let animeCards = null
@@ -43,8 +43,8 @@ export default function SearchResults({
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
-    const genreContainerExists = genreContainerRef.current ? true : false
-    const buttonElementsArr = genreContainerExists ? [...genreContainerRef.current.children]
+    const genreContainerExists = genresContainerRef.current ? true : false
+    const buttonElementsArr = genreContainerExists ? [...genresContainerRef.current.children]
       : []
     const selectedGenres = []
 

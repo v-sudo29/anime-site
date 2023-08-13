@@ -1,11 +1,10 @@
 import React from 'react'
-import SearchBar from '../../components/SearchBar'
-import CarrotDown from '../../icons/CarrotDown'
 import styles from '../../styles/anime-list/SearchAndGenres.module.css'
 import carrotStyles from '../../styles/icons/CarrotDown.module.css'
 import { genresMasterList } from './genresMasterList'
 import genresToIds from '../../helpers/genresToIds'
-import SearchBtn from '../../components/SearchBtn'
+import SearchBarAndToggle from './SearchBarToggle'
+import GenresMenu from './GenresMenu'
 
 export default function SearchAndGenres({
   genresShown,
@@ -14,11 +13,10 @@ export default function SearchAndGenres({
   resetPageCount,
   setResultsType,
   fetchData,
-  genreContainerRef
+  genresContainerRef
 }) {
-  const { carrotActive } = carrotStyles
-
   function animateCarrot() {
+    const { carrotActive } = carrotStyles
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
 
     !svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive) :
@@ -42,8 +40,8 @@ export default function SearchAndGenres({
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
-    const genreContainerExists = genreContainerRef.current ? true : false
-    const buttonElementsArr = genreContainerExists ? [...genreContainerRef.current.children]
+    const genreContainerExists = genresContainerRef.current ? true : false
+    const buttonElementsArr = genreContainerExists ? [...genresContainerRef.current.children]
       : []
     const selectedGenres = []
 
@@ -73,40 +71,22 @@ export default function SearchAndGenres({
 
   return (
   <div className={styles.container}>
-      <div className={styles.searchAndBtnContainer}>
-        <SearchBar
-          placeholder={'Search for anime'}
-          inputValue={inputValue}
-          handleEnter={handleEnter}
-        />
-        <SearchBtn 
+      <SearchBarAndToggle
+        styles={styles}
+        inputValue={inputValue}
+        handleEnter={handleEnter}
+        resetPageCount={resetPageCount}
+        handleGenresSearch={handleGenresSearch}
+        toggleGenres={toggleGenres}
+      />
+      {genresShown ? (
+        <GenresMenu
+          genreContainerRef={genresContainerRef}
           styles={styles}
-          resetPageCount={resetPageCount}
-          handleGenresSearch={handleGenresSearch}
+          genresMasterList={genresMasterList}
+          handleGenreTagClick={handleGenreTagClick}
         />
-        <button onClick={(e) => toggleGenres(e)} className={styles.genresBtn} type="button">
-          Genres
-          <div className={styles.carrotContainer}>
-            <CarrotDown />
-          </div>
-        </button>
-      </div>
-      {genresShown ?
-        <div ref={genreContainerRef} className={styles.genreTagsContainer}>
-          {genresMasterList.map(genre => {
-            return (
-              <button 
-                key={genre['mal_id']} 
-                className={styles.genreTag}
-                type="button"
-                onClick={(e) => handleGenreTagClick(e)}
-              >{genre.name}
-              </button>
-            )
-          })}
-        </div>
-      : null}
-      
+      ) : null}
     </div>
   )
 }

@@ -12,7 +12,7 @@ function AnimeList() {
   const [resultsType, setResultsType] = useState('filter')
   const [pageCount, setPageCount] = useState(2)
   const inputValue = useRef(null)
-  const genreContainerRef = useRef(null)
+  const genresContainerRef = useRef(null)
 
   // Reset pageCount
   function resetPageCount() {
@@ -48,7 +48,7 @@ function AnimeList() {
           resetPageCount={resetPageCount}
           setResultsType={setResultsType}
           fetchData={fetchData}
-          genreContainerRef={genreContainerRef}
+          genresContainerRef={genresContainerRef}
         />
         <SearchResults
           animeData={animeData}
@@ -64,7 +64,7 @@ function AnimeList() {
           resultsType={resultsType}
           setResultsType={setResultsType}
           inputValue={inputValue}
-          genreContainerRef={genreContainerRef}
+          genresContainerRef={genresContainerRef}
         />
       </div> : <LoaderAnimation/>}
     </div>
