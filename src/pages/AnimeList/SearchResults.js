@@ -61,9 +61,7 @@ export default function SearchResults({
 
   // Fetch and set new data when topFilter changes
   useEffect(() => {
-    if (!runOnce.current) {
-      runOnce.current = true
-    } 
+    if (!runOnce.current) runOnce.current = true
     else {
       setResultsType('filter')
       if (topFilter === 'Most Popular') fetchData(url.popular)
@@ -77,7 +75,7 @@ export default function SearchResults({
 
   if (animeData) animeCards = animeData.map((anime, index) => 
     <AnimeListCard 
-      key={`${anime['mal_id']}-animeList`}
+      key={`${anime['mal_id']}-animeList-${index}`}
       anime={anime}
       index={index}
       id={anime['mal_id']}

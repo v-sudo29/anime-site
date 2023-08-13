@@ -10,12 +10,11 @@ import SearchBtn from '../../components/SearchBtn'
 export default function SearchAndGenres({
   genresShown,
   setGenresShown,
-  setGenresSelected,
   inputValue,
   resetPageCount,
   setResultsType,
-  genresSelected,
-  fetchData
+  fetchData,
+  genreContainerRef
 }) {
   const { carrotActive } = carrotStyles
 
@@ -38,11 +37,25 @@ export default function SearchAndGenres({
 
   function handleGenresSearch() {
     setResultsType('search bar')
+
+    // Get search parameter as string
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
+    // Get selected genres into an array
+    const genreContainerExists = genreContainerRef.current ? true : false
+    const buttonElementsArr = genreContainerExists ? [...genreContainerRef.current.children]
+      : []
+    const selectedGenres = []
+
+    buttonElementsArr.forEach(button => {
+      const list = button.classList
+      if (list.value.includes('active')) selectedGenres.push(button.innerText)
+    })
+
     // Convert genres to mal_id's
-    const idsArr = genresToIds(genresSelected)
-    const stringifiedGenres = genresSelected.length > 0 ? idsArr.join(',') : ''
+    const idsArr = genresToIds(selectedGenres)
+    const stringifiedGenres = selectedGenres.length > 0 ? idsArr.join(',') : ''
+
     if (searchParameter === '' && stringifiedGenres === '') fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
     else {
       const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
@@ -51,24 +64,11 @@ export default function SearchAndGenres({
   }
 
   function handleGenreTagClick(e) {
-    const genreName = e.target.innerHTML
+    const genreBtnElement = e.target
 
     // Style genre tag if active/inactive
-    !e.target.classList.contains(`${styles.active}`) ? e.target.classList.add(`${styles.active}`) : 
-      e.target.classList.remove(`${styles.active}`)
-
-    // Add or remove genre from state array
-    setGenresSelected(prevGenres => {
-      const genreExists = prevGenres.find(genre => genre === genreName)
-      const newArr = [...prevGenres]
-      if (genreExists) {
-        newArr.pop(genreName)
-        return newArr
-      } else {
-        newArr.push(genreName)
-        return newArr
-      }
-    })
+    !genreBtnElement.classList.contains(`${styles.active}`) ? genreBtnElement.classList.add(`${styles.active}`) : 
+      genreBtnElement.classList.remove(`${styles.active}`)
   }
 
   return (
@@ -92,7 +92,7 @@ export default function SearchAndGenres({
         </button>
       </div>
       {genresShown ?
-        <div className={styles.genreTagsContainer}>
+        <div ref={genreContainerRef} className={styles.genreTagsContainer}>
           {genresMasterList.map(genre => {
             return (
               <button 

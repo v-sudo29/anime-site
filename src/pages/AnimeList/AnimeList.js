@@ -13,8 +13,7 @@ function AnimeList() {
   const [resultsType, setResultsType] = useState('filter')
   const [pageCount, setPageCount] = useState(2)
   const inputValue = useRef(null)
-
-  document.title = 'Anime Site: Anime List'
+  const genreContainerRef = useRef(null)
 
   // Reset pageCount
   function resetPageCount() {
@@ -35,8 +34,8 @@ function AnimeList() {
   // Set default data
   useEffect(() => {
     if (!animeData) fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    document.title = 'Anime Site: Anime List'
+  }, [animeData])
 
   return (
     <div className={styles.container}>
@@ -46,12 +45,11 @@ function AnimeList() {
         <SearchAndGenres
           genresShown={genresShown}
           setGenresShown={setGenresShown}
-          setGenresSelected={setGenresSelected}
           inputValue={inputValue}
           resetPageCount={resetPageCount}
           setResultsType={setResultsType}
-          genresSelected={genresSelected}
           fetchData={fetchData}
+          genreContainerRef={genreContainerRef}
         />
         <SearchResults
           animeData={animeData}
