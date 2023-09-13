@@ -18,12 +18,16 @@ function AnimeList() {
   const genresContainerRef = useRef(null)
 
   // Reset pageCount
-  const resetPageCount = () => {
-    setPageCount(2)
+  const resetPageCount = () => setPageCount(2)
+
+  // Fetch and set default popular anime data
+  const fetchDefaultPopular = async () => {
+    setAnimeData(popularData.data)
+    popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
   }
 
   // Fetch and set new anime data
-  const fetchData = async (url) => {
+  const fetchNewData = async (url) => {
     try {
       const res = await fetch(url)
       const data = await res.json()
@@ -35,31 +39,30 @@ function AnimeList() {
 
   // Set default data on load
   useEffect(() => {
-    if (!animeData && popularData) {
-      setAnimeData(popularData.data)
-      popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
-     }
+    if (!animeData && popularData) fetchDefaultPopular()
     document.title = 'Anime Site: Anime List'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popularData, animeData])
 
   return (
     <div className={styles.container}>
       {animeData ?
       <div className={styles.content}>
-        <div className={styles.heroImageContainer}></div>
+        {/* <div className={styles.heroImageContainer}></div> */}
         <SearchAndGenres
           genresShown={genresShown}
           setGenresShown={setGenresShown}
           inputValue={inputValue}
           resetPageCount={resetPageCount}
           setResultsType={setResultsType}
-          fetchData={fetchData}
+          fetchDefaultPopular={fetchDefaultPopular}
           genresContainerRef={genresContainerRef}
+          fetchNewData={fetchNewData}
         />
         <SearchResults
           animeData={animeData}
           setAnimeData={setAnimeData}
-          fetchData={fetchData}
+          fetchNewData={fetchNewData}
           topFilter={topFilter}
           setTopFilter={setTopFilter}
           thereIsMore={thereIsMore}

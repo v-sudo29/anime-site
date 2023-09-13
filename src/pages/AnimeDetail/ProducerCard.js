@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function ProducerCard({styles, producer}) {
+export default function ProducerCard({ anime, styles, producer }) {
   return (
-    <div key={producer.name} className={styles.producerCard}>
+    <div key={`${producer.name}-${anime}`} className={styles.producerCard}>
       <a className={styles.anchorContainer} href={producer.url} target="_blank" rel="noopener noreferrer">
         <img className={styles.producerImg} src={producer.image} alt="" />
       </a>

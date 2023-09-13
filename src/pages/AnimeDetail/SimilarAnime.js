@@ -3,14 +3,14 @@ import useFetchSimilar from '../../hooks/useFetchSimilar'
 import SimilarCard from './SimilarCard.js'
 import styles from '../../styles/anime-detail/SimilarAnime.module.css'
 
-export default function SimilarAnime({id}) {
+export default function SimilarAnime({ id }) {
   const { similarData } = useFetchSimilar(id)
   let similarCards = []
 
   if (similarData && similarData.length > 0) similarCards = similarData.map((anime, index) => 
     (index < 4) &&
       <SimilarCard
-        key={anime['entry']['title']}
+        key={`${id}-${anime['entry']['title']}`}
         styles={styles}
         anime={anime}
       />

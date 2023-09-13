@@ -3,7 +3,7 @@ import useFetchProducers from '../../hooks/useFetchProducers'
 import ProducerCard from './ProducerCard'
 import styles from '../../styles/anime-detail/StudioProducers.module.css'
 
-export default function StudioProducers({anime, count, countUpdated}) {
+export default function StudioProducers({ anime, count, countUpdated }) {
   const [producerIdsType, setProducerIdsType] = useState(null)
   const { producersData } = useFetchProducers(producerIdsType, count, countUpdated)
   let producerCards = []
@@ -22,6 +22,7 @@ export default function StudioProducers({anime, count, countUpdated}) {
     producerCards = producersData.map(producer => (
       <ProducerCard
         key={producer.name}
+        anime={anime}
         styles={styles}
         producer={producer}
       />

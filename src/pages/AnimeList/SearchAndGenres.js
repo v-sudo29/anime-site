@@ -12,10 +12,11 @@ export default function SearchAndGenres({
   inputValue,
   resetPageCount,
   setResultsType,
-  fetchData,
-  genresContainerRef
+  fetchNewData,
+  fetchDefaultPopular,
+  genresContainerRef,
 }) {
-  function animateCarrot() {
+  const animateCarrot = () => {
     const { carrotActive } = carrotStyles
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
 
@@ -23,17 +24,16 @@ export default function SearchAndGenres({
       svgElement.classList.remove(carrotActive)
   }
 
-  function toggleGenres(e) {
+  const toggleGenres = (e) => {
     e.stopPropagation()
     setGenresShown(!genresShown)
     animateCarrot()
   }
 
-  function handleEnter(e) {
-    e.key === 'Enter' && handleGenresSearch()
-  }
+  const handleEnter = (e) => e.key === 'Enter' && handleGenresSearch()
 
-  function handleGenresSearch() {
+
+  const handleGenresSearch = () => {
     setResultsType('search bar')
 
     // Get search parameter as string
@@ -54,14 +54,14 @@ export default function SearchAndGenres({
     const idsArr = genresToIds(selectedGenres)
     const stringifiedGenres = selectedGenres.length > 0 ? idsArr.join(',') : ''
 
-    if (searchParameter === '' && stringifiedGenres === '') fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
+    if (searchParameter === '' && stringifiedGenres === '') fetchDefaultPopular()
     else {
       const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
-      fetchData(searchUrl)
+      fetchNewData(searchUrl)
     }
   }
 
-  function handleGenreTagClick(e) {
+  const handleGenreTagClick = (e) => {
     const genreBtnElement = e.target
 
     // Style genre tag if active/inactive
@@ -79,14 +79,14 @@ export default function SearchAndGenres({
         handleGenresSearch={handleGenresSearch}
         toggleGenres={toggleGenres}
       />
-      {genresShown ? (
+      {genresShown && (
         <GenresMenu
           genreContainerRef={genresContainerRef}
           styles={styles}
           genresMasterList={genresMasterList}
           handleGenreTagClick={handleGenreTagClick}
         />
-      ) : null}
+      )}
     </div>
   )
 }

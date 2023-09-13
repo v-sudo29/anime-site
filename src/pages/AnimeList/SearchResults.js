@@ -10,7 +10,7 @@ import genresToIds from '../../helpers/genresToIds';
 export default function SearchResults({
   animeData, 
   setAnimeData,
-  fetchData,
+  fetchNewData,
   topFilter,
   setTopFilter,
   thereIsMore,
@@ -27,7 +27,7 @@ export default function SearchResults({
   let animeCards = null
 
   // Fetch and add new data to current data
-  async function fetchAndAdd(url) {
+  const fetchAndAdd = async (url) => {
     try {
       const res = await fetch(url)
       const data = await res.json()
@@ -38,8 +38,8 @@ export default function SearchResults({
     } catch (error) {console.error(error)}
   }
 
-  // Handles genres search infinite scroll
-  function loadMoreGenresAnime() {
+  // Handles loading more anime for infinite scroll - genres search
+  const loadMoreGenresAnime = () => {
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
@@ -48,10 +48,13 @@ export default function SearchResults({
       : []
     const selectedGenres = []
 
-    if (genreContainerExists) buttonElementsArr.forEach(button => {
-      const list = button.classList
-      if (list.value.includes('active')) selectedGenres.push(button.innerText)
-    })
+    // Push active genres to selectedGenres state
+    if (genreContainerExists) {
+      buttonElementsArr.forEach(button => {
+        const list = button.classList
+        if (list.value.includes('active')) selectedGenres.push(button.innerText)
+      })
+    }
 
     // Convert genres to mal_id's
     const idsArr = genresToIds(selectedGenres)
@@ -62,7 +65,7 @@ export default function SearchResults({
   }
 
   // Fetch and set additional data for infinite scroll
-  async function loadMoreFilterAnime() {
+  const loadMoreFilterAnime = async () => {
     if (topFilter === 'Most Popular') fetchAndAdd(url.popularInfinite + pageCount)
     if (topFilter === 'Top Trending') fetchAndAdd(url.trendingInfinite + pageCount)
     if (topFilter === 'Top Upcoming') fetchAndAdd(url.upcomingInfinite + pageCount)
@@ -75,11 +78,11 @@ export default function SearchResults({
     if (!runOnce.current) runOnce.current = true
     else {
       setResultsType('filter')
-      if (topFilter === 'Most Popular') fetchData(url.popular)
-      else if (topFilter === 'Top Trending') fetchData(url.trending)
-      else if (topFilter === 'Top Upcoming') fetchData(url.upcoming)
-      else if (topFilter === 'Top TV Series') fetchData(url.tv)
-      else if (topFilter === 'Top Movies') fetchData(url.movie)
+      if (topFilter === 'Most Popular') fetchNewData(url.popular)
+      if (topFilter === 'Top Trending') fetchNewData(url.trending)
+      if (topFilter === 'Top Upcoming') fetchNewData(url.upcoming)
+      if (topFilter === 'Top TV Series') fetchNewData(url.tv)
+      if (topFilter === 'Top Movies') fetchNewData(url.movie)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topFilter])
