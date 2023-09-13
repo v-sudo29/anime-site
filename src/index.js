@@ -6,7 +6,7 @@ import AnimeList from './pages/AnimeList/AnimeList';
 import AnimeDetail from './pages/AnimeDetail/AnimeDetail';
 import News from './pages/News/News';
 import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
-import Layout from './components/Layout';
+import Layout from './layout/Layout';
 import { DefaultDataProvider } from './context/defaultDataContext';
 import './styles/global.css'
 
