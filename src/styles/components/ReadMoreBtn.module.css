@@ -11,3 +11,7 @@
 .link > img {
   height: 1rem;
 }
+
+.link > span {
+  color: var(--yellow-color);
+}

@@ -34,7 +34,7 @@ function AnimeDetail() {
   if (animeError) return <FetchError/>
   if (anime) return (
     <div className={`${styles.detailPage} overview`}>
-      <div className={styles.backgroundImg}></div>
+      {/* <div className={styles.backgroundImg}></div> */}
         <div className={styles.content}>
           <HeroContent anime={anime}/>
           <NavButtons />

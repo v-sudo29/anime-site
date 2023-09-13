@@ -84,6 +84,7 @@ body {
 /* Header nav links */
 header {
   padding: 2rem 1rem;
+  padding-bottom: 0rem;
 }
 
 nav {
