@@ -7,6 +7,7 @@ import AnimeDetail from './pages/AnimeDetail/AnimeDetail';
 import News from './pages/News/News';
 import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
 import Layout from './components/Layout';
+import { DefaultDataProvider } from './context/defaultDataContext';
 import './styles/global.css'
 
 function App() {
@@ -27,7 +28,10 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-    <App />
-  // </React.StrictMode> 
+  <DefaultDataProvider>
+    {/* <React.StrictMode> */}
+      <App />
+    {/* </React.StrictMode>  */}
+  </DefaultDataProvider>
+
 );
