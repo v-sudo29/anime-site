@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  padding: 0 1rem;
+  padding-bottom: 0rem;
+
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  color: var(--text-color);
+}
+
+.nav > a {
+  text-decoration: none;
+  padding: 0.2rem 0.5rem;
+}
+
+.nav > a:visited {
+  color: inherit;
+  text-decoration: none;
+  positon: relative;
+}
+
+.active-link:after {
+  content: ""; 
+  float: left;
+  background: var(--yellow-color);
+  width: 100%;
+  height: 0.13rem;
+  border-radius: 0.5rem;
+  margin-top: 0.1rem;
+}
