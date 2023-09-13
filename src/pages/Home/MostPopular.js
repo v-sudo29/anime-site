@@ -7,7 +7,7 @@ export default function MostPopular({popularData}) {
   const navigate = useNavigate()
   let popularCards = null
 
-  const handleClick = () => navigate('/anime-list')
+  const handleClick = () => navigate('anime-list')
 
   if (popularData) popularCards = popularData.data.map((anime, index) =>
     <AnimeListCard 

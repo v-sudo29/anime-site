@@ -17,3 +17,19 @@
   height: 20rem;
   width: 100%;
 }
+
+.moreNewsLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.moreNewsLink > img {
+  height: 1rem;
+}
+
+.moreNewsLink > span {
+  color: var(--yellow-color);
+}

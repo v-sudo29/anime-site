@@ -8,6 +8,7 @@ import News from './pages/News/News';
 import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
 import Layout from './layout/Layout';
 import { DefaultDataProvider } from './context/defaultDataContext';
+import ScrollToTop from './components/ScrollToTop';
 import './styles/global.css'
 
 function App() {
@@ -22,7 +23,6 @@ function App() {
               <Route path='character/:id' element={<CharacterDetail/>} />
             </Route>
         </Routes>
-      
     </BrowserRouter>
   )
 }
@@ -30,9 +30,9 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <DefaultDataProvider>
-{/* <React.StrictMode>  */}
-      <App />
- {/* </React.StrictMode>   */}
+  {/* <React.StrictMode>  */}
+      <App />      
+  {/* </React.StrictMode>   */}
   </DefaultDataProvider>
 
 

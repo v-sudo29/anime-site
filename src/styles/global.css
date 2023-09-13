@@ -114,36 +114,6 @@ nav > a:visited {
   margin-top: 0.1rem;
 }
 
-/* More News */
-.more-news-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1.2rem;
-}
-
-.more-news-link > img {
-  height: 1rem;
-}
-
-/* See More Btn */
-.see-more-btn {
-  all: unset;
-  display: block;
-  margin: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  cursor: pointer;
-  background-color: #616161;
-  padding: 1rem 5rem;
-  border-radius: 0.5rem;
-}
-
-.see-more-btn:focus-visible {
-  outline: 2px solid white;
-}
-
 /* Infinite scroll component */
 .infinite-scroll-component {
   display: flex;
