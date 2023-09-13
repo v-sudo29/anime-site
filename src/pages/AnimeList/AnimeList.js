@@ -3,6 +3,7 @@ import SearchAndGenres from './SearchAndGenres'
 import SearchResults from './SearchResults'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/anime-list/AnimeList.module.css'
+import { useDefaultData } from '../../context/defaultDataContext'
 
 function AnimeList() {
   const [animeData, setAnimeData] = useState(null)
@@ -11,16 +12,18 @@ function AnimeList() {
   const [thereIsMore, setThereIsMore] = useState(true)
   const [resultsType, setResultsType] = useState('filter')
   const [pageCount, setPageCount] = useState(2)
+  const { popularData } = useDefaultData()
+
   const inputValue = useRef(null)
   const genresContainerRef = useRef(null)
 
   // Reset pageCount
-  function resetPageCount() {
+  const resetPageCount = () => {
     setPageCount(2)
   }
 
-  // Fetch and set data
-  async function fetchData(url) {
+  // Fetch and set new anime data
+  const fetchData = async (url) => {
     try {
       const res = await fetch(url)
       const data = await res.json()
@@ -30,11 +33,14 @@ function AnimeList() {
     } catch (error) {console.error(error)}
   }
 
-  // Set default data
+  // Set default data on load
   useEffect(() => {
-    if (!animeData) fetchData('https://api.jikan.moe/v4/top/anime?filter=bypopularity')
+    if (!animeData && popularData) {
+      setAnimeData(popularData.data)
+      popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
+     }
     document.title = 'Anime Site: Anime List'
-  }, [animeData])
+  }, [popularData, animeData])
 
   return (
     <div className={styles.container}>

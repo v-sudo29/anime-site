@@ -38,9 +38,7 @@ function Home() {
   document.title = 'Anime Site: Home'
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
-
   if (trendingError || upcomingError || popularError || newsError) return <FetchError/>
-
   if (newsCards && trendingData && upcomingData && popularData) return (
     <div className={styles.container}>
       {(newsCards && trendingData) && 

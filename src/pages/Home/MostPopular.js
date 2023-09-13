@@ -9,7 +9,7 @@ export default function MostPopular({popularData}) {
 
   const handleClick = () => navigate('/anime-list')
 
-  if (popularData) popularCards = popularData.map((anime, index) =>
+  if (popularData) popularCards = popularData.data.map((anime, index) =>
     <AnimeListCard 
       key={`${anime['mal_id']}-popular`}
       anime={anime}
@@ -18,7 +18,7 @@ export default function MostPopular({popularData}) {
       id={anime['mal_id']}
     />
   )
-  
+
   return (
     <div className={styles.container}>
       <h2>Top 100 Most Popular Anime</h2>

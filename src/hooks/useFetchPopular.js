@@ -20,7 +20,7 @@ function useFetchPopular() {
             throw response
           })
           .then(data => {
-            setPopularData(data.data)
+            setPopularData(data)
           })
           .catch(() => {
             setPopularError(true)
