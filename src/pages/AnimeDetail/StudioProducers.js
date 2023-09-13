@@ -11,17 +11,23 @@ export default function StudioProducers({ anime, count, countUpdated }) {
   // Set studio and producer ids
   useEffect(() => {
     if (anime) 
-      setProducerIdsType(anime.studios.map(studio => ({id: studio['mal_id'], type: 'Studio'})))
+      setProducerIdsType(anime.studios.map(studio => ({
+        id: studio['mal_id'],
+        type: 'Studio' 
+      })))
       setProducerIdsType(prev => {
-        const prodIds = anime.producers.map(producer => ({id: producer['mal_id'], type: 'Producer'}))
+        const prodIds = anime.producers.map(producer => ({
+          id: producer['mal_id'],
+          type: 'Producer'
+        }))
         return [...prev, ...prodIds]
       })
   }, [anime])
 
   if (producersData && producersData.length > 0) 
-    producerCards = producersData.map(producer => (
+    producerCards = producersData.map((producer, index) => (
       <ProducerCard
-        key={producer.name}
+        key={`${producer.name}-${anime}-${index}`}
         anime={anime}
         styles={styles}
         producer={producer}

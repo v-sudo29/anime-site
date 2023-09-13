@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import useFetchTrending from "../hooks/useFetchTrending";
 import useFetchUpcoming from "../hooks/useFetchUpcoming";
 import useFetchPopular from "../hooks/useFetchPopular";
@@ -30,6 +30,18 @@ export const DefaultDataProvider = ({ children }) => {
     popularLoading,
     newsLoading
   }
+
+  // Check localStorage if there is already saved data
+  useEffect(() => {
+    const localDataExists = localStorage.getItem('defaultData') 
+    if (!localDataExists && trendingData && upcomingData && popularData && newsData) {
+      localStorage.setItem('defaultData', JSON.stringify({
+        trendingData, upcomingData, popularData, newsData
+      }))
+      console.log('local storage item set!')
+    }
+    return () => localStorage.clear('defaultData')
+  }, [trendingData, upcomingData, popularData, newsData])
 
   return (
     <DefaultDataContext.Provider value={valueObject}>

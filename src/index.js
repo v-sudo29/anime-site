@@ -13,15 +13,16 @@ import './styles/global.css'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-          <Route path='/' element={<Layout/>}>
-            <Route index element={<Home/>} />
-            <Route path='anime-list' element={<AnimeList/>} />
-            <Route path='anime/:id' element={<AnimeDetail/>} />
-            <Route path='news' element={<News/>} />
-            <Route path='character/:id' element={<CharacterDetail/>} />
-          </Route>
-      </Routes>
+        <Routes>
+            <Route path='/' element={<Layout/>}>
+              <Route index element={<Home/>} />
+              <Route path='anime-list' element={<AnimeList/>} />
+              <Route path='anime/:id' element={<AnimeDetail/>} />
+              <Route path='news' element={<News/>} />
+              <Route path='character/:id' element={<CharacterDetail/>} />
+            </Route>
+        </Routes>
+      
     </BrowserRouter>
   )
 }
@@ -29,9 +30,10 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <DefaultDataProvider>
-    {/* <React.StrictMode> */}
+{/* <React.StrictMode>  */}
       <App />
-    {/* </React.StrictMode>  */}
+ {/* </React.StrictMode>   */}
   </DefaultDataProvider>
+
 
 );

@@ -34,7 +34,7 @@ export default function useFetchMainSeries(mainIdsType) {
       } else {
           window.clearInterval(interval)
         }
-      }, 2500), 2500)
+      }, 3000), 3000)
       return () => {
         clearInterval(interval)
         controller.abort()

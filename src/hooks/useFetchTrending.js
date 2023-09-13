@@ -6,7 +6,9 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
   const [trendingError, setTrendingError] = useState(false)
 
   useEffect(() => {
-    if (!trendingData) {
+    const localDataExists = JSON.parse(localStorage.getItem('defaultData'))
+
+    if (!trendingData && !localDataExists) {
       const controller = new AbortController();
       const signal = controller.signal;
       setTrendingLoading(true)
@@ -35,6 +37,11 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
         controller.abort()
         clearTimeout(timer)
       }
+    }
+    else {
+      setTrendingLoading(true)
+      setTrendingData(localDataExists.trendingData)
+      setTrendingLoading(false)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [LIMIT_NUMBER])

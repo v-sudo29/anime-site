@@ -23,7 +23,7 @@ export default function useFetchSimilar(id) {
             console.error('The request failed')
           }
         })
-    }, 2500)
+    }, 3000)
     return () => {
       clearTimeout(timer)
       controller.abort()

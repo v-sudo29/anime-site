@@ -26,7 +26,7 @@ export default function useFetchCharacters(anime, id) {
                 setError(true)
               }
             })
-      }, 600)
+      }, 700)
       
       return () => {
         controller.abort()

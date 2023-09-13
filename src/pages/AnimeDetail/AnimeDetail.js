@@ -16,7 +16,7 @@ import FetchError from '../../components/FetchError'
 
 function AnimeDetail() {
   const params = useParams()
-  const {anime, animeLoading, animeError} = useFetchAnime()
+  const { anime, animeLoading, animeError } = useFetchAnime()
   const [mainIdsType, setMainIdsType] = useState([])
   const [spinOffIds, setSpinOffIds] = useState([])
   const [count, setCount] = useState(null)
