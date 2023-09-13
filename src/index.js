@@ -8,7 +8,6 @@ import News from './pages/News/News';
 import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
 import Layout from './layout/Layout';
 import { DefaultDataProvider } from './context/defaultDataContext';
-import ScrollToTop from './components/ScrollToTop';
 import './styles/global.css'
 
 function App() {

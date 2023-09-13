@@ -107,11 +107,12 @@ export default function SearchResults({
           />
         </div>
         <div className={styles.cardsContainer}>
-          {animeData ? 
+          {animeData ?
             <InfiniteScroll 
               dataLength={animeCards ? animeCards.length : null}
               next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
               hasMore={thereIsMore}
+              className={styles.infiniteScroll}
             >
               {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
             </InfiniteScroll>
