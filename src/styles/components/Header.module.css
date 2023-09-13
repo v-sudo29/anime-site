@@ -4,24 +4,24 @@
   padding-bottom: 0.2rem;
 }
 
-.nav {
+.navigation {
   display: flex;
   gap: 1rem;
   color: var(--text-color);
 }
 
-.nav > a {
+.navigation > a {
   text-decoration: none;
   padding: 0.2rem 0.5rem;
 }
 
-.nav > a:visited {
+.navigation > a:visited {
   color: inherit;
   text-decoration: none;
   positon: relative;
 }
 
-.active-link:after {
+.activeLink:after {
   content: ""; 
   float: left;
   background: var(--yellow-color);
