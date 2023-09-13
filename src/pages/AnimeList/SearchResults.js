@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from '../../styles/anime-list/SearchResults.module.css'
 import { url } from './urls'
 import genresToIds from '../../helpers/genresToIds';
+import LoaderAnimation from '../../components/LoaderAnimation';
 
 export default function SearchResults({
   animeData, 
@@ -105,14 +106,17 @@ export default function SearchResults({
             resetPageCount={resetPageCount}
           />
         </div>
-        <div className={styles.cardsContainer}> 
-          <InfiniteScroll 
-            dataLength={animeCards ? animeCards.length : null}
-            next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
-            hasMore={thereIsMore}
-          >
-            {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
-          </InfiniteScroll>
+        <div className={styles.cardsContainer}>
+          {animeData ? 
+            <InfiniteScroll 
+              dataLength={animeCards ? animeCards.length : null}
+              next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
+              hasMore={thereIsMore}
+            >
+              {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
+            </InfiniteScroll>
+          : <LoaderAnimation/>} 
+          
         </div>
       </div>
   )

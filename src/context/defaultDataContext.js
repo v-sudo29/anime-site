@@ -31,14 +31,16 @@ export const DefaultDataProvider = ({ children }) => {
     newsLoading
   }
 
-  // Check localStorage if there is already saved data
+  // Check localStorage if there is already saved data, if not then set localStorage
   useEffect(() => {
     const localDataExists = localStorage.getItem('defaultData') 
     if (!localDataExists && trendingData && upcomingData && popularData && newsData) {
       localStorage.setItem('defaultData', JSON.stringify({
-        trendingData, upcomingData, popularData, newsData
+        trendingData,
+        upcomingData,
+        popularData,
+        newsData
       }))
-      console.log('local storage item set!')
     }
     return () => localStorage.clear('defaultData')
   }, [trendingData, upcomingData, popularData, newsData])

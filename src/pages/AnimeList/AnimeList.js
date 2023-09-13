@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import SearchAndGenres from './SearchAndGenres'
 import SearchResults from './SearchResults'
-import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/anime-list/AnimeList.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
 
@@ -46,7 +45,6 @@ function AnimeList() {
 
   return (
     <div className={styles.container}>
-      {animeData ?
       <div className={styles.content}>
         {/* <div className={styles.heroImageContainer}></div> */}
         <SearchAndGenres
@@ -75,7 +73,7 @@ function AnimeList() {
           inputValue={inputValue}
           genresContainerRef={genresContainerRef}
         />
-      </div> : <LoaderAnimation/>}
+      </div> 
     </div>
   )
 }
