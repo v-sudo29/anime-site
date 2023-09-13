@@ -5,18 +5,16 @@ import { Link } from 'react-router-dom'
 
 export default function AnimeListCard({anime, index, id}) {
   return (
-    <div className={styles.card}>
+    <Link className={styles.card} to={`/anime/${id}`}>
       <span className={styles.ranking}>{index + 1}</span>
       <div className={styles.imgContainer}>
-        <Link className={styles.imageLink} to={`/anime/${id}`}>
-          <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={!anime['title_english'] ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
-        </Link>
+        <img className={styles.image} src={anime['images']['jpg']['large_image_url']} alt={!anime['title_english'] ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}/>
       </div>
       <div className={styles.info}>
         <div>
-          <Link tabIndex={-1} to={`/anime/${id}`}>
+          {/* <Link tabIndex={-1} to={`/anime/${id}`}> */}
             <h3 className={styles.title}>{!anime['title_english'] ? filterTitle(anime['title']) : filterTitle(anime['title_english'])}</h3>
-          </Link>
+          {/* </Link> */}
           <span className={styles.type}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>
         </div>
         <span className={styles.finishedDate}>
@@ -28,10 +26,10 @@ export default function AnimeListCard({anime, index, id}) {
       </div>
       <div className={styles.score}>
         {anime['score'] ? 
-          anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score'] :
-          '-'
+          anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) 
+          : anime['score'] : '-'
         }
       </div>
-    </div>
+    </Link>
   )
 }

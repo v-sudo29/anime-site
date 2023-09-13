@@ -26,7 +26,7 @@ export default function CharacterDetail() {
     <>
       {character ?
         <div className={styles.detailPage}>
-          <div className={styles.backgroundImg}></div>
+          {/* <div className={styles.backgroundImg}></div> */}
               <div className={styles.content}>
                   <HeroContent styles={styles} character={character}/>
                   <Stats styles={styles} character={character}/>

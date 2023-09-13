@@ -28,7 +28,7 @@ function News() {
     <div className={styles.container}>
       {newsData ? 
       <>
-        <div className={styles.backgroundImg}></div>
+        {/* <div className={styles.backgroundImg}></div> */}
         <div className={styles.content}>
           <HeroContent featuredData={newsData.featured}/>
           <TrendingContent newsData={newsData.news}/>
