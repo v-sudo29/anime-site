@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   width: 12rem;
+  gap: 1rem;
 } 
 
 .anchorContainer {
@@ -24,16 +25,20 @@
   object-fit: cover;
 }
 
+.titleAndDate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .date {
   font-size: 0.9rem;
-  margin-top: 0.5rem;
 }
 
 .title {
   font-size: 0.9rem;
   font-weight: 500;
   transition: var(--default-transition-time);
-  margin-top: 1rem;
 }
 
 .title:hover {

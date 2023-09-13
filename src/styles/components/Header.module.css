@@ -1,8 +1,7 @@
 .header {
   display: flex;
   padding: 0 1rem;
-  padding-bottom: 0rem;
-
+  padding-bottom: 0.2rem;
 }
 
 .nav {
