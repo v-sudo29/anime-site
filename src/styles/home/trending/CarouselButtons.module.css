@@ -26,3 +26,10 @@
   border-radius: 10rem;
   cursor: default;
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin-left: 0rem;
+    bottom: 0rem;
+  }
+}

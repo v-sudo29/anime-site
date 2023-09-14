@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useMobile } from '../context/mobileContext'
 
 function useFetchTrending(LIMIT_NUMBER = 6) {
   const [trendingData, setTrendingData] = useState(null)
   const [trendingLoading, setTrendingLoading] = useState(false)
   const [trendingError, setTrendingError] = useState(false)
+  const { isMobile } = useMobile()
 
   useEffect(() => {
     const localDataExists = JSON.parse(localStorage.getItem('defaultData'))
@@ -14,7 +16,7 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
       setTrendingLoading(true)
 
       const timer = setTimeout(() => {
-        const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
+        const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${!isMobile ? LIMIT_NUMBER : 4}`
   
           fetch(trendingURL, {signal: signal})
             .then(response => {
@@ -44,7 +46,7 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
       setTrendingLoading(false)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [LIMIT_NUMBER])
+  }, [LIMIT_NUMBER, isMobile])
 
   return { trendingData, trendingLoading, trendingError }
 }

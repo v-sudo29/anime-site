@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
+import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/trending/CarouselButtons.module.css'
 
 export default function CarouselButtons({currentIndex, setCurrentIndex}) {
   const parentContainer = useRef(null)
+  const { isMobile } = useMobile()
   
   async function switchAnime(e) {
     const currentButton = e.target
@@ -53,8 +55,13 @@ export default function CarouselButtons({currentIndex, setCurrentIndex}) {
       <button onClick={(e) => switchAnime(e)} className={`${styles.button} one`} type="button"></button>
       <button onClick={(e) => switchAnime(e)} className={`${styles.button} two`} type="button"></button>
       <button onClick={(e) => switchAnime(e)} className={`${styles.button} three`} type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className={`${styles.button} four`} type="button"></button>
-      <button onClick={(e) => switchAnime(e)} className={`${styles.button} five`} type="button"></button>
+      {!isMobile && (
+        <>
+          <button onClick={(e) => switchAnime(e)} className={`${styles.button} four`} type="button"></button>
+          <button onClick={(e) => switchAnime(e)} className={`${styles.button} five`} type="button"></button>        
+        </>
+      )}
+  
     </div>
   )
 }
