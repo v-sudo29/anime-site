@@ -8,13 +8,11 @@ export default function NewsCard({news}) {
   return (
     <div className={styles.newsCard}>
       <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-        <div className={styles.imageDiv}>
-          <img 
-            onError={imageOnError}
-            className={styles.image} 
-            src={`${news.image}`} alt="" 
-          />
-        </div>
+        <img 
+          onError={imageOnError}
+          className={styles.image} 
+          src={`${news.image}`} alt="" 
+        />
       </a>
       <div className={styles.titleAndDate}>
         <a href={news.url} className={styles.titleLink} target="_blank" rel="noopener noreferrer">
