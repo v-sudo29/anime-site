@@ -1,4 +1,4 @@
-import {useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 function useFetchUpcoming() {
   const [upcomingData, setUpcomingData] = useState(null)

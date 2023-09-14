@@ -1,17 +1,31 @@
 import React from 'react'
 import UpcomingCard from './UpcomingCard'
+import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/upcoming/Upcoming.module.css'
 
-export default function Upcoming({upcomingData}) {
+export default function Upcoming({ upcomingData }) {
+  const { isMobile } = useMobile()
   let upcomingCards = null
 
-  if (upcomingData) upcomingCards = upcomingData.map((anime, index) => 
-    index < 10 && 
-      <UpcomingCard
-        key={anime['mal_id']}
-        anime={anime}
-      />
-  )
+  if (upcomingData) upcomingCards = upcomingData.map((anime, index) => {
+    if (!isMobile && index < 10) {
+      return (
+        <UpcomingCard
+          key={anime['mal_id']}
+          anime={anime}
+        />
+      )
+    }
+    if (isMobile && index < 6) {
+      return (
+        <UpcomingCard
+          key={anime['mal_id']}
+          anime={anime}
+        />
+      )
+    } 
+    return null
+  })
 
   return (
     <section className={styles.container}>

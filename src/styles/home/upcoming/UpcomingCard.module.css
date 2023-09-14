@@ -3,11 +3,14 @@
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 2rem;
-  width: 12;
+  width: inherit;
 }
 
 .image {
   transform: scale(1.05);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
 }
 
 .anchorContainer {
@@ -34,8 +37,37 @@
   font-size: 1rem;
   font-weight: 500;
   transition: var(--default-transition-time);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
 .title:hover {
   color: var(--link-hover-color);
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    width: inherit;
+    height: 100%;
+    gap: 1rem;
+  }
+
+  .anchorContainer {
+    height: inherit;
+    width: inherit;
+  }
+
+  .title {
+    min-height: 2.5rem;
+    font-weight: 400;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines */
+    -webkit-box-orient: vertical;
+  }
 }

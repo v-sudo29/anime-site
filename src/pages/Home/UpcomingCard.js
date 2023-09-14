@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
-import filterTitle from '../../helpers/filterTitle'
 import styles from '../../styles/home/upcoming/UpcomingCard.module.css'
-import limitCharacters from '../../helpers/limitCharacters'
 
 export default function UpcomingCard({anime}) {
   const id = anime['mal_id']
   const imgSrc = anime['images']['jpg']['large_image_url']
-  const englishTitle= anime['title_english'] && limitCharacters(filterTitle(anime['title_english']), 19)
-  const defaultTitle = anime['title'] && limitCharacters(filterTitle(anime['title']), 19)
+  const englishTitle= anime['title_english']
+  const defaultTitle = anime['title']
 
   return (
     <div className={styles.card}>

@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   height: 18rem;
-  /* width: inherit; */
+  width: inherit;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 480px) {
   .newsCard {
-    gap: 0.8rem;
+    gap: 0.5rem;
   }
   .anchorContainer {
     height: inherit;
