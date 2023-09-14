@@ -11,15 +11,10 @@
   margin-bottom: 1rem;
 }
 
-/* Anime List Cards Container */
-.cardsContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Infinite Scroll Component */
+/* Infinite Scroll Component - Holds all cards*/
 .infiniteScroll {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 0.2rem;
 }

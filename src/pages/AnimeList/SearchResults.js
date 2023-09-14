@@ -106,7 +106,6 @@ export default function SearchResults({
             resetPageCount={resetPageCount}
           />
         </div>
-        <div className={styles.cardsContainer}>
           {animeData ?
             <InfiniteScroll 
               dataLength={animeCards ? animeCards.length : null}
@@ -117,8 +116,6 @@ export default function SearchResults({
               {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
             </InfiniteScroll>
           : <LoaderAnimation/>} 
-          
-        </div>
       </div>
   )
 }
