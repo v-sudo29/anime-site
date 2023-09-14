@@ -1,11 +1,10 @@
 .header {
-  display: flex;
-  padding: 0 1rem;
-  padding-bottom: 0.2rem;
+  width: 100%;
 }
 
 .navigation {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   color: var(--text-color);
 }
@@ -29,4 +28,10 @@
   height: 0.13rem;
   border-radius: 0.5rem;
   margin-top: 0.1rem;
+}
+
+@media screen and (max-width: 480px) {
+  .navigation {
+    justify-content: flex-start;
+  }
 }
