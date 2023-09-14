@@ -18,9 +18,14 @@ export default function AnimeListCard({anime, index, id}) {
           <span className={styles.type}>{anime['type'] === 'TV' ? 'TV Show' : anime['type']}</span>
         </div>
         <span className={styles.finishedDate}>
-          {anime['airing'] ? 'Airing' : 
-            anime['aired']['prop']['to']['year'] ? <>Finished &#x2022; {anime['aired']['prop']['to']['year']}</> :
-              <>Finished &#x2022; {anime['aired']['prop']['from']['year']}</>
+          {anime['status'] === 'Finished Airing' && 'Finished'}
+          {anime['status'] === 'Currently Airing' && 'Airing'}
+          {anime['status'] === 'Not yet aired' && 'Not Yet Aired'}
+
+            {anime['aired']['prop']['to']['year'] ? 
+              <>&nbsp;&#x2022; {anime['aired']['prop']['to']['year']}</> :
+              anime['aired']['prop']['from']['year'] ? <>&nbsp;&#x2022; {anime['aired']['prop']['from']['year']}</> :
+              <></>
             }
         </span>
       </div>
@@ -33,3 +38,7 @@ export default function AnimeListCard({anime, index, id}) {
     </Link>
   )
 }
+
+// Currently Airing
+// Not yet aired
+// Finished Airing

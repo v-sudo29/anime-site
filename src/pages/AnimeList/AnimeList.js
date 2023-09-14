@@ -36,6 +36,7 @@ function AnimeList() {
     } catch (error) {console.error(error)}
   }
 
+  console.log(animeData)
   // Set default data on load
   useEffect(() => {
     if (!animeData && popularData) fetchDefaultPopular()
