@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../styles/home/news/LatestNews.module.css'
 import yellowArrow from '../../assets/yellow-arrow-icon.png'
-export default function LatestNews({newsCards}) {
+export default function LatestNews({ newsCards }) {
 
   return (
     <section className={styles.container}>

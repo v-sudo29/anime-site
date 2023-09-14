@@ -1,8 +1,6 @@
 .newsCard {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: inherit;
   gap: 1rem;
 } 
 
@@ -10,7 +8,7 @@
   display: flex;
   justify-content: center;
   height: 18rem;
-  width: inherit;
+  /* width: inherit; */
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -43,4 +41,13 @@
 
 .title:hover {
   color: var(--link-hover-color);
+}
+
+@media screen and (max-width: 480px) {
+  .newsCard {
+    gap: 0.8rem;
+  }
+  .anchorContainer {
+    height: inherit;
+  }
 }

@@ -11,6 +11,8 @@
 
 .cardsContainer {
   display: grid;
+  height: 100%;
+  width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   gap: 0.7rem;
 }
@@ -35,4 +37,24 @@
 
 .moreNewsLink > span {
   color: var(--yellow-color);
+}
+
+@media screen and (min-width: 320px) and (max-width: 1000px) {
+  .container {
+    width: inherit;
+  }
+
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr))
+  }
+  
+  .moreNewsLink {
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .moreNewsLink > img {
+    height: 0.8rem
+  }
 }

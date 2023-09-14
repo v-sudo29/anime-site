@@ -22,3 +22,12 @@
   padding-bottom: var(--page-top-bottom-padding);
   max-width: var(--page-max-width);
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+  .content {
+    max-width: 100%;
+  }
+}

@@ -8,6 +8,7 @@ import News from './pages/News/News';
 import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
 import Layout from './layout/Layout';
 import { DefaultDataProvider } from './context/defaultDataContext';
+import MobileProvider from './context/mobileContext';
 import './styles/global.css'
 
 function App() {
@@ -28,11 +29,14 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <DefaultDataProvider>
-  {/* <React.StrictMode>  */}
-      <App />      
-  {/* </React.StrictMode>   */}
-  </DefaultDataProvider>
+  <MobileProvider>
+    <DefaultDataProvider>
+      {/* <React.StrictMode>  */}
+          <App />      
+      {/* </React.StrictMode>   */}
+      </DefaultDataProvider>
+  </MobileProvider>
+  
 
 
 );

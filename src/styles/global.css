@@ -23,6 +23,7 @@ html {
   --hover-color: rgb(13, 116, 220);
   --page-top-bottom-padding: 5rem;
   --page-max-width: 63rem;
+  --page-mobile-min-width: 20rem;
   --vertical-card-height: 25rem;
   --vertical-card-width: 15rem;
   --vertical-img-height: 20rem;
@@ -80,4 +81,17 @@ body {
 .errorText {
   margin-top: 8rem;
   font-weight: 400;
+}
+
+@media screen and (max-width: 480px) {
+  #root {
+    padding: 2rem 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
 }

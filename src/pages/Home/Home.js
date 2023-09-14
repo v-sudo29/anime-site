@@ -8,6 +8,7 @@ import NewsCard from './NewsCard'
 import FetchError from '../../components/FetchError'
 import styles from '../../styles/home/Home.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
+import { useMobile } from '../../context/mobileContext'
 
 function Home() {
   const {
@@ -25,15 +26,28 @@ function Home() {
     newsLoading
   } = useDefaultData()
 
+  const { isMobile } = useMobile()
   let newsCards = null
 
-  if (newsData) newsCards = newsData.map((news, index) => 
-    (index < 5) &&
-      <NewsCard
-        key={news.title}
-        news={news}
-      />
-  )
+  if (newsData) newsCards = newsData.map((news, index) => {
+    if (isMobile && index < 3) {
+      return (
+        <NewsCard
+          key={news.title}
+          news={news}
+        />
+      )
+    }
+    if (!isMobile && index < 5) {
+      return (
+        <NewsCard
+          key={news.title}
+          news={news}
+        />
+      )
+    }
+    return null  
+  })
 
   document.title = 'Anime Site: Home'
 
