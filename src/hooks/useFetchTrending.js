@@ -10,7 +10,7 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
   useEffect(() => {
     const localDataExists = JSON.parse(localStorage.getItem('defaultData'))
 
-    if (!trendingData && !localDataExists) {
+    if (!localDataExists && !trendingData) {
       const controller = new AbortController();
       const signal = controller.signal;
       setTrendingLoading(true)
@@ -40,7 +40,7 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
         clearTimeout(timer)
       }
     }
-    else {
+    else if (localDataExists && !trendingData){
       setTrendingLoading(true)
       setTrendingData(localDataExists.trendingData)
       setTrendingLoading(false)

@@ -34,3 +34,15 @@
 .seeMoreBtn:focus-visible {
   outline: 2px solid white;
 }
+
+@media screen and (max-width: 480px) {
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(4rem, 1fr));
+    grid-row-gap: 2rem;
+    grid-column-gap: 0.8rem;
+    height: 100%;
+    width: 100%;
+    margin-top: -1rem;
+  }
+}
