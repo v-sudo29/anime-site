@@ -3,6 +3,7 @@ import styles from '../../styles/home/news/NewsCard.module.css'
 import imageOnError from '../../helpers/imageOnError'
 import formatYesterdayDate from '../../helpers/formatYesterdayDate.js'
 import limitCharacters from '../../helpers/limitCharacters'
+import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
 
 export default function NewsCard({ news }) {
@@ -24,7 +25,9 @@ export default function NewsCard({ news }) {
         </a>
         )}
         <span className={styles.date}>
-          {news.date.includes('Yesterday') ? formatYesterdayDate() : news.date}
+          {(news.date.includes('hour') || news.date.includes('minute')) && getTodaysDate()}
+          {news.date.includes('Yesterday') && formatYesterdayDate()}
+
         </span>
       </div>
     </div>
