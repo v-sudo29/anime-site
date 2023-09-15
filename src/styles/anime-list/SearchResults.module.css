@@ -8,10 +8,9 @@
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
-/* Infinite Scroll Component - Holds all cards*/
+/* Infinite Scroll Component - Holds all cards */
 .infiniteScroll {
   display: flex;
   flex-direction: column;
