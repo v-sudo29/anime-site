@@ -1,13 +1,12 @@
 import React from 'react'
 
 export default function GenresMenu({
-  genresContainerRef,
   styles,
   genresMasterList,
-  handleGenreTagClick
+  handleGenreTagClick,
 }) {
   return (
-    <div ref={genresContainerRef} className={styles.genreTagsContainer}>
+    <div className={`${styles.genreTagsContainer} genreTagsContainer`}>
       {genresMasterList.map(genre => {
         return (
           <button 

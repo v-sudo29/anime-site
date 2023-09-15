@@ -23,7 +23,6 @@ export default function SearchResults({
   resultsType,
   setResultsType,
   inputValue,
-  genresContainerRef
   }) {
   const { isMobile } = useMobile()
   const runOnce = useRef(false)
@@ -46,13 +45,13 @@ export default function SearchResults({
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
-    const genreContainerExists = genresContainerRef.current ? true : false
-    const buttonElementsArr = genreContainerExists ? [...genresContainerRef.current.children]
+    const genresContainerExists = document.querySelector('.genreTagsContainer')
+    const buttonElementsArr = genresContainerExists ? [...genresContainerExists.children]
       : []
     const selectedGenres = []
 
     // Push active genres to selectedGenres state
-    if (genreContainerExists) {
+    if (genresContainerExists) {
       buttonElementsArr.forEach(button => {
         const list = button.classList
         if (list.value.includes('active')) selectedGenres.push(button.innerText)

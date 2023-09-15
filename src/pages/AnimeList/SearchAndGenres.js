@@ -13,8 +13,7 @@ export default function SearchAndGenres({
   resetPageCount,
   setResultsType,
   fetchNewData,
-  fetchDefaultPopular,
-  genresContainerRef,
+  fetchDefaultPopular
 }) {
   const animateCarrot = () => {
     const { carrotActive } = carrotStyles
@@ -32,16 +31,16 @@ export default function SearchAndGenres({
 
   const handleEnter = (e) => e.key === 'Enter' && handleGenresSearch()
 
-
   const handleGenresSearch = () => {
     setResultsType('search bar')
-
     // Get search parameter as string
     const searchParameter = inputValue.current.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
-    const genreContainerExists = genresContainerRef.current ? true : false
-    const buttonElementsArr = genreContainerExists ? [...genresContainerRef.current.children]
+    const genresContainerExists = document.querySelector('.genreTagsContainer')
+
+    // const genreContainerExists = genresContainerRef.current ? true : false
+    const buttonElementsArr = genresContainerExists ? [...genresContainerExists.children]
       : []
     const selectedGenres = []
 
@@ -53,7 +52,7 @@ export default function SearchAndGenres({
     // Convert genres to mal_id's
     const idsArr = genresToIds(selectedGenres)
     const stringifiedGenres = selectedGenres.length > 0 ? idsArr.join(',') : ''
-
+    // console.log({ idsArr, stringifiedGenres })
     if (searchParameter === '' && stringifiedGenres === '') fetchDefaultPopular()
     else {
       const searchUrl = `https://api.jikan.moe/v4/anime?type=tv&genres=${stringifiedGenres}&q=${searchParameter}&page=1`
@@ -81,7 +80,6 @@ export default function SearchAndGenres({
       />
       {genresShown && (
         <GenresMenu
-          genreContainerRef={genresContainerRef}
           styles={styles}
           genresMasterList={genresMasterList}
           handleGenreTagClick={handleGenreTagClick}

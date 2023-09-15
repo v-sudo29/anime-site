@@ -14,7 +14,6 @@ function AnimeList() {
   const { popularData } = useDefaultData()
 
   const inputValue = useRef(null)
-  const genresContainerRef = useRef(null)
 
   // Reset pageCount
   const resetPageCount = () => setPageCount(2)
@@ -43,10 +42,10 @@ function AnimeList() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popularData, animeData])
 
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {/* <div className={styles.heroImageContainer}></div> */}
         <SearchAndGenres
           genresShown={genresShown}
           setGenresShown={setGenresShown}
@@ -54,7 +53,6 @@ function AnimeList() {
           resetPageCount={resetPageCount}
           setResultsType={setResultsType}
           fetchDefaultPopular={fetchDefaultPopular}
-          genresContainerRef={genresContainerRef}
           fetchNewData={fetchNewData}
         />
         <SearchResults
@@ -71,7 +69,6 @@ function AnimeList() {
           resultsType={resultsType}
           setResultsType={setResultsType}
           inputValue={inputValue}
-          genresContainerRef={genresContainerRef}
         />
       </div> 
     </div>
