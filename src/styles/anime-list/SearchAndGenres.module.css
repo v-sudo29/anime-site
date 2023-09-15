@@ -86,3 +86,18 @@
 .active, .active:hover {
   background-color: #262626;
 }
+
+@media screen and (max-width: 480px) {
+  .genresBtn {
+    background-color: #4D4D4D;
+  }
+  
+  .genreTag {
+    padding: 1rem 0rem;
+  }
+
+  .genreTagsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(2.5rem, 1fr));
+  }
+}

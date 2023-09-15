@@ -2,7 +2,7 @@ import React from 'react'
 import SearchIcon from '../icons/SearchIcon'
 import styles from '../styles/components/SearchBar.module.css'
 
-export default function Search({placeholder, inputValue, handleEnter}) {
+export default function Search({ placeholder, inputValue, handleEnter }) {
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}>

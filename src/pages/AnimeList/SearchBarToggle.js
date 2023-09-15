@@ -2,6 +2,7 @@ import React from 'react'
 import Search from '../../components/Search'
 import SearchBtn from '../../components/SearchBtn'
 import CarrotDown from '../../icons/CarrotDown'
+import { useMobile } from '../../context/mobileContext'
 
 export default function SearchBarAndToggle({
   styles,
@@ -11,6 +12,8 @@ export default function SearchBarAndToggle({
   handleGenresSearch,
   toggleGenres
 }) {
+  const { isMobile } = useMobile()
+
   return (
     <div className={styles.searchAndBtnContainer}>
       <Search
@@ -18,14 +21,16 @@ export default function SearchBarAndToggle({
         inputValue={inputValue}
         handleEnter={handleEnter}
       />
-      <SearchBtn 
-        styles={styles}
-        resetPageCount={resetPageCount}
-        handleGenresSearch={handleGenresSearch}
-      />
+      {!isMobile && (
+        <SearchBtn 
+          styles={styles}
+          resetPageCount={resetPageCount}
+          handleGenresSearch={handleGenresSearch}
+        />
+      )}
       {/* GENRES MENU TOGGLE*/}
       <button onClick={(e) => toggleGenres(e)} className={styles.genresBtn} type="button">
-        Genres
+        {!isMobile && 'Genres'}
         <div className={styles.carrotContainer}>
           <CarrotDown />
         </div>

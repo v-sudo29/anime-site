@@ -32,3 +32,18 @@
 .searchBar:focus {
   outline: none;
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .searchBar {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .iconContainer > svg {
+    width: 1.4rem;
+  }
+}
