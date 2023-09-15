@@ -49,12 +49,11 @@ export default function TrendingCarousel({ trendingData }) {
               className={styles.slideshowSlider}
               style={{ transform: `translate3d(${-currentIndex * 100}%, 0, 0)` }}
             >
-              {trendingData.map(anime => (
-                <TrendingCard 
-                  key={anime['mal_id'] + '-trending'}
-                  anime={anime}
-                />
-              ))}
+              {trendingData.map((anime, index) => {
+                if (isMobile && index < 4) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
+                if (!isMobile && index < 6) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
+                return null
+              })}
             </div>
             {!isMobile && (
               <CarouselButtons 
