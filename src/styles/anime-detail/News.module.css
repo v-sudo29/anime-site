@@ -15,7 +15,7 @@
   justify-content: center;
   width: var(--vertical-img-width);
   height: var(--vertical-img-height);
-  border-radius: 0.5rem;
+  border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 

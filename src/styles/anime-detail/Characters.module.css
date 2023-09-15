@@ -22,7 +22,7 @@
 
 .characterImgContainer {
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: var(--card-border-radius);
   height: 14rem;
   width: 10rem;
 }
@@ -44,7 +44,7 @@
   font-size: 1rem;
   font-weight: 500;
   height: 1.5rem;
-  border-radius: 0.4rem;
+  border-radius: var(--card-border-radius);
   padding: 1.6rem 2.4rem;
   background-color: #686868;
   color: inherit;

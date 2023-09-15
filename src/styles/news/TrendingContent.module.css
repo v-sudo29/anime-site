@@ -20,7 +20,7 @@
   align-items: center;
   height: 20rem;
   width: inherit;
-  border-radius: 0.2rem;
+  border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 

@@ -9,7 +9,7 @@
   justify-content: center;
   height: 18rem;
   width: inherit;
-  border-radius: 0.5rem;
+  border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 
