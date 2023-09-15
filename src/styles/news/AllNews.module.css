@@ -20,7 +20,7 @@
 .anchorContainer {
   display: flex;
   justify-content: center;
-  height: 10rem;
+  height: inherit;
   width: 200px;
   border-radius: 0.2rem;
   overflow: hidden;
@@ -52,6 +52,44 @@
 
 @media screen and (max-width: 480px) {
   .container {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+  }
+  .anchorContainer {
+    width: inherit;
+    height: 100%;
+  }
+  .image {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .date {
+    font-size: 1rem;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
+  }
+  
 }
