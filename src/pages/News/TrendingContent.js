@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/news/TrendingContent.module.css'
+import formatYesterdayDate from '../../helpers/formatYesterdayDate'
+import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
 
 export default function TrendingContent({ newsData }) {
@@ -33,7 +35,12 @@ export default function TrendingContent({ newsData }) {
                 <img className={styles.image} src={news.image} alt="" />
               </a>
               <div className={styles.info}>
-                <div className={styles.date}>{news.date}</div>
+                <div className={styles.date}>
+                {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
+                  news.date.includes('Yesterday') ? formatYesterdayDate() :
+                  news.date
+                }
+                </div>
                 {!isMobile && (
                   <a href={news.url} target="_blank" rel="noopener noreferrer">
                     <h3 className={styles.title}>{news.title}</h3>

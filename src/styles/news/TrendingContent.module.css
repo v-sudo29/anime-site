@@ -59,13 +59,11 @@
   .container {
     width: 100%;
   }
-  .container > h2 {
-    margin-bottom: 1rem;
-  }
   .cardsContainer {
     display: grid;
     grid-template-columns: repeat(3, minmax(4rem, 1fr));
     gap: 0.8rem;
+    height: 100%;
   }
   .card {
     height: inherit;
@@ -74,11 +72,13 @@
   }
   .anchorContainer {
     height: inherit;
+    width: inherit;
     flex: 1;
   }
   .image {
     height: inherit;
     width: inherit;
-    transform: scale(1.10)
+    transform: scale(1.10);
+    object-fit: cover;
   }
 }

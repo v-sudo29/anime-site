@@ -25,8 +25,10 @@ export default function NewsCard({ news }) {
         </a>
         )}
         <span className={styles.date}>
-          {(news.date.includes('hour') || news.date.includes('minute')) && getTodaysDate()}
-          {news.date.includes('Yesterday') && formatYesterdayDate()}
+        {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
+          news.date.includes('Yesterday') ? formatYesterdayDate() :
+          news.date
+        }
         </span>
       </div>
     </div>
