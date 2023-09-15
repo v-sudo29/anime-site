@@ -21,7 +21,7 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
   cursor: pointer;
-  background-color: #F2F2F2;
+  background-color: var(--yellow-color);
   color: #111111;
   padding: 1rem 5rem;
   border-radius: 0.3rem;
