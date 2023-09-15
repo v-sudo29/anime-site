@@ -1,8 +1,11 @@
 import React from 'react'
 import ReadMoreBtn from '../../components/ReadMoreBtn'
 import styles from '../../styles/news/HeroContent.module.css'
+import { useMobile } from '../../context/mobileContext'
 
-export default function HeroContent({featuredData}) {
+export default function HeroContent({ featuredData }) {
+  const { isMobile } = useMobile()
+  
   if (featuredData) return (
     <div className={styles.container}>
       <a className={styles.anchorContainer} href={featuredData.url} target="_blank" rel="noopener noreferrer">
@@ -10,11 +13,21 @@ export default function HeroContent({featuredData}) {
       </a>
       <div className={styles.heroInfo}>
         <div className={styles.heroText}>
-          <div className={styles.date}>{featuredData.date}</div>
-          <h2 className={styles.title}>{featuredData.title}</h2>
+          {!isMobile && (
+            <>
+              <div className={styles.date}>{featuredData.date}</div>
+              <h2 className={styles.title}>{featuredData.title}</h2>  
+            </>
+          )}
+          {isMobile && (
+            <>
+              <h2 className={styles.title}>{featuredData.title}</h2>  
+              <div className={styles.date}>{featuredData.date}</div>
+            </>
+          )}
         </div>
         <div className={styles.moreBtnContainer}>
-          <ReadMoreBtn url={featuredData.url} />
+          {!isMobile && <ReadMoreBtn url={featuredData.url} />}
         </div>
       </div>
     </div>
