@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetchSimilar from '../../hooks/useFetchSimilar'
-import SimilarCard from './SimilarCard.js'
+import SimilarCard from './SimilarCard'
 import styles from '../../styles/anime-detail/SimilarAnime.module.css'
 
 export default function SimilarAnime({ id }) {

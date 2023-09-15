@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import NewsCard from './NewsCard.js'
+import NewsCard from './NewsCard'
 import styles from '../../styles/anime-detail/News.module.css'
 
 export default function News({id}) {
