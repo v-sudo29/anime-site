@@ -7,6 +7,7 @@ import styles from '../../styles/anime-list/SearchResults.module.css'
 import { url } from './urls'
 import genresToIds from '../../helpers/genresToIds';
 import LoaderAnimation from '../../components/LoaderAnimation';
+import { useMobile } from '../../context/mobileContext';
 
 export default function SearchResults({
   animeData, 
@@ -24,6 +25,7 @@ export default function SearchResults({
   inputValue,
   genresContainerRef
   }) {
+  const { isMobile } = useMobile()
   const runOnce = useRef(false)
   let animeCards = null
 
@@ -100,11 +102,13 @@ export default function SearchResults({
   return (
       <div className={styles.container}>
         <div className={styles.titleAndFilter}>
-          <h2 className='animeList-title'>Anime List</h2>
-          <CustomSelect 
-            setTopFilter={setTopFilter}
-            resetPageCount={resetPageCount}
-          />
+          <h2 className='animeList-title'>Most Popular Anime</h2>
+          {!isMobile && (
+            <CustomSelect 
+              setTopFilter={setTopFilter}
+              resetPageCount={resetPageCount}
+            />
+          )}
         </div>
           {animeData ?
             <InfiniteScroll 
