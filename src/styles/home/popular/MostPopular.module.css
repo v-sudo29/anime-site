@@ -21,14 +21,15 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
   cursor: pointer;
-  background-color: #616161;
+  background-color: #F2F2F2;
+  color: #111111;
   padding: 1rem 5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   transition: var(--default-transition-time)
 }
 
 .seeMoreBtn:hover {
-  background-color: var(--button-hover-bg-color);
+  background-color: #71717a;
 }
 
 .seeMoreBtn:focus-visible {

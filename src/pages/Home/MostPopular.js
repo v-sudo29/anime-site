@@ -43,7 +43,7 @@ export default function MostPopular({popularData}) {
         {popularCards}
       </div>
       <button onClick={handleClick} className={styles.seeMoreBtn}> 
-        See Anime List
+        See Full List
       </button>
     </div>
   )
