@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/news/TrendingContent.module.css'
+import { useMobile } from '../../context/mobileContext'
 
-export default function TrendingContent({newsData}) {
+export default function TrendingContent({ newsData }) {
   const [trendingNewsCards, setTrendingNewsCards] = useState(null)
+  const { isMobile } = useMobile()
 
-  function sortTrending(news) {
+  const sortTrending = (news) => {
     const newsCopy = [...news]
 
     const sortedNews = newsCopy.sort((a, b) => {
@@ -17,7 +19,6 @@ export default function TrendingContent({newsData}) {
     })
     return sortedNews
   }
-
 
   // Set trending news cards when data available
   useEffect(() => {
@@ -33,16 +34,18 @@ export default function TrendingContent({newsData}) {
               </a>
               <div className={styles.info}>
                 <div className={styles.date}>{news.date}</div>
-                <a href={news.url} target="_blank" rel="noopener noreferrer">
-                  <h3 className={styles.title}>{news.title}</h3>
-                </a>
+                {!isMobile && (
+                  <a href={news.url} target="_blank" rel="noopener noreferrer">
+                    <h3 className={styles.title}>{news.title}</h3>
+                  </a>
+                )}
               </div>
             </div>
           )
         } return null
       }))
     }
-  }, [newsData])
+  }, [newsData, isMobile])
 
 
   return (
