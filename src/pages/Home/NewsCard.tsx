@@ -5,8 +5,9 @@ import formatYesterdayDate from '../../helpers/formatYesterdayDate.js'
 import limitCharacters from '../../helpers/limitCharacters'
 import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
+import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function NewsCard({ news }) {
+export default function NewsCard({ news } : { news: News }) {
   const { isMobile } = useMobile()
 
   return (

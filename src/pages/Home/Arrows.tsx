@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from '../../styles/home/trending/Arrows.module.css'
 
-export default function Arrows({currentIndex, setCurrentIndex}) {
+interface IArrows {
+  currentIndex: number
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
+}
+
+export default function Arrows({ currentIndex, setCurrentIndex }: IArrows) {
 
   function nextAnime() {
     if (currentIndex === 5) setCurrentIndex(0)

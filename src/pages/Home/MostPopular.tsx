@@ -10,7 +10,7 @@ export default function MostPopular({ popularData } : { popularData: PopularResp
   const { isMobile } = useMobile()
   let popularCards = null
 
-  const handleClick = () => navigate('anime-list')
+  const handleClick = (): void => navigate('anime-list')
 
   if (popularData) popularCards = popularData.data.map((anime, index) => {
     if (isMobile && index < 9) {

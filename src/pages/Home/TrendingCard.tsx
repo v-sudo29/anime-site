@@ -5,8 +5,9 @@ import limitCharacters from '../../helpers/limitCharacters'
 import ReadMoreBtn from '../../components/ReadMoreBtn'
 import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/trending/TrendingCard.module.css'
+import { TrendingDatum } from '../../types/fetchDataTypes/fetchTrendingTypes'
 
-export default function TrendingCard({ anime }) {
+export default function TrendingCard({ anime } : { anime: TrendingDatum }) {
   const { isMobile } = useMobile()
   const id = anime['mal_id']
   const imgSrc = anime['images']['jpg']['large_image_url']

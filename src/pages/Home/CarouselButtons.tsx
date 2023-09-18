@@ -2,16 +2,21 @@ import React, { useEffect, useRef } from 'react'
 import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/trending/CarouselButtons.module.css'
 
-export default function CarouselButtons({currentIndex, setCurrentIndex}) {
-  const parentContainer = useRef(null)
+interface ICarouselButtons {
+  currentIndex: number
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
+}
+
+export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICarouselButtons) {
+  const parentContainer = useRef<HTMLDivElement>(null)
   const { isMobile } = useMobile()
   
-  async function switchAnime(e) {
-    const currentButton = e.target
-    const parentElement = e.target.parentElement
-    const activeButton = parentElement.querySelector(`.${styles.active}`)
+  async function switchAnime(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    const currentButton = e.target as HTMLButtonElement
+    const parentElement = currentButton.parentElement
+    const activeButton = parentElement?.querySelector(`.${styles.active}`) as HTMLButtonElement
 
-    if (!e.target.classList.contains(`${styles.active}`)) {
+    if (currentButton.classList.contains(`${styles.active}`)) {
 
       // Remove active class from activeButton
       activeButton.classList.remove(`${styles.active}`)
@@ -38,8 +43,8 @@ export default function CarouselButtons({currentIndex, setCurrentIndex}) {
     else if (currentIndex === 4) classSelector = 'four'
     else if (currentIndex === 5) classSelector = 'five'
 
-    const prevButton = parentContainer.current.querySelector(`.${styles.active}`)
-    const matchedButton = parentContainer.current.querySelector(`.${classSelector}`)
+    const prevButton = parentContainer.current?.querySelector(`.${styles.active}`) as HTMLButtonElement
+    const matchedButton = parentContainer.current?.querySelector(`.${classSelector}`) as HTMLButtonElement
 
     // Remove previous active class
     prevButton.classList.remove(`${styles.active}`)
