@@ -6,6 +6,16 @@ import genresToIds from '../../helpers/genresToIds'
 import SearchBarAndToggle from './SearchBarToggle'
 import GenresMenu from './GenresMenu'
 
+interface ISearchAndGenres {
+  genresShown: boolean
+  setGenresShown: React.Dispatch<React.SetStateAction<boolean>>
+  inputValue: React.RefObject<HTMLInputElement>
+  resetPageCount: () => void
+  setResultsType: React.Dispatch<React.SetStateAction<string>>
+  fetchNewData: (url: string) => Promise<void>
+  fetchDefaultPopular: () => Promise<void>
+}
+
 export default function SearchAndGenres({
   genresShown,
   setGenresShown,
@@ -14,27 +24,30 @@ export default function SearchAndGenres({
   setResultsType,
   fetchNewData,
   fetchDefaultPopular
-}) {
-  const animateCarrot = () => {
+}: ISearchAndGenres) {
+  const animateCarrot = (): void => {
     const { carrotActive } = carrotStyles
-    const svgElement = document.querySelector(`.${styles.carrotContainer} svg`)
+    const svgElement = document.querySelector(`.${styles.carrotContainer} svg`) as SVGAElement
 
-    !svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive) :
+    svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive) :
       svgElement.classList.remove(carrotActive)
   }
 
-  const toggleGenres = (e) => {
+  const toggleGenres = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.stopPropagation()
-    setGenresShown(!genresShown)
+    setGenresShown(genresShown)
     animateCarrot()
   }
 
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleGenresSearch()
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') handleGenresSearch()
+  }
 
-  const handleGenresSearch = () => {
+  const handleGenresSearch = (): void => {
     setResultsType('search bar')
+
     // Get search parameter as string
-    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+    const searchParameter = inputValue.current?.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
     const genresContainerExists = document.querySelector('.genreTagsContainer')
@@ -42,11 +55,12 @@ export default function SearchAndGenres({
     // const genreContainerExists = genresContainerRef.current ? true : false
     const buttonElementsArr = genresContainerExists ? [...genresContainerExists.children]
       : []
-    const selectedGenres = []
+    const selectedGenres = [] as string[]
 
     buttonElementsArr.forEach(button => {
+      const buttonElement = button as HTMLButtonElement
       const list = button.classList
-      if (list.value.includes('active')) selectedGenres.push(button.innerText)
+      if (list.value.includes('active')) selectedGenres.push(buttonElement.innerText)
     })
 
     // Convert genres to mal_id's
@@ -60,11 +74,11 @@ export default function SearchAndGenres({
     }
   }
 
-  const handleGenreTagClick = (e) => {
-    const genreBtnElement = e.target
+  const handleGenreTagClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const genreBtnElement = e.target as HTMLButtonElement
 
     // Style genre tag if active/inactive
-    !genreBtnElement.classList.contains(`${styles.active}`) ? genreBtnElement.classList.add(`${styles.active}`) : 
+    genreBtnElement.classList.contains(`${styles.active}`) ? genreBtnElement.classList.add(`${styles.active}`) : 
       genreBtnElement.classList.remove(`${styles.active}`)
   }
 

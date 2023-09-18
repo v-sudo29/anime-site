@@ -4,7 +4,7 @@ import styles from '../styles/components/SearchBar.module.css'
 
 interface ISearch {
   placeholder: string
-  inputValue: string
+  inputValue: React.RefObject<HTMLInputElement>
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => false | void
 }
 

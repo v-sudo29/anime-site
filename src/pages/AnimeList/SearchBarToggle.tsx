@@ -4,6 +4,15 @@ import SearchBtn from '../../components/SearchBtn'
 import CarrotDown from '../../icons/CarrotDown'
 import { useMobile } from '../../context/mobileContext'
 
+interface ISearchBarAndToggle {
+  styles: CSSModuleClasses
+  inputValue: React.RefObject<HTMLInputElement>
+  handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  resetPageCount: () => void
+  handleGenresSearch: () => void
+  toggleGenres: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+}
+
 export default function SearchBarAndToggle({
   styles,
   inputValue,
@@ -11,7 +20,7 @@ export default function SearchBarAndToggle({
   resetPageCount,
   handleGenresSearch,
   toggleGenres
-}) {
+}: ISearchBarAndToggle) {
   const { isMobile } = useMobile()
 
   return (

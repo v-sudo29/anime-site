@@ -5,7 +5,6 @@ import styles from '../../styles/anime-list/AnimeList.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
 import { SearchDataTypes, SearchResponseTypes } from '../../types/stateTypes/AnimeListTypes'
 
-
 function AnimeList() {
   const [animeData, setAnimeData] = useState<SearchDataTypes | null>(null)
   const [genresShown, setGenresShown]= useState(false)
