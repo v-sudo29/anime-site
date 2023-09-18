@@ -1,4 +1,7 @@
 # YourAnimeList
+<img width="1791" alt="Dideals screenshot" src="https://github.com/v-sudo29/anime-site/public/search-screenshot.png">
+
+## Introduction
 **YourAnimeList** is an elegant anime discovery app built with React. It provides an intuitive user interface for browsing and tracking anime, powered by the Jikan API.
 
 ## Key Features
