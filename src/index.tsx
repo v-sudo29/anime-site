@@ -32,8 +32,8 @@ root.render(
   <MobileProvider>
     <DefaultDataProvider>
       {/* <React.StrictMode>  */}
-          <App />      
-      {/* </React.StrictMode>   */}
+        <App />      
+      {/* </React.StrictMode>  */}
       </DefaultDataProvider>
   </MobileProvider>
 );

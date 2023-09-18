@@ -8,6 +8,23 @@ import { url } from './urls'
 import genresToIds from '../../helpers/genresToIds';
 import LoaderAnimation from '../../components/LoaderAnimation';
 import { useMobile } from '../../context/mobileContext';
+import { SearchDataTypes, SearchResponseTypes, SingleSearchedAnime } from '../../types/stateTypes/AnimeListTypes';
+
+interface ISearchResults {
+  animeData: SearchDataTypes | null
+  setAnimeData: React.Dispatch<React.SetStateAction<SearchDataTypes | null>>
+  fetchNewData: (url: string) => Promise<void>
+  topFilter: string
+  setTopFilter: React.Dispatch<React.SetStateAction<string>>
+  thereIsMore: boolean
+  setThereIsMore: React.Dispatch<React.SetStateAction<boolean>>
+  pageCount: number
+  setPageCount: React.Dispatch<React.SetStateAction<number>>
+  resetPageCount: () => void
+  resultsType: string
+  setResultsType: React.Dispatch<React.SetStateAction<string>>
+  inputValue: React.RefObject<HTMLInputElement>
+}
 
 export default function SearchResults({
   animeData, 
@@ -23,18 +40,22 @@ export default function SearchResults({
   resultsType,
   setResultsType,
   inputValue,
-  }) {
+  } : ISearchResults) {
   const { isMobile } = useMobile()
   const runOnce = useRef(false)
   let animeCards = null
 
   // Fetch and add new data to current data
-  const fetchAndAdd = async (url) => {
+  const fetchAndAdd = async (url: string) => {
     try {
       const res = await fetch(url)
-      const data = await res.json()
-
-      setAnimeData(prevData => [...prevData, ...data.data])
+      const data = await res.json() as SearchResponseTypes
+      
+        setAnimeData(prevData => {
+          if (prevData) return [...prevData, ...data.data]
+          else return prevData
+        })
+    
       !data.pagination['has_next_page'] ? setThereIsMore(false) : setThereIsMore(true)
       setPageCount(prevCount => prevCount + 1)
     } catch (error) {console.error(error)}
@@ -42,19 +63,20 @@ export default function SearchResults({
 
   // Handles loading more anime for infinite scroll - genres search
   const loadMoreGenresAnime = () => {
-    const searchParameter = inputValue.current.value ? inputValue.current.value : ''
+    const searchParameter = inputValue.current?.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
-    const genresContainerExists = document.querySelector('.genreTagsContainer')
+    const genresContainerExists = document.querySelector('.genreTagsContainer') as HTMLDivElement
     const buttonElementsArr = genresContainerExists ? [...genresContainerExists.children]
-      : []
-    const selectedGenres = []
+      : [] 
+    const selectedGenres = [] as string[]
 
     // Push active genres to selectedGenres state
     if (genresContainerExists) {
       buttonElementsArr.forEach(button => {
+        const buttonElement = button as HTMLButtonElement
         const list = button.classList
-        if (list.value.includes('active')) selectedGenres.push(button.innerText)
+        if (list.value.includes('active')) selectedGenres.push(buttonElement.innerText)
       })
     }
 
@@ -111,11 +133,10 @@ export default function SearchResults({
         </div>
           {animeData ?
             <InfiniteScroll 
-              dataLength={animeCards ? animeCards.length : null}
+              dataLength={animeCards ? animeCards.length : 0}
               next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
               hasMore={thereIsMore}
-              className={styles.infiniteScroll}
-            >
+              className={styles.infiniteScroll} loader={undefined}            >
               {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
             </InfiniteScroll>
           : <LoaderAnimation/>} 

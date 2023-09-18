@@ -3,11 +3,10 @@ import filterTitle from '../helpers/filterTitle'
 import styles from '../styles/components/AnimeListCard.module.css'
 import { Link } from 'react-router-dom'
 import { useMobile } from '../context/mobileContext'
-import { PopularDatum } from '../types/fetchDataTypes/fetchPopularTypes'
-import { UpcomingDatum } from '../types/fetchDataTypes/fetchUpcomingTypes'
+import { SingleSearchedAnime } from '../types/stateTypes/AnimeListTypes'
 
 interface IAnimeListCard {
-  anime: PopularDatum | UpcomingDatum
+  anime: SingleSearchedAnime
   index: number
   id: number
 }

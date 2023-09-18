@@ -3,9 +3,11 @@ import SearchAndGenres from './SearchAndGenres'
 import SearchResults from './SearchResults'
 import styles from '../../styles/anime-list/AnimeList.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
+import { SearchDataTypes, SearchResponseTypes } from '../../types/stateTypes/AnimeListTypes'
+
 
 function AnimeList() {
-  const [animeData, setAnimeData] = useState(null)
+  const [animeData, setAnimeData] = useState<SearchDataTypes | null>(null)
   const [genresShown, setGenresShown]= useState(false)
   const [topFilter, setTopFilter] = useState('Most Popular')
   const [thereIsMore, setThereIsMore] = useState(true)
@@ -13,22 +15,24 @@ function AnimeList() {
   const [pageCount, setPageCount] = useState(2)
   const { popularData } = useDefaultData()
 
-  const inputValue = useRef(null)
+  const inputValue = useRef<HTMLInputElement>(null)
 
   // Reset pageCount
   const resetPageCount = () => setPageCount(2)
 
   // Fetch and set default popular anime data
   const fetchDefaultPopular = async () => {
-    setAnimeData(popularData.data)
-    popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
+    if (popularData) {
+      setAnimeData(popularData.data)
+      popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
+    }
   }
 
   // Fetch and set new anime data
-  const fetchNewData = async (url) => {
+  const fetchNewData = async (url: string) => {
     try {
       const res = await fetch(url)
-      const data = await res.json()
+      const data = await res.json() as SearchResponseTypes
 
       setAnimeData(data.data)
       !data.pagination['has_next_page'] ? setThereIsMore(false) : setThereIsMore(true)
