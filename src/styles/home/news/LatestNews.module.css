@@ -1,5 +1,6 @@
 .container {
   text-align: left;
+  width: 100%;
 }
 
 .header {
@@ -39,13 +40,8 @@
   color: var(--yellow-color);
 }
 
-@media screen and (max-width: 480px) {
-  .container {
-    width: inherit;
-  }
-
+@media screen and (min-width: 320px) {
   .cardsContainer {
-    display: grid;
     grid-template-columns: repeat(3, minmax(4rem, 1fr))
   }
   
@@ -56,5 +52,25 @@
 
   .moreNewsLink > img {
     height: 0.8rem
+  }
+}
+@media screen and (min-width: 480px) {
+  .cardsContainer {
+    grid-template-columns: repeat(4, minmax(4rem, 1fr))
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .cardsContainer {
+    grid-template-columns: repeat(5, minmax(5rem, 1fr));
+  }
+
+  .moreNewsLink {
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .moreNewsLink > img {
+    height: 1rem
   }
 }

@@ -1,5 +1,6 @@
 .container {
   text-align: left;
+  display: none;  /* remove */
 }
 
 .container > h2 {

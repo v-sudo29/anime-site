@@ -38,6 +38,12 @@
   font-size: 0.9rem;
   font-weight: 500;
   transition: var(--default-transition-time);
+  width: fit-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
 .title:hover {
@@ -47,8 +53,5 @@
 @media screen and (max-width: 480px) {
   .newsCard {
     gap: 0.5rem;
-  }
-  .anchorContainer {
-    height: inherit;
   }
 }

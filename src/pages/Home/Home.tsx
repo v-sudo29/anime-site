@@ -27,38 +27,17 @@ function Home() {
   } = useDefaultData()
 
   const { isMobile } = useMobile()
-  let newsCards = null
-
-  if (newsData) newsCards = newsData.news.map((news, index) => {
-    if (isMobile && index < 3) {
-      return (
-        <NewsCard
-          key={news.title}
-          news={news}
-        />
-      )
-    }
-    if (!isMobile && index < 5) {
-      return (
-        <NewsCard
-          key={news.title}
-          news={news}
-        />
-      )
-    }
-    return null  
-  })
 
   document.title = 'YourAnimeList: Home'
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
   if (trendingError || upcomingError || popularError || newsError) return <FetchError/>
-  if (newsCards && trendingData && upcomingData && popularData) return (
+  if (newsData && trendingData && upcomingData && popularData) return (
     <div className={styles.container}>
-      {(newsCards && trendingData) && 
+      {(newsData && trendingData) && 
         <>
           <div className={styles.content}>
-            <LatestNews newsCards={newsCards}/>
+            <LatestNews newsData={newsData}/>
             <TrendingCarousel trendingData={trendingData}/>
             <Upcoming upcomingData={upcomingData}/>
             <MostPopular popularData={popularData}/>
