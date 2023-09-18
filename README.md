@@ -8,6 +8,9 @@
 ## Introduction
 **YourAnimeList** is an elegant anime discovery app built with React. It provides an intuitive user interface for browsing and tracking anime, powered by the Jikan API.
 
+## Live Demo
+[Deployed Link](https://your-animelist.onrender.com/)
+
 ## Key Features
 - Browse popular, top rated, and trending anime
 - Search for anime by title and genre
@@ -26,5 +29,4 @@
 - Leveraging **React Router** for seamless routing and navigation between pages
 
 ## Contributors
-- [Victoria Nguyen](https://github.com/v-sudo29) - Frontend developer
-- Amanda Ho - Visual designer
+Made with ❤️ by [Victoria Nguyen](https://github.com/v-sudo29)
