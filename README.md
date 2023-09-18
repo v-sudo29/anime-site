@@ -11,9 +11,13 @@
 - [React](https://react.dev/) - Frontend framework
 - [Jikan API](https://docs.api.jikan.moe/) - Source of anime data
 - [CSS Modules](https://github.com/css-modules/css-modules) - Styling
+- [TypeScript](https://www.typescriptlang.org/) - Static type-checking
+
+## What I Learned
+- Effective techniques for **managing multiple asynchronous data fetching calls** and **rate limiting requests**
+- Implementing a **customizable carousel component** for navigating content in the UI
+- Leveraging **React Router** for seamless routing and navigation between pages
 
 ## Contributors
-Designed and developed by:
-
 - [Victoria Nguyen](https://github.com/v-sudo29) - Frontend developer
 - Amanda Ho - Visual designer
