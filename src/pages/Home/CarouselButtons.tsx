@@ -48,7 +48,6 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
       const prevButton = parentContainer.current.querySelector(`.${styles.active}`) as HTMLButtonElement
       const matchedButton = parentContainer.current.querySelector(`.${classSelector}`) as HTMLButtonElement
   
-      console.log({prevButton, matchedButton})
       // Remove previous active class
       prevButton?.classList.remove(`${styles.active}`)
   

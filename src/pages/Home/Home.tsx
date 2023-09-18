@@ -4,11 +4,9 @@ import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
 import Upcoming from './Upcoming'
 import MostPopular from './MostPopular'
-import NewsCard from './NewsCard'
 import FetchError from '../../components/FetchError'
 import styles from '../../styles/home/Home.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
-import { useMobile } from '../../context/mobileContext'
 
 function Home() {
   const {
@@ -25,8 +23,6 @@ function Home() {
     popularLoading,
     newsLoading
   } = useDefaultData()
-
-  const { isMobile } = useMobile()
 
   document.title = 'YourAnimeList: Home'
 
