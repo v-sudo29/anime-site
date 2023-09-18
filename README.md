@@ -1,5 +1,9 @@
 # YourAnimeList
-<img width="1791" alt="Anime site screenshot" src="https://github.com/v-sudo29/anime-site/public/search-screenshot.png">
+<div float="left"}>
+  <img width="49.4%" alt="Anime site screenshot" src="/public/search-screenshot.png">
+  <img width="46%" alt="Anime site screenshot" src="/public/upcoming-anime.png">  
+</div>
+
 
 ## Introduction
 **YourAnimeList** is an elegant anime discovery app built with React. It provides an intuitive user interface for browsing and tracking anime, powered by the Jikan API.
