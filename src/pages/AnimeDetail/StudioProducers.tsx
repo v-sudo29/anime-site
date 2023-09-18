@@ -33,8 +33,6 @@ export default function StudioProducers({ anime, count, countUpdated } : IStudio
       })
   }, [anime])
 
-  console.log(JSON.stringify(producerIdsType))
-
   if (producersData && producersData.length > 0) 
     producerCards = producersData.map((producer, index) => (
       <ProducerCard

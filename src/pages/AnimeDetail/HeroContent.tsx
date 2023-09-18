@@ -11,7 +11,7 @@ export default function HeroContent({ anime } : { anime: AnimeDetailData }) {
           <div className={styles.animeScore}>{anime.score ? anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) : anime['score'] : '-'}</div>
         </div>
         <div className={styles.titleAndRank}>
-          <h1 className={styles.title}>{anime.title}</h1>
+          <h1 className={styles.title}>{anime['title_english'] ?? anime['title']}</h1>
           <div className={styles.rank} >#{anime.rank < 10 ? '0' + anime.rank : anime.rank}</div>
         </div>
       </div>

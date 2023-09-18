@@ -25,11 +25,11 @@ export default function useFetchSpinoff(spinOffIds : number[]) {
               throw response
             })
             .then((data: SpinoffResponse) => {
-              console.log(JSON.stringify(data))
               setSpinOffData(prev => [...prev, {
                 id: spinOffIds[index],
                 name: data.data['titles'][0]['title'] ? data.data['titles'][0]['title'] : null,
-                image: data.data['images']['jpg']['large_image_url']
+                image: data.data['images']['jpg']['large_image_url'],
+                type: 'spinoff'
               }])
             })
         } catch (error) {

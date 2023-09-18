@@ -22,7 +22,7 @@ export default function useFetchAnime() {
         })
         .then((data: AnimeDetailResponse) => {
           setAnime(data.data)
-          document.title = data.data.title
+          document.title = data.data['title_english'] ?? data.data['title']
         })
         .catch((error) => {
           if (signal.aborted) {

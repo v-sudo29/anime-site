@@ -21,7 +21,6 @@ export default function useFetchCharacters(anime: AnimeDetailData, id: string | 
             })
             .then((data: CharactersResponse) => {
               setCharactersData(data.data)
-              console.log((data))
             })
             .catch((error) => {
               if (signal.aborted) {
