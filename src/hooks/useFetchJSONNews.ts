@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NewsResponse, News } from '../types/fetchDataTypes/fetchNewsTypes'
+import { JSONNewsResponse, News } from '../types/fetchDataTypes/fetchNewsTypes'
 
 function useFetchNews() {
   const [newsData, setNewsData] = useState<News[] | null>(null)
@@ -8,7 +8,7 @@ function useFetchNews() {
 
   async function fetchNews() {
     try {
-      const data: NewsResponse = await import('../anime-news.json')
+      const data: JSONNewsResponse = await import('../anime-news.json')
       setNewsData(data.news)
     }
     catch (error) {

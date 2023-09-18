@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from '../../styles/anime-detail/HeroContent.module.css'
+import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 
-export default function HeroContent({anime}) {
+export default function HeroContent({ anime } : { anime: AnimeDetailData }) {
   return (
     <div className={styles.heroContent}>
       <div className={styles.heroContainer}>

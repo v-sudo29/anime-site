@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CharacterDatum } from '../../types/fetchDataTypes/fetchCharactersTypes'
 
-export default function CharacterCard({styles, character}) {
+interface ICharacterCard {
+  styles: CSSModuleClasses
+  character: CharacterDatum
+}
+
+export default function CharacterCard({ styles, character }: ICharacterCard) {
   const id = character['character']['mal_id']
   const imgSrc = character['character']['images']['jpg']['image_url']
   const charName = character['character']['name']

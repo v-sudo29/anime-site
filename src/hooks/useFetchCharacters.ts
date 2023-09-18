@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { AnimeDetailData } from '../types/fetchDataTypes/fetchAnimeDetailTypes'
-import { FetchCharactersResponse, Datum } from '../types/fetchDataTypes/fetchCharactersTypes'
+import { CharactersResponse, CharacterDatum } from '../types/fetchDataTypes/fetchCharactersTypes'
 
 export default function useFetchCharacters(anime: AnimeDetailData, id: string | undefined) {
-  const [charactersData, setCharactersData] = useState<Datum[] | null>(null)
+  const [charactersData, setCharactersData] = useState<CharacterDatum[] | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
@@ -19,7 +19,7 @@ export default function useFetchCharacters(anime: AnimeDetailData, id: string | 
               if (response.ok) return response.json()
               throw response
             })
-            .then((data: FetchCharactersResponse) => {
+            .then((data: CharactersResponse) => {
               setCharactersData(data.data)
               console.log((data))
             })

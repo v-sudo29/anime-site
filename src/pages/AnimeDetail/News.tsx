@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard'
 import styles from '../../styles/anime-detail/News.module.css'
+import { AnimeDetailNewsResponse, AnimeDetailNewsDatum } from '../../types/fetchDataTypes/fetchAnimeDetailNewsTypes'
 
-export default function News({id}) {
-  const [newsInfo, setNewsInfo] = useState(null)
+export default function News({ id } : { id: string | undefined}) {
+  const [newsInfo, setNewsInfo] = useState<AnimeDetailNewsDatum[] | null>(null)
 
   // Sort articles by most recent date
-  function sortByDate(data) {
+  function sortByDate(data: AnimeDetailNewsDatum[]) {
     return data.sort((a, b) => {
       const dateA = new Date(a.date);
       const dateB = new Date(b.date);
@@ -31,7 +32,7 @@ export default function News({id}) {
             if (response.ok) return response.json()
             throw response
           })
-          .then(data => (setNewsInfo(sortByDate(data.data))))
+          .then((data: AnimeDetailNewsResponse) => (setNewsInfo(sortByDate(data.data))))
           .catch(() => {
             if (signal.aborted) {
               console.log('The user aborted the request')
@@ -54,7 +55,6 @@ export default function News({id}) {
             key={article['title'] + index}
             styles={styles}
             article={article}
-            index={index}
           />
         )
       } return null

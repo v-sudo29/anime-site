@@ -1,8 +1,8 @@
-export interface FetchCharactersResponse {
-  data: Datum[];
+export interface CharactersResponse {
+  data: CharacterDatum[];
 }
 
-export interface Datum {
+export interface CharacterDatum {
   character:    Character;
   role:         Role;
   favorites:    number;

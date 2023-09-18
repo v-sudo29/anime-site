@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, ReactNode } from "react";
 import useFetchTrending from "../hooks/useFetchTrending";
 import useFetchUpcoming from "../hooks/useFetchUpcoming";
 import useFetchPopular from "../hooks/useFetchPopular";
-import useFetchNews from "../hooks/useFetchNews";
+import useFetchNews from "../hooks/useFetchJSONNews";
 import { TrendingDatum } from "../types/fetchDataTypes/fetchTrendingTypes";
 import { UpcomingDatum } from "../types/fetchDataTypes/fetchUpcomingTypes";
 import { PopularResponse } from "../types/fetchDataTypes/fetchPopularTypes";

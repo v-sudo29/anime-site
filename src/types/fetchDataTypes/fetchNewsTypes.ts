@@ -1,4 +1,4 @@
-export interface NewsResponse {
+export interface JSONNewsResponse {
   featured: Featured;
   news:     News[];
 }

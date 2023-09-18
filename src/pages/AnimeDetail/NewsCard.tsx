@@ -1,9 +1,14 @@
 import React from 'react'
 import imageOnError from '../../helpers/imageOnError'
+import { AnimeDetailNewsDatum } from '../../types/fetchDataTypes/fetchAnimeDetailNewsTypes'
 
-export default function NewsCard({ styles, article }) {
+interface INewsCard {
+  styles: CSSModuleClasses
+  article: AnimeDetailNewsDatum
+}
+export default function NewsCard({ styles, article }: INewsCard) {
   
-  function convertDate(date) {
+  const convertDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
   }
   const filteredDate = convertDate(article.date)

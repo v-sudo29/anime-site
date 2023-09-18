@@ -12,6 +12,7 @@ export interface IMainData {
 
 export interface ISpinoffData {
   id: number
+  type: string
   name: string | null
   image: string
 }
