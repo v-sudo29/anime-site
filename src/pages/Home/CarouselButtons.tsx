@@ -12,11 +12,12 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
   const { isMobile } = useMobile()
   
   async function switchAnime(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    console.log('clicked!')
     const currentButton = e.target as HTMLButtonElement
     const parentElement = currentButton.parentElement
     const activeButton = parentElement?.querySelector(`.${styles.active}`) as HTMLButtonElement
 
-    if (currentButton.classList.contains(`${styles.active}`)) {
+    if (!currentButton.classList.contains(`${styles.active}`)) {
 
       // Remove active class from activeButton
       activeButton.classList.remove(`${styles.active}`)
@@ -43,15 +44,17 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
     else if (currentIndex === 4) classSelector = 'four'
     else if (currentIndex === 5) classSelector = 'five'
 
-    const prevButton = parentContainer.current?.querySelector(`.${styles.active}`) as HTMLButtonElement
-    const matchedButton = parentContainer.current?.querySelector(`.${classSelector}`) as HTMLButtonElement
-
-    // Remove previous active class
-    prevButton.classList.remove(`${styles.active}`)
-
-    // Add active class to matched button
-    matchedButton.classList.add(`${styles.active}`)
-
+    if (parentContainer.current) {
+      const prevButton = parentContainer.current.querySelector(`.${styles.active}`) as HTMLButtonElement
+      const matchedButton = parentContainer.current.querySelector(`.${classSelector}`) as HTMLButtonElement
+  
+      console.log({prevButton, matchedButton})
+      // Remove previous active class
+      prevButton?.classList.remove(`${styles.active}`)
+  
+      // Add active class to matched button
+      matchedButton?.classList.add(`${styles.active}`)
+    }
   }, [currentIndex])
   
   return (
@@ -66,7 +69,6 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
           <button onClick={(e) => switchAnime(e)} className={`${styles.button} five`} type="button"></button>        
         </>
       )}
-  
     </div>
   )
 }

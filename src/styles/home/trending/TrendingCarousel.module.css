@@ -2,8 +2,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  display: none;  /* remove */
+  width: 100%;
 }
 
 .slideshow {
@@ -16,7 +15,7 @@
   transition: ease 800ms;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 320px) {
   .header {
     display: flex;
     align-items: center;

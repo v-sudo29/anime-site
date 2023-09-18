@@ -10,7 +10,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
   const [currentIndex, setCurrentIndex] = useState(0)
   const timeOutRef = useRef<number>(0)
   const runOnce = useRef(false)
-  const { isMobile } = useMobile()
+  const { isMobile, isTablet } = useMobile()
   const delay = 10000;
 
   // Reset carousel timeout
@@ -35,14 +35,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
     <section className={styles.container}>
       <div className={styles.header}>
         <h2>Top Trending Anime</h2>
-        {trendingData && isMobile && (
-          <CarouselButtons 
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-          />
-        )}
       </div>
-
         <div className={styles.slideshow}>
           {trendingData ?
           <>
@@ -56,13 +49,13 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
                 return null
               })}
             </div>
-            {!isMobile && (
+            {!isMobile && !isTablet && (
               <CarouselButtons 
                 currentIndex={currentIndex}
                 setCurrentIndex={setCurrentIndex}
               />
             )}
-            {!isMobile && (
+            {!isMobile && !isTablet && (
               <Arrows 
                 currentIndex={currentIndex}
                 setCurrentIndex={setCurrentIndex}
@@ -72,6 +65,12 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
             <h1>...Loading Trending Anime</h1> 
           }
         </div>
+        {trendingData && (isMobile || isTablet) && (
+          <CarouselButtons 
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
+        )}
       </section>
   )
 }

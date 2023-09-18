@@ -23,7 +23,7 @@
   max-width: var(--page-max-width);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 320px) {
   .content {
     width: 100%;
     gap: 3rem;

@@ -51,7 +51,7 @@
   line-height: 1.8rem;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 320px) {
   .slide {
     height: 100%;
   }
@@ -59,15 +59,14 @@
     flex-direction: column;
     height: inherit;
     width: inherit;
+    min-width: inherit;
     gap: 1.5rem;
   }
   .anchorContainer {
     width: 100%;
-    height: 15rem;
   }
   .image {
-    min-height: 25rem;
-    min-width: 27rem;
+    min-width: 27.5rem;
     object-fit: cover;
   }
   .info {
@@ -78,6 +77,31 @@
   }
   .synopsis {
     font-size: 1rem;
-    line-height: 1.4rem
+    line-height: 1.4rem;
+    transition: var(--default-transition-time);
+    width: fit-content;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines */
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .image {
+    min-width: 35rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .slide {
+    height: 20rem;
+  }
+  .card {
+    flex-direction: row;
+  }
+  .image {
+    min-width: 31rem;
   }
 }

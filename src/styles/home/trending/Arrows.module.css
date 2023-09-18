@@ -11,9 +11,3 @@
   font-weight: 300;
   cursor: pointer;
 }
-
-@media screen and (max-width: 480px) {
-  .container {
-    margin-bottom: -10rem;
-  }
-}
