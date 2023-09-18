@@ -5,11 +5,10 @@ import ScrollToTop from '../components/ScrollToTop'
 
 function Layout() {
   return (
-    <>
+    <ScrollToTop>
       <Header />
       <Outlet />
-      <ScrollToTop/>
-    </>
+    </ScrollToTop>
   )
 }
 
