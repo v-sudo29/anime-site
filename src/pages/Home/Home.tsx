@@ -49,7 +49,7 @@ function Home() {
     return null  
   })
 
-  document.title = 'Anime Site: Home'
+  document.title = 'YourAnimeList: Home'
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
   if (trendingError || upcomingError || popularError || newsError) return <FetchError/>
@@ -57,7 +57,6 @@ function Home() {
     <div className={styles.container}>
       {(newsCards && trendingData) && 
         <>
-          {/* <div className={styles.heroImage}></div> */}
           <div className={styles.content}>
             <LatestNews newsCards={newsCards}/>
             <TrendingCarousel trendingData={trendingData}/>

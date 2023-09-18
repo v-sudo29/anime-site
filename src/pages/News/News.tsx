@@ -11,7 +11,7 @@ function News() {
   const [newsData, setNewsData] = useState<JSONNewsResponse | null>(null)
   const { newsData: fetchedNewsData, newsError, newsLoading } = useFetchNews()
 
-  document.title = 'Anime Site: News'
+  document.title = 'YourAnimeList: News'
 
   // Fetch data when page first loads
   useEffect(() => {

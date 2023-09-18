@@ -41,7 +41,7 @@ function AnimeList() {
   // Set default data on load
   useEffect(() => {
     if (!animeData && popularData) fetchDefaultPopular()
-    document.title = 'Anime Site: Anime List'
+    document.title = 'YourAnimeList: Anime'
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popularData, animeData])
 
