@@ -8,7 +8,7 @@
 .anchorContainer {
   display: flex;
   justify-content: center;
-  height: 18rem;
+  height: inherit;
   width: inherit;
   border-radius: var(--card-border-radius);
   overflow: hidden;
