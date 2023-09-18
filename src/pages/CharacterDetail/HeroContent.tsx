@@ -1,6 +1,12 @@
 import React from 'react'
+import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
-export default function HeroContent({styles, character}) {
+interface IHeroContent {
+  styles: CSSModuleClasses
+  character: CharacterDetailData
+}
+
+export default function HeroContent({ styles, character }: IHeroContent) {
   return (
     <div className={styles.heroContent}>
       <div className={styles.heroContainer}>

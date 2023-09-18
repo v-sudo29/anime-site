@@ -6,16 +6,17 @@ import Stats from './Stats'
 import Biography from './Biography'
 import VoiceActors from './VoiceActors'
 import LoaderAnimation from '../../components/LoaderAnimation'
+import { CharacterDetailData, CharacterDetailResponse } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
 export default function CharacterDetail() {
   const params = useParams()
-  const [character, setCharacter] = useState(null)
+  const [character, setCharacter] = useState<CharacterDetailData | null>(null)
 
   useEffect(() => {
     if (!character) {
       fetch(`https://api.jikan.moe/v4/characters/${params.id}/full`)
         .then(res => res.json())
-        .then(data => {
+        .then((data: CharacterDetailResponse )=> {
           setCharacter(data.data)
           document.title = `${data.data['name']}`
         })

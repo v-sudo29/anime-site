@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
-export default function Biography({styles, character}) {
-  const [biography, setBiography] = useState(null)
+interface IBiography {
+  styles: CSSModuleClasses
+  character: CharacterDetailData
+}
 
-  function extractBiography(biography) {
+export default function Biography({ styles, character }: IBiography) {
+  const [biography, setBiography] = useState<string | null>(null)
+
+  function extractBiography(biography: string) {
     if (!biography) return null
     const filteredBio = biography.split('\n')
 

@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import VoiceActorCard from './VoiceActorCard'
+import { CharacterDetailData, Voice } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
-export default function VoiceActors({styles, character}) {
-  const [vaInfo, setVaInfo] = useState(null)
+interface IVoiceActors {
+  styles: CSSModuleClasses
+  character: CharacterDetailData
+}
+
+export default function VoiceActors({ styles, character }: IVoiceActors) {
+  const [vaInfo, setVaInfo] = useState<Voice[] | null>(null)
   let vaCards = null
 
   useEffect(() => {

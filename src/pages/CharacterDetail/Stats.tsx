@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
+import { IStatsState } from '../../types/stateTypes/CharacterDetailsTypes'
 
-export default function Stats({styles, character}) {
-  const [stats, setStats] = useState(null)
+interface IStats {
+  styles: CSSModuleClasses
+  character: CharacterDetailData
+}
 
-  function splitAbout(aboutInfo) {
+interface Fact {
+  [key: string]: string
+}
+
+export default function Stats({ styles, character }: IStats) {
+  const [stats, setStats] = useState<IStatsState | null>(null)
+
+  function splitAbout(aboutInfo: string) {
     let birthday = null
     let age = null
     let height = null
@@ -73,19 +84,19 @@ export default function Stats({styles, character}) {
 
       // Check if facts include already extracted info
       if (facts.some(string => string.includes('Age'))) {
-        facts = facts.filter(string => !string.includes('Age'))
+        facts = facts.filter(string => string.includes('Age'))
       }
       if (facts.some(string => string.includes('Birthday'))) {
-        facts = facts.filter(string => !string.includes('Birthday'))
+        facts = facts.filter(string => string.includes('Birthday'))
       } 
       if (facts.some(string => string.includes('Birthdate'))) {
-        facts = facts.filter(string => !string.includes('Birthdate'))
+        facts = facts.filter(string => string.includes('Birthdate'))
       } 
       if (facts.some(string => string.includes('Height'))) {
-        facts = facts.filter(string => !string.includes('Height'))
+        facts = facts.filter(string => string.includes('Height'))
       } 
       if (facts.some(string => string.includes('Weight'))) {
-        facts = facts.filter(string => !string.includes('Weight'))
+        facts = facts.filter(string => string.includes('Weight'))
       }
 
       // Remove sentences
@@ -102,14 +113,14 @@ export default function Stats({styles, character}) {
       if (facts.length > 0) {
 
         if (facts.length === 1) {
-          factOne = {}
+          factOne = {} as Fact
           let splitOne = facts[0].split(': ')
 
           factOne[splitOne[0]] = splitOne[1]
 
         } else if (facts.length > 1) {
-          factOne = {}
-          factTwo = {}
+          factOne = {} as Fact
+          factTwo = {} as Fact
           const splitOne = facts[0].split(': ')
           const splitTwo = facts[1].split(': ')
     
@@ -149,15 +160,15 @@ export default function Stats({styles, character}) {
         <div className={styles.weight}>Weight <p>{stats.weight ? stats.weight : '-'}</p> </div>
 
         {/* Display one fact if only one fact exists */}
-        {stats.factOne && !stats.factTwo ?
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[Object.keys(stats.factOne)]}</p></div>
+        {stats.factOne && stats.factTwo ?
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[`${Object.keys(stats.factOne)}`]}</p></div>
         : null}
         
         {/* Display two facts if two facts exist */}
         {stats.factOne && stats.factTwo ? 
         <>
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[Object.keys(stats.factOne)]}</p></div>
-          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<p>{stats.factTwo[Object.keys(stats.factTwo)]}</p></div>
+          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[`${Object.keys(stats.factOne)}`]}</p></div>
+          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<p>{stats.factTwo[`${Object.keys(stats.factTwo)}`]}</p></div>
         </>
         : null}
       </div>}

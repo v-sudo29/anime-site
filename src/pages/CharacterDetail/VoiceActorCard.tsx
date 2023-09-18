@@ -1,6 +1,12 @@
 import React from 'react'
+import { Voice } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
-export default function VoiceActorCard({styles, actor}) {
+interface IVoiceActorCard {
+  styles: CSSModuleClasses
+  actor: Voice
+}
+
+export default function VoiceActorCard({ styles, actor }: IVoiceActorCard) {
   return (
     <div key={actor['person']['name']} className={styles.vaCard}>
       <div className={styles.vaImgContainer}>
