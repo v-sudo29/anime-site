@@ -3,31 +3,39 @@ import CarrotDown from '../icons/CarrotDown'
 import styles from '../styles/components/CustomSelect.module.css'
 import carrotStyles from '../styles/icons/CarrotDown.module.css'
 
-export default function CustomSelect({ setTopFilter, resetPageCount }) {
-  const allOptions = useRef(null)
-  const selected = useRef(null)
+interface ICustomSelect {
+  setTopFilter: React.Dispatch<React.SetStateAction<string>>
+  resetPageCount: () => void
+}
+
+export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomSelect) {
+  const allOptions = useRef<string[]>([''])
+  const selected = useRef('')
   const selectMenuHidden = useRef(true)
-  const [selectedCard, setSelectedCard] = useState(null)
-  const [optionsCards, setOptionsCards] = useState(null)
+  const [selectedCard, setSelectedCard] = useState<JSX.Element | null>(null)
+  const [optionsCards, setOptionsCards] = useState<JSX.Element[] | null>(null)
   const { carrotActive } = carrotStyles
 
   // Animate carrot icon
   function animateCarrotIcon() {
     const carrotIcon = document.querySelector('.filter-carrot-container svg')
 
-    selectMenuHidden.current ? carrotIcon.classList.remove(`${carrotActive}`) : 
+    if (carrotIcon) {
+      selectMenuHidden.current ? carrotIcon.classList.remove(`${carrotActive}`) : 
       carrotIcon.classList.add(`${carrotActive}`)
+    }
   }
 
   // Set optionCards to hidden
   function hideOptions() {
+    if (allOptions.current)
     setOptionsCards(allOptions.current.map(option => {
       return (
         <div 
           key={`${option}-hidden`}
-          tabIndex='0'  
+          tabIndex={0} 
           className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
-          onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
+          onClick={option === selected.current ? undefined :(e) => updateSelectedItem(e)}
         >
           {option}
         </div>
@@ -45,9 +53,9 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
       return (
         <div 
           key={`${option}-not-hidden`} 
-          tabIndex='0' 
+          tabIndex={0}
           className={option === selected.current ? `${styles['optionItem']} ${styles['optionSelected']}` : `${styles['optionItem']}`}
-          onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
+          onClick={option === selected.current ? undefined :(e) => updateSelectedItem(e)}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
           {option}
@@ -61,8 +69,9 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
   }
 
   // Update the selected item if option clicked
-  function updateSelectedItem(e) {
-    const selectItem = e.target.innerHTML
+  function updateSelectedItem(e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) {
+    const divElement = e.target as HTMLDivElement
+    const selectItem = divElement.innerHTML
 
     // Set selectedCard and selected ref
     setSelectedCard(() => {  
@@ -70,14 +79,12 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
         <div 
           className={`${styles['selectedOption']}`}
           onClick={openSelectMenu}
-          tabIndex='0'
+          tabIndex={0}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
           {selectItem}
           <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
-            <CarrotDown   
-              hidden={selectMenuHidden.current}
-            />
+            <CarrotDown />
           </div>
         </div>
       )
@@ -91,10 +98,10 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
     setOptionsCards(allOptions.current.map(option => {
       return (
         <div
-          tabIndex='0' 
+          tabIndex={0}
           key={`${option}-hidden`} 
           className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
-          onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
+          onClick={option === selected.current ? undefined :(e) => updateSelectedItem(e)}
         >
           {option}
         </div>
@@ -106,27 +113,30 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
   }
 
   // Open select menu when select container is clicked
-  function openSelectMenu(e) {
+  function openSelectMenu(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     e.stopPropagation()
     selectMenuHidden.current && allOptions.current ? showOptions() : hideOptions()
   }
 
   // Closes select menu if user clicks outside of select container
-  function closeSelectMenu(e) {
-    if (!e.target.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
+  function closeSelectMenu(e: MouseEvent) {
+    const element = e.target as HTMLElement
+
+    if (element && element.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
       hideOptions()
     }
   }
 
   // Allow user to go through options with up and down key
-  function handleKeyPressed(e) {
+  function handleKeyPressed(e: React.KeyboardEvent<HTMLDivElement>) {
     const key = e.key
-    const optionSelected = e.target.innerText
-    const correctElement = e.target.classList.contains(`${styles['selectedOption']}`)
+    const optionDivElement = e.target as HTMLDivElement
+    const optionSelected = optionDivElement.innerText
+    const correctElement = optionDivElement.classList.contains(`${styles['selectedOption']}`)
 
     if (key === 'Enter' && correctElement) {
       showOptions()
-    } else if (key === 'Enter' && !correctElement && selected.current !== optionSelected){
+    } else if (key === 'Enter' && !correctElement && selected.current !== optionSelected) {
       updateSelectedItem(e)
       hideOptions()
     }
@@ -136,8 +146,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
   function setDefaultOptions() {
 
     // Find custom-select container, first option, other options
-    const selectElement = document.querySelector(`.${styles['container']} select`)
-    const firstOption = selectElement[0].innerHTML
+    const selectElement = document.querySelector(`.${styles['container']} select`) as HTMLSelectElement
+    const firstOption = selectElement[0].innerHTML as string
     const optionsArr = []
 
     for (let i = 0; i < selectElement.length; i++) {
@@ -150,14 +160,12 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
         <div 
           className={`${styles['selectedOption']}`}
           onClick={openSelectMenu}
-          tabIndex='0'
+          tabIndex={0}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
           {firstOption}
           <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
-            <CarrotDown 
-              hidden={selectMenuHidden.current}
-            />
+            <CarrotDown />
           </div>
         </div>
       )
@@ -169,9 +177,9 @@ export default function CustomSelect({ setTopFilter, resetPageCount }) {
       return (
         <div 
           key={`${option}-hidden`} 
-          tabIndex='0' 
+          tabIndex={0} 
           className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
-          onClick={option === selected.current ? null :(e) => updateSelectedItem(e)}
+          onClick={option === selected.current ? undefined : (e) => updateSelectedItem(e)}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
           {option}

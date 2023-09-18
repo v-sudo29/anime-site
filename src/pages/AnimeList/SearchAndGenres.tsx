@@ -29,7 +29,7 @@ export default function SearchAndGenres({
     animateCarrot()
   }
 
-  const handleEnter = (e) => e.key === 'Enter' && handleGenresSearch()
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleGenresSearch()
 
   const handleGenresSearch = () => {
     setResultsType('search bar')

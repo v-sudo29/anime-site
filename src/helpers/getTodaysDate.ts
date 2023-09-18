@@ -1,4 +1,4 @@
-const getTodaysDate = () => {
+const getTodaysDate = (): string => {
   const date = new Date();
 
   const month = date.toLocaleString('default', { month: 'short' });

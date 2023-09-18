@@ -1,4 +1,4 @@
-export default function limitCharacters(sentence, charLimit = 250) {
+export default function limitCharacters(sentence: string, charLimit = 250) {
   let newSentence = null;
 
   if (sentence.length > charLimit) {
