@@ -4,18 +4,17 @@ import styles from '../../styles/news/AllNews.module.css'
 import formatYesterdayDate from '../../helpers/formatYesterdayDate'
 import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
+import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function AllNews({ newsData }) {
-  const [newsCards, setNewsCards] = useState(null)
+export default function AllNews({ newsData } : { newsData: News[] }) {
+  const [newsCards, setNewsCards] = useState<(JSX.Element | null)[] | null>(null)
   const { isMobile } = useMobile()
 
   // Set news cards when data available
   useEffect(() => {
     if (newsData) {
       setNewsCards(newsData.map((news, index) => {
-        if (news.image === 'doesn\'t exist!') {
-          return null
-        }
+        if (news.image === 'doesn\'t exist!') return null
         return (
           <div key={index} className={styles.card}>
             {!isMobile && (

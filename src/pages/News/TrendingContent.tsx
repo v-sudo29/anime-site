@@ -3,12 +3,13 @@ import styles from '../../styles/news/TrendingContent.module.css'
 import formatYesterdayDate from '../../helpers/formatYesterdayDate'
 import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
+import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function TrendingContent({ newsData }) {
-  const [trendingNewsCards, setTrendingNewsCards] = useState(null)
+export default function TrendingContent({ newsData } : { newsData: News[] }) {
+  const [trendingNewsCards, setTrendingNewsCards] = useState<(JSX.Element | null)[] | null>(null)
   const { isMobile } = useMobile()
 
-  const sortTrending = (news) => {
+  const sortTrending = (news: News[]): News[] => {
     const newsCopy = [...news]
 
     const sortedNews = newsCopy.sort((a, b) => {

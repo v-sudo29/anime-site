@@ -4,25 +4,20 @@ import TrendingContent from './TrendingContent'
 import AllNews from './AllNews'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/news/News.module.css'
+import useFetchNews from '../../hooks/useFetchJSONNews'
+import { JSONNewsResponse } from '../../types/fetchDataTypes/fetchNewsTypes'
 
 function News() {
-  const [newsData, setNewsData] = useState(null)
+  const [newsData, setNewsData] = useState<JSONNewsResponse | null>(null)
+  const { newsData: fetchedNewsData, newsError, newsLoading } = useFetchNews()
 
   document.title = 'Anime Site: News'
 
-  // Fetch news data
-  async function fetchNews() {
-    try {
-      const data = await import('../../anime-news.json')
-      setNewsData(data)
-    } catch (error) {console.error(error)}
-  }
-
   // Fetch data when page first loads
   useEffect(() => {
-    if (!newsData) fetchNews()
+    if (!newsData) setNewsData(fetchedNewsData)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetchedNewsData])
 
   return (
     <div className={styles.container}>

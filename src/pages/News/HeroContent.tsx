@@ -2,8 +2,9 @@ import React from 'react'
 import ReadMoreBtn from '../../components/ReadMoreBtn'
 import styles from '../../styles/news/HeroContent.module.css'
 import { useMobile } from '../../context/mobileContext'
+import { Featured } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function HeroContent({ featuredData }) {
+export default function HeroContent({ featuredData } : { featuredData: Featured }) {
   const { isMobile } = useMobile()
   
   if (featuredData) return (
@@ -39,9 +40,9 @@ export default function HeroContent({ featuredData }) {
       <div className={styles.heroInfo}>
         <div className={styles.heroText}>
           <div className={styles.date}></div>
-          <h2 className={styles.title}>Lorem ipsum dolor sit amet consectetur. Commodo elementum</h2>
+          <h2 className={styles.title}>Loading...</h2>
         </div>
-        <ReadMoreBtn />
+        <ReadMoreBtn url={''}/>
       </div>
     </div>
   )
