@@ -29,7 +29,7 @@ function Home() {
   const { isMobile } = useMobile()
   let newsCards = null
 
-  if (newsData) newsCards = newsData.map((news, index) => {
+  if (newsData) newsCards = newsData.news.map((news, index) => {
     if (isMobile && index < 3) {
       return (
         <NewsCard

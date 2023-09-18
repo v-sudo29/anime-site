@@ -6,13 +6,13 @@ import useFetchNews from "../hooks/useFetchJSONNews";
 import { TrendingDatum } from "../types/fetchDataTypes/fetchTrendingTypes";
 import { UpcomingDatum } from "../types/fetchDataTypes/fetchUpcomingTypes";
 import { PopularResponse } from "../types/fetchDataTypes/fetchPopularTypes";
-import { News } from "../types/fetchDataTypes/fetchNewsTypes";
+import { JSONNewsResponse } from "../types/fetchDataTypes/fetchNewsTypes";
 
 interface IDefaultDataContext {
   trendingData: TrendingDatum[] | null
   upcomingData: UpcomingDatum[] | null
   popularData: PopularResponse | null
-  newsData: News[] | null
+  newsData: JSONNewsResponse | null
   trendingError: boolean
   upcomingError: boolean
   popularError: boolean
