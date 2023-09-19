@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  display: none;  /* remove */
 }
 
 .cardsContainer {
@@ -11,10 +10,16 @@
   gap: 1rem;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 320px) {
   .cardsContainer {
     grid-template-columns: repeat(3, minmax(4rem, 1fr));
     grid-row-gap: 2rem;
     grid-column-gap: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .cardsContainer {
+    grid-template-columns: repeat(5, minmax(0rem, 1fr));
   }
 }

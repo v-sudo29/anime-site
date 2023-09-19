@@ -32,6 +32,11 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
     return () => {resetTimeout()}
   }, [currentIndex, trendingCards])
 
+  // If screen size changes, reset current index
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [isMobile, isTablet])
+
   // Display trending cards UI
   if (trendingData) {
     trendingCards = trendingData.map((anime, index) => {
