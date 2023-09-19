@@ -122,7 +122,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
   function closeSelectMenu(e: MouseEvent) {
     const element = e.target as HTMLElement
 
-    if (element && element.classList.contains(`${styles['selectedOption']}`) && !selectMenuHidden.current) {
+    if (element && !selectMenuHidden.current && (element.classList.contains(`${styles['selectedOption']}`) || (!element.classList.contains(`${styles['selectedOption']}`)))) {
       hideOptions()
     }
   }
