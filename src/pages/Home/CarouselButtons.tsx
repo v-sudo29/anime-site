@@ -12,11 +12,11 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
   const { isMobile } = useMobile()
   
   async function switchAnime(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    console.log('clicked!')
     const currentButton = e.target as HTMLButtonElement
     const parentElement = currentButton.parentElement
     const activeButton = parentElement?.querySelector(`.${styles.active}`) as HTMLButtonElement
 
+    console.log({activeButton, currentIndex})
     if (!currentButton.classList.contains(`${styles.active}`)) {
 
       // Remove active class from activeButton

@@ -12,6 +12,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
   const runOnce = useRef(false)
   const { isMobile, isTablet } = useMobile()
   const delay = 10000;
+  let trendingCards: (JSX.Element | null)[] | null = null
 
   // Reset carousel timeout
   const resetTimeout = () => {
@@ -20,16 +21,27 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
 
   // Every 10 seconds, change slide
   useEffect(() => {
-    if (trendingData && runOnce.current) {
+    if (trendingData && trendingCards && trendingCards.length && runOnce.current) {
       timeOutRef.current = setTimeout(() => {
         setCurrentIndex(prevIndex => {
-          return Number(prevIndex) === Number(trendingData.length - 1) ? 0 : prevIndex + 1
+          return Number(prevIndex) === Number(trendingCards && trendingCards.length - 1) ? 0 : prevIndex + 1
       })
       }, delay)
     } runOnce.current = true
 
     return () => {resetTimeout()}
-  }, [currentIndex, trendingData])
+  }, [currentIndex, trendingCards])
+
+  // Display trending cards UI
+  if (trendingData) {
+    trendingCards = trendingData.map((anime, index) => {
+      if (isMobile && index < 4) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
+      if (!isMobile && index < 6) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
+      return null
+    })
+    trendingCards = trendingCards.filter(item => item !== null)
+  }
+
 
   return (
     <section className={styles.container}>
@@ -43,11 +55,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
               className={styles.slideshowSlider}
               style={{ transform: `translate3d(${-currentIndex * 100}%, 0, 0)` }}
             >
-              {trendingData.map((anime, index) => {
-                if (isMobile && index < 4) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
-                if (!isMobile && index < 6) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
-                return null
-              })}
+              {trendingCards}
             </div>
             {!isMobile && !isTablet && (
               <CarouselButtons 
