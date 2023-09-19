@@ -1,7 +1,7 @@
 # YourAnimeList
 <div float="left"}>
-  <img width="51.5%" alt="Anime site screenshot" src="/public/search-screenshot.png">
-  <img width="48%" alt="Anime site screenshot" src="/public/upcoming-anime.png">  
+  <img width="50%" alt="Anime site screenshot" src="/public/search-screenshot.png">
+  <img width="46.5%" alt="Anime site screenshot" src="/public/upcoming-anime.png">  
 </div>
 
 
