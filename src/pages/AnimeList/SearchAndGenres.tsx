@@ -78,8 +78,8 @@ export default function SearchAndGenres({
     const genreBtnElement = e.target as HTMLButtonElement
 
     // Style genre tag if active/inactive
-    genreBtnElement.classList.contains(`${styles.active}`) ? genreBtnElement.classList.add(`${styles.active}`) : 
-      genreBtnElement.classList.remove(`${styles.active}`)
+    genreBtnElement.classList.contains(`${styles.active}`) ? genreBtnElement.classList.remove(`${styles.active}`) :
+      genreBtnElement.classList.add(`${styles.active}`)
   }
 
   return (

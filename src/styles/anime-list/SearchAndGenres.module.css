@@ -31,7 +31,6 @@
 .searchBtn:hover, .genresBtn:hover,
 .genreTag:hover {
   background-color: var(--button-hover-bg-color);
-  color: var(--button-color);
 }
 
 .searchBtn:focus {
