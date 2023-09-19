@@ -1,5 +1,15 @@
 # YourAnimeList
+<div float="left"}>
+  <img width="50%" alt="Anime site screenshot" src="/public/search-screenshot.png">
+  <img width="46.5%" alt="Anime site screenshot" src="/public/upcoming-anime.png">  
+</div>
+
+
+## Introduction
 **YourAnimeList** is an elegant anime discovery app built with React. It provides an intuitive user interface for browsing and tracking anime, powered by the Jikan API.
+
+## Live Demo
+[Deployed Link](https://your-animelist.onrender.com/)
 
 ## Key Features
 - Browse popular, top rated, and trending anime
@@ -19,5 +29,4 @@
 - Leveraging **React Router** for seamless routing and navigation between pages
 
 ## Contributors
-- [Victoria Nguyen](https://github.com/v-sudo29) - Frontend developer
-- Amanda Ho - Visual designer
+Made with ❤️ by [Victoria Nguyen](https://github.com/v-sudo29)
