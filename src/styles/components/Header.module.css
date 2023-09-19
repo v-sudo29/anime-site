@@ -20,6 +20,36 @@
   positon: relative;
 }
 
+/* .navigation > a::after {
+  content: "";
+  position: absolute;
+
+  width: 1rem;
+  height: 0.1rem;
+  background-color: red;
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+} */
+
+.notActiveLink:after {
+  content: "";
+  float: left;
+  background: var(--yellow-color);
+  width: 100%;
+  height: 0.13rem;
+  border-radius: 0.5rem;
+  margin-top: 0.1rem;
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.notActiveLink:hover::after {
+  opacity: 1;
+  transform: scale(1)
+}
+
 .activeLink:after {
   content: ""; 
   float: left;
