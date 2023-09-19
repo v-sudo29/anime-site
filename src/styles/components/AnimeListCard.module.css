@@ -6,6 +6,10 @@
   z-index: 10;
 }
 
+.card:hover {
+  background-color: #242323;
+}
+
 .ranking {
   width: 1rem;
   font-size: 1.3rem;

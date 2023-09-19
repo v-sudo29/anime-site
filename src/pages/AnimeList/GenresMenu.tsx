@@ -8,6 +8,7 @@ interface IGenresMenu {
   }[]
   handleGenreTagClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
+
 export default function GenresMenu({
   styles,
   genresMasterList,
