@@ -8,7 +8,7 @@ import { TrendingDatum } from '../../types/fetchDataTypes/fetchTrendingTypes'
 
 export default function TrendingCarousel({ trendingData } : { trendingData: TrendingDatum[] | null }) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const timeOutRef = useRef<number>(0)
+  const timeOutRef = useRef<number | null>(null)
   const runOnce = useRef(false)
   const { isMobile, isTablet } = useMobile()
   const delay = 10000;
