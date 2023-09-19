@@ -16,7 +16,6 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
   const [isTablet, setIsTablet] = useState(false)
 
   const handleResize = () => {
-    console.log(window.innerWidth)
     if (window.innerWidth >= 300 && window.innerWidth <= 480) {
       setIsMobile(true)
       setIsTablet(false)
