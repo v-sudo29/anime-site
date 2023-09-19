@@ -4,10 +4,14 @@
   justify-content: space-between;
   margin-bottom: -5rem;
   bottom: 14rem;
+  pointer-events: none;
 }
 
 .arrow {
   font-size: 5rem;
   font-weight: 300;
   cursor: pointer;
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
 }

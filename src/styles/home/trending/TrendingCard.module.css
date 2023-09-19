@@ -5,24 +5,24 @@
 }
 
 .card {
-  display: flex;
-  gap: 2rem;
-  height: 20rem;
-  width: 55rem;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  height: 100%;
+  width: 100%;
 }
 
 .anchorContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20rem;
-  width: 50rem;
+  height: inherit;
+  width: inherit;
   border-radius: 0.2rem;
   overflow: hidden;
 }
 
 .image {
-  min-width: 25.5rem;
+  width: inherit;
   object-fit: cover;
 }
 
@@ -56,17 +56,17 @@
     height: 100%;
   }
   .card {
-    flex-direction: column;
-    height: inherit;
-    width: inherit;
-    min-width: inherit;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(10rem, 20rem) 1fr;
+    gap: 1rem;
   }
   .anchorContainer {
+    height: 100%;
     width: 100%;
   }
   .image {
-    min-width: 27.5rem;
+    width: inherit;
+    height: inherit;
     object-fit: cover;
   }
   .info {
@@ -90,18 +90,27 @@
 
 @media screen and (min-width: 480px) {
   .image {
-    min-width: 35rem;
+    width: inherit;
+    height: inherit;
   }
 }
 
 @media screen and (min-width: 600px) {
-  .slide {
-    height: 20rem;
-  }
   .card {
-    flex-direction: row;
+    grid-template-rows: minmax(10rem, 20rem);
+    grid-template-columns: 1fr 1fr;
   }
   .image {
-    min-width: 31rem;
+    width: inherit;
+    height: inherit;
+  }
+  .anchorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    width: inherit;
+    border-radius: 0.2rem;
+    overflow: hidden;
   }
 }

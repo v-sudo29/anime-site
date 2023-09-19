@@ -18,9 +18,7 @@ export default function TrendingCard({ anime } : { anime: TrendingDatum }) {
     <div className={styles.slide}>
       <div className={styles.card}>
         <Link className={styles.anchorContainer} tabIndex={-1} to={`/anime/${id}`}>
-          <div className={styles.imageDiv}>
-            <img className={styles.image} src={imgSrc} alt=""/>
-          </div>
+          <img className={styles.image} src={imgSrc} alt=""/>
         </Link>
         <div className={styles.info}>
           <h3 className={styles.title}>{englishTitle ?? defaultTitle}</h3>
