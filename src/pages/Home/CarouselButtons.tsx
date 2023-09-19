@@ -16,7 +16,6 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
     const parentElement = currentButton.parentElement
     const activeButton = parentElement?.querySelector(`.${styles.active}`) as HTMLButtonElement
 
-    console.log({activeButton, currentIndex})
     if (!currentButton.classList.contains(`${styles.active}`)) {
 
       // Remove active class from activeButton

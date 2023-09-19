@@ -6,6 +6,7 @@
   background-color: #232323;
   padding: 0.8rem;
   border-radius: 0.3rem;
+  transition: var(--default-transition-time);
 }
 
 .container:focus-within {
