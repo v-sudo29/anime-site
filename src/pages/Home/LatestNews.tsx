@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../styles/home/news/LatestNews.module.css'
 import yellowArrow from '../../assets/yellow-arrow-icon.png'
+import whiteArrow from '../../assets/arrow-icon.png'
 import { useMobile } from '../../context/mobileContext'
 import { JSONNewsResponse } from '../../types/fetchDataTypes/fetchNewsTypes'
 import NewsCard from './NewsCard'
@@ -42,8 +43,17 @@ export default function LatestNews({ newsData } : { newsData: JSONNewsResponse |
       <div className={styles.header}>
         <h2>Latest Anime News</h2>
         <Link className={styles.moreNewsLink} to='/news'>
-          <span>More News</span>
-          <img src={yellowArrow} alt="Yellow arrow icon" />
+          <span className={styles.moreNewsSpan}>More News</span>
+          <div className={styles.arrowsSlideshow}>
+            <div className={styles.arrowsSlider}>
+              <div className={`${styles.arrowsSlide} ${styles.whiteArrowSlide}`}>
+                <img className={styles.whiteArrow} src={whiteArrow} alt="White arrow icon" />
+              </div>
+              <div className={styles.arrowsSlide}>
+                <img className={styles.yellowArrow} src={yellowArrow} alt="Yellow arrow icon" />
+              </div>
+            </div>
+          </div>
         </Link>
       </div>
       <div className={styles.cardsContainer}>
