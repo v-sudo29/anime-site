@@ -8,15 +8,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: var(--page-max-width);
+  max-width: var(--page-max-width);
+  width: 100%;
   padding-top: var(--page-top-bottom-padding);
   padding-bottom: var(--page-top-bottom-padding);
   min-height: 100vh;
   gap: 3rem;
-}
-
-@media screen and (max-width: 480px) {
-  .content {
-    width: 100%;
-  }
 }

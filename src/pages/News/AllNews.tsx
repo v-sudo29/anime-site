@@ -17,18 +17,9 @@ export default function AllNews({ newsData } : { newsData: News[] }) {
         if (news.image === 'doesn\'t exist!') return null
         return (
           <div key={index} className={styles.card}>
-            {!isMobile && (
-              <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-                <div className={styles.imageDiv}>
-                  <img className={styles.image} src={news.image} alt={news.title} />
-                </div>
-              </a>
-            )}
-            {isMobile && (
-              <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-                <img className={styles.image} src={news.image} alt={news.title} />
-              </a>
-            )}  
+            <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
+              <img className={styles.image} src={news.image} alt={news.title} />
+            </a>
             <div className={styles.info}>
               <div className={styles.date}>
               {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
@@ -37,11 +28,9 @@ export default function AllNews({ newsData } : { newsData: News[] }) {
               }
               </div>
               <a href={news.url} target="_blank" rel="noopener noreferrer">
-                <h3 className={styles.title}>{!isMobile ? limitCharacters(news.title, 20) : news.title}</h3>
+                <h3 className={styles.title}>{news.title}</h3>
               </a>
-              {!isMobile && (
-                <p className={styles.text}>{limitCharacters(news.text, 76)}</p>
-              )}
+              <p className={styles.text}>{news.text}</p>
             </div>
           </div>
         )
