@@ -6,7 +6,6 @@
 
 .card {
   display: grid;
-  /* grid-template-columns: 1fr 1fr; */
   height: 100%;
   width: 100%;
 }
@@ -34,7 +33,7 @@
   width: 100%;
 }
 
-/* Arrow icon */
+/* Read More + Arrow icon */
 .info > div > a {
   display: flex;
   align-items: center;
