@@ -10,15 +10,15 @@ export default function ReadMoreBtn({ url } : { url: string }) {
       <Link to={url} tabIndex={-1} className={styles.link} target="_blank" rel="noopener noreferrer">
         <span className={styles.readMoreSpan}>Read More</span>
         <div className={styles.arrowsSlideshow}>
-            <div className={styles.arrowsSlider}>
-              <div className={`${styles.arrowsSlide} ${styles.whiteArrowSlide}`}>
-                <img className={styles.whiteArrow} src={whiteArrowIcon} alt="White arrow icon" />
-              </div>
-              <div className={styles.arrowsSlide}>
-                <img className={styles.yellowArrow} src={yellowArrowIcon} alt="Yellow arrow icon" />
-              </div>
+          <div className={styles.arrowsSlider}>
+            <div className={`${styles.arrowsSlide} ${styles.whiteArrowSlide}`}>
+              <img className={styles.whiteArrow} src={whiteArrowIcon} alt="White arrow icon" />
+            </div>
+            <div className={styles.arrowsSlide}>
+              <img className={styles.yellowArrow} src={yellowArrowIcon} alt="Yellow arrow icon" />
             </div>
           </div>
+        </div>
       </Link>
     </div>
   )
