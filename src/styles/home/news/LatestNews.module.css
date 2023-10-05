@@ -56,12 +56,12 @@
   width: 1.6rem;
 }
 
-.moreNewsLink:hover .arrowsSlider {
-  transform: translate3D(0, 0, 0);
-}
-
 .moreNewsLink:hover .moreNewsSpan {
   color: white;
+}
+
+.moreNewsLink:hover .arrowsSlider {
+  transform: translate3D(0, 0, 0);
 }
 
 .cardsContainer {
