@@ -22,6 +22,7 @@ html {
   --main-background-color: #111111;
   --yellow-color: #FFC700;
   --text-color: white;
+  --text-hover-color: #CDCDCD;
   --hover-color: rgb(13, 116, 220);
   --page-top-bottom-padding: 5rem;
   --page-max-width: 63rem;

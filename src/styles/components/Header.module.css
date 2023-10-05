@@ -37,7 +37,7 @@
 }
 
 .notActiveLink:hover {
-  color: #CDCDCD;
+  color: var(--text-hover-color);
 }
 
 .activeLink:after {
