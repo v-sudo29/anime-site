@@ -4,6 +4,8 @@
   margin-bottom: 1rem;
   position: relative;
   z-index: 10;
+  padding: 1.3rem;
+  border-radius: 0.5rem;
 }
 
 .card:hover {
@@ -12,8 +14,9 @@
 
 .ranking {
   width: 1rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
+  margin-right: 0.5rem;
 }
 
 .imgContainer {
@@ -42,7 +45,7 @@
 }
 
 .title:hover {
-  color: #b0b0b0;
+  color: var(--text-hover-color);
 }
 
 .finishedDate {

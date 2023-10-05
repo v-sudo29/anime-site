@@ -47,7 +47,7 @@
 }
 
 .title:hover {
-  color: var(--link-hover-color);
+  color: var(--text-hover-color);
 }
 
 @media screen and (max-width: 480px) {

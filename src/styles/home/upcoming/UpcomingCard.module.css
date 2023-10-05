@@ -45,7 +45,7 @@
 }
 
 .title:hover {
-  color: var(--link-hover-color);
+  color: var(--text-hover-color);
 }
 
 @media screen and (min-width: 320px) {
