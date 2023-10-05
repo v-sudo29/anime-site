@@ -14,4 +14,5 @@
   padding-bottom: var(--page-top-bottom-padding);
   min-height: 100vh;
   gap: 3rem;
+  margin-top: 3rem;
 }
