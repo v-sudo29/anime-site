@@ -30,7 +30,8 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     ? '-' : splitDates(anime['aired']['string'])['endDate']
   const genres = anime.genres.map(genre => genre.name).length > 1 ? anime.genres.map(genre => genre.name).join(', ')
     : anime.genres.map(genre => genre.name)
-  const viewerRating = anime.score ?? '-'
+  const viewerRating = anime['score'] ? anime['score'].toString().length > 3 ? anime['score'].toString().substring(0, 3) 
+    : anime['score'] : '-'
 
   return (
     <div className={styles.statsContainer}>
