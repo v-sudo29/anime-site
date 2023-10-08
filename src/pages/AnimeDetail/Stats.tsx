@@ -4,7 +4,7 @@ import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailType
 
 export default function Stats({ anime } : { anime: AnimeDetailData }) {
 
-  function splitDates(stringDates: string) {
+  const splitDates = (stringDates: string) => {
     let dates = stringDates
     let splitted = dates.split(' to ')
     let startDate = splitted[0]
@@ -12,7 +12,7 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     return { startDate, endDate }
   }
 
-  function uppercaseFirstLetters(string: string) {
+  const uppercaseFirstLetters = (string: string) => {
     const arr = string.split(' ')
 
     for (let i = 0; i < arr.length; i++) {
