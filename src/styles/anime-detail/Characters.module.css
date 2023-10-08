@@ -56,25 +56,21 @@
 
 .charactersBtnContainer {
   display: flex;
-  justify-content: center;
-  padding: 3rem 3rem 0rem 0rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  width: max-content;
+  gap: 0.5rem;
 }
 
 .charactersBtn {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-  height: 1.5rem;
+  all: unset;
+  font-weight: 400;
+  font-size: 0.8rem;
   border-radius: var(--card-border-radius);
-  padding: 1.6rem 2.4rem;
-  background-color: #686868;
-  color: inherit;
-  border: none;
-  cursor: pointer;
   transition: var(--default-transition-time);
 }
 
-.charactersBtn:hover {
-  background-color: var(--button-hover-bg-color);
+.carrotIconContainer {
+  display: flex;
+  width: 1.2rem;
 }
