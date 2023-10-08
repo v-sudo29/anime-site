@@ -1,0 +1,14 @@
+.icon {
+  width: 1.5rem;
+  transition: 200ms ease;
+}
+
+.carrotActive {
+  transform: rotate(180deg)
+}
+
+/* @media screen and (max-width: 480px) {
+  .icon {
+    width: 1.5rem;
+  }
+} */

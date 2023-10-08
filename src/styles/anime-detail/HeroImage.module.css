@@ -1,0 +1,14 @@
+.container {
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 3px 10px 3px rgb(0 0 0 / 0.5);
+}
+
+.animeImg {
+  width: 100%;
+  height: inherit;
+  cover: object-fit;
+  transform: scale(1.10);
+}

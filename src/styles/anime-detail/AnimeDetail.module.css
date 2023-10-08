@@ -1,11 +1,12 @@
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  width: var(--page-max-width);
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 3rem;
+  width: 100%;
   min-height: 100vh;
   padding-top: var(--page-top-bottom-padding);
   padding-bottom: var(--page-top-bottom-padding);
+  max-width: var(--page-max-width);
 }
 
 .backgroundImg {

@@ -14,6 +14,8 @@ import SimilarAnime from './SimilarAnime'
 import useFetchAnime from '../../hooks/useFetchAnime'
 import FetchError from '../../components/FetchError'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
+import HeroImage from './HeroImage'
+import HeroInfo from './HeroInfo'
 
 function AnimeDetail() {
   const params = useParams()
@@ -34,28 +36,32 @@ function AnimeDetail() {
   if (animeLoading) return <LoaderAnimation/>
   if (animeError) return <FetchError/>
   if (anime) return (
-    <div className={`${styles.detailPage} overview`}>
-        <div className={styles.content}>
-          <HeroContent anime={anime}/>
-          <NavButtons />
-          <Stats anime={anime}/>
-          <Summary anime={anime}/>
-          <Characters anime={anime} id={params.id}/>
-          <RelatedAnime 
-            anime={anime}
-            mainIdsType={mainIdsType}
-            spinOffIds={spinOffIds}
-            setMainIdsType={setMainIdsType}
-            setSpinOffIds={setSpinOffIds}
-          />
-          <StudioProducers 
-            anime={anime}
-            count={count}
-            countUpdated={countUpdated}
-          />
-          <News id={params.id}/>
-          <SimilarAnime id={params.id}/>
-        </div>
+    <div className={styles.content}>
+      <div className={styles.leftContainer}>
+        <HeroImage anime={anime}/>
+      </div>
+      <div className={styles.rightContainer}>
+        <HeroInfo anime={anime}/>      
+      </div>
+      {/* <HeroContent anime={anime}/> */}
+      {/* <NavButtons />
+      <Stats anime={anime}/>
+      <Summary anime={anime}/>
+      <Characters anime={anime} id={params.id}/>
+      <RelatedAnime 
+        anime={anime}
+        mainIdsType={mainIdsType}
+        spinOffIds={spinOffIds}
+        setMainIdsType={setMainIdsType}
+        setSpinOffIds={setSpinOffIds}
+      />
+      <StudioProducers 
+        anime={anime}
+        count={count}
+        countUpdated={countUpdated}
+      />
+      <News id={params.id}/>
+      <SimilarAnime id={params.id}/> */}
     </div>
   )
 }

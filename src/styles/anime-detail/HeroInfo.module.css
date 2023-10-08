@@ -1,0 +1,36 @@
+.container {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.animeTitle {
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.synopsis {
+  font-weight: 100;
+  line-height: 1.7rem;
+  font-size: 1rem;
+  transition: var(--default-transition-time);
+  width: fit-content;
+}
+
+.readMoreBtnContainer {
+  margin-top: 1rem;
+  width: max-content;
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.readMoreBtn {
+  all: unset;
+  font-weight: 500;
+}
+
+.carrotIconContainer {
+  display: flex;
+  width: 1.5rem;
+}
