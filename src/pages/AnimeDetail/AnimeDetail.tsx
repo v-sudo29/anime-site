@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/anime-detail/AnimeDetail.module.css'
-import NavButtons from './NavButtons'
 import Stats from './Stats'
-import Summary from './Summary'
 import Characters from './Characters'
 import RelatedAnime from './RelatedAnime'
 import StudioProducers from './StudioProducers'
 import News from './News'
 import SimilarAnime from './SimilarAnime'
+import HeroImage from './HeroImage'
+import HeroInfo from './HeroInfo'
 import useFetchAnime from '../../hooks/useFetchAnime'
 import FetchError from '../../components/FetchError'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
-import HeroImage from './HeroImage'
-import HeroInfo from './HeroInfo'
+
 
 function AnimeDetail() {
   const params = useParams()
@@ -56,9 +55,8 @@ function AnimeDetail() {
           countUpdated={countUpdated}
         />
         <News id={params.id}/>
+        <SimilarAnime id={params.id}/> 
       </div>
-      {/*
-      <SimilarAnime id={params.id}/> */}
     </div>
   )
 }

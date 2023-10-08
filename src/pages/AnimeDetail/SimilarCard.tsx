@@ -13,7 +13,7 @@ export default function SimilarCard({ styles, anime }: ISimilarCard) {
         <img className={styles.similarImg} src={anime['entry']['images']['jpg']['large_image_url']} alt=""/>
       </a>
       <a href={`/anime/${anime['entry']['mal_id']}`}>
-        <div className={styles.similarName}>{anime['entry']['title']}</div>
+        <div className={styles.similarTitle}>{anime['entry']['title']}</div>
       </a>
     </div>
   )

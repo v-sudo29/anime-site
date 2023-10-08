@@ -1,37 +1,54 @@
+.similarContainer {
+  margin-top: 3rem;
+  width: 100%;
+}
+
 .similarCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0rem, 1fr));
   gap: 1rem;
+  width: 100%;
+  height: 100%;
   margin-top: 1.5rem;
 }
 
 .similarCard {
-  width: var(--vertical-card-width);
-  height: var(--vertical-card-height);
+  display: grid;
+  grid-template-rows: minmax(0rem, 1fr) 0.2fr;
+  width: 100%;
+  height: 100%;
 }
 
 .anchorContainer {
   display: flex;
   justify-content: center;
-  width: var(--vertical-img-width);
-  height: var(--vertical-img-height);
+  height: 100%;
+  width: 100%;
   border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 
 .similarImg {
-  width: var(--vertical-img-width);
-  height: var(--vertical-img-height);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.similarName {
+.similarTitle {
+  height: 2rem;
   margin-top: 1rem;
   font-weight: 500;
   font-size: 0.9rem;
   transition: var(--default-transition-time);
+
+  width: fit-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
-.similarName:hover {
+.similarTitle:hover {
   color: var(--link-hover-color);
 }
