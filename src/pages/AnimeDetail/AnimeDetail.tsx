@@ -39,9 +39,10 @@ function AnimeDetail() {
     <div className={styles.content}>
       <div className={styles.leftContainer}>
         <HeroImage anime={anime}/>
+        <Stats anime={anime}/>
       </div>
       <div className={styles.rightContainer}>
-        <HeroInfo anime={anime}/>      
+        <HeroInfo anime={anime}/> 
       </div>
       {/* <HeroContent anime={anime}/> */}
       {/* <NavButtons />

@@ -22,16 +22,43 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     return newString
   }
 
+  const status = uppercaseFirstLetters(anime.status)
+  const episodes = anime.episodes ?? '-'
+  const duration = anime.duration
+  const startDate = splitDates(anime['aired']['string'])['startDate']
+  const endDate = splitDates(anime['aired']['string'])['endDate'] === '?' || splitDates(anime['aired']['string'])['endDate'] 
+    ? '-' : splitDates(anime['aired']['string'])['endDate']
+  const genres = anime.genres.map(genre => genre.name).length > 1 ? anime.genres.map(genre => genre.name).join(', ')
+    : anime.genres.map(genre => genre.name)
+  const viewerRating = anime.score ?? '-'
+
+  console.log(anime)
   return (
     <div className={styles.statsContainer}>
-      <div>Status <p>{uppercaseFirstLetters(anime.status)}</p> </div>
-      <div>Episodes <p>{anime.episodes ?? '-'}</p> </div>
-      <div>Episode Duration <p>{anime.duration}</p> </div>
-      <div>Start Date <p>{splitDates(anime['aired']['string'])['startDate']}</p> </div>
-      <div>End <p>{splitDates(anime['aired']['string'])['endDate'] === '?' || splitDates(anime['aired']['string'])['endDate'] 
-        ? '-' : splitDates(anime['aired']['string'])['endDate']}</p> 
+      <div>Status 
+        <p>{status}</p>
       </div>
-      <div>Format <p>{anime.type}</p> </div>
+      <div>Episodes
+        <p>{episodes}</p> 
+      </div>
+      <div>Episode Duration
+        <p>{duration}</p>
+      </div>
+      <div>Start Date
+        <p>{startDate}</p>
+      </div>
+      <div>End
+        <p>{endDate}</p>
+      </div>
+      <div>Format
+        <p>{anime.type}</p>
+      </div>
+      <div>Genres
+        <p>{genres}</p>
+      </div>
+      <div>Viewer Rating
+        <p>{viewerRating} <span className={styles.dashAndTen}>/ 10</span></p>
+      </div>
     </div>
   )
 }
