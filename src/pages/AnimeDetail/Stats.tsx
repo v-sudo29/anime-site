@@ -32,7 +32,6 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     : anime.genres.map(genre => genre.name)
   const viewerRating = anime.score ?? '-'
 
-  console.log(anime)
   return (
     <div className={styles.statsContainer}>
       <div>Status 
