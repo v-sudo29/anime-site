@@ -21,7 +21,7 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
         </Link>
       </div>
       <div className={styles.characterInfo}>
-        <h3>{charName}</h3>
+        <h3 className={styles.characterName}>{charName}</h3>
         <div className={styles.voiceActor}>{
           voiceActors.map(voiceActor => voiceActor['language'] === 'Japanese' && voiceActor['person']['name'])}
         </div>

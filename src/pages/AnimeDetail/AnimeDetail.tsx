@@ -41,9 +41,9 @@ function AnimeDetail() {
         <Stats anime={anime}/>
       </div>
       <div className={styles.rightContainer}>
-        <HeroInfo anime={anime}/> 
+        <HeroInfo anime={anime}/>
+        <Characters anime={anime} id={params.id}/>
       </div>
-      {/* <HeroContent anime={anime}/> */}
       {/* <NavButtons />
       <Stats anime={anime}/>
       <Summary anime={anime}/>

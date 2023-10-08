@@ -15,7 +15,7 @@ export default function Characters({ anime, id } : ICharacters) {
   let characterCards = null
 
   if (charactersData && !allCharacters) characterCards = charactersData.map((character, index) => 
-    (index < 12 && 
+    (index < 9 && 
       <CharacterCard 
         key={character['character']['name']}
         styles={styles} 
