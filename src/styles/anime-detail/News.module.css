@@ -53,6 +53,6 @@
   -webkit-box-orient: vertical;
 }
 
-.newsName:hover {
+.newsTitle:hover {
   color: var(--link-hover-color);
 }
