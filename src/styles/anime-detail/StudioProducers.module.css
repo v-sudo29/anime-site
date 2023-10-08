@@ -1,27 +1,34 @@
+.studioProducersContainer {
+  margin-top: 4rem;
+}
+
 .producerCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0rem, 7rem));
   gap: 1rem;
+  width: 100%;
+  height: 100%;
 }
 
 .producerCard {
-  display: flex;
-  flex-direction: column;
-  width: 13rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  height: 100%;
 }
 
 .anchorContainer {
   display: flex;
   justify-content: center;
-  height: 13rem;
-  width: 13rem;
+  width: 100%;
+  height: 100%;
   border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 
 .producerImg {
-  height: 13rem;
-  width: 13rem;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -35,6 +42,12 @@
   font-weight: 500;
   font-size: 0.9rem;
   transition: var(--default-transition-time);
+  width: fit-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
 .producerName:hover {

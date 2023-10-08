@@ -33,7 +33,7 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 

@@ -5,14 +5,14 @@
 .charactersContainer {
   display: grid;
   grid-template-columns: repeat(3, minmax(10rem, 1fr));
-  gap: 3rem;
+  gap: 2.5rem;
   height: 100%;
   width: 100%;
 }
 
 .characterCard {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 5fr 6fr;
   gap: 1rem;
   height: 100%;
   width: 100%;
@@ -29,13 +29,13 @@
 }
 
 .voiceActor {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .characterType {
   margin-top: 0.8rem;
   font-weight: 100;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #C7C7C7;
 }
 

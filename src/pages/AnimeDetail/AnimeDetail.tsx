@@ -50,15 +50,14 @@ function AnimeDetail() {
           setMainIdsType={setMainIdsType}
           setSpinOffIds={setSpinOffIds}
         />
+        <StudioProducers 
+          anime={anime}
+          count={count}
+          countUpdated={countUpdated}
+        />
       </div>
       {/*
-      <RelatedAnime 
-        anime={anime}
-        mainIdsType={mainIdsType}
-        spinOffIds={spinOffIds}
-        setMainIdsType={setMainIdsType}
-        setSpinOffIds={setSpinOffIds}
-      />
+
       <StudioProducers 
         anime={anime}
         count={count}

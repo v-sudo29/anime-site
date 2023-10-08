@@ -1,14 +1,16 @@
 .container {
+  display: grid;
+  grid-template-rows: minmax(0rem, 22rem);
   overflow: hidden;
-  width: inherit;
+  width: 100%;
   height: inherit;
   border-radius: var(--card-border-radius);
-  box-shadow: 0 3px 10px 3px rgb(0 0 0 / 0.5);
+  box-shadow: 0 3px 10px 3px rgb(0 0 0 / 0.4);
 }
 
 .animeImg {
   width: 100%;
-  height: inherit;
-  cover: object-fit;
+  height: 100%;
+  object-fit: cover;
   transform: scale(1.10);
 }
