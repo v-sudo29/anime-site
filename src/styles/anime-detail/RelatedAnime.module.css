@@ -54,6 +54,13 @@
   font-size: 0.9rem;
   transition: var(--default-transition-time);
   cursor: pointer;
+
+  width: fit-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
 .mainName:hover {

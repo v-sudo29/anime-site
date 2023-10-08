@@ -15,19 +15,19 @@ export default function NewsCard({ styles, article }: INewsCard) {
 
   return (
     <div className={styles.newsCard}>
-      <div className={styles.newsImgContainer}>
-        <a className={styles.anchorContainer} href={article['url']} target="_blank" rel="noopener noreferrer">
-          <img 
-            onError={imageOnError}
-            className={styles.newsImg} 
-            src={article['images']['jpg']['image_url']} 
-            alt="" />
-        </a>
-      </div>    
-      <div className={styles.newsDate}>{filteredDate}</div>
-      <a href={article['url']} target="_blank" rel="noopener noreferrer">
-        <div className={styles.newsName}>{article['title']}</div>
+      <a className={styles.anchorContainer} href={article['url']} target="_blank" rel="noopener noreferrer">
+        <img 
+          onError={imageOnError}
+          className={styles.newsImg} 
+          src={article['images']['jpg']['image_url']} 
+          alt="" />
       </a>
+      <div>
+        <div className={styles.newsDate}>{filteredDate}</div>
+        <a href={article['url']} target="_blank" rel="noopener noreferrer">
+          <div className={styles.newsTitle}>{article['title']}</div>
+        </a>
+      </div>
     </div>
   )
 }

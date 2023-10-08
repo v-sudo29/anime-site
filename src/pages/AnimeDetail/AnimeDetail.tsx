@@ -55,15 +55,9 @@ function AnimeDetail() {
           count={count}
           countUpdated={countUpdated}
         />
+        <News id={params.id}/>
       </div>
       {/*
-
-      <StudioProducers 
-        anime={anime}
-        count={count}
-        countUpdated={countUpdated}
-      />
-      <News id={params.id}/>
       <SimilarAnime id={params.id}/> */}
     </div>
   )
