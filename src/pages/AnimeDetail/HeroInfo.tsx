@@ -23,7 +23,6 @@ const HeroInfo = ({ anime } : { anime: AnimeDetailData | null }) => {
       const carrotIcon = document.querySelector(`.${styles.carrotIconContainer} svg`)
   
       if (carrotIcon) {
-        console.log(buttonClicked)
         !buttonClicked ? carrotIcon.classList.add(`${carrotActive}`) :
           carrotIcon.classList.remove(`${carrotActive}`)
       }
