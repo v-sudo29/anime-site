@@ -43,11 +43,15 @@ function AnimeDetail() {
       <div className={styles.rightContainer}>
         <HeroInfo anime={anime}/>
         <Characters anime={anime} id={params.id}/>
+        <RelatedAnime 
+          anime={anime}
+          mainIdsType={mainIdsType}
+          spinOffIds={spinOffIds}
+          setMainIdsType={setMainIdsType}
+          setSpinOffIds={setSpinOffIds}
+        />
       </div>
-      {/* <NavButtons />
-      <Stats anime={anime}/>
-      <Summary anime={anime}/>
-      <Characters anime={anime} id={params.id}/>
+      {/*
       <RelatedAnime 
         anime={anime}
         mainIdsType={mainIdsType}

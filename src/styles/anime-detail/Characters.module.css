@@ -1,17 +1,18 @@
 .charactersSection {
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .charactersContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto-fit, minmax(0rem, 8rem));
+  grid-template-columns: repeat(3, minmax(10rem, 1fr));
   gap: 3rem;
+  height: 100%;
+  width: 100%;
 }
 
 .characterCard {
   display: grid;
-  grid-template-columns: 1.5fr 2fr;
+  grid-template-columns: 1fr 2fr;
   gap: 1rem;
   height: 100%;
   width: 100%;
@@ -34,7 +35,7 @@
 .characterType {
   margin-top: 0.8rem;
   font-weight: 100;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #C7C7C7;
 }
 

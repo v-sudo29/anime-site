@@ -20,7 +20,7 @@ export default function RelatedAnime({
   spinOffIds, 
   setMainIdsType,
   setSpinOffIds
-  } : IRelatedAnime) {
+} : IRelatedAnime) {
   const { mainData } = useFetchMainSeries(mainIdsType)
   const { spinOffData } = useFetchSpinoff(spinOffIds)
 
@@ -64,35 +64,33 @@ export default function RelatedAnime({
   )
 
   return (
-    <>
-      <div className={`${styles.relatedAnimeContainer} relatedAnime`}>
-        <h2 className={styles.sectionTitle}>Related Anime</h2>
-        <div className={styles.relatedContent}>
+    <div className={`${styles.relatedAnimeContainer} relatedAnime`}>
+      <h2 className={styles.sectionTitle}>Related Anime</h2>
+      <div className={styles.relatedContent}>
 
-        {/* Main series */}
-        {mainSeriesCards && mainSeriesCards.length > 0 ? 
-          <div className={styles.mainSeries}>
-            <h3>Main Series</h3>
-            <div className={styles.mainCardsContainer}>
-              {mainSeriesCards}
-            </div>
-          </div> 
-        : null}
+      {/* Main series */}
+      {mainSeriesCards && mainSeriesCards.length > 0 ? 
+        <div className={styles.mainSeriesContainer}>
+          <h3>Main Series</h3>
+          <div className={styles.mainCardsContainer}>
+            {mainSeriesCards}
+          </div>
+        </div> 
+      : null}
 
-        {/* Spin-Offs */}
-        {spinOffCards && spinOffCards.length > 0 ? 
-          <div className={styles.spinOffs}>
+      {/* Spin-Offs */}
+      {spinOffCards && spinOffCards.length > 0 ? 
+        <div className={styles.spinOffsContainer}>
           <h3>Spin-Offs</h3>
           <div className={styles.spinoffCardsContainer}>
             {spinOffCards}
           </div>
-          </div> 
-        : null}
+        </div> 
+      : null}
 
-        {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
+      {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
 
-        </div>
       </div>
-    </>
+    </div>
   )
 }
