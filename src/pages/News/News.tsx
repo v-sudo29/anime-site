@@ -19,6 +19,12 @@ function News() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchedNewsData])
 
+  // TODO: TEMPORARY useEffect
+  useEffect(() => {
+    const bodyElement = document.querySelector('body')
+    if (bodyElement) bodyElement.style.backgroundColor = "#111111"
+  }, [])
+
   return (
     <div className={styles.container}>
       {newsData ? 

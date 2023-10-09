@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import LatestNews from './LatestNews'
 import TrendingCarousel from './TrendingCarousel'
@@ -25,6 +25,12 @@ function Home() {
   } = useDefaultData()
 
   document.title = 'YourAnimeList: Home'
+
+  // TODO: TEMPORARY useEffect
+  useEffect(() => {
+    const bodyElement = document.querySelector('body')
+    if (bodyElement) bodyElement.style.backgroundColor = "#111111"
+  }, [])
 
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
   if (trendingError || upcomingError || popularError || newsError) return <FetchError/>

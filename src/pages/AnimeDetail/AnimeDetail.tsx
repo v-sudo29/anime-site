@@ -14,7 +14,6 @@ import useFetchAnime from '../../hooks/useFetchAnime'
 import FetchError from '../../components/FetchError'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 
-
 function AnimeDetail() {
   const params = useParams()
   const { anime, animeLoading, animeError } = useFetchAnime()
@@ -30,6 +29,12 @@ function AnimeDetail() {
       setCountUpdated(true)
     }
   }, [mainIdsType, spinOffIds])
+
+  // TODO: TEMPORARY useEffect
+  useEffect(() => {
+    const bodyElement = document.querySelector('body')
+    if (bodyElement) bodyElement.style.backgroundColor = "#1F2021"
+  }, [])
 
   if (animeLoading) return <LoaderAnimation/>
   if (animeError) return <FetchError/>
