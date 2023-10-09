@@ -48,8 +48,8 @@ function AnimeDetail() {
       </div>
       <div className={styles.rightContainer}>
         <HeroInfo anime={anime}/>
-        <Characters anime={anime} id={params.id}/>
-        <RelatedAnime 
+        {/* <Characters anime={anime} id={params.id}/> */}
+        {/* <RelatedAnime 
           anime={anime}
           mainIdsType={mainIdsType}
           spinOffIds={spinOffIds}
@@ -62,7 +62,7 @@ function AnimeDetail() {
           countUpdated={countUpdated}
         />
         <News id={params.id}/>
-        <SimilarAnime id={params.id}/> 
+        <SimilarAnime id={params.id}/>  */}
       </div>
     </div>
   )

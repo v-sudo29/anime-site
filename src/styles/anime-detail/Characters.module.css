@@ -8,7 +8,8 @@
 
 .charactersContainer {
   display: grid;
-  grid-template-columns: repeat(3, minmax(12rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0rem, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(0rem, 1fr));
   gap: 2.5rem;
   height: 100%;
   width: 100%;
@@ -16,7 +17,7 @@
 
 .characterCard {
   display: grid;
-  grid-template-columns: 3fr 6fr;
+  grid-template-columns: 1fr 2fr;
   gap: 1rem;
   height: 100%;
   width: 100%;
@@ -26,8 +27,7 @@
 
 .characterCard:hover {
   background-color: #272829;
-  box-shadow: 0 2px 5px 3px rgb(0 0 0 / 0.1);
-
+  box-shadow: 0 2px 10px 3px rgb(0 0 0 / 0.1);
 }
 
 .characterCard:hover .characterImgContainer {
@@ -42,6 +42,7 @@
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
   padding-right: 0.6rem;
+  min-width: 5rem;
 }
 
 .characterName {
