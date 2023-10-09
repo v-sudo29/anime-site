@@ -14,7 +14,7 @@ export default function App() {
         <Routes>
             <Route path='/' element={<Layout/>}>
               <Route index element={<Home/>} />
-              <Route path='anime-list' element={<AnimeList/>} />
+              <Route path='anime' element={<AnimeList/>} />
               <Route path='anime/:id' element={<AnimeDetail/>} />
               <Route path='news' element={<News/>} />
               <Route path='character/:id' element={<CharacterDetail/>} />
