@@ -9,8 +9,6 @@ interface IProducerCard {
 }
 
 export default function ProducerCard({ styles, producer }: IProducerCard) {
-  
-  console.log(producer)
   return (
     <div className={styles.producerCard}>
       <a className={styles.anchorContainer} href={producer.url} target="_blank" rel="noopener noreferrer">
