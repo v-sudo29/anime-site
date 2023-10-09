@@ -14,7 +14,6 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
   const voiceActors = character['voice_actors']
   const voiceActorData = (voiceActors.filter(voiceActor => voiceActor['language'] === 'Japanese'))[0]
 
-  console.log(voiceActorData)
   return (
     <Link className={styles.characterCard} to={`/character/${id}`} target="_blank" rel="noopener noreferrer">
       <div className={styles.characterImgContainer}>
