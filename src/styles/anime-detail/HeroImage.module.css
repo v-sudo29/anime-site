@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-rows: minmax(0rem, 18rem);
+  grid-template-columns: minmax(0rem, 18rem);
   overflow: hidden;
   width: 100%;
   height: 100%;
