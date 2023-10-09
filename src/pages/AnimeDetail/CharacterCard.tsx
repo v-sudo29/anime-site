@@ -16,11 +16,9 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
 
   console.log(voiceActorData)
   return (
-    <div className={styles.characterCard}>
+    <Link className={styles.characterCard} to={`/character/${id}`} target="_blank" rel="noopener noreferrer">
       <div className={styles.characterImgContainer}>
-        <Link to={`/character/${id}`} target="_blank" rel="noopener noreferrer">
-          <img className={styles.characterImg} src={imgSrc} alt={charName} />
-        </Link>
+        <img className={styles.characterImg} src={imgSrc} alt={charName} />
       </div>
       <div className={styles.characterInfo}>
         <h3 className={styles.characterName}>{charName}</h3>
@@ -29,6 +27,6 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
         </div>
         <div className={styles.characterType}>{character['role']}</div>
       </div>
-    </div>
+    </Link>
   )
 }
