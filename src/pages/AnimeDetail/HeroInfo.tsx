@@ -12,7 +12,7 @@ const HeroInfo = ({ anime } : { anime: AnimeDetailData | null }) => {
   if (anime) {
     const ranking = anime.rank
     const title = anime.title_english ?? anime.title_japanese
-    const synopsis = buttonClicked ? anime.synopsis : limitCharacters(anime.synopsis, 712)
+    const synopsis = buttonClicked ? anime.synopsis : limitCharacters(anime.synopsis, 500)
 
     const handleClick = () => {
       setButtonClicked(prev => !prev)
@@ -33,7 +33,7 @@ const HeroInfo = ({ anime } : { anime: AnimeDetailData | null }) => {
         <span className={styles.rank}>#{ranking}</span>
         <h2 className={styles.animeTitle}>{title}</h2>
         <p className={styles.synopsis}>{synopsis}</p>
-        {synopsis.length > 712 ? (
+        {synopsis.length > 500 ? (
           <div onClick={handleClick} className={styles.readMoreBtnContainer}>
             <button className={styles.readMoreBtn}>{buttonClicked ? 'See Less' : 'Read More'}</button>
             <div className={styles.carrotIconContainer}>

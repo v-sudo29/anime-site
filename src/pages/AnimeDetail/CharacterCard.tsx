@@ -12,7 +12,9 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
   const imgSrc = character['character']['images']['jpg']['image_url']
   const charName = character['character']['name']
   const voiceActors = character['voice_actors']
+  const voiceActorData = (voiceActors.filter(voiceActor => voiceActor['language'] === 'Japanese'))[0]
 
+  console.log(voiceActorData)
   return (
     <div className={styles.characterCard}>
       <div className={styles.characterImgContainer}>
@@ -22,8 +24,8 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
       </div>
       <div className={styles.characterInfo}>
         <h3 className={styles.characterName}>{charName}</h3>
-        <div className={styles.voiceActor}>{
-          voiceActors.map(voiceActor => voiceActor['language'] === 'Japanese' && voiceActor['person']['name'])}
+        <div className={styles.voiceActor}>
+          {voiceActorData ? voiceActorData['person']['name'] : 'N/A'}
         </div>
         <div className={styles.characterType}>{character['role']}</div>
       </div>

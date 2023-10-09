@@ -4,13 +4,18 @@
   flex-direction: column;
 }
 
+.rank {
+  font-weight: 700;
+}
+
 .animeTitle {
   margin-top: 0.4rem;
   margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 .synopsis {
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.7rem;
   font-size: 1rem;
   transition: var(--default-transition-time);
@@ -22,14 +27,14 @@
   margin-top: 1rem;
   width: max-content;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
   cursor: pointer;
 }
 
 .readMoreBtn {
   all: unset;
-  font-weight: 400;
-  font-size: 0.8rem;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .carrotIconContainer {
