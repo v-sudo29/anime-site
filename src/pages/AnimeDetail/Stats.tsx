@@ -35,6 +35,7 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
 
   return (
     <div className={styles.statsContainer}>
+      <h3 className={styles.sectionTitle}>Show Details</h3>
       <div>Status 
         <p>{status}</p>
       </div>

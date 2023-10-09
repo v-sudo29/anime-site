@@ -2,6 +2,10 @@
   margin-top: 4rem;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .producerCardsContainer {
   display: grid;
   grid-template-columns: repeat(5, minmax(0rem, 1fr));

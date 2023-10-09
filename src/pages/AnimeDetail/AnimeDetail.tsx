@@ -36,8 +36,10 @@ function AnimeDetail() {
   if (anime) return (
     <div className={styles.content}>
       <div className={styles.leftContainer}>
-        <HeroImage anime={anime}/>
-        <Stats anime={anime}/>
+        <div className={styles.imageAndStatsContainer}>
+          <HeroImage anime={anime}/>
+          <Stats anime={anime}/>
+        </div>
       </div>
       <div className={styles.rightContainer}>
         <HeroInfo anime={anime}/>
