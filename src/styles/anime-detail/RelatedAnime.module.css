@@ -70,11 +70,17 @@
 @media screen and (min-width: 320px) {
   .mainCardsContainer, .spinoffCardsContainer {
     grid-template-columns: repeat(3, minmax(0rem, 1fr));
-
   }
 }
 
 @media screen and (min-width: 801px) {
+  .mainCardsContainer, .spinoffCardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0rem, 1fr));
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+  }
   .relatedAnimeContainer {
     margin-top: 4rem;
   }

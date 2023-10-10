@@ -64,12 +64,9 @@ export default function News({ id } : { id: string | undefined}) {
     <div className={`${styles.newsContainer} news`}>
       <h2 className={styles.sectionTitle}>News</h2>
       {newsCards ? 
-      <>
-        <h3>Main Series</h3>
         <div className={styles.newsCardsContainer}>
           {newsCards}
         </div>
-      </>
       : <p className={styles.defaultText}>No news at this time.</p>}
     </div>
   )

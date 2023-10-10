@@ -17,7 +17,6 @@ export default function useFetchMainSeries(mainIdsType : IMainIdsType[] | null) 
         setLoading(true)
         const index = intervalCounter.current
 
-        try {
           fetch(`https://api.jikan.moe/v4/anime/${mainIdsType[index]['id']}`, {
             signal: signal
           })
@@ -33,18 +32,18 @@ export default function useFetchMainSeries(mainIdsType : IMainIdsType[] | null) 
                 image: data.data['images']['jpg']['large_image_url']
               }])
             })
-            .catch(error => console.log(error))
-        } catch (error) {
-          if (signal.aborted) {
-            console.log('The user aborted the request', error)
-          } else {
-            console.error('The request failed', error)
-            setError(true)
-          }
-        } finally {
-          intervalCounter.current += 1 
-          if (intervalCounter.current === mainIdsType.length - 1) setLoading(false)
-        }  
+            .catch(error => {
+              if (signal.aborted) {
+                console.log('The user aborted the request', error)
+              } else {
+                console.error('The request failed', error)
+                setError(true)
+              }
+            })
+            .finally(() => {
+              intervalCounter.current += 1 
+              if (intervalCounter.current === mainIdsType.length - 1) setLoading(false)
+            })
       } else {
           clearTimeout(interval)
         }

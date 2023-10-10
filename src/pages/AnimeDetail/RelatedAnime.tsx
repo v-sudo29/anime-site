@@ -74,38 +74,22 @@ export default function RelatedAnime({
       <div className={styles.relatedContent}>
 
     {/* MOBILE */}
-      {totalCardsCount > 0 ?
+      {(isDetailMobile && totalCardsCount > 0) &&
         <div className={styles.mainSeriesContainer}>
           <div className={styles.mainCardsContainer}>
             {combinedCards.map((card, index) => index < 3 && card)}
           </div>
-        </div> : null
+        </div>
       }
 
     {/* DESKTOP */}
-      {!isDetailMobile && (
-        <>
-          {/* Main series */}
-            {mainSeriesCards && mainSeriesCards.length > 0 ? 
-              <div className={styles.mainSeriesContainer}>
-                <h3>Main Series</h3>
-                <div className={styles.mainCardsContainer}>
-                  {mainSeriesCards}
-                </div>
-              </div> 
-            : null}
-
-          {/* Spin-Offs */}
-            {spinOffCards && spinOffCards.length > 0 ? 
-              <div className={styles.spinOffsContainer}>
-                <h3>Spin-Offs</h3>
-                <div className={styles.spinoffCardsContainer}>
-                  {spinOffCards}
-                </div>
-              </div> 
-            : null}
-        </>
-      )}
+    {(!isDetailMobile && totalCardsCount > 0) &&
+      <div className={styles.mainSeriesContainer}>
+        <div className={styles.mainCardsContainer}>
+          {combinedCards.map((card, index) => index < 8 && card)}
+        </div>
+      </div>
+    }
 
       {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
 
