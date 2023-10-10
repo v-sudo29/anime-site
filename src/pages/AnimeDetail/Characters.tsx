@@ -80,11 +80,21 @@ export default function Characters({ anime, id } : ICharacters) {
       <div 
         onClick={handleClick} 
         className={styles.charactersBtnContainer}
-      >       
-        <button className={styles.charactersBtn}>
-          {allCharacters ? 'See Less Characters' : 'See Full Character List'}
-        </button>
-        <div className={styles.carrotIconContainer}>
+      >  
+        {/* MOBILE */}
+          {isDetailMobile && 
+            <button className={styles.charactersBtn}>
+              {(allCharacters === true && isDetailMobile === true) ? 'See Less' : 'See More'}
+            </button>
+          }
+
+        {/* DESKTOP */}
+          {!isDetailMobile && 
+            <button className={styles.charactersBtn}>
+              {(allCharacters === true && !isDetailMobile) ? 'See Less Characters' : 'See Full Character List'}
+            </button>
+          }
+          <div className={styles.carrotIconContainer}>
           <CarrotDownIcon/>
         </div>
       </div>
