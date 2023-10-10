@@ -63,12 +63,19 @@ function AnimeDetail() {
           </div>
           <Characters anime={anime} id={params.id}/>
           <RelatedAnime 
-              anime={anime}
-              mainIdsType={mainIdsType}
-              spinOffIds={spinOffIds}
-              setMainIdsType={setMainIdsType}
-              setSpinOffIds={setSpinOffIds}
-            />
+            anime={anime}
+            mainIdsType={mainIdsType}
+            spinOffIds={spinOffIds}
+            setMainIdsType={setMainIdsType}
+            setSpinOffIds={setSpinOffIds}
+          />
+          <StudioProducers 
+            anime={anime}
+            count={count}
+            countUpdated={countUpdated}
+          />
+          <News id={params.id}/>
+          <SimilarAnime id={params.id}/> 
         </>
       )}
 
