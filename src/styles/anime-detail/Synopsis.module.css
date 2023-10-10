@@ -1,0 +1,27 @@
+.synopsis {
+  font-weight: 300;
+  line-height: 1.7rem;
+  font-size: 1rem;
+  transition: var(--default-transition-time);
+  width: fit-content;
+  color: #D7D7D7;
+}
+
+.readMoreBtnContainer {
+  margin-top: 1rem;
+  width: max-content;
+  display: flex;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.readMoreBtn {
+  all: unset;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.carrotIconContainer {
+  display: flex;
+  width: 1.2rem;
+}

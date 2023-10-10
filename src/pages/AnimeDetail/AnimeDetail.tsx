@@ -17,6 +17,7 @@ import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 import AnimeTitle from './AnimeTitle'
 import ShowDetailsButton from './ShowDetailsButton'
 import AnimeRank from '../../styles/anime-detail/AnimeRank'
+import Synopsis from './Synopsis'
 
 function AnimeDetail() {
   const params = useParams()
@@ -55,7 +56,11 @@ function AnimeDetail() {
               <AnimeTitle anime={anime}/>
               <ShowDetailsButton/>
             </div>
-          </div>      
+          </div>
+          <div className={styles.synopsisContainer}>
+            <h2>Overview</h2>
+            <Synopsis anime={anime}/>
+          </div>   
         </>
       )}
 
