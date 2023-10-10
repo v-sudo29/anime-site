@@ -1,5 +1,4 @@
 .similarContainer {
-  margin-top: 3rem;
   width: 100%;
 }
 
@@ -55,4 +54,16 @@
 
 .similarTitle:hover {
   color: var(--link-hover-color);
+}
+
+@media screen and (min-width: 320px) {
+  .similarContainer {
+    margin-top: 0rem;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .similarContainer {
+    margin-top: 4rem;
+  }
 }

@@ -1,5 +1,4 @@
 .newsContainer {
-  margin-top: 4rem;
   width: 100%;
 }
 
@@ -59,4 +58,10 @@
 
 .newsTitle:hover {
   color: var(--link-hover-color);
+}
+
+@media screen and (min-width: 801px) {
+  .newsContainer {
+    margin-top: 4rem;
+  }
 }
