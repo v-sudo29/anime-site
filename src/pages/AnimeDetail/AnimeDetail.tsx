@@ -46,6 +46,7 @@ function AnimeDetail() {
   if (animeError) return <FetchError/>
   if (anime) return (
     <div className={styles.content}>
+
       {/* BREAKPOINT for DESKTOP <= 800px */}
       {isDetailMobile && (
         <>
@@ -78,8 +79,6 @@ function AnimeDetail() {
           <SimilarAnime id={params.id}/> 
         </>
       )}
-
-
 
       {/* BREAKPOINT for DESKTOP >= 801px */}
       {!isDetailMobile && (
