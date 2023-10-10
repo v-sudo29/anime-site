@@ -17,7 +17,7 @@ html {
 
 :root {
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
-  --card-border-radius: 0.3rem;
+  --card-border-radius: 0.2rem;
   --container-padding: 1rem;
   --main-background-color: #111111;
   --yellow-color: #F9B732;
@@ -26,7 +26,7 @@ html {
   --text-hover-color: #CDCDCD;
   --hover-color: rgb(13, 116, 220);
   --page-top-bottom-padding: 5rem;
-  --page-max-width: 66rem;
+  --page-max-width: 69rem;
   --page-mobile-min-width: 20rem;
   --vertical-card-height: 25rem;
   --vertical-card-width: 15rem;

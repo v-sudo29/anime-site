@@ -5,6 +5,7 @@ import CharacterCard from './CharacterCard'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
+import { useMobile } from '../../context/mobileContext'
 
 interface ICharacters {
   anime: AnimeDetailData
@@ -13,8 +14,8 @@ interface ICharacters {
 
 export default function Characters({ anime, id } : ICharacters) {
   const [buttonClicked, setButtonClicked] = useState(false)
-  const { charactersData } = useFetchCharacters(anime, id)
   const [allCharacters, setAllCharacters] = useState(false)
+  const { charactersData } = useFetchCharacters(anime, id)
   const { carrotActive } = carrotStyles
   let characterCards = null
 

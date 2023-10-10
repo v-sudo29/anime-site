@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 interface IMobileContext {
   isMobile: boolean
   isTablet: boolean
+  isDetailMobile: boolean
 }
 
 const MobileContext = createContext<IMobileContext>({} as IMobileContext)
@@ -14,6 +15,7 @@ export const useMobile = () => {
 const MobileProvider = ({ children } : { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState(false)
   const [isTablet, setIsTablet] = useState(false)
+  const [isDetailMobile, setIsDetailMobile] = useState(false) // Mobile breakpoint state for AnimeDetail page
 
   const handleResize = () => {
     if (window.innerWidth >= 300 && window.innerWidth <= 480) {
@@ -30,6 +32,8 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
       setIsMobile(false)
       setIsTablet(false)
     }
+    if (window.innerWidth <= 800) setIsDetailMobile(true)
+    if (window.innerWidth >= 801) setIsDetailMobile(false)
   }
   // Handle window resizing for media queries
   useEffect(() => {
@@ -45,7 +49,7 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
   }, [])
 
   const valueObject = {
-    isMobile, isTablet
+    isMobile, isTablet, isDetailMobile
   }
 
   return (
