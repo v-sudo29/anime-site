@@ -58,9 +58,11 @@ function AnimeDetail() {
             </div>
           </div>
           <div className={styles.synopsisContainer}>
-            <h2>Overview</h2>
+            <h2 className={styles.overviewTitle}>Overview</h2>
             <Synopsis anime={anime}/>
-          </div>   
+          </div>
+          <Characters anime={anime} id={params.id}/>
+
         </>
       )}
 

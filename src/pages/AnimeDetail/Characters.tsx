@@ -17,6 +17,7 @@ export default function Characters({ anime, id } : ICharacters) {
   const [allCharacters, setAllCharacters] = useState(false)
   const { charactersData } = useFetchCharacters(anime, id)
   const { carrotActive } = carrotStyles
+  const { isDetailMobile } = useMobile()
   let characterCards = null
 
   const animateCarrotIcon = () => {
@@ -34,16 +35,31 @@ export default function Characters({ anime, id } : ICharacters) {
     setButtonClicked(prev => !prev)
   }
 
-  if (charactersData && !allCharacters) characterCards = charactersData.map((character, index) => 
-    (index < 9 && 
-      <CharacterCard 
-        key={character['character']['name']}
-        styles={styles} 
-        character={character}
-      /> 
-    ))
+  if (charactersData && !allCharacters) {
+    characterCards = charactersData.map((character, index) => {
+      if (index < 9 && !isDetailMobile) {
+        return (
+          <CharacterCard 
+            key={character['character']['name']}
+            styles={styles} 
+            character={character}
+          /> 
+        )
+      }
+      if (index < 8 && isDetailMobile) {
+        return (
+          <CharacterCard 
+            key={character['character']['name']}
+            styles={styles} 
+            character={character}
+          /> 
+        )
+      }
+    })
+  }
 
-  if (charactersData && allCharacters) characterCards = charactersData.map(character => (
+  if (charactersData && allCharacters) 
+  characterCards = charactersData.map(character => (
     <CharacterCard
       key={character['character']['name']}
       styles={styles} 
