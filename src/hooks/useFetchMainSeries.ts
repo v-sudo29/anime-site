@@ -33,6 +33,7 @@ export default function useFetchMainSeries(mainIdsType : IMainIdsType[] | null) 
                 image: data.data['images']['jpg']['large_image_url']
               }])
             })
+            .catch(error => console.log(error))
         } catch (error) {
           if (signal.aborted) {
             console.log('The user aborted the request', error)

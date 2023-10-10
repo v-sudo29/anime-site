@@ -3,6 +3,7 @@ import RelatedCard from './RelatedCard'
 import useFetchMainSeries from '../../hooks/useFetchMainSeries'
 import useFetchSpinoff from '../../hooks/useFetchSpinoff'
 import styles from '../../styles/anime-detail/RelatedAnime.module.css'
+import { useMobile } from '../../context/mobileContext'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 
@@ -23,6 +24,7 @@ export default function RelatedAnime({
 } : IRelatedAnime) {
   const { mainData } = useFetchMainSeries(mainIdsType)
   const { spinOffData } = useFetchSpinoff(spinOffIds)
+  const { isDetailMobile } = useMobile()
 
   let mainSeriesCards: JSX.Element[] = []
   let spinOffCards: JSX.Element[] = []
@@ -63,30 +65,47 @@ export default function RelatedAnime({
     />
   )
 
+  const combinedCards = [...mainSeriesCards, ...spinOffCards]
+  const totalCardsCount = combinedCards.length
+
   return (
     <div className={`${styles.relatedAnimeContainer} relatedAnime`}>
       <h2 className={styles.sectionTitle}>Related Anime</h2>
       <div className={styles.relatedContent}>
 
-      {/* Main series */}
-      {mainSeriesCards && mainSeriesCards.length > 0 ? 
+    {/* MOBILE */}
+      {totalCardsCount > 0 ?
         <div className={styles.mainSeriesContainer}>
-          <h3>Main Series</h3>
           <div className={styles.mainCardsContainer}>
-            {mainSeriesCards}
+            {combinedCards.map((card, index) => index < 3 && card)}
           </div>
-        </div> 
-      : null}
+        </div> : null
+      }
 
-      {/* Spin-Offs */}
-      {spinOffCards && spinOffCards.length > 0 ? 
-        <div className={styles.spinOffsContainer}>
-          <h3>Spin-Offs</h3>
-          <div className={styles.spinoffCardsContainer}>
-            {spinOffCards}
-          </div>
-        </div> 
-      : null}
+    {/* DESKTOP */}
+      {!isDetailMobile && (
+        <>
+          {/* Main series */}
+            {mainSeriesCards && mainSeriesCards.length > 0 ? 
+              <div className={styles.mainSeriesContainer}>
+                <h3>Main Series</h3>
+                <div className={styles.mainCardsContainer}>
+                  {mainSeriesCards}
+                </div>
+              </div> 
+            : null}
+
+          {/* Spin-Offs */}
+            {spinOffCards && spinOffCards.length > 0 ? 
+              <div className={styles.spinOffsContainer}>
+                <h3>Spin-Offs</h3>
+                <div className={styles.spinoffCardsContainer}>
+                  {spinOffCards}
+                </div>
+              </div> 
+            : null}
+        </>
+      )}
 
       {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
 

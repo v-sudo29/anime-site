@@ -1,7 +1,3 @@
-.relatedAnimeContainer {
-  margin-top: 4rem;
-}
-
 .sectionTitle {
   color: var(--yellow-color);
 }
@@ -69,4 +65,17 @@
 
 .mainName:hover {
   color: var(--link-hover-color);
+}
+
+@media screen and (min-width: 320px) {
+  .mainCardsContainer, .spinoffCardsContainer {
+    grid-template-columns: repeat(3, minmax(0rem, 1fr));
+
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .relatedAnimeContainer {
+    margin-top: 4rem;
+  }
 }
