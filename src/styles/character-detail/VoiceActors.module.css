@@ -87,3 +87,17 @@
   display: flex;
   width: 1.2rem;
 }
+
+@media screen and (min-width: 320px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, minmax(0rem, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, minmax(0rem, 1fr));
+    gap: 2.5rem;
+  }
+}

@@ -1,3 +1,7 @@
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .biography {
   font-weight: 300;
   line-height: 1.7rem;

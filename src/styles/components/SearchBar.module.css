@@ -27,7 +27,7 @@
   position: relative;
   all: unset;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .searchBar:focus {

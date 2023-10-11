@@ -50,11 +50,13 @@ export default function CharacterDetail() {
               </div>
             </div>
             <div className={styles.biographyContainer}>
-
+              <Biography character={character}/>
+            </div>
+            <div>
+              <VoiceActors character={character} isDetailMobile={isDetailMobile}/>
             </div>
           </>
         )}
-
 
         {/* BREAKPOINT for DESKTOP >= 801px */}
         {!isDetailMobile && (
@@ -67,7 +69,7 @@ export default function CharacterDetail() {
             </div>
             <div className={styles.rightContainer}>
               <HeroInfo character={character}/>
-              <VoiceActors character={character} />
+              <VoiceActors character={character} isDetailMobile={isDetailMobile} />
             </div>
           </>
         )}

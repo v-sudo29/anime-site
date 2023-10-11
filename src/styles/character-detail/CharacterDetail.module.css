@@ -10,9 +10,10 @@
 
 /* h2 heading style */
 .sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.4rem;
+  font-weight: 500;
   margin-bottom: 1.5rem;
+  color: var(--yellow-color);
 }
 
 /* Image and Stats Container */

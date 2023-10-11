@@ -1,7 +1,6 @@
 .card {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
   position: relative;
   z-index: 10;
   padding: 1.3rem;
@@ -15,6 +14,7 @@
 .ranking {
   width: 1rem;
   font-size: 1rem;
+  font-weight: 500;
   text-align: center;
   margin-right: 0.5rem;
 }
@@ -24,6 +24,7 @@
   height: 6rem;
   overflow: hidden;
   border-radius: var(--card-border-radius);
+  box-shadow: 0 3px 10px 3px rgb(0 0 0 / 0.3);
 }
 
 .image {
@@ -42,6 +43,7 @@
 .title {
   font-weight: 500;
   transition: var(--default-transition-time);
+  font-size: 1rem;
 }
 
 .title:hover {
@@ -61,10 +63,12 @@
   justify-content: center;
   align-items: center;
   margin-left: auto;
-  height: 3rem;
-  min-width: 3rem;
-  border-radius: var(--card-border-radius);
-  background-color: #616161;
+  height: 2.6rem;
+  min-width: 2.6rem;
+  border-radius: 0.4rem;
+  background-color: var(--yellow-color);
+  color: var(--main-background-color);
+  font-weight: 500;
 }
 
 @media screen and (max-width: 480px) {

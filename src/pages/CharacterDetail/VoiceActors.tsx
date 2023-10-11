@@ -5,18 +5,18 @@ import { CharacterDetailData, Voice } from '../../types/fetchDataTypes/fetchChar
 import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
 
-interface IVoiceActors {
-  character: CharacterDetailData
+interface VoiceActorsProps {
+  character: CharacterDetailData,
+  isDetailMobile: boolean
 }
 
-export default function VoiceActors({ character }: IVoiceActors) {
+export default function VoiceActors({ character, isDetailMobile }: VoiceActorsProps) {
   const [buttonClicked, setButtonClicked] = useState(false)
   const [showAllActors, setShowAllActors] = useState(false)
   const [vaInfo, setVaInfo] = useState<Voice[] | null>(null)
 
   const { carrotActive } = carrotStyles
-
-  let vaCards = null
+  let vaCards: (JSX.Element| undefined)[] = []
 
   const animateCarrotIcon = () => {
     const carrotIcon = document.querySelector(`.${styles.carrotIconContainer} svg`)
@@ -39,7 +39,16 @@ export default function VoiceActors({ character }: IVoiceActors) {
 
   if (vaInfo && !showAllActors) {
     vaCards = vaInfo.map((actor, index) => {
-      if (index < 9) {
+      if (index < 9 && !isDetailMobile) {
+        return (
+          <VoiceActorCard
+            key={actor['person']['name']}
+            styles={styles}
+            actor={actor}
+          />
+        )
+      }
+      if (index < 8 && isDetailMobile) {
         return (
           <VoiceActorCard
             key={actor['person']['name']}
@@ -67,21 +76,31 @@ export default function VoiceActors({ character }: IVoiceActors) {
       <div className={styles.cardsContainer}>
         {vaCards ? vaCards : <p>No voice actors.</p>}
       </div>
-      <div 
-        className={styles.showActorsBtnContainer}
-        onClick={handleClick}
-      >
-        {(vaInfo && vaInfo.length > 9) && (
-          <>
-            <button className={styles.actorsBtn}>
-              {!showAllActors ? 'See All Voice Actors' : 'See Less'}
-            </button>
-            <div className={styles.carrotIconContainer}>
-              <CarrotDownIcon/>
-            </div>
-          </>
-        )}
-      </div>
+      
+      {/* MOBILE */}
+      {(isDetailMobile && vaCards.length > 8) && (
+        <div className={styles.showActorsBtnContainer} onClick={handleClick}>
+          <button className={styles.actorsBtn}>
+            {(showAllActors && isDetailMobile) ? 'See Less' : 'See More'}
+          </button>
+          <div className={styles.carrotIconContainer}>
+            <CarrotDownIcon/>
+          </div>
+        </div>
+      )}
+
+      {/* DESKTOP */}
+      {(!isDetailMobile && vaCards.length > 9) && (
+        <div className={styles.showActorsBtnContainer} onClick={handleClick}>
+          <button className={styles.actorsBtn}>
+            {(showAllActors && isDetailMobile) ? 'See Less' : 'See More'}
+          </button>
+          <div className={styles.carrotIconContainer}>
+            <CarrotDownIcon/>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }

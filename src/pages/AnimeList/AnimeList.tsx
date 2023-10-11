@@ -46,10 +46,10 @@ function AnimeList() {
   }, [popularData, animeData])
 
   // TODO: TEMPORARY useEffect
-  useEffect(() => {
-    const bodyElement = document.querySelector('body')
-    if (bodyElement) bodyElement.style.backgroundColor = "#111111"
-  }, [])
+  // useEffect(() => {
+  //   const bodyElement = document.querySelector('body')
+  //   if (bodyElement) bodyElement.style.backgroundColor = "#111111"
+  // }, [])
 
   return (
     <div className={styles.container}>

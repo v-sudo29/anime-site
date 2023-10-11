@@ -25,7 +25,10 @@ const Biography = ({ character } : { character: CharacterDetailData }) => {
 
   if (character) {
     return (
-      <p className={styles.biography}>{biography ? biography : 'No biography available.'}</p>
+      <>
+        <h2 className={styles.sectionTitle}>Biography</h2>
+        <p className={styles.biography}>{biography ? biography : 'No biography available.'}</p>
+      </>
     )
   }
 }
