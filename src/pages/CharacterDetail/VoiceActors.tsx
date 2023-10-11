@@ -6,11 +6,11 @@ import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
 
 interface VoiceActorsProps {
-  character: CharacterDetailData,
-  isDetailMobile: boolean
+  character: CharacterDetailData
+  isTwoColumn: boolean
 }
 
-export default function VoiceActors({ character, isDetailMobile }: VoiceActorsProps) {
+export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps) {
   const [buttonClicked, setButtonClicked] = useState(false)
   const [showAllActors, setShowAllActors] = useState(false)
   const [vaInfo, setVaInfo] = useState<Voice[] | null>(null)
@@ -39,7 +39,7 @@ export default function VoiceActors({ character, isDetailMobile }: VoiceActorsPr
 
   if (vaInfo && !showAllActors) {
     vaCards = vaInfo.map((actor, index) => {
-      if (index < 9 && !isDetailMobile) {
+      if (index < 9 && !isTwoColumn) {
         return (
           <VoiceActorCard
             key={actor['person']['name']}
@@ -48,7 +48,7 @@ export default function VoiceActors({ character, isDetailMobile }: VoiceActorsPr
           />
         )
       }
-      if (index < 8 && isDetailMobile) {
+      if (index < 8 && isTwoColumn) {
         return (
           <VoiceActorCard
             key={actor['person']['name']}
@@ -78,10 +78,10 @@ export default function VoiceActors({ character, isDetailMobile }: VoiceActorsPr
       </div>
       
       {/* MOBILE */}
-      {(isDetailMobile && vaCards.length > 8) && (
+      {(isTwoColumn && vaCards.length > 8) && (
         <div className={styles.showActorsBtnContainer} onClick={handleClick}>
           <button className={styles.actorsBtn}>
-            {(showAllActors && isDetailMobile) ? 'See Less' : 'See More'}
+            {(showAllActors && isTwoColumn) ? 'See Less' : 'See More'}
           </button>
           <div className={styles.carrotIconContainer}>
             <CarrotDownIcon/>
@@ -90,17 +90,16 @@ export default function VoiceActors({ character, isDetailMobile }: VoiceActorsPr
       )}
 
       {/* DESKTOP */}
-      {(!isDetailMobile && vaCards.length > 9) && (
+      {(!isTwoColumn && vaCards.length > 9) && (
         <div className={styles.showActorsBtnContainer} onClick={handleClick}>
           <button className={styles.actorsBtn}>
-            {(showAllActors && isDetailMobile) ? 'See Less' : 'See More'}
+            {(showAllActors && !isTwoColumn) ? 'See Less' : 'See More'}
           </button>
           <div className={styles.carrotIconContainer}>
             <CarrotDownIcon/>
           </div>
         </div>
       )}
-
     </div>
   )
 }

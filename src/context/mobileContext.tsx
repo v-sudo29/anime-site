@@ -4,6 +4,7 @@ interface IMobileContext {
   isMobile: boolean
   isTablet: boolean
   isDetailMobile: boolean
+  isTwoColumn: boolean
 }
 
 const MobileContext = createContext<IMobileContext>({} as IMobileContext)
@@ -15,7 +16,8 @@ export const useMobile = () => {
 const MobileProvider = ({ children } : { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState(false)
   const [isTablet, setIsTablet] = useState(false)
-  const [isDetailMobile, setIsDetailMobile] = useState(false) // Mobile breakpoint state for AnimeDetail page
+  const [isDetailMobile, setIsDetailMobile] = useState(false) // Mobile breakpoint state for detail pages
+  const [isTwoColumn, setIsTwoColumn] = useState(false)
 
   const handleResize = () => {
     if (window.innerWidth >= 300 && window.innerWidth <= 480) {
@@ -34,6 +36,9 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
     }
     if (window.innerWidth <= 800) setIsDetailMobile(true)
     if (window.innerWidth >= 801) setIsDetailMobile(false)
+    if (window.innerWidth <= 1024) setIsTwoColumn(true)
+    if (window.innerWidth >= 1024) setIsTwoColumn(false)
+
   }
   // Handle window resizing for media queries
   useEffect(() => {
@@ -49,7 +54,7 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
   }, [])
 
   const valueObject = {
-    isMobile, isTablet, isDetailMobile
+    isMobile, isTablet, isDetailMobile, isTwoColumn
   }
 
   return (

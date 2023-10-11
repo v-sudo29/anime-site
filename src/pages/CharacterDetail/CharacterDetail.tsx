@@ -16,7 +16,7 @@ import CharacterDetailsButton from './CharacterDetailsButton'
 export default function CharacterDetail() {
   const params = useParams()
   const [character, setCharacter] = useState<CharacterDetailData | null>(null)
-  const { isDetailMobile } = useMobile()
+  const { isDetailMobile, isTwoColumn } = useMobile()
 
   // TODO: TEMPORARY useEffect, remove once color pallette redesign completes
   useEffect(() => {
@@ -53,7 +53,10 @@ export default function CharacterDetail() {
               <Biography character={character}/>
             </div>
             <div>
-              <VoiceActors character={character} isDetailMobile={isDetailMobile}/>
+              <VoiceActors
+                character={character}
+                isTwoColumn={isTwoColumn}
+              />
             </div>
           </>
         )}
@@ -69,7 +72,10 @@ export default function CharacterDetail() {
             </div>
             <div className={styles.rightContainer}>
               <HeroInfo character={character}/>
-              <VoiceActors character={character} isDetailMobile={isDetailMobile} />
+              <VoiceActors
+                character={character}
+                isTwoColumn={isTwoColumn}
+              />
             </div>
           </>
         )}
