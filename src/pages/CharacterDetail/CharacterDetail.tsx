@@ -8,10 +8,15 @@ import LoaderAnimation from '../../components/LoaderAnimation'
 import { CharacterDetailData, CharacterDetailResponse } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 import HeroImage from './HeroImage'
 import HeroInfo from './HeroInfo'
+import { useMobile } from '../../context/mobileContext'
+import Biography from './Biography'
+import CharacterName from './CharacterName'
+import CharacterDetailsButton from './CharacterDetailsButton'
 
 export default function CharacterDetail() {
   const params = useParams()
   const [character, setCharacter] = useState<CharacterDetailData | null>(null)
+  const { isDetailMobile } = useMobile()
 
   // TODO: TEMPORARY useEffect, remove once color pallette redesign completes
   useEffect(() => {
@@ -33,16 +38,39 @@ export default function CharacterDetail() {
   if (character) {
     return (
       <div className={styles.content}>
-        <div className={styles.leftContainer}>
-          <div className={styles.imageAndStatsContainer}>
-            <HeroImage character={character}/>
-            <Stats character={character}/>
-          </div>
-        </div>
-        <div className={styles.rightContainer}>
-          <HeroInfo character={character}/>
-          <VoiceActors character={character} />
-        </div>
+
+        {/* BREAKPOINT for DESKTOP <= 800px */}
+        {isDetailMobile && (
+          <>
+            <div className={styles.imageAndTitleAndDetailsContainer}>
+              <HeroImage character={character}/>
+              <div className={styles.titleAndDetailsContainer}>
+                <CharacterName character={character}/>
+                <CharacterDetailsButton/>
+              </div>
+            </div>
+            <div className={styles.biographyContainer}>
+
+            </div>
+          </>
+        )}
+
+
+        {/* BREAKPOINT for DESKTOP >= 801px */}
+        {!isDetailMobile && (
+          <>
+            <div className={styles.leftContainer}>
+              <div className={styles.imageAndStatsContainer}>
+                <HeroImage character={character}/>
+                <Stats character={character}/>
+              </div>
+            </div>
+            <div className={styles.rightContainer}>
+              <HeroInfo character={character}/>
+              <VoiceActors character={character} />
+            </div>
+          </>
+        )}
       </div>
     )
   } else return <LoaderAnimation/>

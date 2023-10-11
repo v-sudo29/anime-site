@@ -1,0 +1,8 @@
+.biography {
+  font-weight: 300;
+  line-height: 1.7rem;
+  font-size: 1rem;
+  transition: var(--default-transition-time);
+  width: fit-content;
+  color: #D7D7D7;
+}
