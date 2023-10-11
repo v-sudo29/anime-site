@@ -16,7 +16,7 @@ import { useMobile } from '../../context/mobileContext'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 import AnimeTitle from './AnimeTitle'
 import ShowDetailsButton from './ShowDetailsButton'
-import AnimeRank from '../../styles/anime-detail/AnimeRank'
+import AnimeRank from './AnimeRank'
 import Synopsis from './Synopsis'
 
 function AnimeDetail() {

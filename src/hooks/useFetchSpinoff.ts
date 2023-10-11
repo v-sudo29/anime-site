@@ -8,6 +8,7 @@ export default function useFetchSpinoff(spinOffIds : number[]) {
   const [error, setError] = useState(false)
   const intervalCounter = useRef(0)
 
+  // TODO: create context to persist spinoff data
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal

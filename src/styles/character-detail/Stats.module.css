@@ -1,0 +1,30 @@
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: inherit;
+  border-radius: var(--card-border-radius);
+  margin-top: 4rem;
+}
+
+.statsContainer > div { 
+  flex: 1;
+  font-weight: 500;
+}
+
+.statsContainer > div > p {
+  margin-top: 0.5rem;
+  font-weight: 400;
+  color: #D7D7D7;
+}
+
+.dashAndTen {
+  color: #666666;
+}
+
+.sectionTitle {
+  margin-bottom: -0.5rem;
+  color: var(--yellow-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}

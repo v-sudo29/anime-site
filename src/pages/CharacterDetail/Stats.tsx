@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import styles from '../../styles/character-detail/Stats.module.css'
 import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 import { IStatsState } from '../../types/stateTypes/CharacterDetailsTypes'
-
-interface IStats {
-  styles: CSSModuleClasses
-  character: CharacterDetailData
-}
 
 interface Fact {
   [key: string]: string
 }
 
-export default function Stats({ styles, character }: IStats) {
+export default function Stats({ character } : { character: CharacterDetailData}) {
   const [stats, setStats] = useState<IStatsState | null>(null)
 
   function splitAbout(aboutInfo: string) {
@@ -150,28 +146,58 @@ export default function Stats({ styles, character }: IStats) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [character])
 
-  return (
-    <>
-    {stats &&
+  if (stats && character) {
+    const age = stats.age ? stats.age : '-'
+    const birthday = stats.birthday ? stats.birthday : '-'
+    const height = stats.height ? stats.height : '-'
+    const weight = stats.weight ? stats.weight : '-'
+    const factOneTitle = stats.factOne ? Object.keys(stats.factOne) : null
+    const factOne = stats.factOne ? stats.factOne[`${Object.keys(stats.factOne)}`] : null
+    const factTwoTitle = stats.factTwo ? Object.keys(stats.factTwo) : null
+    const factTwo = stats.factTwo ? stats.factTwo[`${Object.keys(stats.factTwo)}`] : null
+
+    return (
       <div className={styles.statsContainer}>
-        <div className={styles.age}>Age <p>{stats.age ? stats.age : '-'}</p> </div>
-        <div className={styles.birthday}>Birthday <p>{stats.birthday ? stats.birthday : '-'}</p> </div>
-        <div className={styles.height}>Height <p>{stats.height ? stats.height : '-'}</p> </div>
-        <div className={styles.weight}>Weight <p>{stats.weight ? stats.weight : '-'}</p> </div>
+        <h3 className={styles.sectionTitle}>Character Details</h3>
+        <div className={styles.age}>
+          Age
+          <p>{age}</p>
+        </div>
+        <div className={styles.birthday}>
+          Birthday
+          <p>{birthday}</p>
+        </div>
+        <div className={styles.height}>
+          Height
+          <p>{height}</p>
+        </div>
+        <div className={styles.weight}>
+          Weight
+          <p>{weight}</p>
+        </div>
 
         {/* Display one fact if only one fact exists */}
         {stats.factOne && stats.factTwo ?
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[`${Object.keys(stats.factOne)}`]}</p></div>
+          <div className={styles.factOne}>
+            {factOneTitle}
+            <p>{factOne}</p>
+          </div>
         : null}
         
         {/* Display two facts if two facts exist */}
         {stats.factOne && stats.factTwo ? 
         <>
-          <div className={styles.factOne}>{Object.keys(stats.factOne)}<p>{stats.factOne[`${Object.keys(stats.factOne)}`]}</p></div>
-          <div className={styles.factTwo}>{Object.keys(stats.factTwo)}<p>{stats.factTwo[`${Object.keys(stats.factTwo)}`]}</p></div>
+          <div className={styles.factOne}>
+            {factOneTitle}
+            <p>{factOne}</p>
+          </div>
+          <div className={styles.factTwo}>
+            {factTwoTitle}
+            <p>{factTwo}</p>
+          </div>
         </>
         : null}
-      </div>}
-    </>
-  )
+      </div>
+    )
+  }
 }

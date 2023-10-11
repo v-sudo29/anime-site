@@ -6,6 +6,7 @@ export default function useFetchSimilar(id: string | undefined) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
+  // TODO: create context to persist similar anime data
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal

@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from '../../styles/character-detail/HeroInfo.module.css'
 import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
-interface IBiography {
-  styles: CSSModuleClasses
-  character: CharacterDetailData
-}
-
-export default function Biography({ styles, character }: IBiography) {
+const HeroInfo = ({ character } : { character: CharacterDetailData }) => {
   const [biography, setBiography] = useState<string | null>(null)
 
   function extractBiography(biography: string) {
@@ -27,12 +23,14 @@ export default function Biography({ styles, character }: IBiography) {
     if (character) setBiography(extractBiography(character.about))
   }, [character])
 
-  return (
-    <div className={styles.biographyContainer}>
-        <h2 className={styles.sectionTitle}>Biography</h2>
-        <p className={styles.biography}>
-          {biography ? biography : 'No biography available.'}
-        </p>  
-    </div>
-  )
+  if (character) {
+    return (
+      <div className={styles.container}>
+        <h2 className={styles.characterName}>{character.name}</h2>
+        <p className={styles.biography}>{biography ? biography : 'No biography available.'}</p>
+      </div>
+    )
+  }
 }
+
+export default HeroInfo
