@@ -66,3 +66,24 @@
 .language {
   font-size: 0.9rem;
 }
+
+.showActorsBtnContainer {
+  display: flex;
+  cursor: pointer;
+  margin-top: 2rem;
+  width: max-content;
+  gap: 0.3rem;
+}
+
+.actorsBtn {
+  all: unset;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--card-border-radius);
+  transition: var(--default-transition-time);
+}
+
+.carrotIconContainer {
+  display: flex;
+  width: 1.2rem;
+}

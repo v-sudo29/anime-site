@@ -96,7 +96,7 @@ export default function Characters({ anime, id } : ICharacters) {
           }
           <div className={styles.carrotIconContainer}>
           <CarrotDownIcon/>
-        </div>
+          </div>
       </div>
       }
     </div>
