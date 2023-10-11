@@ -44,10 +44,10 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
   useEffect(() => {
     if (window.innerWidth >= 320 && window.innerWidth <= 479) setIsMobile(true)
     if (window.innerWidth >= 480 && window.innerWidth <= 600) setIsTablet(true)
-    else {
-      setIsMobile(false)
-      setIsTablet(false)
-    }
+    if (window.innerWidth <= 800) setIsDetailMobile(true)
+    if (window.innerWidth >= 801) setIsDetailMobile(false)
+    if (window.innerWidth <= 1024) setIsTwoColumn(true)
+    if (window.innerWidth >= 1024) setIsTwoColumn(false)
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
