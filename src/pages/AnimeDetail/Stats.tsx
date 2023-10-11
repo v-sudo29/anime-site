@@ -1,8 +1,16 @@
 import React from 'react'
 import styles from '../../styles/anime-detail/Stats.module.css'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
+import { useMobile } from '../../context/mobileContext'
 
-export default function Stats({ anime } : { anime: AnimeDetailData }) {
+interface StatsProps {
+  anime: AnimeDetailData
+  isModalShown?: boolean
+  setIsModalShown?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function Stats({ anime, isModalShown, setIsModalShown } : StatsProps) {
+  const { isDetailMobile } = useMobile()
 
   const splitDates = (stringDates: string) => {
     let dates = stringDates
@@ -22,6 +30,10 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     return newString
   }
 
+  const handleExitModal = () => {
+    if (setIsModalShown) setIsModalShown(false)
+  }
+
   const status = uppercaseFirstLetters(anime.status)
   const episodes = anime.episodes ?? '-'
   const duration = anime.duration
@@ -34,32 +46,73 @@ export default function Stats({ anime } : { anime: AnimeDetailData }) {
     : anime['score'] : '-'
 
   return (
-    <div className={styles.statsContainer}>
-      <h3 className={styles.sectionTitle}>Show Details</h3>
-      <div>Status 
-        <p>{status}</p>
-      </div>
-      <div>Episodes
-        <p>{episodes}</p> 
-      </div>
-      <div>Episode Duration
-        <p>{duration}</p>
-      </div>
-      <div>Start Date
-        <p>{startDate}</p>
-      </div>
-      <div>End
-        <p>{endDate}</p>
-      </div>
-      <div>Format
-        <p>{anime.type}</p>
-      </div>
-      <div>Genres
-        <p>{genres}</p>
-      </div>
-      <div>Viewer Rating
-        <p>{viewerRating} <span className={styles.dashAndTen}>/ 10</span></p>
-      </div>
-    </div>
+    <>
+      {/* MOBILE and MODAL */}
+      {(isDetailMobile && isModalShown) && (
+        <div className={styles.modalStatsContainer}>
+          <div className={styles.modalTitleAndButtonContainer}>
+            <h3 className={styles.modalSectionTitle}>Show Details</h3>
+            <div className={styles.modalExitButtonContainer}>
+              <button onClick={handleExitModal} className={styles.modalExitButton}>X</button>
+            </div>
+          </div>
+          <div>Status 
+            <p>{status}</p>
+          </div>
+          <div>Episodes
+            <p>{episodes}</p> 
+          </div>
+          <div>Episode Duration
+            <p>{duration}</p>
+          </div>
+          <div>Start Date
+            <p>{startDate}</p>
+          </div>
+          <div>End
+            <p>{endDate}</p>
+          </div>
+          <div>Format
+            <p>{anime.type}</p>
+          </div>
+          <div>Genres
+            <p>{genres}</p>
+          </div>
+          <div>Viewer Rating
+            <p>{viewerRating} <span className={styles.dashAndTen}>/ 10</span></p>
+          </div>
+        </div>
+      )}
+
+      {/* DESKTOP */}
+      {(!isDetailMobile && !isModalShown) && (
+        <div className={styles.statsContainer}>
+          <h3 className={styles.sectionTitle}>Show Details</h3>
+          <div>Status 
+            <p>{status}</p>
+          </div>
+          <div>Episodes
+            <p>{episodes}</p> 
+          </div>
+          <div>Episode Duration
+            <p>{duration}</p>
+          </div>
+          <div>Start Date
+            <p>{startDate}</p>
+          </div>
+          <div>End
+            <p>{endDate}</p>
+          </div>
+          <div>Format
+            <p>{anime.type}</p>
+          </div>
+          <div>Genres
+            <p>{genres}</p>
+          </div>
+          <div>Viewer Rating
+            <p>{viewerRating} <span className={styles.dashAndTen}>/ 10</span></p>
+          </div>
+        </div>
+      )}
+    </>
   )
 }

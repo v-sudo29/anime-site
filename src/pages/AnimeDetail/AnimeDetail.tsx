@@ -18,6 +18,7 @@ import AnimeTitle from './AnimeTitle'
 import ShowDetailsButton from './ShowDetailsButton'
 import AnimeRank from './AnimeRank'
 import Synopsis from './Synopsis'
+import DetailsModal from './DetailsModal'
 
 function AnimeDetail() {
   const params = useParams()
@@ -26,6 +27,7 @@ function AnimeDetail() {
   const [spinOffIds, setSpinOffIds] = useState<number[]>([])
   const [count, setCount] = useState<number>(0)
   const [countUpdated, setCountUpdated] = useState(false)
+  const [isModalShown, setIsModalShown] = useState(false)
   const { isDetailMobile } = useMobile()
 
   // Update count states
@@ -55,9 +57,17 @@ function AnimeDetail() {
             <div className={styles.titleAndDetailsContainer}>
               <AnimeRank anime={anime} />
               <AnimeTitle anime={anime}/>
-              <ShowDetailsButton/>
+              <ShowDetailsButton
+                isModalShown={isModalShown}
+                setIsModalShown={setIsModalShown}
+              />
             </div>
           </div>
+          <DetailsModal
+            anime={anime}
+            isModalShown={isModalShown}
+            setIsModalShown={setIsModalShown}
+          />
           <div className={styles.synopsisContainer}>
             <h2 className={styles.overviewTitle}>Overview</h2>
             <Synopsis anime={anime}/>

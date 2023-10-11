@@ -16,6 +16,7 @@ import CharacterDetailsButton from './CharacterDetailsButton'
 export default function CharacterDetail() {
   const params = useParams()
   const [character, setCharacter] = useState<CharacterDetailData | null>(null)
+  const [isModalShown, setIsModalShown] = useState(false)
   const { isDetailMobile, isTwoColumn } = useMobile()
 
   // TODO: TEMPORARY useEffect, remove once color pallette redesign completes

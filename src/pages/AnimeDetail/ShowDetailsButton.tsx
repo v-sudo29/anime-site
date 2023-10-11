@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/anime-detail/ShowDetailsButton.module.css'
 import InfoIcon from '../../icons/InfoIcon'
 
-const ShowDetailsButton = () => {
+interface ShowDetailsButtonProps {
+  isModalShown: boolean
+  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const ShowDetailsButton = ({ isModalShown, setIsModalShown } : ShowDetailsButtonProps) => {
+  const handleClick = () => {
+    setIsModalShown(true)
+  }
+
   return (
-    <button className={styles.showDetailsButton}>
+    <button onClick={handleClick} className={styles.showDetailsButton}>
       <span className={styles.infoIconContainer}>
         <InfoIcon/>
       </span>

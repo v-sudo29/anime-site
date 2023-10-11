@@ -29,6 +29,7 @@
   background-color: #171818;
   padding: 1.5rem;
   border-radius: var(--card-border-radius);
+  width: 100%;
 }
 
 @media screen and (min-width: 320px) {
@@ -43,7 +44,6 @@
     gap: 1rem;
   }
 }
-
 
 @media screen and (min-width: 801px) {
   .content {

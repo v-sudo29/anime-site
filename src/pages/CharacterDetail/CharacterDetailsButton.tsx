@@ -3,8 +3,11 @@ import styles from '../../styles/character-detail/CharacterDetailsButton.module.
 import InfoIcon from '../../icons/InfoIcon'
 
 const CharacterDetailsButton = () => {
+  const handleClick = () => {
+    console.log('clicked!')
+  }
   return (
-    <button className={styles.showDetailsButton}>
+    <button onClick={handleClick} className={styles.showDetailsButton}>
       <span className={styles.infoIconContainer}>
         <InfoIcon/>
       </span>

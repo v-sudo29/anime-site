@@ -17,7 +17,7 @@
 
 .newsCard {
   display: grid;
-  grid-template-rows: minmax(0rem, 0.89fr) 0.2fr;
+  grid-template-rows: 0.88fr 0.2fr;
   width: 100%;
   height: 100%;
 }

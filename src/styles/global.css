@@ -17,7 +17,7 @@ html {
 
 :root {
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
-  --card-border-radius: 0.2rem;
+  --card-border-radius: 0.3rem;
   --container-padding: 1rem;
   --main-background-color: #1F2021;
   --yellow-color: #F9B732;
