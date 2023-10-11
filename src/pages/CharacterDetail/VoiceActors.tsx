@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import styles from '../../styles/character-detail/VoiceActors.module.css'
 import VoiceActorCard from './VoiceActorCard'
 import { CharacterDetailData, Voice } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
 interface IVoiceActors {
-  styles: CSSModuleClasses
   character: CharacterDetailData
 }
 
-export default function VoiceActors({ styles, character }: IVoiceActors) {
+export default function VoiceActors({ character }: IVoiceActors) {
   const [vaInfo, setVaInfo] = useState<Voice[] | null>(null)
   let vaCards = null
 
@@ -24,9 +24,9 @@ export default function VoiceActors({ styles, character }: IVoiceActors) {
   )
 
   return (
-    <div className={styles.voiceActorsContainer}>
+    <div className={styles.container}>
       <h2 className={styles.sectionTitle}>Voice Actors</h2>
-      <div className={styles.vaCardsContainer}>
+      <div className={styles.cardsContainer}>
         {vaCards ? vaCards : <p>No voice actors.</p>}
       </div>
     </div>

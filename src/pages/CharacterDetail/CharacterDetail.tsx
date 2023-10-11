@@ -35,6 +35,7 @@ export default function CharacterDetail() {
         </div>
         <div className={styles.rightContainer}>
           <HeroInfo character={character}/>
+          <VoiceActors character={character} />
         </div>
         {/* <HeroContent styles={styles} character={character}/>
         <Stats styles={styles} character={character}/>

@@ -1,0 +1,58 @@
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0rem, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(0rem, 1fr));
+  gap: 2.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--card-border-radius);
+  transition: var(--default-transition-time);
+}
+
+.actorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  padding-right: 0.6rem;
+  min-width: 5rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--card-border-radius);
+  width: 100%;
+  height: 100%;
+  transition: var(--default-transition-time);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.language {
+  font-size: 0.9rem;
+}
