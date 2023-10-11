@@ -43,9 +43,6 @@ export default function CharacterDetail() {
           <HeroInfo character={character}/>
           <VoiceActors character={character} />
         </div>
-        {/* <HeroContent styles={styles} character={character}/>
-        <Stats styles={styles} character={character}/>
-        <VoiceActors styles={styles} character={character}/> */}
       </div>
     )
   } else return <LoaderAnimation/>
