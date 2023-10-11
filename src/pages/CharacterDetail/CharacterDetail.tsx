@@ -13,6 +13,12 @@ export default function CharacterDetail() {
   const params = useParams()
   const [character, setCharacter] = useState<CharacterDetailData | null>(null)
 
+  // TODO: TEMPORARY useEffect, remove once color pallette redesign completes
+  useEffect(() => {
+    const bodyElement = document.querySelector('body')
+    if (bodyElement) bodyElement.style.backgroundColor = "#1F2021"
+  }, [])
+
   useEffect(() => {
     if (!character) {
       fetch(`https://api.jikan.moe/v4/characters/${params.id}/full`)

@@ -72,13 +72,15 @@ export default function VoiceActors({ character }: IVoiceActors) {
         onClick={handleClick}
       >
         {(vaInfo && vaInfo.length > 9) && (
-          <button className={styles.actorsBtn}>
-            {!showAllActors ? 'See All Voice Actors' : 'See Less'}
-          </button>
+          <>
+            <button className={styles.actorsBtn}>
+              {!showAllActors ? 'See All Voice Actors' : 'See Less'}
+            </button>
+            <div className={styles.carrotIconContainer}>
+              <CarrotDownIcon/>
+            </div>
+          </>
         )}
-        <div className={styles.carrotIconContainer}>
-          <CarrotDownIcon/>
-        </div>
       </div>
     </div>
   )
