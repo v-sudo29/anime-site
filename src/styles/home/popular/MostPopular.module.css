@@ -6,6 +6,10 @@
   margin-bottom: 2rem;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .cardsContainer {
   display: flex;
   flex-direction: column;

@@ -41,7 +41,7 @@ export default function LatestNews({ newsData } : { newsData: JSONNewsResponse |
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2>Latest Anime News</h2>
+        <h2 className={styles.sectionTitle}>Latest Anime News</h2>
         <Link className={styles.moreNewsLink} to='/news'>
           <span className={styles.moreNewsSpan}>More News</span>
           <div className={styles.arrowsSlideshow}>

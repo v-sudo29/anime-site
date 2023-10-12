@@ -37,7 +37,7 @@ export default function MostPopular({ popularData } : { popularData: PopularResp
 
   return (
     <div className={styles.container}>
-      <h2>Most Popular Anime</h2>
+      <h2 className={styles.sectionTitle}>Most Popular Anime</h2>
       <div className={styles.cardsContainer}>
         {popularCards}
       </div>

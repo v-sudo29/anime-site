@@ -30,7 +30,7 @@ export default function Upcoming({ upcomingData } : { upcomingData: UpcomingDatu
 
   return (
     <section className={styles.container}>
-      <h2>Upcoming Anime</h2>
+      <h2 className={styles.sectionTitle}>Upcoming Anime</h2>
       <div className={styles.cardsContainer}>
         {upcomingCards}
       </div>

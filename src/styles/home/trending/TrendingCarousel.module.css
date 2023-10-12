@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .slideshow {
   max-width: 100%;
   overflow: hidden;

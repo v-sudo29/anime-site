@@ -51,7 +51,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2>Top Trending Anime</h2>
+        <h2 className={styles.sectionTitle}>Top Trending Anime</h2>
       </div>
         <div className={styles.slideshow}>
           {trendingData ?

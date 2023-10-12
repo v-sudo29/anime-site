@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .header {
   display: flex;
   justify-content: space-between;

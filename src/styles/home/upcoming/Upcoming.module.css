@@ -4,6 +4,10 @@
   text-align: left;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .cardsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10.8rem, 1fr));

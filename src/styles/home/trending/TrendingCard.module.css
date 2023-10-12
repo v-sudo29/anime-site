@@ -57,7 +57,7 @@
   .card {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(10rem, 20rem) 1fr;
-    gap: 1rem;
+    gap: 2rem;
   }
   .anchorContainer {
     height: 100%;
