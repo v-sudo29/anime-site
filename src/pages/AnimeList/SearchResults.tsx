@@ -4,13 +4,13 @@ import AnimeListCard from '../../components/AnimeListCard'
 import NoResults from '../../components/NoResults';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from '../../styles/anime-list/SearchResults.module.css'
-import { url } from './urls'
 import genresToIds from '../../helpers/genresToIds';
 import LoaderAnimation from '../../components/LoaderAnimation';
+import { url } from './urls'
 import { useMobile } from '../../context/mobileContext';
-import { SearchDataTypes, SearchResponseTypes, SingleSearchedAnime } from '../../types/stateTypes/AnimeListTypes';
+import { SearchDataTypes, SearchResponseTypes } from '../../types/stateTypes/AnimeListTypes';
 
-interface ISearchResults {
+interface SearchResultsProps {
   animeData: SearchDataTypes | null
   setAnimeData: React.Dispatch<React.SetStateAction<SearchDataTypes | null>>
   fetchNewData: (url: string) => Promise<void>
@@ -26,7 +26,7 @@ interface ISearchResults {
   inputValue: React.RefObject<HTMLInputElement>
 }
 
-export default function SearchResults({
+const SearchResults = ({
   animeData, 
   setAnimeData,
   fetchNewData,
@@ -40,13 +40,13 @@ export default function SearchResults({
   resultsType,
   setResultsType,
   inputValue,
-  } : ISearchResults) {
+  } : SearchResultsProps) => {
   const { isMobile } = useMobile()
   const runOnce = useRef(false)
   let animeCards = null
 
   // Fetch and add new data to current data
-  const fetchAndAdd = async (url: string) => {
+  const fetchAndAdd = async (url: string): Promise<void> => {
     try {
       const res = await fetch(url)
       const data = await res.json() as SearchResponseTypes
@@ -62,7 +62,7 @@ export default function SearchResults({
   }
 
   // Handles loading more anime for infinite scroll - genres search
-  const loadMoreGenresAnime = () => {
+  const loadMoreGenresAnime = (): void => {
     const searchParameter = inputValue.current?.value ? inputValue.current.value : ''
 
     // Get selected genres into an array
@@ -89,7 +89,7 @@ export default function SearchResults({
   }
 
   // Fetch and set additional data for infinite scroll
-  const loadMoreFilterAnime = async () => {
+  const loadMoreFilterAnime = async (): Promise<void> => {
     if (topFilter === 'Most Popular') fetchAndAdd(url.popularInfinite + pageCount)
     if (topFilter === 'Top Trending') fetchAndAdd(url.trendingInfinite + pageCount)
     if (topFilter === 'Top Upcoming') fetchAndAdd(url.upcomingInfinite + pageCount)
@@ -111,35 +111,34 @@ export default function SearchResults({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topFilter])
 
-  if (animeData) animeCards = animeData.map((anime, index) => 
-    <AnimeListCard 
-      key={`${anime['mal_id']}-animeList-${index}`}
-      anime={anime}
-      index={index}
-      id={anime['mal_id']}
-    />
-  )
+  if (animeData) {
+    animeCards = animeData.map((anime, index) => 
+      <AnimeListCard 
+        key={`${anime['mal_id']}-animeList-${index}`}
+        anime={anime}
+        index={index}
+        id={anime['mal_id']}
+      />
+    )
+  }
 
   return (
-      <div className={styles.container}>
-        <div className={styles.titleAndFilter}>
-          <h2 className={styles.sectionTitle}>Anime List</h2>
-          {!isMobile && (
-            <CustomSelect 
-              setTopFilter={setTopFilter}
-              resetPageCount={resetPageCount}
-            />
-          )}
-        </div>
-          {animeData ?
-            <InfiniteScroll 
-              dataLength={animeCards ? animeCards.length : 0}
-              next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
-              hasMore={thereIsMore}
-              className={styles.infiniteScroll} loader={undefined}            >
-              {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
-            </InfiniteScroll>
-          : <LoaderAnimation/>} 
+    <div className={styles.container}>
+      <div className={styles.titleAndFilter}>
+        <h2 className={styles.sectionTitle}>Anime List</h2>
+        {!isMobile && <CustomSelect setTopFilter={setTopFilter} resetPageCount={resetPageCount}/>}
       </div>
+        {animeData ?
+          <InfiniteScroll 
+            dataLength={animeCards ? animeCards.length : 0}
+            next={resultsType === 'filter' ? loadMoreFilterAnime : loadMoreGenresAnime}
+            hasMore={thereIsMore}
+            className={styles.infiniteScroll} loader={undefined}            >
+            {animeCards ? (animeCards.length === 0 ? <NoResults/> : animeCards) : '...Loading'}
+          </InfiniteScroll>
+        : <LoaderAnimation/>} 
+    </div>
   )
 }
+
+export default SearchResults

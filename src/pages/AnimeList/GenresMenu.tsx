@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface IGenresMenu {
+interface GenresMenuProps {
   styles: CSSModuleClasses
   genresMasterList: {
     name: string;
@@ -9,25 +9,23 @@ interface IGenresMenu {
   handleGenreTagClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-export default function GenresMenu({
-  styles,
-  genresMasterList,
-  handleGenreTagClick,
-}: IGenresMenu) {
+const GenresMenu = ({ styles, genresMasterList, handleGenreTagClick}: GenresMenuProps) => {
+  const genreTags = genresMasterList.map(genre => (
+    <button 
+      key={genre['mal_id']} 
+      className={styles.genreTag}
+      type="button"
+      onClick={(e) => handleGenreTagClick(e)}
+    >
+      {genre.name}
+    </button>
+  ))
+
   return (
     <div className={`${styles.genreTagsContainer} genreTagsContainer`}>
-      {genresMasterList.map(genre => {
-        return (
-          <button 
-            key={genre['mal_id']} 
-            className={styles.genreTag}
-            type="button"
-            onClick={(e) => handleGenreTagClick(e)}
-          >
-            {genre.name}
-          </button>
-        )
-      })}
+      {genreTags}
     </div>
   )
 }
+
+export default GenresMenu

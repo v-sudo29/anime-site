@@ -6,7 +6,7 @@ import genresToIds from '../../helpers/genresToIds'
 import SearchBarAndToggle from './SearchBarToggle'
 import GenresMenu from './GenresMenu'
 
-interface ISearchAndGenres {
+interface SearchAndGenresProps {
   genresShown: boolean
   setGenresShown: React.Dispatch<React.SetStateAction<boolean>>
   inputValue: React.RefObject<HTMLInputElement>
@@ -16,7 +16,7 @@ interface ISearchAndGenres {
   fetchDefaultPopular: () => Promise<void>
 }
 
-export default function SearchAndGenres({
+const SearchAndGenres = ({
   genresShown,
   setGenresShown,
   inputValue,
@@ -24,7 +24,7 @@ export default function SearchAndGenres({
   setResultsType,
   fetchNewData,
   fetchDefaultPopular
-}: ISearchAndGenres) {
+}: SearchAndGenresProps) => {
   const animateCarrot = (): void => {
     const { carrotActive } = carrotStyles
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`) as SVGAElement
@@ -74,7 +74,7 @@ export default function SearchAndGenres({
     }
   }
 
-  const handleGenreTagClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleGenreTagClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     const genreBtnElement = e.target as HTMLButtonElement
 
     // Style genre tag if active/inactive
@@ -83,13 +83,11 @@ export default function SearchAndGenres({
   }
 
   return (
-  <div className={styles.container}>
+    <div className={styles.container}>
       <SearchBarAndToggle
         styles={styles}
         inputValue={inputValue}
         handleEnter={handleEnter}
-        resetPageCount={resetPageCount}
-        handleGenresSearch={handleGenresSearch}
         toggleGenres={toggleGenres}
         genresShown={genresShown}
       />
@@ -103,3 +101,5 @@ export default function SearchAndGenres({
     </div>
   )
 }
+
+export default SearchAndGenres

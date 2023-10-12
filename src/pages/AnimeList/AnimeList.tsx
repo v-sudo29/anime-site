@@ -5,7 +5,7 @@ import styles from '../../styles/anime-list/AnimeList.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
 import { SearchDataTypes, SearchResponseTypes } from '../../types/stateTypes/AnimeListTypes'
 
-function AnimeList() {
+const AnimeList = () => {
   const [animeData, setAnimeData] = useState<SearchDataTypes | null>(null)
   const [genresShown, setGenresShown]= useState(false)
   const [topFilter, setTopFilter] = useState('Most Popular')
@@ -13,14 +13,13 @@ function AnimeList() {
   const [resultsType, setResultsType] = useState('filter')
   const [pageCount, setPageCount] = useState(2)
   const { popularData } = useDefaultData()
-
   const inputValue = useRef<HTMLInputElement>(null)
 
   // Reset pageCount
-  const resetPageCount = () => setPageCount(2)
+  const resetPageCount = (): void => setPageCount(2)
 
   // Fetch and set default popular anime data
-  const fetchDefaultPopular = async () => {
+  const fetchDefaultPopular = async (): Promise<void> => {
     if (popularData) {
       setAnimeData(popularData.data)
       popularData.pagination['has_next_page'] ? setThereIsMore(true) : setThereIsMore(false)
@@ -28,7 +27,7 @@ function AnimeList() {
   }
 
   // Fetch and set new anime data
-  const fetchNewData = async (url: string) => {
+  const fetchNewData = async (url: string): Promise<void> => {
     try {
       const res = await fetch(url)
       const data = await res.json() as SearchResponseTypes
