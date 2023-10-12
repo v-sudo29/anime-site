@@ -8,17 +8,26 @@ interface Fact {
   [key: string]: string
 }
 
+interface FactsObject {
+  birthday: string | null;
+  age: string | null;
+  height: string | null;
+  weight: string | null;
+  factOne: Fact | null;
+  factTwo: Fact | null;
+}
+
 interface StatsProps {
   character: CharacterDetailData
   isModalShown?: boolean
   setIsModalShown?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Stats({ character, isModalShown, setIsModalShown } : StatsProps) {
+const Stats = ({ character, isModalShown, setIsModalShown } : StatsProps) => {
   const [stats, setStats] = useState<IStatsState | null>(null)
   const { isDetailMobile } = useMobile()
 
-  function splitAbout(aboutInfo: string) {
+  const splitAbout = (aboutInfo: string): FactsObject => {
     let birthday = null
     let age = null
     let height = null
@@ -147,10 +156,11 @@ export default function Stats({ character, isModalShown, setIsModalShown } : Sta
     }
   }
 
-  const handleExitModal = () => {
+  const handleExitModal = (): void => {
     if (setIsModalShown) setIsModalShown(false)
   }
 
+  // When character data available, split about into facts object
   useEffect(() => {
     if (character) {
       setStats(splitAbout(character['about']))
@@ -197,26 +207,26 @@ export default function Stats({ character, isModalShown, setIsModalShown } : Sta
             </div>
 
             {/* Display one fact if only one fact exists */}
-            {stats.factOne && stats.factTwo ?
+            {(stats.factOne && !stats.factTwo) &&
               <div className={styles.factOne}>
                 {factOneTitle}
                 <p>{factOne}</p>
               </div>
-            : null}
+            }
             
             {/* Display two facts if two facts exist */}
-            {stats.factOne && stats.factTwo ? 
-            <>
-              <div className={styles.factOne}>
-                {factOneTitle}
-                <p>{factOne}</p>
-              </div>
-              <div className={styles.factTwo}>
-                {factTwoTitle}
-                <p>{factTwo}</p>
-              </div>
-            </>
-            : null}
+            {(stats.factOne && stats.factTwo) && 
+              <>
+                <div className={styles.factOne}>
+                  {factOneTitle}
+                  <p>{factOne}</p>
+                </div>
+                <div className={styles.factTwo}>
+                  {factTwoTitle}
+                  <p>{factTwo}</p>
+                </div>
+              </>
+            }
           </div>
         )}
 
@@ -242,29 +252,31 @@ export default function Stats({ character, isModalShown, setIsModalShown } : Sta
             </div>
 
             {/* Display one fact if only one fact exists */}
-            {stats.factOne && stats.factTwo ?
+            {(stats.factOne && !stats.factTwo) &&
               <div className={styles.factOne}>
                 {factOneTitle}
                 <p>{factOne}</p>
               </div>
-            : null}
+            }
             
             {/* Display two facts if two facts exist */}
-            {stats.factOne && stats.factTwo ? 
-            <>
-              <div className={styles.factOne}>
-                {factOneTitle}
-                <p>{factOne}</p>
-              </div>
-              <div className={styles.factTwo}>
-                {factTwoTitle}
-                <p>{factTwo}</p>
-              </div>
-            </>
-            : null}
+            {(stats.factOne && stats.factTwo) && 
+              <>
+                <div className={styles.factOne}>
+                  {factOneTitle}
+                  <p>{factOne}</p>
+                </div>
+                <div className={styles.factTwo}>
+                  {factTwoTitle}
+                  <p>{factTwo}</p>
+                </div>
+              </>
+            }
           </div>
         )}    
       </>
     )
-  }
+  } else return <></>
 }
+
+export default Stats

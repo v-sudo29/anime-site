@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/character-detail/VoiceActors.module.css'
 import VoiceActorCard from './VoiceActorCard'
-import { CharacterDetailData, Voice } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
+import { CharacterDetailData, Voice } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 
 interface VoiceActorsProps {
   character: CharacterDetailData
   isTwoColumn: boolean
 }
 
-export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps) {
+const VoiceActors = ({ character, isTwoColumn }: VoiceActorsProps) => {
   const [buttonClicked, setButtonClicked] = useState(false)
   const [showAllActors, setShowAllActors] = useState(false)
   const [vaInfo, setVaInfo] = useState<Voice[] | null>(null)
@@ -18,7 +18,7 @@ export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps
   const { carrotActive } = carrotStyles
   let vaCards: (JSX.Element| undefined)[] = []
 
-  const animateCarrotIcon = () => {
+  const animateCarrotIcon = (): void => {
     const carrotIcon = document.querySelector(`.${styles.carrotIconContainer} svg`)
 
     if (carrotIcon) {
@@ -27,16 +27,18 @@ export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps
     }
   }
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setShowAllActors(prev => !prev)
     animateCarrotIcon()
     setButtonClicked(prev => !prev)
   }
 
+  // When character data is available, set voice actor info in state
   useEffect(() => {
     if (character) setVaInfo(character['voices'])
   }, [character])
 
+  // Set limited # of voice actor cards
   if (vaInfo && !showAllActors) {
     vaCards = vaInfo.map((actor, index) => {
       if (index < 9 && !isTwoColumn) {
@@ -60,6 +62,7 @@ export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps
     })
   }
 
+  // Set all voice actor cards
   if (vaInfo && showAllActors) {
     vaCards = vaInfo.map(actor => (
       <VoiceActorCard
@@ -74,7 +77,7 @@ export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps
     <div className={styles.container}>
       <h2 className={styles.sectionTitle}>Voice Actors</h2>
       <div className={styles.cardsContainer}>
-        {vaCards ? vaCards : <p>No voice actors.</p>}
+        {vaCards ?? <p>No voice actors.</p>}
       </div>
       
       {/* MOBILE */}
@@ -103,3 +106,5 @@ export default function VoiceActors({ character, isTwoColumn }: VoiceActorsProps
     </div>
   )
 }
+
+export default VoiceActors

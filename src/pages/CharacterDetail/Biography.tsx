@@ -5,7 +5,7 @@ import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDe
 const Biography = ({ character } : { character: CharacterDetailData }) => {
   const [biography, setBiography] = useState<string | null>(null)
 
-  function extractBiography(biography: string) {
+  function extractBiography(biography: string): string | null {
     if (!biography) return null
     const filteredBio = biography.split('\n')
 
@@ -27,10 +27,10 @@ const Biography = ({ character } : { character: CharacterDetailData }) => {
     return (
       <>
         <h2 className={styles.sectionTitle}>Biography</h2>
-        <p className={styles.biography}>{biography ? biography : 'No biography available.'}</p>
+        <p className={styles.biography}>{biography ?? 'No biography available.'}</p>
       </>
     )
-  }
+  } else return <></>
 }
 
 export default Biography

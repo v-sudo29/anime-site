@@ -7,9 +7,8 @@ interface CharacterDetailsButtonProps {
 }
 
 const CharacterDetailsButton = ({ setIsModalShown } : CharacterDetailsButtonProps) => {
-  const handleClick = () => {
-    setIsModalShown(true)
-  }
+  const handleClick = () => setIsModalShown(true)
+  
   return (
     <button onClick={handleClick} className={styles.showDetailsButton}>
       <span className={styles.infoIconContainer}>

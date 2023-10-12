@@ -5,7 +5,7 @@ import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDe
 const HeroInfo = ({ character } : { character: CharacterDetailData }) => {
   const [biography, setBiography] = useState<string | null>(null)
 
-  function extractBiography(biography: string) {
+  const extractBiography = (biography: string): string | null => {
     if (!biography) return null
     const filteredBio = biography.split('\n')
 
@@ -19,6 +19,7 @@ const HeroInfo = ({ character } : { character: CharacterDetailData }) => {
     return filteredBio
   }
 
+  // When character data is available, extract biography from data
   useEffect(() => {
     if (character) setBiography(extractBiography(character.about))
   }, [character])
@@ -30,7 +31,7 @@ const HeroInfo = ({ character } : { character: CharacterDetailData }) => {
         <p className={styles.biography}>{biography ? biography : 'No biography available.'}</p>
       </div>
     )
-  }
+  } else return <></>
 }
 
 export default HeroInfo
