@@ -18,7 +18,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
 
   // Animate carrot icon
   function animateCarrotIcon() {
-    const carrotIcon = document.querySelector('.filter-carrot-container svg')
+    const carrotIcon = document.querySelector(`.${styles.filterCarrotContainer} svg`)
 
     if (carrotIcon) {
       selectMenuHidden.current ? carrotIcon.classList.remove(`${carrotActive}`) : 
@@ -83,7 +83,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
           onKeyDown={(e) => handleKeyPressed(e)}
         >
           {selectItem}
-          <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
+          <div className={styles.filterCarrotContainer} onClick={(e) => openSelectMenu(e)}>
             <CarrotDown />
           </div>
         </div>
@@ -163,8 +163,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
           tabIndex={0}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
-          {firstOption}
-          <div className='filter-carrot-container' onClick={(e) => openSelectMenu(e)}>
+          <span onClick={openSelectMenu} className={styles.selectedOptionText}>{firstOption}</span>
+          <div className={styles.filterCarrotContainer} onClick={(e) => openSelectMenu(e)}>
             <CarrotDown />
           </div>
         </div>

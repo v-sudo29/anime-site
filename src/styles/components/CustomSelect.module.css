@@ -27,33 +27,39 @@
   background-color: var(--hover-color);
 }
 
-.optionItem:focus {
+.optionItem:focus-visible {
   outline: 2px solid white;
 }
 
 .selectedOption {
   color: white;
   background-color: var(--main-background-color);
-  /* background-color: #111111; */
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  justify-content: space-between;
   cursor: pointer;
-  padding: 0.5rem 0.8rem;
+  justify-content: center;
+  padding: 0.5rem 0.7rem;
   border-radius: 0.3rem;
-  width: 9.8rem;
   font-size: 0.9rem;
+  gap: 0.5rem;
+  transition: var(--default-transition-time);
 }
 
-.selectedOption:focus {
-  outline: 2px solid white;
+.selectedOption:hover {
+  color: var(--text-hover-color);
+}
+
+.selectedOption:hover .filterCarrotContainer {
+  color: var(--text-hover-color);
+}
+
+
+.filterCarrotContainer {
+  display: flex;
+  align-items: center;
+}
+
+.filterCarrotContainer > svg {
+  width: 0.7rem;
 }
 
 .optionSelected {
