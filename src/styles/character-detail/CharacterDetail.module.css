@@ -23,6 +23,20 @@
   border-radius: var(--card-border-radius);
 }
 
+/* Overlay */
+.overlay {
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  min-height: 100%;
+  z-index: 30;
+  background-color: #030303;
+  opacity: 0.8;
+  pointer-events: none
+}
+
 @media screen and (min-width: 320px) {
   .content {
     display: flex;
