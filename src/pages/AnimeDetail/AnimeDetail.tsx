@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import LoaderAnimation from '../../components/LoaderAnimation'
 import styles from '../../styles/anime-detail/AnimeDetail.module.css'
 import Stats from './Stats'
@@ -12,15 +11,16 @@ import HeroImage from './HeroImage'
 import HeroInfo from './HeroInfo'
 import useFetchAnime from '../../hooks/useFetchAnime'
 import FetchError from '../../components/FetchError'
-import { useMobile } from '../../context/mobileContext'
-import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 import AnimeTitle from './AnimeTitle'
 import ShowDetailsButton from './ShowDetailsButton'
 import AnimeRank from './AnimeRank'
 import Synopsis from './Synopsis'
 import DetailsModal from './DetailsModal'
+import { useParams } from 'react-router-dom'
+import { useMobile } from '../../context/mobileContext'
+import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 
-function AnimeDetail() {
+const AnimeDetail = () => {
   const params = useParams()
   const { anime, animeLoading, animeError } = useFetchAnime()
   const [mainIdsType, setMainIdsType] = useState<IMainIdsType[]>([])
@@ -37,12 +37,6 @@ function AnimeDetail() {
       setCountUpdated(true)
     }
   }, [mainIdsType, spinOffIds])
-
-  // TODO: TEMPORARY useEffect
-  useEffect(() => {
-    const bodyElement = document.querySelector('body')
-    if (bodyElement) bodyElement.style.backgroundColor = "#1F2021"
-  }, [])
 
   if (animeLoading) return <LoaderAnimation/>
   if (animeError) return <FetchError/>

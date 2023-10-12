@@ -5,7 +5,7 @@ import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailType
 const HeroImage = ({ anime } : { anime: AnimeDetailData | null }) => {
   return (
     <div className={styles.container}>
-      <img className={styles.animeImg} src={`${anime?.images.jpg['large_image_url']}`} alt="" />
+      <img className={styles.animeImg} src={`${anime?.images.jpg['large_image_url']}`} alt={`${anime?.title} hero image`} />
     </div>
   )
 }

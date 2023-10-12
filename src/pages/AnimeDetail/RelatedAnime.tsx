@@ -7,7 +7,7 @@ import { useMobile } from '../../context/mobileContext'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import { IMainIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 
-interface IRelatedAnime {
+interface RelatedAnimeProps {
   anime: AnimeDetailData | null
   mainIdsType: IMainIdsType[]
   spinOffIds: number[]
@@ -15,13 +15,13 @@ interface IRelatedAnime {
   setSpinOffIds: React.Dispatch<React.SetStateAction<number[]>>
 }
 
-export default function RelatedAnime({
+const RelatedAnime = ({
   anime, 
   mainIdsType, 
   spinOffIds, 
   setMainIdsType,
   setSpinOffIds
-} : IRelatedAnime) {
+} : RelatedAnimeProps) => {
   const { mainData } = useFetchMainSeries(mainIdsType)
   const { spinOffData } = useFetchSpinoff(spinOffIds)
   const { isDetailMobile } = useMobile()
@@ -49,21 +49,25 @@ export default function RelatedAnime({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anime])
 
-  if (mainData && mainData.length > 0) mainSeriesCards = mainData.map(anime => 
-    <RelatedCard
-      key={anime.name}
-      styles={styles}
-      anime={anime}
-    />
-  )
+  if (mainData && mainData.length > 0) {
+    mainSeriesCards = mainData.map(anime => 
+      <RelatedCard
+        key={anime.name}
+        styles={styles}
+        anime={anime}
+      />
+    )
+  }
 
-  if (spinOffData && spinOffData.length > 0) spinOffCards = spinOffData.map(anime => 
-    <RelatedCard
-      key={anime.name}
-      styles={styles}
-      anime={anime}
-    />
-  )
+  if (spinOffData && spinOffData.length > 0) {
+    spinOffCards = spinOffData.map(anime => 
+      <RelatedCard
+        key={anime.name}
+        styles={styles}
+        anime={anime}
+      />
+    )
+  }
 
   const combinedCards = [...mainSeriesCards, ...spinOffCards]
   const totalCardsCount = combinedCards.length
@@ -73,27 +77,29 @@ export default function RelatedAnime({
       <h2 className={styles.sectionTitle}>Related Anime</h2>
       <div className={styles.relatedContent}>
 
-    {/* MOBILE */}
-      {(isDetailMobile && totalCardsCount > 0) &&
-        <div className={styles.mainSeriesContainer}>
-          <div className={styles.mainCardsContainer}>
-            {combinedCards.map((card, index) => index < 3 && card)}
+        {/* MOBILE */}
+        {(isDetailMobile && totalCardsCount > 0) &&
+          <div className={styles.mainSeriesContainer}>
+            <div className={styles.mainCardsContainer}>
+              {combinedCards.map((card, index) => index < 3 && card)}
+            </div>
           </div>
-        </div>
-      }
+        }
 
-    {/* DESKTOP */}
-    {(!isDetailMobile && totalCardsCount > 0) &&
-      <div className={styles.mainSeriesContainer}>
-        <div className={styles.mainCardsContainer}>
-          {combinedCards.map((card, index) => index < 8 && card)}
-        </div>
-      </div>
-    }
+        {/* DESKTOP */}
+        {(!isDetailMobile && totalCardsCount > 0) &&
+          <div className={styles.mainSeriesContainer}>
+            <div className={styles.mainCardsContainer}>
+              {combinedCards.map((card, index) => index < 8 && card)}
+            </div>
+          </div>
+        }
 
-      {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
-
+        {/* Default text if no cards */}
+        {(mainSeriesCards.length === 0 && spinOffCards.length === 0) && 'No related anime.'}
       </div>
     </div>
   )
 }
+
+export default RelatedAnime

@@ -2,17 +2,17 @@ import React from 'react'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import { IProducersData } from '../../types/stateTypes/AnimeDetailTypes'
 
-interface IProducerCard {
+interface ProducerCardProps {
   anime: AnimeDetailData
   styles: CSSModuleClasses
   producer: IProducersData
 }
 
-export default function ProducerCard({ styles, producer }: IProducerCard) {
+const ProducerCard =({ styles, producer }: ProducerCardProps) => {
   return (
     <div className={styles.producerCard}>
       <a className={styles.anchorContainer} href={producer.url} target="_blank" rel="noopener noreferrer">
-        <img className={styles.producerImg} src={producer.image} alt="" />
+        <img className={styles.producerImg} src={producer.image} alt={`${producer.name}`} />
       </a>
       <div>
         <div className={styles.producerType}>{producer.type}</div>
@@ -23,3 +23,5 @@ export default function ProducerCard({ styles, producer }: IProducerCard) {
     </div>
   )
 }
+
+export default ProducerCard

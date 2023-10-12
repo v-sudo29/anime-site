@@ -8,9 +8,7 @@ interface ShowDetailsButtonProps {
 }
 
 const ShowDetailsButton = ({ isModalShown, setIsModalShown } : ShowDetailsButtonProps) => {
-  const handleClick = () => {
-    setIsModalShown(true)
-  }
+  const handleClick = () => setIsModalShown(true)
 
   return (
     <button onClick={handleClick} className={styles.showDetailsButton}>

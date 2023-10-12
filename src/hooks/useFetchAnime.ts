@@ -8,7 +8,7 @@ export default function useFetchAnime() {
   const [animeLoading, setAnimeLoading] = useState(false)
   const [animeError, setAnimeError] = useState(false)
 
-  // TODO: move anime data to context, store in localStorage
+  // TODO: move data to context, store in localStorage
   useEffect(() => {
     // Check localStorage
     const storedData = localStorage.getItem('animeDetail')

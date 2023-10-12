@@ -3,7 +3,7 @@ import NewsCard from './NewsCard'
 import styles from '../../styles/anime-detail/News.module.css'
 import { AnimeDetailNewsResponse, AnimeDetailNewsDatum } from '../../types/fetchDataTypes/fetchAnimeDetailNewsTypes'
 
-export default function News({ id } : { id: string | undefined}) {
+const News = ({ id } : { id: string | undefined}) => {
   const [newsInfo, setNewsInfo] = useState<AnimeDetailNewsDatum[] | null>(null)
 
   // Sort articles by most recent date
@@ -71,3 +71,5 @@ export default function News({ id } : { id: string | undefined}) {
     </div>
   )
 }
+
+export default News

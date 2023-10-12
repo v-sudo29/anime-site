@@ -2,12 +2,12 @@ import React from 'react'
 import { IMainData } from '../../types/stateTypes/AnimeDetailTypes'
 import { ISpinoffData } from '../../types/stateTypes/AnimeDetailTypes'
 
-interface RelatedCard {
+interface RelatedCardProps {
   styles: CSSModuleClasses
   anime: IMainData | ISpinoffData
 }
 
-export default function RelatedCard({ styles, anime }: RelatedCard) {
+export default function RelatedCard({ styles, anime }: RelatedCardProps) {
   return (
     <div key={anime.name} className={styles.mainCard}>
       <a className={styles.anchorContainer} href={`/anime/${anime.id}`}>

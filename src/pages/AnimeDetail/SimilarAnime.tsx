@@ -3,7 +3,7 @@ import useFetchSimilar from '../../hooks/useFetchSimilar'
 import SimilarCard from './SimilarCard'
 import styles from '../../styles/anime-detail/SimilarAnime.module.css'
 
-export default function SimilarAnime({ id } : { id: string | undefined }) {
+const SimilarAnime = ({ id } : { id: string | undefined }) => {
   const { similarData } = useFetchSimilar(id)
   let similarCards: (JSX.Element | null)[] = []
 
@@ -32,3 +32,5 @@ export default function SimilarAnime({ id } : { id: string | undefined }) {
     </div>
   )
 }
+
+export default SimilarAnime

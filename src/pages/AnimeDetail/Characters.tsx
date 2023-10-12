@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import styles from '../../styles/anime-detail/Characters.module.css'
 import useFetchCharacters from '../../hooks/useFetchCharacters'
 import CharacterCard from './CharacterCard'
-import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
+import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import { useMobile } from '../../context/mobileContext'
 
-interface ICharacters {
+interface CharactersProps {
   anime: AnimeDetailData
   id: string | undefined
 }
 
-export default function Characters({ anime, id } : ICharacters) {
+const Characters = ({ anime, id } : CharactersProps) => {
   const [buttonClicked, setButtonClicked] = useState(false)
   const [allCharacters, setAllCharacters] = useState(false)
   const { charactersData } = useFetchCharacters(anime, id)
@@ -59,13 +59,13 @@ export default function Characters({ anime, id } : ICharacters) {
   }
 
   if (charactersData && allCharacters) 
-  characterCards = charactersData.map(character => (
-    <CharacterCard
-      key={character['character']['name']}
-      styles={styles} 
-      character={character}
-    />
-  ))  
+    characterCards = charactersData.map(character => (
+      <CharacterCard
+        key={character['character']['name']}
+        styles={styles} 
+        character={character}
+      />
+    ))  
 
   return (
     <div className={`${styles.charactersSection} characters`}>
@@ -102,3 +102,5 @@ export default function Characters({ anime, id } : ICharacters) {
     </div>
   )
 }
+
+export default Characters

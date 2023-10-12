@@ -5,20 +5,20 @@ import styles from '../../styles/anime-detail/StudioProducers.module.css'
 import { IProducersIdsType } from '../../types/stateTypes/AnimeDetailTypes'
 import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 
-interface IStudioProducers {
+interface StudioProducersProps {
   anime: AnimeDetailData
   count: number
   countUpdated: boolean
 }
 
-export default function StudioProducers({ anime, count, countUpdated } : IStudioProducers) {
+const StudioProducers = ({ anime, count, countUpdated } : StudioProducersProps) => {
   const [producerIdsType, setProducerIdsType] = useState<IProducersIdsType[] | null>(null)
   const { producersData } = useFetchProducers(producerIdsType, count, countUpdated)
   let producerCards: JSX.Element[] = []
 
   // Set studio and producer ids
   useEffect(() => {
-    if (anime) 
+    if (anime) {
       setProducerIdsType(anime.studios.map(studio => ({
         id: studio['mal_id'],
         type: 'Studio' 
@@ -31,9 +31,10 @@ export default function StudioProducers({ anime, count, countUpdated } : IStudio
         if (prev) return [...prev, ...prodIds]
         else return null
       })
+    }
   }, [anime])
 
-  if (producersData && producersData.length > 0) 
+  if (producersData && producersData.length > 0) {
     producerCards = producersData.map((producer, index) => (
       <ProducerCard
         key={`${producer.name}-${anime}-${index}`}
@@ -42,6 +43,7 @@ export default function StudioProducers({ anime, count, countUpdated } : IStudio
         producer={producer}
       />
     ))
+  }
   
   return (
     <div className={`${styles.studioProducersContainer} studioProducers`}>
@@ -54,3 +56,5 @@ export default function StudioProducers({ anime, count, countUpdated } : IStudio
     </div>
   )
 }
+
+export default StudioProducers

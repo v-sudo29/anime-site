@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CharacterDatum } from '../../types/fetchDataTypes/fetchCharactersTypes'
 
-interface ICharacterCard {
+interface CharacterCardProps {
   styles: CSSModuleClasses
   character: CharacterDatum
 }
 
-export default function CharacterCard({ styles, character }: ICharacterCard) {
+const CharacterCard = ({ styles, character }: CharacterCardProps) => {
   const id = character['character']['mal_id']
   const imgSrc = character['character']['images']['jpg']['image_url']
   const charName = character['character']['name']
@@ -29,3 +29,5 @@ export default function CharacterCard({ styles, character }: ICharacterCard) {
     </Link>
   )
 }
+
+export default CharacterCard

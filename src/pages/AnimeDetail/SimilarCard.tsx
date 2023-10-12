@@ -1,12 +1,12 @@
 import React from 'react'
 import { SimilarDatum } from '../../types/fetchDataTypes/fetchSimilarTypes'
 
-interface ISimilarCard {
+interface SimilarCardProps {
   styles: CSSModuleClasses
   anime: SimilarDatum
 }
 
-export default function SimilarCard({ styles, anime }: ISimilarCard) {
+const SimilarCard = ({ styles, anime }: SimilarCardProps) => {
   return (
     <div key={anime['entry']['title']} className={styles.similarCard}>
       <a className={styles.anchorContainer} href={`/anime/${anime['entry']['mal_id']}`}>
@@ -18,3 +18,5 @@ export default function SimilarCard({ styles, anime }: ISimilarCard) {
     </div>
   )
 }
+
+export default SimilarCard

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../styles/anime-detail/NavButtons.module.css'
 
-export default function NavButtons() {
+const NavButtons = () => {
   return (
     <div className={styles.navBtnsContainer}>
       <button 
@@ -36,3 +36,5 @@ export default function NavButtons() {
     </div>
   )
 }
+
+export default NavButtons

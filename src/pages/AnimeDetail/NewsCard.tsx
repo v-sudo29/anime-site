@@ -2,12 +2,12 @@ import React from 'react'
 import imageOnError from '../../helpers/imageOnError'
 import { AnimeDetailNewsDatum } from '../../types/fetchDataTypes/fetchAnimeDetailNewsTypes'
 
-interface INewsCard {
+interface NewsCardProps {
   styles: CSSModuleClasses
   article: AnimeDetailNewsDatum
 }
-export default function NewsCard({ styles, article }: INewsCard) {
-  
+
+const NewsCard = ({ styles, article }: NewsCardProps) => {
   const convertDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
   }
@@ -20,7 +20,7 @@ export default function NewsCard({ styles, article }: INewsCard) {
           onError={imageOnError}
           className={styles.newsImg} 
           src={article['images']['jpg']['image_url']} 
-          alt="" />
+          alt={`${article['title']}`} />
       </a>
       <div>
         <div className={styles.newsDate}>{filteredDate}</div>
@@ -31,3 +31,5 @@ export default function NewsCard({ styles, article }: INewsCard) {
     </div>
   )
 }
+
+export default NewsCard

@@ -9,7 +9,7 @@ interface StatsProps {
   setIsModalShown?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Stats({ anime, isModalShown, setIsModalShown } : StatsProps) {
+const Stats = ({ anime, isModalShown, setIsModalShown } : StatsProps) => {
   const { isDetailMobile } = useMobile()
 
   const splitDates = (stringDates: string) => {
@@ -116,3 +116,5 @@ export default function Stats({ anime, isModalShown, setIsModalShown } : StatsPr
     </>
   )
 }
+
+export default Stats

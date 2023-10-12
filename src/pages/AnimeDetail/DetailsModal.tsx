@@ -1,6 +1,6 @@
 import React from 'react'
-import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import Stats from './Stats'
+import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 
 interface DetailsModalProps {
   anime: AnimeDetailData

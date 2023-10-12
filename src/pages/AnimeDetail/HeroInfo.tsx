@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styles from '../../styles/anime-detail/HeroInfo.module.css'
-import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 import limitCharacters from '../../helpers/limitCharacters'
 import CarrotDownIcon from '../../icons/CarrotDownIcon'
 import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
+import { AnimeDetailData } from '../../types/fetchDataTypes/fetchAnimeDetailTypes'
 
 const HeroInfo = ({ anime } : { anime: AnimeDetailData | null }) => {
   const [buttonClicked, setButtonClicked] = useState(false)
