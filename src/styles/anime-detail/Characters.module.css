@@ -80,6 +80,7 @@
   margin-top: 2rem;
   width: max-content;
   gap: 0.3rem;
+  transition: var(--default-transition-time);
 }
 
 .charactersBtn {
@@ -87,7 +88,14 @@
   font-weight: 500;
   font-size: 0.9rem;
   border-radius: var(--card-border-radius);
-  transition: var(--default-transition-time);
+}
+
+.charactersBtnContainer:hover {
+  color: var(--text-hover-color);
+}
+
+.charactersBtnContainer:hover .carrotIconContainer > svg > path {
+  stroke: var(--text-hover-color);
 }
 
 .carrotIconContainer {

@@ -30,12 +30,21 @@
   display: flex;
   gap: 0.3rem;
   cursor: pointer;
+  transition: var(--default-transition-time);
 }
 
 .readMoreBtn {
   all: unset;
   font-weight: 500;
   font-size: 0.9rem;
+}
+
+.readMoreBtnContainer:hover {
+  color: var(--text-hover-color);
+}
+
+.readMoreBtnContainer:hover .carrotIconContainer > svg > path {
+  stroke: var(--text-hover-color);
 }
 
 .carrotIconContainer {
