@@ -49,6 +49,11 @@ function AnimeDetail() {
   if (anime) return (
     <div className={styles.content}>
 
+      {/* OVERLAY */}
+      {(isDetailMobile && isModalShown) && (
+        <div className={styles.overlay}></div>
+      )}
+      
       {/* BREAKPOINT for DESKTOP <= 800px */}
       {isDetailMobile && (
         <>

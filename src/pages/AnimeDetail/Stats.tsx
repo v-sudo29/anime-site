@@ -47,7 +47,7 @@ export default function Stats({ anime, isModalShown, setIsModalShown } : StatsPr
 
   return (
     <>
-      {/* MOBILE and MODAL */}
+      {/* MOBILE MODAL */}
       {(isDetailMobile && isModalShown) && (
         <div className={styles.modalStatsContainer}>
           <div className={styles.modalTitleAndButtonContainer}>
