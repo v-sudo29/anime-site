@@ -29,8 +29,8 @@ export default function SearchAndGenres({
     const { carrotActive } = carrotStyles
     const svgElement = document.querySelector(`.${styles.carrotContainer} svg`) as SVGAElement
 
-    !svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive) :
-      svgElement.classList.remove(carrotActive)
+    !svgElement.classList.contains(carrotActive) ? svgElement.classList.add(carrotActive, `${styles.carrotActiveColorChange}`) :
+      svgElement.classList.remove(carrotActive, `${styles.carrotActiveColorChange}`)
   }
 
   const toggleGenres = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
