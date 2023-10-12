@@ -2,22 +2,21 @@ import React, { useEffect, useRef } from 'react'
 import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/trending/CarouselButtons.module.css'
 
-interface ICarouselButtons {
+interface CarouselButtonsProps {
   currentIndex: number
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICarouselButtons) {
+const CarouselButtons = ({ currentIndex, setCurrentIndex }: CarouselButtonsProps) => {
   const parentContainer = useRef<HTMLDivElement>(null)
   const { isMobile } = useMobile()
   
-  async function switchAnime(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  const switchAnime = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const currentButton = e.target as HTMLButtonElement
     const parentElement = currentButton.parentElement
     const activeButton = parentElement?.querySelector(`.${styles.active}`) as HTMLButtonElement
 
     if (!currentButton.classList.contains(`${styles.active}`)) {
-
       // Remove active class from activeButton
       activeButton.classList.remove(`${styles.active}`)
 
@@ -34,6 +33,7 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
     }
   }
 
+  // If current index changes, switch to next/prev slide
   useEffect(() => {
     let classSelector = null
     if (currentIndex === 0) classSelector = 'zero'
@@ -70,3 +70,5 @@ export default function CarouselButtons({ currentIndex, setCurrentIndex }: ICaro
     </div>
   )
 }
+
+export default CarouselButtons

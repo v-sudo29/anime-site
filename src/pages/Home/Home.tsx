@@ -8,7 +8,7 @@ import FetchError from '../../components/FetchError'
 import styles from '../../styles/home/Home.module.css'
 import { useDefaultData } from '../../context/defaultDataContext'
 
-function Home() {
+const Home = () => {
   const {
     trendingData,
     upcomingData,
@@ -26,12 +26,6 @@ function Home() {
 
   document.title = 'YourAnimeList: Home'
 
-  // TODO: TEMPORARY useEffect
-  useEffect(() => {
-    const bodyElement = document.querySelector('body')
-    if (bodyElement) bodyElement.style.backgroundColor = "#111111"
-  }, [])
-
   if (newsLoading || trendingLoading || upcomingLoading || popularLoading) return <LoaderAnimation/>
   if (trendingError || upcomingError || popularError || newsError) return <FetchError/>
   if (newsData && trendingData && upcomingData && popularData) return (
@@ -45,7 +39,7 @@ function Home() {
             <MostPopular popularData={popularData}/>
           </div>     
         </>
-        }    
+      }    
     </div>
   )
 }

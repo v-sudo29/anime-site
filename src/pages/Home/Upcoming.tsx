@@ -1,10 +1,10 @@
 import React from 'react'
 import UpcomingCard from './UpcomingCard'
-import { useMobile } from '../../context/mobileContext'
 import styles from '../../styles/home/upcoming/Upcoming.module.css'
 import { UpcomingDatum } from '../../types/fetchDataTypes/fetchUpcomingTypes'
+import { useMobile } from '../../context/mobileContext'
 
-export default function Upcoming({ upcomingData } : { upcomingData: UpcomingDatum[] | null}) {
+const Upcoming = ({ upcomingData } : { upcomingData: UpcomingDatum[] | null}) => {
   const { isMobile, isTablet } = useMobile()
   let upcomingCards = null
 
@@ -37,3 +37,5 @@ export default function Upcoming({ upcomingData } : { upcomingData: UpcomingDatu
     </section>
   )
 }
+
+export default Upcoming

@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styles from '../../styles/home/news/LatestNews.module.css'
 import yellowArrow from '../../assets/yellow-arrow-icon.png'
 import whiteArrow from '../../assets/arrow-icon.png'
+import NewsCard from './NewsCard'
+import { Link } from 'react-router-dom'
 import { useMobile } from '../../context/mobileContext'
 import { JSONNewsResponse } from '../../types/fetchDataTypes/fetchNewsTypes'
-import NewsCard from './NewsCard'
 
-export default function LatestNews({ newsData } : { newsData: JSONNewsResponse | null }) {
+const LatestNews = ({ newsData } : { newsData: JSONNewsResponse | null }) => {
   const { isMobile, isTablet } = useMobile()
   let newsCards: (JSX.Element | null)[] | null = null
 
@@ -38,6 +38,7 @@ export default function LatestNews({ newsData } : { newsData: JSONNewsResponse |
     }
     return null  
   })
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
@@ -62,3 +63,5 @@ export default function LatestNews({ newsData } : { newsData: JSONNewsResponse |
     </section>
   )
 }
+
+export default LatestNews

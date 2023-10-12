@@ -7,7 +7,7 @@ import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
 import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function NewsCard({ news } : { news: News }) {
+const NewsCard = ({ news } : { news: News }) => {
   const { isMobile } = useMobile()
 
   return (
@@ -16,22 +16,23 @@ export default function NewsCard({ news } : { news: News }) {
         <img 
           onError={imageOnError}
           className={styles.image} 
-          src={`${news.image}`} alt="" 
+          src={`${news.image}`} alt="error"
         />
       </a>
       <div className={styles.titleAndDate}>
         {!isMobile && (
           <a href={news.url} className={styles.titleLink} target="_blank" rel="noopener noreferrer">
-          <h3 className={styles.title}>{limitCharacters(news['title'], 40)}</h3>
-        </a>
+            <h3 className={styles.title}>{limitCharacters(news['title'], 40)}</h3>
+          </a>
         )}
         <span className={styles.date}>
         {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
-          news.date.includes('Yesterday') ? formatYesterdayDate() :
-          news.date
+          news.date.includes('Yesterday') ? formatYesterdayDate() : news.date
         }
         </span>
       </div>
     </div>
   )
 }
+
+export default NewsCard

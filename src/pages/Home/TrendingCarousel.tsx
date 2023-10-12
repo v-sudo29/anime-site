@@ -6,7 +6,7 @@ import Arrows from './Arrows'
 import { useMobile } from '../../context/mobileContext'
 import { TrendingDatum } from '../../types/fetchDataTypes/fetchTrendingTypes'
 
-export default function TrendingCarousel({ trendingData } : { trendingData: TrendingDatum[] | null }) {
+const TrendingCarousel = ({ trendingData } : { trendingData: TrendingDatum[] | null }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const timeOutRef = useRef<number | null>(null)
   const runOnce = useRef(false)
@@ -15,7 +15,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
   let trendingCards: (JSX.Element | null)[] | null = null
 
   // Reset carousel timeout
-  const resetTimeout = () => {
+  const resetTimeout = (): void => {
     if (timeOutRef.current) clearTimeout(timeOutRef.current)
   }
 
@@ -37,7 +37,7 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
     setCurrentIndex(0)
   }, [isMobile, isTablet])
 
-  // Display trending cards UI
+  // Display trending cards
   if (trendingData) {
     trendingCards = trendingData.map((anime, index) => {
       if (isMobile && index < 4) return <TrendingCard key={anime['mal_id'] + '-trending'} anime={anime}/>
@@ -55,35 +55,27 @@ export default function TrendingCarousel({ trendingData } : { trendingData: Tren
       </div>
         <div className={styles.slideshow}>
           {trendingData ?
-          <>
-            <div 
-              className={styles.slideshowSlider}
-              style={{ transform: `translate3d(${-currentIndex * 100}%, 0, 0)` }}
-            >
-              {trendingCards}
-            </div>
-            {!isMobile && !isTablet && (
-              <CarouselButtons 
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-              />
-            )}
-            {!isMobile && !isTablet && (
-              <Arrows 
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-              />
-            )}
-          </> :
-            <h1>...Loading Trending Anime</h1> 
+            <>
+              <div 
+                className={styles.slideshowSlider}
+                style={{ transform: `translate3d(${-currentIndex * 100}%, 0, 0)` }}
+              >
+                {trendingCards}
+              </div>
+              {!isMobile && !isTablet && (
+                <CarouselButtons currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}/>
+              )}
+              {(!isMobile && !isTablet) && (
+                <Arrows currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}/>
+              )}
+            </> : <h1>...Loading Trending Anime</h1> 
           }
         </div>
-        {trendingData && (isMobile || isTablet) && (
-          <CarouselButtons 
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-          />
+        {(trendingData && (isMobile || isTablet)) && (
+          <CarouselButtons currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}/>
         )}
       </section>
   )
 }
+
+export default TrendingCarousel

@@ -1,19 +1,18 @@
 import React from 'react'
 import styles from '../../styles/home/trending/Arrows.module.css'
 
-interface IArrows {
+interface ArrowsProps {
   currentIndex: number
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function Arrows({ currentIndex, setCurrentIndex }: IArrows) {
-
-  function nextAnime() {
+const Arrows = ({ currentIndex, setCurrentIndex }: ArrowsProps) => {
+  const nextAnime = (): void => {
     if (currentIndex === 5) setCurrentIndex(0)
     else setCurrentIndex(prev => prev + 1)
   }
 
-  function prevAnime() {
+  const prevAnime = (): void => {
     if (currentIndex === 0) setCurrentIndex(5)
     else setCurrentIndex(prev => prev - 1)
   }
@@ -25,3 +24,5 @@ export default function Arrows({ currentIndex, setCurrentIndex }: IArrows) {
     </div>
   )
 }
+
+export default Arrows
