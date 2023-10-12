@@ -2,9 +2,13 @@ import React from 'react'
 import styles from '../../styles/character-detail/CharacterDetailsButton.module.css'
 import InfoIcon from '../../icons/InfoIcon'
 
-const CharacterDetailsButton = () => {
+interface CharacterDetailsButtonProps {
+  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const CharacterDetailsButton = ({ setIsModalShown } : CharacterDetailsButtonProps) => {
   const handleClick = () => {
-    console.log('clicked!')
+    setIsModalShown(true)
   }
   return (
     <button onClick={handleClick} className={styles.showDetailsButton}>

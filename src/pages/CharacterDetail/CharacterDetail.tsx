@@ -12,6 +12,7 @@ import { useMobile } from '../../context/mobileContext'
 import Biography from './Biography'
 import CharacterName from './CharacterName'
 import CharacterDetailsButton from './CharacterDetailsButton'
+import DetailsModal from './DetailsModal'
 
 export default function CharacterDetail() {
   const params = useParams()
@@ -47,9 +48,14 @@ export default function CharacterDetail() {
               <HeroImage character={character}/>
               <div className={styles.titleAndDetailsContainer}>
                 <CharacterName character={character}/>
-                <CharacterDetailsButton/>
+                <CharacterDetailsButton setIsModalShown={setIsModalShown}/>
               </div>
             </div>
+            <DetailsModal
+              character={character}
+              isModalShown={isModalShown}
+              setIsModalShown={setIsModalShown}
+            />
             <div className={styles.biographyContainer}>
               <Biography character={character}/>
             </div>

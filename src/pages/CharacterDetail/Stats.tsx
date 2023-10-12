@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react'
 import styles from '../../styles/character-detail/Stats.module.css'
 import { CharacterDetailData } from '../../types/fetchDataTypes/fetchCharacterDetailTypes'
 import { IStatsState } from '../../types/stateTypes/CharacterDetailsTypes'
+import { useMobile } from '../../context/mobileContext'
 
 interface Fact {
   [key: string]: string
 }
 
-export default function Stats({ character } : { character: CharacterDetailData}) {
+interface StatsProps {
+  character: CharacterDetailData
+  isModalShown?: boolean
+  setIsModalShown?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function Stats({ character, isModalShown, setIsModalShown } : StatsProps) {
   const [stats, setStats] = useState<IStatsState | null>(null)
+  const { isDetailMobile } = useMobile()
 
   function splitAbout(aboutInfo: string) {
     let birthday = null
@@ -139,6 +147,10 @@ export default function Stats({ character } : { character: CharacterDetailData})
     }
   }
 
+  const handleExitModal = () => {
+    if (setIsModalShown) setIsModalShown(false)
+  }
+
   useEffect(() => {
     if (character) {
       setStats(splitAbout(character['about']))
@@ -157,47 +169,102 @@ export default function Stats({ character } : { character: CharacterDetailData})
     const factTwo = stats.factTwo ? stats.factTwo[`${Object.keys(stats.factTwo)}`] : null
 
     return (
-      <div className={styles.statsContainer}>
-        <h3 className={styles.sectionTitle}>Character Details</h3>
-        <div className={styles.age}>
-          Age
-          <p>{age}</p>
-        </div>
-        <div className={styles.birthday}>
-          Birthday
-          <p>{birthday}</p>
-        </div>
-        <div className={styles.height}>
-          Height
-          <p>{height}</p>
-        </div>
-        <div className={styles.weight}>
-          Weight
-          <p>{weight}</p>
-        </div>
+      <>
+        {/* MOBILE MODAL*/}
+        {(isDetailMobile && isModalShown) && (
+          <div className={styles.modalStatsContainer}>
+            <div className={styles.modalTitleAndButtonContainer}>
+              <h3 className={styles.modalSectionTitle}>Character Details</h3>
+              <div className={styles.modalExitButtonContainer}>
+                <button onClick={handleExitModal} className={styles.modalExitButton}>X</button>
+              </div>
+            </div>
+            <div className={styles.age}>
+              Age
+              <p>{age}</p>
+            </div>
+            <div className={styles.birthday}>
+              Birthday
+              <p>{birthday}</p>
+            </div>
+            <div className={styles.height}>
+              Height
+              <p>{height}</p>
+            </div>
+            <div className={styles.weight}>
+              Weight
+              <p>{weight}</p>
+            </div>
 
-        {/* Display one fact if only one fact exists */}
-        {stats.factOne && stats.factTwo ?
-          <div className={styles.factOne}>
-            {factOneTitle}
-            <p>{factOne}</p>
+            {/* Display one fact if only one fact exists */}
+            {stats.factOne && stats.factTwo ?
+              <div className={styles.factOne}>
+                {factOneTitle}
+                <p>{factOne}</p>
+              </div>
+            : null}
+            
+            {/* Display two facts if two facts exist */}
+            {stats.factOne && stats.factTwo ? 
+            <>
+              <div className={styles.factOne}>
+                {factOneTitle}
+                <p>{factOne}</p>
+              </div>
+              <div className={styles.factTwo}>
+                {factTwoTitle}
+                <p>{factTwo}</p>
+              </div>
+            </>
+            : null}
           </div>
-        : null}
-        
-        {/* Display two facts if two facts exist */}
-        {stats.factOne && stats.factTwo ? 
-        <>
-          <div className={styles.factOne}>
-            {factOneTitle}
-            <p>{factOne}</p>
+        )}
+
+        {/* DESKTOP */}
+        {(!isDetailMobile && !isModalShown) && (
+          <div className={styles.statsContainer}>
+            <h3 className={styles.sectionTitle}>Character Details</h3>
+            <div className={styles.age}>
+              Age
+              <p>{age}</p>
+            </div>
+            <div className={styles.birthday}>
+              Birthday
+              <p>{birthday}</p>
+            </div>
+            <div className={styles.height}>
+              Height
+              <p>{height}</p>
+            </div>
+            <div className={styles.weight}>
+              Weight
+              <p>{weight}</p>
+            </div>
+
+            {/* Display one fact if only one fact exists */}
+            {stats.factOne && stats.factTwo ?
+              <div className={styles.factOne}>
+                {factOneTitle}
+                <p>{factOne}</p>
+              </div>
+            : null}
+            
+            {/* Display two facts if two facts exist */}
+            {stats.factOne && stats.factTwo ? 
+            <>
+              <div className={styles.factOne}>
+                {factOneTitle}
+                <p>{factOne}</p>
+              </div>
+              <div className={styles.factTwo}>
+                {factTwoTitle}
+                <p>{factTwo}</p>
+              </div>
+            </>
+            : null}
           </div>
-          <div className={styles.factTwo}>
-            {factTwoTitle}
-            <p>{factTwo}</p>
-          </div>
-        </>
-        : null}
-      </div>
+        )}    
+      </>
     )
   }
 }

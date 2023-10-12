@@ -8,6 +8,11 @@
   color: var(--main-background-color);
   font-weight: 500;
   cursor: pointer;
+  transition: var(--default-transition-time);
+}
+
+.showDetailsButton:hover {
+  background-color: var(--yellow-hover-color);
 }
 
 .infoIconContainer {

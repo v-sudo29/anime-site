@@ -68,9 +68,5 @@ export default function useFetchMainSeries(mainIdsType : IMainIdsType[] | null) 
     }
   }, [mainIdsType])
 
-  useEffect(() => {
-    console.log('running')
-  }, [mainData])
-
   return { mainData, loading, error }
 }

@@ -28,3 +28,66 @@
   font-size: 1.1rem;
   font-weight: 500;
 }
+
+/* MODAL for MOBILE */
+.modalStatsContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 10%;
+  left: 2.4%;
+  gap: 2rem;
+  border-radius: var(--card-border-radius);
+  transition: var(--default-transition-time);
+  background-color: #2B2B2B;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  width: calc(86.5vw * (1.10501));
+  z-index: 40;
+}
+
+.modalStatsContainer > div { 
+  flex: 1;
+  font-weight: 500;
+}
+
+.modalStatsContainer > div > p {
+  margin-top: 0.5rem;
+  font-weight: 400;
+  color: #D7D7D7;
+}
+
+.modalTitleAndButtonContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.modalSectionTitle {
+  margin-bottom: -0.5rem;
+  color: var(--yellow-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  grid-column-start: 2;
+  justify-self: center;
+}
+
+.modalExitButtonContainer {
+  margin-left: auto;
+}
+
+.modalExitButton {
+  all: unset;
+  background-color: #555555;
+  padding: 0.6rem 0.9rem;
+  border-radius: 20rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: var(--default-transition-time);
+}
+
+.modalExitButton:hover {
+  background-color: var(--button-hover-bg-color);
+}
