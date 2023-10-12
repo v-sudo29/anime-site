@@ -8,7 +8,7 @@
 }
 
 .card:hover {
-  background-color: #242323;
+  background-color: #2D2F30;
 }
 
 .ranking {
@@ -66,8 +66,8 @@
   height: 2.6rem;
   min-width: 2.6rem;
   border-radius: 0.4rem;
-  background-color: var(--yellow-color);
-  color: var(--main-background-color);
+  background-color: #616161;
+  color: '#FFFFFF';
   font-weight: 500;
 }
 
