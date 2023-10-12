@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect} from 'react'
-import CarrotDown from '../icons/CarrotDown'
+import CarrotDownIcon from '../icons/CarrotDownIcon'
 import styles from '../styles/components/CustomSelect.module.css'
-import carrotStyles from '../styles/icons/CarrotDown.module.css'
+import carrotStyles from '../styles/icons/CarrotDownIcon.module.css'
 
 interface ICustomSelect {
   setTopFilter: React.Dispatch<React.SetStateAction<string>>
@@ -84,7 +84,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
         >
           {selectItem}
           <div className={styles.filterCarrotContainer} onClick={(e) => openSelectMenu(e)}>
-            <CarrotDown />
+            <CarrotDownIcon />
           </div>
         </div>
       )
@@ -165,7 +165,7 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
         >
           <span onClick={openSelectMenu} className={styles.selectedOptionText}>{firstOption}</span>
           <div className={styles.filterCarrotContainer} onClick={(e) => openSelectMenu(e)}>
-            <CarrotDown />
+            <CarrotDownIcon />
           </div>
         </div>
       )

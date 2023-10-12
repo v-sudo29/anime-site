@@ -35,6 +35,7 @@
   color: white;
   background-color: var(--main-background-color);
   display: flex;
+  align-items: center;
   cursor: pointer;
   justify-content: center;
   padding: 0.5rem 0.7rem;
@@ -48,8 +49,9 @@
   color: var(--text-hover-color);
 }
 
-.selectedOption:hover .filterCarrotContainer {
+.selectedOption:hover .filterCarrotContainer > svg > path {
   color: var(--text-hover-color);
+  stroke: var(--text-hover-color);
 }
 
 
@@ -59,7 +61,7 @@
 }
 
 .filterCarrotContainer > svg {
-  width: 0.7rem;
+  width: 1.5rem;
 }
 
 .optionSelected {

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../styles/anime-list/SearchAndGenres.module.css'
-import carrotStyles from '../../styles/icons/CarrotDown.module.css'
+import carrotStyles from '../../styles/icons/CarrotDownIcon.module.css'
 import { genresMasterList } from './genresMasterList'
 import genresToIds from '../../helpers/genresToIds'
 import SearchBarAndToggle from './SearchBarToggle'
