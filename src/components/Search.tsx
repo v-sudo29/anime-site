@@ -8,7 +8,7 @@ interface SearchProps {
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => false | void
 }
 
-export default function Search({ placeholder, inputValue, handleEnter } : SearchProps) {
+const Search = ({ placeholder, inputValue, handleEnter } : SearchProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}>
@@ -24,3 +24,5 @@ export default function Search({ placeholder, inputValue, handleEnter } : Search
     </div>
   )
 }
+
+export default Search

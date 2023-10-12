@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from '../styles/components/Header.module.css'
 
-function Header() {
+const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.navigation}>

@@ -11,7 +11,7 @@ interface AnimeListCardProps {
   id: number
 }
 
-export default function AnimeListCard({ anime, index, id } : AnimeListCardProps) {
+const AnimeListCard = ({ anime, index, id } : AnimeListCardProps) => {
   const { isMobile } = useMobile()
   return (
     <>
@@ -71,3 +71,5 @@ export default function AnimeListCard({ anime, index, id } : AnimeListCardProps)
     </>   
   )
 }
+
+export default AnimeListCard

@@ -8,7 +8,7 @@ interface CustomSelectProps {
   resetPageCount: () => void
 }
 
-export default function CustomSelect({ setTopFilter, resetPageCount } : CustomSelectProps) {
+const CustomSelect = ({ setTopFilter, resetPageCount } : CustomSelectProps) => {
   const allOptions = useRef<string[]>([''])
   const selected = useRef('')
   const selectMenuHidden = useRef(true)
@@ -214,3 +214,5 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : CustomSe
     </div>
   )
 }
+
+export default CustomSelect
