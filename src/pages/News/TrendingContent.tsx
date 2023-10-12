@@ -58,7 +58,7 @@ export default function TrendingContent({ newsData } : { newsData: News[] }) {
 
   return (
     <div className={styles.container}>
-      <h2>Trending Anime News</h2>
+      <h2 className={styles.sectionTitle}>Trending Anime News</h2>
       <div className={styles.cardsContainer}>
         {trendingNewsCards ? trendingNewsCards : <div className={styles.defaultDiv}>...Loading</div>}
       </div>

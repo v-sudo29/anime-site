@@ -39,7 +39,7 @@ export default function AllNews({ newsData } : { newsData: News[] }) {
 
   return (
     <div className={styles.container}>
-      <h2>What's New?</h2>
+      <h2 className={styles.sectionTitle}>What's New?</h2>
       <div className={styles.cardsContainer}>
         {newsCards ? newsCards : <>...Loading</>}
       </div>
