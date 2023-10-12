@@ -17,26 +17,26 @@ html {
 
 :root {
   --box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.2);
+  --button-bg-color: #616161;
+  --button-hover-bg-color: #363636;
+  --button-hover-color: #6f6f6f;
   --card-border-radius: 0.3rem;
   --container-padding: 1rem;
-  --main-background-color: #1F2021;
-  --yellow-color: #F9B732;
-  --yellow-hover-color: #CE8E0E;
-  --text-color: white;
-  --text-hover-color: #CDCDCD;
+  --default-transition-time: ease 0.1s;
   --hover-color: rgb(13, 116, 220);
+  --link-hover-color: #b0b0b0;
+  --main-background-color: #1F2021;
   --page-top-bottom-padding: 5rem;
   --page-max-width: 69rem;
   --page-mobile-min-width: 20rem;
+  --text-color: white;
+  --text-hover-color: #CDCDCD;
   --vertical-card-height: 25rem;
   --vertical-card-width: 15rem;
   --vertical-img-height: 20rem;
   --vertical-img-width: 15rem;
-  --button-bg-color: #616161;
-  --button-hover-bg-color: #363636;
-  --button-hover-color: #6f6f6f;
-  --default-transition-time: ease 0.1s;
-  --link-hover-color: #b0b0b0;
+  --yellow-color: #F9B732;
+  --yellow-hover-color: #CE8E0E;
 }
 
 #root {
