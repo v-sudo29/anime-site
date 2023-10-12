@@ -6,6 +6,7 @@ function useFetchNews() {
   const [newsLoading, setNewsLoading] = useState(false)
   const [newsError, setNewsError] = useState(false)
 
+  // TODO: move data to context, store in localStorage
   async function fetchNews() {
     try {
       const data: JSONNewsResponse = await import('../anime-news.json')

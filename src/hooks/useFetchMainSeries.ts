@@ -8,7 +8,7 @@ export default function useFetchMainSeries(mainIdsType : IMainIdsType[] | null) 
   const [error, setError] = useState(false)
   const intervalCounter = useRef(0)
 
-  // TODO: create context to persist main series data
+  // TODO: move data to context, store in localStorage
   useEffect(() => {
     // Check localStorage if main series data exists
     const storedMainData = localStorage.getItem('mainSeries')

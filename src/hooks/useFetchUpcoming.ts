@@ -6,6 +6,7 @@ function useFetchUpcoming() {
   const [upcomingLoading, setUpcomingLoading] = useState(false)
   const [upcomingError, setUpcomingError] = useState(false)
 
+  // TODO: move data to context, store in localStorage
   useEffect(() => {
     const storageData = localStorage.getItem('defaultData')
     let parsedData

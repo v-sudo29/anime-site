@@ -9,7 +9,7 @@ export default function useFetchProducers(producerIdsType: IProducersIdsType[]| 
   const [error, setError] = useState(false)
   const intervalCounter = useRef(0)
 
-  // TODO: create context to persist main series data
+  // TODO: move data to context, store in localStorage
   // Set delayed timer and interval to fetch producers info
   useEffect(() => {
     const controller = new AbortController();

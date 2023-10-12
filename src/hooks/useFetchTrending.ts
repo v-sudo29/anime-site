@@ -6,6 +6,7 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
   const [trendingLoading, setTrendingLoading] = useState(false)
   const [trendingError, setTrendingError] = useState(false)
 
+  // TODO: move data to context, store in localStorage
   useEffect(() => {
     const storageData = localStorage.getItem('defaultData')
 

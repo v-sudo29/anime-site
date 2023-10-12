@@ -7,7 +7,7 @@ export default function useFetchCharacters(anime: AnimeDetailData, id: string | 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  // TODO: create context to persist characters data
+  // TODO: move data to context, store in localStorage
   useEffect(() => {
     // Check localStorage if characters data exist
     const storedCharacters = localStorage.getItem('characters')

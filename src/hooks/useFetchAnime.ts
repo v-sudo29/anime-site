@@ -8,6 +8,7 @@ export default function useFetchAnime() {
   const [animeLoading, setAnimeLoading] = useState(false)
   const [animeError, setAnimeError] = useState(false)
 
+  // TODO: move anime data to context, store in localStorage
   useEffect(() => {
     // Check localStorage
     const storedData = localStorage.getItem('animeDetail')
@@ -85,7 +86,6 @@ export default function useFetchAnime() {
           clearTimeout(timer)
         }
       }
-
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
