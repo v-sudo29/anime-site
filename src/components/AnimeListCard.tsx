@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 import { useMobile } from '../context/mobileContext'
 import { SingleSearchedAnime } from '../types/stateTypes/AnimeListTypes'
 
-interface IAnimeListCard {
+interface AnimeListCardProps {
   anime: SingleSearchedAnime
   index: number
   id: number
 }
 
-export default function AnimeListCard({ anime, index, id } : IAnimeListCard) {
+export default function AnimeListCard({ anime, index, id } : AnimeListCardProps) {
   const { isMobile } = useMobile()
   return (
     <>

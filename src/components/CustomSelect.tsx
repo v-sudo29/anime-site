@@ -3,12 +3,12 @@ import CarrotDownIcon from '../icons/CarrotDownIcon'
 import styles from '../styles/components/CustomSelect.module.css'
 import carrotStyles from '../styles/icons/CarrotDownIcon.module.css'
 
-interface ICustomSelect {
+interface CustomSelectProps {
   setTopFilter: React.Dispatch<React.SetStateAction<string>>
   resetPageCount: () => void
 }
 
-export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomSelect) {
+export default function CustomSelect({ setTopFilter, resetPageCount } : CustomSelectProps) {
   const allOptions = useRef<string[]>([''])
   const selected = useRef('')
   const selectMenuHidden = useRef(true)
@@ -34,7 +34,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
         <div 
           key={`${option}-hidden`}
           tabIndex={0} 
-          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` 
+            : `${styles['optionItem']} ${styles['optionHidden']}`}
           onClick={option === selected.current ? undefined :(e) => updateSelectedItem(e)}
         >
           {option}
@@ -122,7 +123,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
   function closeSelectMenu(e: MouseEvent) {
     const element = e.target as HTMLElement
 
-    if (element && !selectMenuHidden.current && (element.classList.contains(`${styles['selectedOption']}`) || (!element.classList.contains(`${styles['selectedOption']}`)))) {
+    if (element && !selectMenuHidden.current && (element.classList.contains(`${styles['selectedOption']}`) 
+      || (!element.classList.contains(`${styles['selectedOption']}`)))) {
       hideOptions()
     }
   }
@@ -134,9 +136,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
     const optionSelected = optionDivElement.innerText
     const correctElement = optionDivElement.classList.contains(`${styles['selectedOption']}`)
 
-    if (key === 'Enter' && correctElement) {
-      showOptions()
-    } else if (key === 'Enter' && !correctElement && selected.current !== optionSelected) {
+    if (key === 'Enter' && correctElement) showOptions()
+    else if (key === 'Enter' && !correctElement && selected.current !== optionSelected) {
       updateSelectedItem(e)
       hideOptions()
     }
@@ -178,7 +179,8 @@ export default function CustomSelect({ setTopFilter, resetPageCount } : ICustomS
         <div 
           key={`${option}-hidden`} 
           tabIndex={0} 
-          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}` : `${styles['optionItem']} ${styles['optionHidden']}`}
+          className={option === selected.current ? `${styles['optionItem']} ${styles['optionHidden']} ${styles['optionSelected']}`
+            : `${styles['optionItem']} ${styles['optionHidden']}`}
           onClick={option === selected.current ? undefined : (e) => updateSelectedItem(e)}
           onKeyDown={(e) => handleKeyPressed(e)}
         >
