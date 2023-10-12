@@ -2,13 +2,13 @@ import React from 'react'
 import SearchIcon from '../icons/SearchIcon'
 import styles from '../styles/components/SearchBar.module.css'
 
-interface ISearch {
+interface SearchProps {
   placeholder: string
   inputValue: React.RefObject<HTMLInputElement>
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => false | void
 }
 
-export default function Search({ placeholder, inputValue, handleEnter } : ISearch) {
+export default function Search({ placeholder, inputValue, handleEnter } : SearchProps) {
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}>

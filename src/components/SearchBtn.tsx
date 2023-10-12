@@ -1,12 +1,12 @@
 import React from 'react'
 
-interface ISearchBtn {
+interface SearchBtnProps {
   styles: CSSModuleClasses
   resetPageCount: () => void
   handleGenresSearch: () => void
 }
 
-export default function SearchBtn({ styles, resetPageCount, handleGenresSearch } : ISearchBtn) {
+export default function SearchBtn({ styles, resetPageCount, handleGenresSearch } : SearchBtnProps) {
   return (
     <div className={styles.searchBtnContainer}>
       <button 
