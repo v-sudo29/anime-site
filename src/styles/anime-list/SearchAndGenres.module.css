@@ -1,6 +1,5 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 2rem;
   border-radius: 0.3rem;
 }
@@ -59,21 +58,39 @@
   display: flex;
 }
 
+.activeGenresBtn {
+  all: unset;
+  background-color: var(--yellow-color);
+  color: var(--main-background-color);
+  padding: 0rem 1.3rem;
+  border-radius: inherit;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--default-transition-time);
+}
+
+.activeGenresBtn:hover {
+  background-color: var(--yellow-hover-color);
+}
+
 .genreTagsContainer {
   display: grid;
-  grid-template-columns: repeat(5, minmax(6.5rem, 1fr));
-  grid-template-rows: repeat(3, 2.5rem);
-  gap: 0.6rem;
+  /* grid-template-columns: repeat(7, minmax(0rem, 1fr));
+  grid-template-rows: repeat(3, 2.5rem); */
+  gap: 0.8rem;
   transition: var(--default-transition-time);
 }
 
 .genreTag {
   border-radius: 10rem;
-  background-color: #686868;
-  color: inherit;
-  border: none;
-  cursor: pointer;
+  background-color: var(--main-background-color);
   transition: var(--default-transition-time);
+  color: inherit;
+  border: 1px solid #686868;
+  cursor: pointer;
 }
 
 .genreTag:focus-visible {
@@ -83,20 +100,21 @@
 }
 
 .active, .active:hover {
-  background-color: #262626;
+  background-color: var(--yellow-color);
+  color: var(--main-background-color);
+  border: 1px solid transparent;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 0px) {
   .genresBtn {
     background-color: #4D4D4D;
   }
   
   .genreTag {
-    padding: 1rem 0rem;
+    padding: 0.7rem 0rem;
   }
 
   .genreTagsContainer {
-    grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(2.5rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   }
 }

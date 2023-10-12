@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.sectionTitle {
+  color: var(--yellow-color);
+}
+
 .titleAndFilter {
   display: flex;
   gap: 1rem;

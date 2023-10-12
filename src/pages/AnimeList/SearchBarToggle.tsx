@@ -10,7 +10,8 @@ interface ISearchBarAndToggle {
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
   resetPageCount: () => void
   handleGenresSearch: () => void
-  toggleGenres: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  toggleGenres: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  genresShown: boolean
 }
 
 export default function SearchBarAndToggle({
@@ -19,7 +20,8 @@ export default function SearchBarAndToggle({
   handleEnter,
   resetPageCount,
   handleGenresSearch,
-  toggleGenres
+  toggleGenres,
+  genresShown
 }: ISearchBarAndToggle) {
   const { isMobile } = useMobile()
 
@@ -30,15 +32,8 @@ export default function SearchBarAndToggle({
         inputValue={inputValue}
         handleEnter={handleEnter}
       />
-      {!isMobile && (
-        <SearchBtn 
-          styles={styles}
-          resetPageCount={resetPageCount}
-          handleGenresSearch={handleGenresSearch}
-        />
-      )}
       {/* GENRES MENU TOGGLE*/}
-      <button onClick={(e) => toggleGenres(e)} className={styles.genresBtn} type="button">
+      <button onClick={(e) => toggleGenres(e)} className={genresShown ? styles.activeGenresBtn : styles.genresBtn} type="button">
         {!isMobile && 'Genres'}
         <div className={styles.carrotContainer}>
           <CarrotDown />

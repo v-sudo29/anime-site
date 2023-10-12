@@ -45,6 +45,7 @@ export default function CharacterDetail() {
         {(isDetailMobile && isModalShown) && (
           <div className={styles.overlay}></div>
         )}
+        
         {/* BREAKPOINT for DESKTOP <= 800px */}
         {isDetailMobile && (
           <>

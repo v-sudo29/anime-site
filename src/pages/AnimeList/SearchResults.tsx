@@ -123,7 +123,7 @@ export default function SearchResults({
   return (
       <div className={styles.container}>
         <div className={styles.titleAndFilter}>
-          <h2 className='animeList-title'>Most Popular Anime</h2>
+          <h2 className={styles.sectionTitle}>Anime List</h2>
           {!isMobile && (
             <CustomSelect 
               setTopFilter={setTopFilter}

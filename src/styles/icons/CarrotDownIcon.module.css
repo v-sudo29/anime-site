@@ -6,9 +6,3 @@
 .carrotActive {
   transform: rotate(180deg)
 }
-
-/* @media screen and (max-width: 480px) {
-  .icon {
-    width: 1.5rem;
-  }
-} */

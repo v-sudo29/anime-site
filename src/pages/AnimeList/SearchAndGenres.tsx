@@ -91,6 +91,7 @@ export default function SearchAndGenres({
         resetPageCount={resetPageCount}
         handleGenresSearch={handleGenresSearch}
         toggleGenres={toggleGenres}
+        genresShown={genresShown}
       />
       {genresShown && (
         <GenresMenu
