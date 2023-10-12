@@ -40,7 +40,7 @@ const MobileProvider = ({ children } : { children: ReactNode }) => {
     if (window.innerWidth >= 1024) setIsTwoColumn(false)
 
   }
-  // Handle window resizing for media queries
+  // Handle window resizing for media queries on render
   useEffect(() => {
     if (window.innerWidth >= 320 && window.innerWidth <= 479) setIsMobile(true)
     if (window.innerWidth >= 480 && window.innerWidth <= 600) setIsTablet(true)

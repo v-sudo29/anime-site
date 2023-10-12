@@ -7,9 +7,8 @@ export default function genresToIds(genresArr: string[]): (number | null)[] {
     let malId: number | null = null
     const obj = genresMasterList.find(obj => obj.name === genre)
   
-    if (obj) {
-      malId = obj.mal_id
-    }
+    if (obj) malId = obj.mal_id
+    
     return malId
   })
   return genreIds
