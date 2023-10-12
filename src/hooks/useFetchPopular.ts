@@ -21,21 +21,21 @@ function useFetchPopular() {
       const timer = setTimeout(() => {
         const popularURL = `https://api.jikan.moe/v4/top/anime?filter=bypopularity`
 
-          fetch(popularURL, {signal: signal})
-            .then(response => {
-              if (response.ok) return response.json()
-              if (response.status === 429) console.log('429 error, too many requests!')
-              throw response
-            })
-            .then((data: PopularResponse) => {
-              setPopularData(data)
-            })
-            .catch((error) => {
-              setPopularError(true)
-              if (signal.aborted) console.log('The user aborted the request', error)
-              else console.error('The request failed', error)
-            })
-            .finally(() => setPopularLoading(false))
+        fetch(popularURL, {signal: signal})
+          .then(response => {
+            if (response.ok) return response.json()
+            if (response.status === 429) console.log('429 error, too many requests!')
+            throw response
+          })
+          .then((data: PopularResponse) => {
+            setPopularData(data)
+          })
+          .catch((error) => {
+            setPopularError(true)
+            if (signal.aborted) console.log('The user aborted the request', error)
+            else console.error('The request failed', error)
+          })
+          .finally(() => setPopularLoading(false))
       }, 1400)
 
       return () => {

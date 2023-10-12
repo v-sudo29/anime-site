@@ -49,7 +49,7 @@ export default function useFetchProducers(producerIdsType: IProducersIdsType[]| 
             intervalCounter.current += 1
             if (intervalCounter.current === producerIdsType.length - 1) setLoading(false)
           })
-      } window.clearTimeout(interval)
+      } else window.clearTimeout(interval)
     }, (count > 0 ? 1800 : 1400)), (((count + 1) * 3000) + 1000))
 
     return () => {

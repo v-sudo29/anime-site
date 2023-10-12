@@ -29,13 +29,13 @@ export default function useFetchCharacters(anime: AnimeDetailData, id: string | 
               localStorage.setItem('characters', JSON.stringify({ id: id, data: data.data }))
             })
             .catch((error) => {
-              if (signal.aborted) {
-                console.log('The user aborted the request', error)
-              } else {
+              if (signal.aborted) console.log('The user aborted the request', error)
+              else {
                 console.error('The request failed', error)
                 setError(true)
               }
             })
+            .finally(() => setLoading(false))
       }, 700)
       
       return () => {

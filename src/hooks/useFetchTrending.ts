@@ -21,23 +21,23 @@ function useFetchTrending(LIMIT_NUMBER = 6) {
       const timer = setTimeout(() => {
         const trendingURL = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=${LIMIT_NUMBER}`
   
-          fetch(trendingURL, { signal: signal })
-            .then(response => {
-              if (response.ok) return response.json()
-              if (response.status === 429) console.log('429 error, too many requests!')
-              throw response
-            })
-            .then((data: TrendingResponse) => {
-              setTrendingData(data.data)
-            })
-            .catch(() => {
-              if (signal.aborted) console.log('The user aborted the request')
-              else {
-                console.error('The request failed')
-                setTrendingError(true)
-              }
-            })
-            .finally(() => setTrendingLoading(false))
+        fetch(trendingURL, { signal: signal })
+          .then(response => {
+            if (response.ok) return response.json()
+            if (response.status === 429) console.log('429 error, too many requests!')
+            throw response
+          })
+          .then((data: TrendingResponse) => {
+            setTrendingData(data.data)
+          })
+          .catch(() => {
+            if (signal.aborted) console.log('The user aborted the request')
+            else {
+              console.error('The request failed')
+              setTrendingError(true)
+            }
+          })
+          .finally(() => setTrendingLoading(false))
       }, 700)
 
       return () => {
