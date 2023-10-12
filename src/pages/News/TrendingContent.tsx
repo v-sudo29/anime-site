@@ -5,7 +5,7 @@ import getTodaysDate from '../../helpers/getTodaysDate'
 import { useMobile } from '../../context/mobileContext'
 import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function TrendingContent({ newsData } : { newsData: News[] }) {
+const TrendingContent = ({ newsData } : { newsData: News[] }) => {
   const [trendingNewsCards, setTrendingNewsCards] = useState<(JSX.Element | null)[] | null>(null)
   const { isMobile } = useMobile()
 
@@ -33,15 +33,15 @@ export default function TrendingContent({ newsData } : { newsData: News[] }) {
           return (
             <div key={news.title + index} className={styles.card}>
               <a className={styles.anchorContainer} href={news.url} target="_blank" rel="noopener noreferrer">
-                <img className={styles.image} src={news.image} alt="" />
+                <img className={styles.image} src={news.image} alt={`${news.title}`} />
               </a>
               <div className={styles.info}>
                 <div className={styles.date}>
                 {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
-                  news.date.includes('Yesterday') ? formatYesterdayDate() :
-                  news.date
+                  news.date.includes('Yesterday') ? formatYesterdayDate() : news.date
                 }
                 </div>
+                {/* MOBILE */}
                 {!isMobile && (
                   <a href={news.url} target="_blank" rel="noopener noreferrer">
                     <h3 className={styles.title}>{news.title}</h3>
@@ -60,8 +60,10 @@ export default function TrendingContent({ newsData } : { newsData: News[] }) {
     <div className={styles.container}>
       <h2 className={styles.sectionTitle}>Trending Anime News</h2>
       <div className={styles.cardsContainer}>
-        {trendingNewsCards ? trendingNewsCards : <div className={styles.defaultDiv}>...Loading</div>}
+        {trendingNewsCards ?? <div className={styles.defaultDiv}>...Loading</div>}
       </div>
     </div>
   )
 }
+
+export default TrendingContent

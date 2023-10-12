@@ -3,13 +3,12 @@ import limitCharacters from '../../helpers/limitCharacters'
 import styles from '../../styles/news/AllNews.module.css'
 import formatYesterdayDate from '../../helpers/formatYesterdayDate'
 import getTodaysDate from '../../helpers/getTodaysDate'
-import { useMobile } from '../../context/mobileContext'
 import { News } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-export default function AllNews({ newsData } : { newsData: News[] }) {
+const AllNews = ({ newsData } : { newsData: News[] }) => {
   let newsCards: (JSX.Element | null)[] | null = null
-  const { isMobile } = useMobile()
 
+  // If news data available, set cards
   if (newsData) {
     newsCards = newsData.map((news, index) => {
       if (news.image === 'doesn\'t exist!') return null
@@ -21,8 +20,7 @@ export default function AllNews({ newsData } : { newsData: News[] }) {
           <div className={styles.info}>
             <div className={styles.date}>
             {(news.date.includes('hour') || news.date.includes('minute')) ? getTodaysDate() :
-              news.date.includes('Yesterday') ? formatYesterdayDate() :
-              news.date
+              news.date.includes('Yesterday') ? formatYesterdayDate() : news.date
             }
             </div>
             <a href={news.url} target="_blank" rel="noopener noreferrer">
@@ -46,3 +44,5 @@ export default function AllNews({ newsData } : { newsData: News[] }) {
     </div>
   )
 }
+
+export default AllNews

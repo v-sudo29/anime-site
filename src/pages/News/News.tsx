@@ -7,7 +7,7 @@ import styles from '../../styles/news/News.module.css'
 import useFetchNews from '../../hooks/useFetchJSONNews'
 import { JSONNewsResponse } from '../../types/fetchDataTypes/fetchNewsTypes'
 
-function News() {
+const News = () => {
   const [newsData, setNewsData] = useState<JSONNewsResponse | null>(null)
   const { newsData: fetchedNewsData, newsError, newsLoading } = useFetchNews()
 
@@ -18,12 +18,6 @@ function News() {
     if (!newsData) setNewsData(fetchedNewsData)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchedNewsData])
-
-  // TODO: TEMPORARY useEffect
-  useEffect(() => {
-    const bodyElement = document.querySelector('body')
-    if (bodyElement) bodyElement.style.backgroundColor = "#111111"
-  }, [])
 
   return (
     <div className={styles.container}>
